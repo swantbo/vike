@@ -1,0 +1,142 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+
+.edit {
+  width: 100vw;
+  margin-top: vw(125);
+  position: relative;
+  .changeAvatar {
+    width: 100vw;
+    height: vw(170);
+    //background: #666666;
+    overflow: hidden;
+
+    .avatarBox {
+      border: 1px solid rgba(0, 0, 0, 0.35);
+      position: absolute;
+      top: vw(20);
+      left: vw(60);
+      width: vw(100);
+      height: vw(100);
+      //background: #999999;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        width: vw(100);
+        border-radius: 50%;
+      }
+    }
+
+    .avatarChangeButton {
+      p{
+        font-size: vw(40);
+      }
+      div{
+        text-decoration: none;
+        font-size: vw(35);
+        font-weight: bold;
+        color: #1ea1ff;
+      }
+      width: 70vw;
+      position: absolute;
+      top: vw(20);
+      left: vw(210);
+    }
+  }
+
+  .editBox {
+    width: 100vw;
+    height: vw(170);
+    //background: #666666;
+    span {
+      display: inline-block;
+      font-size: vw(40);
+      font-weight: bold;
+      text-indent: vw(50);
+      width: 100vw;
+      margin-top: vw(10);
+    }
+
+    textarea {
+      //font-weight: bold;
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      margin-top: vw(10);
+      margin-left: vw(50);
+      line-height: vw(70);
+      width: vw(900);
+      height: vw(70);
+      border: solid 1px #ededed;
+      border-radius: vw(10);
+      text-indent: vw(20);
+      font-size: vw(40);
+    }
+  }
+  .Introduction{
+    height: vw(270);
+    textarea{
+      overflow: auto;
+      height: vw(170);
+    }
+  }
+  .gender{
+    font-size: vw(40);
+    font-weight: bold;
+    width: 100vw;
+    position: relative;
+    left: vw(50);
+    height: vw(170);
+    select{
+      background: #ffffff;
+      margin-top: vw(10);
+      border: 1px solid rgba(0, 0, 0, 0.17);
+      width: vw(300);
+      border-radius: vw(10);
+      height: vw(80);
+    }
+  }
+  .Recommend{
+    width: 100vw;
+    height: vw(230);
+    position: relative;
+    left: vw(50);
+    .title{
+      font-size: vw(40);
+      font-weight: bold;
+    }
+    .exp{
+      width: 60vw;
+      input{
+        position: absolute;
+        top: vw(100);
+        left:vw(30);
+      }
+      div{
+        font-size: vw(30);
+        font-weight: bold;
+        position: absolute;
+        top: vw(80);
+        left: vw(100);
+        width: vw(360);
+      }
+    }
+  }
+  .sub{
+    position: relative;
+    width: 100vw;
+    height: vw(400);
+    div{
+      position: absolute;
+      left: vw(50);
+      color: #ffffff;
+      font-weight: bold;
+      text-align: center;
+      line-height: vw(80);
+      border-radius: vw(10);
+      font-size: vw(40);
+      width: vw(160);
+      height: vw(80);
+      background: #3c9cff;
+    }
+  }
+}

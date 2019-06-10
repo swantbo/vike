@@ -1,0 +1,31 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+
+.test-home{
+  margin-top: vw(125);
+  .home-li{
+    width: 100vw;
+    font-size: 10vw;
+    text-align: center;
+  }
+}
+.test-search{
+  overflow:hidden;
+  margin-top: vw(125);
+  .search-li{
+    font-size: 5vw;
+    float: left;
+    width: 32vw;
+    height: 32vw;
+    margin: 1px;
+  }
+}
+.test-result{
+  overflow:hidden;
+  margin-top: vw(125);
+  .result-li{
+    width: 100vw;
+    height: 10vw;
+  }
+}

@@ -1,0 +1,50 @@
+a {
+  text-decoration: none;
+  color: #3c9cff;
+}
+
+.floatCol {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.46);
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.floatCol .fuck .colBox {
+  width: 64.8148148148vw;
+  background: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 2.7777777778vw;
+  transform: translateX(-50%) translateY(-50%);
+}
+.floatCol .fuck .colBox h2 {
+  text-align: center;
+  width: 64.8148148148vw;
+  height: 18.5185185185vw;
+  line-height: 18.5185185185vw;
+  font-size: 4.6296296296vw;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.floatCol .fuck .colBox ul li {
+  list-style: none;
+  width: 64.8148148148vw;
+  text-align: center;
+  height: 12.2222222222vw;
+  line-height: 12.3148148148vw;
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.floatCol .fuck .colBox ul li:nth-child(1) {
+  color: #3c9cff;
+}
+.floatCol .fuck .colBox ul li:nth-child(2) {
+  color: red;
+}
+
+/*# sourceMappingURL=floatInterface.css.map */

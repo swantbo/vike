@@ -1,0 +1,111 @@
+import * as ActionTypes from './ActionTypes.js';
+
+const aboutMe = {
+    userName:'vike',
+    userId:'xwvike',
+    email:'xwvike@gmail.com',
+    avatar:'26395177.jpeg',
+    Introduction:'coding……💩 😺 😸 😹 😻 😼 😽 🙀 😿 😾',
+    website:'www.xwvike.com',
+    gender:2,
+    addTime:'20190217',
+    myPost:['1','2'],
+    myFens:['admin'],
+    myFriends:['admin'],
+    myCollection:['3','4'],
+    isActive:true,
+    isRecommend:true,
+    isPrivate:false,
+    setListUrl: [{url:'edit',text:'编辑主页'},{url:'changePassword',text:'更改密码'},{url:'privacy_and_security',text:'隐私和安全'},{url:'help',text:'帮助中心'},{url:'us',text:'关于我们'},{url:'',text:'退出'}],
+    avatarFloat:false,
+    aboutMeFloat:false,
+    avatarFloatTitle:'更改头像',
+    avatarFloatText:['上传头像','移除当前头像','取消'],
+    aboutMeFloatTitle:'',
+    aboutMeFloatText:['举报','拉黑','取消']
+
+};
+
+export default function (state = aboutMe, action) {
+    switch (action.type) {
+        default:{
+            return state
+        }
+        case ActionTypes.ABOUTME_CHANGE_USER_NAME:{
+            const {name} = action.payload;
+            return{
+                ...state,
+                userName: name
+            }
+        }
+        case ActionTypes.ABOUTME_CHANGE_USER_ID:{
+            const {id} = action.payload;
+            return{
+                ...state,
+                userId: id
+            }
+        }
+        case ActionTypes.ABOUTME_CHANGE_USER_EMAIL:{
+            const {email} = action.payload;
+            return{
+                ...state,
+                email:email
+            }
+        }
+        case ActionTypes.ABOUTME_CHANGE_USER_INTRODUCTION:{
+            const {text} = action.payload;
+            return{
+                ...state,
+                Introduction: text
+            }
+        }
+        case ActionTypes.ABOUTME_CHANGE_USER_WEBSITE:{
+            const {website} = action.payload;
+            return{
+                ...state,
+                website:website
+            }
+        }
+        case ActionTypes.ABOUTME_CHANGE_USER_GENDER:{
+            const {num} = action.payload;
+            return{
+                ...state,
+                gender:num
+            }
+        }
+        case ActionTypes.ABOUTME_CHANGE_USER_ACTION:{
+            const {boolean} = action.payload;
+            return{
+                ...state,
+                isActive: boolean
+            }
+        }
+        case ActionTypes.ABOUTME_CHANGE_USER_RECOMMEND:{
+            const {boolean} = action.payload;
+            return{
+                ...state,
+                isRecommend: boolean
+            }
+        }
+        case ActionTypes.ABOUTME_CHANGE_USER_PRIVATE:{
+            const {boolean} = action.payload;
+            return{
+                ...state,
+                isPrivate: boolean
+            }
+        }
+        case ActionTypes.ABOUTME_CHANGE_FLOATINTERFACE_SHOW:{
+            return {
+                ...state,
+                avatarFloat:true
+            }
+        }
+        case ActionTypes.ABOUTME_CHANGE_FLOATINTERFACE_CLOSE:{
+            return {
+                ...state,
+                avatarFloat:false
+            }
+        }
+    }
+
+}

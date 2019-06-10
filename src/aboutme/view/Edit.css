@@ -1,0 +1,132 @@
+.edit {
+  width: 100vw;
+  margin-top: 11.5740740741vw;
+  position: relative;
+}
+.edit .changeAvatar {
+  width: 100vw;
+  height: 15.7407407407vw;
+  overflow: hidden;
+}
+.edit .changeAvatar .avatarBox {
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 1.8518518519vw;
+  left: 5.5555555556vw;
+  width: 9.2592592593vw;
+  height: 9.2592592593vw;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.edit .changeAvatar .avatarBox img {
+  width: 9.2592592593vw;
+  border-radius: 50%;
+}
+.edit .changeAvatar .avatarChangeButton {
+  width: 70vw;
+  position: absolute;
+  top: 1.8518518519vw;
+  left: 19.4444444444vw;
+}
+.edit .changeAvatar .avatarChangeButton p {
+  font-size: 3.7037037037vw;
+}
+.edit .changeAvatar .avatarChangeButton div {
+  text-decoration: none;
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+  color: #1ea1ff;
+}
+.edit .editBox {
+  width: 100vw;
+  height: 15.7407407407vw;
+}
+.edit .editBox span {
+  display: inline-block;
+  font-size: 3.7037037037vw;
+  font-weight: bold;
+  text-indent: 4.6296296296vw;
+  width: 100vw;
+  margin-top: 0.9259259259vw;
+}
+.edit .editBox textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin-top: 0.9259259259vw;
+  margin-left: 4.6296296296vw;
+  line-height: 6.4814814815vw;
+  width: 83.3333333333vw;
+  height: 6.4814814815vw;
+  border: solid 1px #ededed;
+  border-radius: 0.9259259259vw;
+  text-indent: 1.8518518519vw;
+  font-size: 3.7037037037vw;
+}
+.edit .Introduction {
+  height: 25vw;
+}
+.edit .Introduction textarea {
+  overflow: auto;
+  height: 15.7407407407vw;
+}
+.edit .gender {
+  font-size: 3.7037037037vw;
+  font-weight: bold;
+  width: 100vw;
+  position: relative;
+  left: 4.6296296296vw;
+  height: 15.7407407407vw;
+}
+.edit .gender select {
+  background: #ffffff;
+  margin-top: 0.9259259259vw;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  width: 27.7777777778vw;
+  border-radius: 0.9259259259vw;
+  height: 7.4074074074vw;
+}
+.edit .Recommend {
+  width: 100vw;
+  height: 21.2962962963vw;
+  position: relative;
+  left: 4.6296296296vw;
+}
+.edit .Recommend .title {
+  font-size: 3.7037037037vw;
+  font-weight: bold;
+}
+.edit .Recommend .exp {
+  width: 60vw;
+}
+.edit .Recommend .exp input {
+  position: absolute;
+  top: 9.2592592593vw;
+  left: 2.7777777778vw;
+}
+.edit .Recommend .exp div {
+  font-size: 2.7777777778vw;
+  font-weight: bold;
+  position: absolute;
+  top: 7.4074074074vw;
+  left: 9.2592592593vw;
+  width: 33.3333333333vw;
+}
+.edit .sub {
+  position: relative;
+  width: 100vw;
+  height: 37.037037037vw;
+}
+.edit .sub div {
+  position: absolute;
+  left: 4.6296296296vw;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+  line-height: 7.4074074074vw;
+  border-radius: 0.9259259259vw;
+  font-size: 3.7037037037vw;
+  width: 14.8148148148vw;
+  height: 7.4074074074vw;
+  background: #3c9cff;
+}
+
+/*# sourceMappingURL=Edit.css.map */

@@ -1,0 +1,60 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+a{
+  text-decoration: none;
+  color: #3c9cff;
+}
+  .floatCol {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.46);
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    .fuck{
+      .colBox {
+        width: vw(700);
+        //height: vw(600);
+        background: #ffffff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: vw(30);
+        transform: translateX(-50%) translateY(-50%);
+
+        h2 {
+          text-align: center;
+          width: vw(700);
+          height: vw(200);
+          line-height: vw(200);
+          font-size: vw(50);
+          font-weight: bold;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        ul {
+          li {
+            list-style: none;
+            width: vw(700);
+            text-align: center;
+            height: vw(132);
+            line-height: vw(133);
+            font-size: vw(35);
+            font-weight: bold;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+          }
+
+          li:nth-child(1) {
+            color: #3c9cff;
+          }
+
+          li:nth-child(2) {
+            color: red;
+          }
+        }
+      }
+    }
+
+  }

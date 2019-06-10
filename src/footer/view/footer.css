@@ -1,0 +1,94 @@
+.footer:before {
+  background: rgba(0, 0, 0, 0.0975);
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: -1px;
+}
+
+.footer {
+  width: 100vw;
+  height: 11.5740740741vw;
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0;
+}
+.footer .footerSwitch {
+  float: left;
+  width: 20vw;
+  height: 11.5740740741vw;
+  text-align: center;
+  position: relative;
+}
+.footer .footerSwitch div {
+  width: 5.5555555556vw;
+  height: 5.5555555556vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.footer .footerSwitch .home {
+  background: url("../../image/923d425c0489.png") no-repeat;
+  background-size: 57.7777777778vw;
+  background-position-x: -16.6666666667vw;
+  background-position-y: -30.3333333333vw;
+}
+.footer .footerSwitch .homeAction {
+  background: url("../../image/923d425c0489.png") no-repeat;
+  background-size: 57.7777777778vw;
+  background-position-x: -11.1111111111vw;
+  background-position-y: -30.3333333333vw;
+}
+.footer .footerSwitch .search {
+  background: url("../../image/923d425c0489.png") no-repeat;
+  background-size: 57.7777777778vw;
+  background-position-x: -46.6666666667vw;
+  background-position-y: -33.1111111111vw;
+}
+.footer .footerSwitch .searchAction {
+  background: url("../../image/923d425c0489.png") no-repeat;
+  background-size: 57.7777777778vw;
+  background-position-x: -46.6666666667vw;
+  background-position-y: -27.5555555556vw;
+}
+.footer .footerSwitch .sendPost {
+  background: url("../../image/923d425c0489.png") no-repeat;
+  background-size: 57.7777777778vw;
+  background-position-x: -11vw;
+  background-position-y: -35.8888888889vw;
+}
+.footer .footerSwitch .sendPostAction {
+  background: url("../../image/923d425c0489.png") no-repeat;
+  background-size: 57.7777777778vw;
+  background-position-x: -11vw;
+  background-position-y: -35.8888888889vw;
+}
+.footer .footerSwitch .dynamic {
+  background: url("../../image/923d425c0489.png") no-repeat;
+  background-size: 57.7777777778vw;
+  background-position-x: -5.3333333333vw;
+  background-position-y: -30.3333333333vw;
+}
+.footer .footerSwitch .dynamicAction {
+  background: url("../../image/923d425c0489.png") no-repeat;
+  background-size: 57.7777777778vw;
+  background-position-x: -35.5555555556vw;
+  background-position-y: -22.1111111111vw;
+}
+.footer .footerSwitch .aboutMe {
+  background: url("../../image/923d425c0489.png") no-repeat;
+  background-size: 57.7777777778vw;
+  background-position-x: -27.7777777778vw;
+  background-position-y: -41.4444444444vw;
+}
+.footer .footerSwitch .aboutMeAction {
+  background: url("../../image/923d425c0489.png") no-repeat;
+  background-size: 57.7777777778vw;
+  background-position-x: -52.2222222222vw;
+  background-position-y: -5.5555555556vw;
+}
+
+/*# sourceMappingURL=footer.css.map */

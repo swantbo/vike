@@ -1,0 +1,8 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+.changeAvatar{
+  width: 100vw;
+  margin-top: vw(125);
+  position: relative;
+}

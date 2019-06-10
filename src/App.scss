@@ -1,0 +1,9 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+
+.App{
+  overflow: hidden;
+  overflow-y: auto;
+
+}

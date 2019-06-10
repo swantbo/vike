@@ -1,0 +1,31 @@
+.test-home {
+  margin-top: 11.5740740741vw;
+}
+.test-home .home-li {
+  width: 100vw;
+  font-size: 10vw;
+  text-align: center;
+}
+
+.test-search {
+  overflow: hidden;
+  margin-top: 11.5740740741vw;
+}
+.test-search .search-li {
+  font-size: 5vw;
+  float: left;
+  width: 32vw;
+  height: 32vw;
+  margin: 1px;
+}
+
+.test-result {
+  overflow: hidden;
+  margin-top: 11.5740740741vw;
+}
+.test-result .result-li {
+  width: 100vw;
+  height: 10vw;
+}
+
+/*# sourceMappingURL=test.css.map */
