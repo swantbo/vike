@@ -9,11 +9,11 @@ import {
     changeIsRecommend,
     changeUserId,
     changeUserName,
-    changeWebsite
+    changeWebsite,
+    requestTest
 } from "../Actions";
 import {Link, withRouter} from "react-router-dom";
 import './aboutMe.css';
-
 
 const categoryList = (num, text) => {
     return <div className='categoryList'>
@@ -35,9 +35,13 @@ class AboutMe extends Component {
         this.state = {
             categoryName: ['帖子', '粉丝', '正在关注'],
             icon: ['grid', 'detailed', 'Collection'],
-            }
+            };
+        this.onTest = this.onTest.bind(this);
     }
-
+    onTest(name){
+        requestTest(name);
+        console.log('dd')
+    }
     render() {
         const {avatar, userId, website, Introduction, userName, myPost, myFens, myFriends,option,setListUrl} = this.props;
         let webUrl = 'http://' + website;
@@ -52,7 +56,7 @@ class AboutMe extends Component {
         });
         let aboutMe = option?<div className='aboutMe_box'>
             <div className='userInfo'>
-                <div className='avatar'>
+                <div className='avatar' onClick={this.onTest('vike')}>
                     <img src={require('../../image/userAvatar/' + avatar)}/>
                 </div>
                 <div className='userId'>
@@ -121,5 +125,6 @@ export default withRouter(connect(mapStateToProps, {
     changeIsRecommend,
     changeUserId,
     changeUserName,
-    changeWebsite
+    changeWebsite,
+    requestTest
 })(AboutMe));

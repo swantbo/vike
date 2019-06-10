@@ -1,4 +1,6 @@
-import {createStore,combineReducers} from "redux";
+import {createStore, combineReducers, applyMiddleware} from "redux";
+import thunkMiddleware from 'redux-thunk';
+import {requestTest} from "./aboutme/Actions";
 import {aboutMeReducer} from './aboutme';
 import {dynamicReducer} from './dynamic';
 import {headerReducer} from './header';
@@ -8,4 +10,17 @@ import {searchReducer} from './post';
 import {sendPostReducer} from './sendpost';
 import {footerReducer} from './footer';
 
-export default createStore(combineReducers({aboutMeReducer,dynamicReducer,headerReducer,homeReducer,postReducer,searchReducer,sendPostReducer,footerReducer}));
+const store = createStore(combineReducers({
+    aboutMeReducer,
+    dynamicReducer,
+    headerReducer,
+    homeReducer,
+    postReducer,
+    searchReducer,
+    sendPostReducer,
+    footerReducer
+}),applyMiddleware(thunkMiddleware));
+
+store.dispatch(requestTest('vike')).then(() => console.log(store.getState()));
+
+export default store;

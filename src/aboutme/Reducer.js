@@ -1,6 +1,7 @@
 import * as ActionTypes from './ActionTypes.js';
 
 const aboutMe = {
+    requesting:false,
     userName:'vike',
     userId:'xwvike',
     email:'xwvike@gmail.com',
@@ -30,6 +31,25 @@ export default function (state = aboutMe, action) {
     switch (action.type) {
         default:{
             return state
+        }
+        case ActionTypes.FETCH_GET_REQUEST:{
+            return {
+                ...state,
+                requesting:true
+            }
+        }
+        case ActionTypes.FETCH_GET_FAILURE:{
+            return {
+                ...state,
+                userName:'信息请求失败'
+            }
+        }
+        case ActionTypes.FETCH_GET_SUCCESS:{
+            const{name} = action.payload;
+            return {
+                ...state,
+                userName:name
+            }
         }
         case ActionTypes.ABOUTME_CHANGE_USER_NAME:{
             const {name} = action.payload;
