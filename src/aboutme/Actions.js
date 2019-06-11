@@ -11,7 +11,7 @@ function requestGet(name) {
 function requestSuccess(name, json) {
     return {
         type: ActionTypes.FETCH_GET_SUCCESS,
-        payload:{data:json}
+        payload:json
     }
 }
 

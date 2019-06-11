@@ -1,14 +1,15 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link,withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import './home.css';
 
-class Home extends Component{
-    constructor(){
+class Home extends Component {
+    constructor() {
         super(...arguments)
     }
+
     render() {
-        return(
+        return (
             <div>
 
             </div>
@@ -16,10 +17,13 @@ class Home extends Component{
     }
 }
 
-const mapStateToProps  = ()=>{
+const mapStateToProps = () => {
+    return {}
+};
+const mapDispatchToProps = (dispatch)=>{
     return{
 
     }
 };
 
-export default withRouter(connect(mapStateToProps,{})(Home))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home))

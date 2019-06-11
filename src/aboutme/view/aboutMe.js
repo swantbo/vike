@@ -26,24 +26,28 @@ const listIcon = (className) => {
         <span></span>
     </span>
 };
-const setList = (url,text)=>{
-    return<li><Link to={`/${url}`}/>{text}<span></span></li>
+const setList = (url, text) => {
+    return <li><Link to={`/${url}`}/>{text}<span></span></li>
 };
+
 class AboutMe extends Component {
     constructor(props) {
         super(props);
         this.state = {
             categoryName: ['帖子', '粉丝', '正在关注'],
             icon: ['grid', 'detailed', 'Collection'],
-            };
+        };
         this.onTest = this.onTest.bind(this);
     }
-    onTest(name){
-        requestTest(name);
-        console.log('dd')
+
+    // componentDidMount() {
+    //     this.props.requestTest('vike')
+    // }
+    onTest(){
+        this.props.requestTest('vike')
     }
     render() {
-        const {avatar, userId, website, Introduction, userName, myPost, myFens, myFriends,option,setListUrl} = this.props;
+        const {avatar, userId, website, Introduction, userName, myPost, myFens, myFriends, option, setListUrl} = this.props;
         let webUrl = 'http://' + website;
         let categoryListArr = this.state.categoryName.map((item) => {
             return categoryList(item === '帖子' ? myPost.length : item === '粉丝' ? myFens.length : myFriends.length, item)
@@ -51,12 +55,12 @@ class AboutMe extends Component {
         let listIconArr = this.state.icon.map((item) => {
             return listIcon(item)
         });
-        let setPage = setListUrl.map((item)=>{
-           return setList(item.url,item.text)
+        let setPage = setListUrl.map((item) => {
+            return setList(item.url, item.text)
         });
-        let aboutMe = option?<div className='aboutMe_box'>
+        let aboutMe = option ? <div className='aboutMe_box'>
             <div className='userInfo'>
-                <div className='avatar' onClick={this.onTest('vike')}>
+                <div className='avatar' onClick={this.onTest}>
                     <img src={require('../../image/userAvatar/' + avatar)}/>
                 </div>
                 <div className='userId'>
@@ -83,7 +87,7 @@ class AboutMe extends Component {
                 </div>
                 <div></div>
             </div>
-        </div>:<div className='setPage'>
+        </div> : <div className='setPage'>
             <div>账户</div>
             <ul>
                 {setPage}
@@ -96,6 +100,7 @@ class AboutMe extends Component {
 }
 
 const mapStateToProps = (state) => {
+    // console.log(state.aboutMeReducer);
     return {
         userName: state.aboutMeReducer.userName,
         userId: state.aboutMeReducer.userId,
@@ -111,20 +116,17 @@ const mapStateToProps = (state) => {
         isActive: state.aboutMeReducer.isActive,
         isRecommend: state.aboutMeReducer.isRecommend,
         isPrivate: state.aboutMeReducer.isPrivate,
-        option:state.headerReducer.isShowOptions,
-        setListUrl:state.aboutMeReducer.setListUrl
+        option: state.headerReducer.isShowOptions,
+        setListUrl: state.aboutMeReducer.setListUrl
     }
 };
 
-export default withRouter(connect(mapStateToProps, {
-    changeEmail,
-    changeGender,
-    changeIntroduction,
-    changeIsActive,
-    changeIsPrivate,
-    changeIsRecommend,
-    changeUserId,
-    changeUserName,
-    changeWebsite,
-    requestTest
-})(AboutMe));
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        requestTest:(name)=>{
+            dispatch(requestTest(name))
+        }
+    }
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AboutMe));

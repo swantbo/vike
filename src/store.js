@@ -1,6 +1,5 @@
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunkMiddleware from 'redux-thunk';
-import {requestTest} from "./aboutme/Actions";
 import {aboutMeReducer} from './aboutme';
 import {dynamicReducer} from './dynamic';
 import {headerReducer} from './header';
@@ -20,7 +19,5 @@ const store = createStore(combineReducers({
     sendPostReducer,
     footerReducer
 }),applyMiddleware(thunkMiddleware));
-
-store.dispatch(requestTest('vike')).then(() => console.log(store.getState()));
 
 export default store;
