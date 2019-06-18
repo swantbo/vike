@@ -1,0 +1,9 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+.post{
+  width: 100vw;
+  border-bottom: 1px solid red;
+  font-size: 10vw;
+  height: 50vh;
+}

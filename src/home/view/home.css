@@ -1,3 +1,10 @@
-
+.home {
+  width: 100vw;
+  margin-top: 11.5740740741vw;
+}
+.home ul {
+  height: 100vh;
+  background: #1ea1ff;
+}
 
 /*# sourceMappingURL=home.css.map */

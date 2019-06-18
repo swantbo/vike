@@ -1,0 +1,12 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+.home{
+  width: 100vw;
+  margin-top: vw(125);
+  ul{
+    height: 100vh;
+    background: #1ea1ff;
+
+  }
+}

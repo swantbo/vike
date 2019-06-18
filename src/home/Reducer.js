@@ -20,7 +20,9 @@ const home = {
                 ]
             }
         ]
-    }
+    },
+    'oojklj':{userId:'tubkbk'},
+
 };
 
 export default function (state = home, action) {

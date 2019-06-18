@@ -5,7 +5,7 @@ import {view as Footer} from './footer'
 import {view as Header} from './header'
 import {view as AboutMe} from './aboutme';
 import {edit} from './aboutme';
-import HomeTest from './test/testhome.js';
+import {view as Home} from './home'
 import SearchTest from './test/testsearch.js';
 import ResultTest from './test/result.js';
 import {view as FloatInterface} from './floatInterface';
@@ -23,7 +23,7 @@ class App extends Component {
             <div className="App">
                 <Header/>
                 <switch className='switch'>
-                    <Route exact path='/' component={HomeTest}/>
+                    <Route exact path='/' component={Home}/>
                     <Route path='/search' component={SearchTest}/>
                     <Route path='/result' component={ResultTest}/>
                     <Route path='/dynamic' component={temp}/>
