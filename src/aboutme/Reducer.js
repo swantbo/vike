@@ -8,7 +8,7 @@ const aboutMe = {
     avatar:'26395177.jpeg',
     Introduction:'coding……💩 😺 😸 😹 😻 😼 😽 🙀 😿 😾',
     website:'www.xwvike.com',
-    gender:2,
+    gender:1,
     addTime:'20190217',
     myPost:['1','2'],
     myFens:['admin'],
