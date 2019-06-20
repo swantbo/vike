@@ -1,7 +1,7 @@
 @function vw($px) {
   @return (($px/2)/540)*100vw
 }
-.home{
+.Home{
   width: 100vw;
   margin-top: vw(125);
   ul{

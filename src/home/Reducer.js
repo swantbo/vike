@@ -2,27 +2,24 @@ import * as ActionTypes from './ActionTypes.js';
 
 const home = {
     '000001': {
+        postId:'000001',
         userId: 'xwvike',
+        userAvatar:'26395177.jpeg',
         label: [],
         sendPostTime: 20190510151700,
-        postText: '',
+        postText: '第一条帖子，编写组件。',
         postImgNum: 1,
-        postImgUrl: [],
+        postImgUrl: ['http://www.xwvike.com/old/sort/waterfll/img/2.jpg'],
         postVideoNum: 0,
         postVideoUrl: [],
-        like: [],
-        Collection: [],
+        like: ['xwvike', 'tubkbk'],
+        Collection: ['xwvike', 'tubkbk'],
         comment: [
-            {
-                text: 'test', userId: 'xwvike', like: ['test', 'vike'], time: 201905101905, reply: [
-                    {text: 'haha', userId: 'test', target: 'xwvike', time: 201905101906, like: ['bb', 'aa']},
-                    {text: 'relay', userId: 'bob', target: 'test', time: 201905101907, like: []}
-                ]
-            }
+            {id:'01',text: '回复楼主', userId: 'xwvike',reply:'xwvike', like: ['test', 'vike'], time: 201905101905},
+            {id:'01',text: '回复xwvike', userId: 'tubkbk',reply: 'xwvike', like: [ 'vike'], time: 201905101905},
+            {id:'01',text: '回复tubkbk', userId: 'admin',reply:'tubkbk', like: ['test'], time: 201905101905}
         ]
-    },
-    'oojklj':{userId:'tubkbk'},
-
+    }
 };
 
 export default function (state = home, action) {
@@ -63,13 +60,15 @@ export default function (state = home, action) {
                 postId: {...state[postId], Collection: [...state[postId].Collection, userId]}
             }
         }
-        case ActionTypes.POST_COLLECTION_FAILURE:{
+        case ActionTypes.POST_COLLECTION_FAILURE: {
             const {postId, userId} = action.payload;
             return {
                 ...state,
-                postId: {...state[postId], Collection: state[postId].Collection.filter((item) => {
+                postId: {
+                    ...state[postId], Collection: state[postId].Collection.filter((item) => {
                         return item !== userId
-                    })}
+                    })
+                }
             }
         }
     }

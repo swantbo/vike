@@ -1,8 +1,95 @@
 .post {
   width: 100vw;
   border-bottom: 1px solid red;
-  font-size: 10vw;
-  height: 50vh;
+  position: relative;
+}
+.post .post-userInfo {
+  width: 100vw;
+  height: 10.1851851852vw;
+  position: relative;
+}
+.post .post-userInfo .avatar {
+  position: absolute;
+  top: 50%;
+  left: 4.6296296296vw;
+  transform: translateY(-50%);
+  width: 8.3333333333vw;
+  height: 8.3333333333vw;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+}
+.post .post-userInfo .avatar img {
+  width: 8.3333333333vw;
+}
+.post .post-userInfo .userid {
+  font-size: 3.2407407407vw;
+  font-weight: normal;
+  position: absolute;
+  top: 50%;
+  left: 14.8148148148vw;
+  transform: translateY(-50%);
+}
+.post .post-image {
+  width: 100vw;
+  max-height: 120vw;
+  overflow: hidden;
+  position: relative;
+}
+.post .post-image img {
+  width: 100vw;
+}
+.post .post-operating {
+  width: 100vw;
+  position: relative;
+}
+.post .post-operating .button {
+  width: 100vw;
+  height: 10.1851851852vw;
+  position: relative;
+}
+.post .post-operating .button span {
+  width: 7.4074074074vw;
+  height: 7.4074074074vw;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.post .post-operating .button .like {
+  left: 4.6296296296vw;
+  background: url("../../image/923d425c0489.png");
+  background-size: 81.8518518519vw;
+  background-position-x: -7.8703703704vw;
+  background-position-y: -42.9722222222vw;
+}
+.post .post-operating .button .comment {
+  left: 16.6666666667vw;
+  background: url("../../image/923d425c0489.png");
+  background-size: 81.8518518519vw;
+  background-position-x: -33.6851851852vw;
+  background-position-y: -9.4444444444vw;
+}
+.post .post-operating .button .share {
+  left: 28.7037037037vw;
+  background: url("../../image/923d425c0489.png");
+  background-size: 81.8518518519vw;
+  background-position-x: -35.2592592593vw;
+  background-position-y: -33.0555555556vw;
+}
+.post .post-operating .button .collection {
+  right: 4.6296296296vw;
+  background: url("../../image/923d425c0489.png");
+  background-size: 81.8518518519vw;
+  background-position-x: -66.7407407407vw;
+  background-position-y: -31.1666666667vw;
+}
+.post .post-operating .likeNum {
+  display: inline-block;
+  width: 100vw;
+  height: 4.6296296296vw;
+  text-indent: 4.6296296296vw;
+  font-size: 3.2407407407vw;
 }
 
 /*# sourceMappingURL=post.css.map */

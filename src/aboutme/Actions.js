@@ -26,7 +26,7 @@ export const requestTest = (name) => {
     console.log('0');
     return (dispatch) => {
         dispatch(requestGet(name));
-        return fetch(`http://localhost:3030/api?name=${name}&age=23`, {method: 'GET'}).then(response => response.json(), error => {
+        return fetch(`http://localhost:3030/api?name=${name}`, {method: 'GET'}).then(response => response.json(), error => {
             console.log(error);
         }).then(json => dispatch(requestSuccess(name, json))).catch(error=>{console.log(error);dispatch(requestFailure(name))});
 

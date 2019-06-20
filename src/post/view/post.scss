@@ -4,6 +4,98 @@
 .post{
   width: 100vw;
   border-bottom: 1px solid red;
-  font-size: 10vw;
-  height: 50vh;
+  //font-size: 10vw;
+  //height: 50vh;
+  position: relative;
+  .post-userInfo{
+    width: 100vw;
+    height: vw(110);
+    //background: #1ea1ff;
+    position: relative;
+    .avatar{
+      position: absolute;
+      top: 50%;
+      left: vw(50);
+      transform: translateY(-50%);
+      width: vw(90);
+      height: vw(90);
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      img{
+        width: vw(90);
+      }
+    }
+    .userid{
+      font-size: vw(35);
+      font-weight: normal;
+      position: absolute;
+      top: 50%;
+      left: vw(160);
+      transform: translateY(-50%);
+    }
+  }
+  .post-image{
+    width: 100vw;
+    max-height: 120vw;
+    overflow: hidden;
+    position: relative;
+    img{
+      width: 100vw;
+    }
+  }
+  .post-operating{
+    width: 100vw;
+    position: relative;
+    .button{
+      width: 100vw;
+      height: vw(110);
+      //background: #4dceff;
+      position: relative;
+      span{
+        width: vw(80);
+        height: vw(80);
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .like{
+        left: vw(50);
+        background: url("../../image/923d425c0489.png");
+        background-size: vw(520*1.7);
+        background-position-x: vw(-50*1.7);
+        background-position-y: vw(-273*1.7);
+      }
+      .comment{
+        left: vw(180);
+        background: url("../../image/923d425c0489.png");
+        background-size: vw(520*1.7);
+        background-position-x: vw(-214*1.7);
+        background-position-y: vw(-60*1.7);
+      }
+      .share{
+        left: vw(310);
+        background: url("../../image/923d425c0489.png");
+        background-size: vw(520*1.7);
+        background-position-x: vw(-224*1.7);
+        background-position-y: vw(-210*1.7);
+      }
+      .collection{
+        right: vw(50);
+        background: url("../../image/923d425c0489.png");
+        background-size: vw(520*1.7);
+        background-position-x: vw(-424*1.7);
+        background-position-y: vw(-198*1.7);
+      }
+    }
+    .likeNum{
+      display: inline-block;
+      width: 100vw;
+      height: vw(50);
+      text-indent: vw(50);
+      font-size: vw(35);
+      //font-weight: 600;
+    }
+  }
 }

@@ -5,11 +5,6 @@ import {ReFresh,likePost,collectionPost} from "../Actions";
 import {view as Post} from '../../post';
 import './home.css';
 
-// const post = (data) => {
-//     return <div>{data}</div>
-//
-// };
-
 class Home extends Component {
     constructor() {
         super(...arguments);
@@ -24,7 +19,7 @@ class Home extends Component {
             return Post(this.state.data[item])
         });
         return (
-            <div className='home'>
+            <div className='Home'>
                 {li}
             </div>
         )
