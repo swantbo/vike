@@ -16,17 +16,9 @@ const home = {
         like: ['xwvike', 'tubkbk'],
         Collection: ['xwvike', 'tubkbk'],
         comment: [
-            {id:'01',text: '回复楼主', userId: 'xwvike', like: ['test', 'vike'], time: 201905101905,reply:[
-                    {text: '回复xwvike', userId: 'tubkbk',reply: 'xwvike', like: [ 'vike'], time: 201905101905},
-                    {text: '回复tubkbk', userId: 'admin',reply:'tubkbk', like: ['test'], time: 201905101905}
-                ]},
-            {id:'01',text: '回复楼主', userId: 'xwvike', like: ['test', 'vike'], time: 201905101905,reply:[
-                    {text: '回复xwvike', userId: 'tubkbk',reply: 'xwvike', like: [ 'vike'], time: 201905101905},
-                    {text: '回复tubkbk', userId: 'admin',reply:'tubkbk', like: ['test'], time: 201905101905}
-                ]},
-            {id:'01',text: '回复楼主', userId: 'xwvike', like: ['test', 'vike'], time: 201905101905,reply:[
-                    {text: '回复xwvike', userId: 'tubkbk',reply: 'xwvike', like: [ 'vike'], time: 201905101905},
-                    {text: '回复tubkbk', userId: 'admin',reply:'tubkbk', like: ['test'], time: 201905101905}
+            {id:'01',text: '回复楼主,你这个图片真的垃圾透顶，你看不出来么？👴😄🌶回复楼主,你这个图片真的垃圾透顶，你看不出来么？👴😄🌶', userId: 'xwvike', like: ['test', 'vike'], time: 1559994444434,reply:[
+                    {text: '回复xwvike', userId: 'tubkbk',reply: 'xwvike', like: [ 'vike'], time: 1559994444434},
+                    {text: '回复tubkbk', userId: 'admin',reply:'tubkbk', like: ['test'], time: 1561114626703}
                 ]},
         ]
     }

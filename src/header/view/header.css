@@ -9,6 +9,7 @@
 }
 
 .header {
+  z-index: 99;
   width: 100vw;
   height: 11.5740740741vw;
   background-color: #ffffff;
