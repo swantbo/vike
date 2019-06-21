@@ -31,7 +31,7 @@
       font-weight: normal;
       position: absolute;
       top: 50%;
-      left: vw(160);
+      left: vw(180);
       transform: translateY(-50%);
     }
   }
@@ -106,7 +106,8 @@
       left: 50%;
       transform: translateX(-50%);
       a{
-        font-weight: 600;
+        font-size: vw(35);
+        font-weight:bold;
         color: black;
       }
     }
@@ -168,7 +169,31 @@
                   font-size: vw(35);
                 }
               }
-
+              .timeDifferent{
+                font-size: vw(35);
+                color: #999;
+                position: relative;
+                left: vw(100);
+                margin-top: vw(20);
+                display: inline-block;
+              }
+              .likeLength{
+                font-size: vw(35);
+                color: #999;
+                position: relative;
+                left: vw(150);
+                margin-top: vw(20);
+                display: inline-block;
+              }
+              .reply{
+                font-size: vw(35);
+                color: #999;
+                font-weight: bold;
+                position: relative;
+                left: vw(200);
+                margin-top: vw(20);
+                display: inline-block;
+              }
             }
           }
         }

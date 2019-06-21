@@ -27,7 +27,7 @@
   font-weight: normal;
   position: absolute;
   top: 50%;
-  left: 14.8148148148vw;
+  left: 16.6666666667vw;
   transform: translateY(-50%);
 }
 .post .post-image {
@@ -101,7 +101,8 @@
   transform: translateX(-50%);
 }
 .post .post-operating .postText a {
-  font-weight: 600;
+  font-size: 3.2407407407vw;
+  font-weight: bold;
   color: black;
 }
 .post .post-operating .post-comment {
@@ -164,6 +165,31 @@
 }
 .post .post-operating .post-comment .comment ul .post-comment-li div div .comment-text {
   font-size: 3.2407407407vw;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li div .timeDifferent {
+  font-size: 3.2407407407vw;
+  color: #999;
+  position: relative;
+  left: 9.2592592593vw;
+  margin-top: 1.8518518519vw;
+  display: inline-block;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li div .likeLength {
+  font-size: 3.2407407407vw;
+  color: #999;
+  position: relative;
+  left: 13.8888888889vw;
+  margin-top: 1.8518518519vw;
+  display: inline-block;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li div .reply {
+  font-size: 3.2407407407vw;
+  color: #999;
+  font-weight: bold;
+  position: relative;
+  left: 18.5185185185vw;
+  margin-top: 1.8518518519vw;
+  display: inline-block;
 }
 
 /*# sourceMappingURL=post.css.map */

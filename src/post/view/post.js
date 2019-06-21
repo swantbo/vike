@@ -4,29 +4,29 @@ import {timeDifferent} from "../../tool/tool";
 import './post.css';
 
 
-
-const li = (data)=>{
-  return <li className='post-comment-li'>
-      <span className='like-reply'></span>
-      <div>
+const li = (data) => {
+    return <li className='post-comment-li'>
+        <span className='like-reply'></span>
+        <div>
           <span className='userAvatar'>
               <img src='http://www.xwvike.com/static/media/26395177.cd83fabd.jpeg'/>
           </span>
-          <div>
-              <Link to={`/user/${data.userId}`} className='userid'>{data.userId} </Link>
-              <span className='comment-text'>{data.text}</span>
-          </div>
-          <span>{timeDifferent(new Date().getTime(),data.time)}</span>
-          <div className='reply'>
-              {data.reply.map((item)=>{
-                  return <li>
-                      <span></span>
-                      <p></p>
-                  </li>
-              })}
-          </div>
-      </div>
-  </li>
+            <div>
+                <Link to={`/user/${data.userId}`} className='userid'>{data.userId} </Link>
+                <span className='comment-text'>{data.text}</span>
+            </div>
+            <span className='timeDifferent'>{timeDifferent(new Date().getTime(), data.time)}</span><span
+            className='likeLength'>{data.like.length}次赞</span><span className='reply'>回复</span>
+            <div className='reply'>
+                {data.reply.map((item) => {
+                    return <li>
+                        <span></span>
+                        <p></p>
+                    </li>
+                })}
+            </div>
+        </div>
+    </li>
 };
 
 const Post = (data) => {
@@ -34,7 +34,7 @@ const Post = (data) => {
     return <div className='post'>
         <div className='post-userInfo'>
             <div className='avatar'>
-                <img src={require('../../image/userAvatar/'+data.userAvatar)}/>
+                <img src={require('../../image/userAvatar/' + data.userAvatar)}/>
             </div>
             <span className='userid'>{data.userId}</span>
         </div>
@@ -50,13 +50,13 @@ const Post = (data) => {
             </div>
             <span className='likeNum'>{data.like.length} 次赞</span>
             <div className='postText'>
-                <Link to={`/user/${data.userId}`}>{data.userId}</Link><span> {data.postText}</span>
+                <Link to={`/user/${data.userId}`}>{data.userId + ' '}</Link><span>{data.postText}</span>
             </div>
             <div className='post-comment'>
-                <span className='comment-num'>{data.comment.length>2?`全部 ${data.comment.length} 条评论`:''}</span>
+                <span className='comment-num'>{data.comment.length > 2 ? `全部 ${data.comment.length} 条评论` : ''}</span>
                 <div className='comment'>
                     <ul>
-                        {data.comment.map((item)=>{
+                        {data.comment.map((item) => {
                             return li(item)
                         })}
                     </ul>
