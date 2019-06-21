@@ -7,8 +7,12 @@ import './post.css';
 const li = (data)=>{
   return <li className='post-comment-li'>
       <div>
-          <span className='userAvatar'></span>
-          <p className='comment-text'>{data.text}</p>
+          <span className='userAvatar'>
+              <img src='http://www.xwvike.com/static/media/26395177.cd83fabd.jpeg'/>
+          </span>
+          <Link to={`/user/${data.userId}`} className='userid'>{data.userId}</Link>
+          <span className='comment-text'>{data.text}</span>
+          <span className='like-reply'></span>
           <div className='reply'>
               {data.reply.map((item)=>{
                   return <li>

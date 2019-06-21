@@ -110,5 +110,69 @@
         color: black;
       }
     }
+    .post-comment{
+      position: relative;
+      .comment-num{
+        font-weight: bold;
+        color: #999;
+        display: inline-block;
+        font-size: vw(35);
+        text-indent: vw(50);
+        position: relative;
+      }
+      .comment{
+        ul{
+          width: 100vw;
+          .post-comment-li{
+            font-size: vw(35);
+            list-style: none;
+            position: relative;
+            width: 100vw;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+            div{
+              position: relative;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 90vw;
+              .userAvatar{
+                display: inline-block;
+                width: vw(90);
+                height: vw(90);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 1px solid rgba(0, 0, 0, 0.16);
+                img{
+                  width: vw(90);
+                }
+              }
+              .userid{
+                color: black;
+                font-size: vw(35);
+                font-weight: bold;
+                position: absolute;
+                margin-left: vw(50);
+                top: 0;
+              }
+              .comment-text{
+                position: absolute;
+                top: vw(50);
+                margin-left: vw(50);
+              }
+              .like-reply{
+                width: vw(35);
+                height: vw(35);
+                position: absolute;
+                top: vw(40);
+                right: vw(50);
+                background: url("../../image/923d425c0489.png");
+                background-size: vw(520*0.7);
+                background-position-x: vw(-50*0.7);
+                background-position-y: vw(-273*0.7);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

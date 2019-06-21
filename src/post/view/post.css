@@ -104,5 +104,67 @@
   font-weight: 600;
   color: black;
 }
+.post .post-operating .post-comment {
+  position: relative;
+}
+.post .post-operating .post-comment .comment-num {
+  font-weight: bold;
+  color: #999;
+  display: inline-block;
+  font-size: 3.2407407407vw;
+  text-indent: 4.6296296296vw;
+  position: relative;
+}
+.post .post-operating .post-comment .comment ul {
+  width: 100vw;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li {
+  font-size: 3.2407407407vw;
+  list-style: none;
+  position: relative;
+  width: 100vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+}
+.post .post-operating .post-comment .comment ul .post-comment-li div {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li div .userAvatar {
+  display: inline-block;
+  width: 8.3333333333vw;
+  height: 8.3333333333vw;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+}
+.post .post-operating .post-comment .comment ul .post-comment-li div .userAvatar img {
+  width: 8.3333333333vw;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li div .userid {
+  color: black;
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+  position: absolute;
+  margin-left: 4.6296296296vw;
+  top: 0;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li div .comment-text {
+  position: absolute;
+  top: 4.6296296296vw;
+  margin-left: 4.6296296296vw;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li div .like-reply {
+  width: 3.2407407407vw;
+  height: 3.2407407407vw;
+  position: absolute;
+  top: 3.7037037037vw;
+  right: 4.6296296296vw;
+  background: url("../../image/923d425c0489.png");
+  background-size: 33.7037037037vw;
+  background-position-x: -3.2407407407vw;
+  background-position-y: -17.6944444444vw;
+}
 
 /*# sourceMappingURL=post.css.map */

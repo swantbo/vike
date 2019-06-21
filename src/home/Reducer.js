@@ -20,6 +20,14 @@ const home = {
                     {text: '回复xwvike', userId: 'tubkbk',reply: 'xwvike', like: [ 'vike'], time: 201905101905},
                     {text: '回复tubkbk', userId: 'admin',reply:'tubkbk', like: ['test'], time: 201905101905}
                 ]},
+            {id:'01',text: '回复楼主', userId: 'xwvike', like: ['test', 'vike'], time: 201905101905,reply:[
+                    {text: '回复xwvike', userId: 'tubkbk',reply: 'xwvike', like: [ 'vike'], time: 201905101905},
+                    {text: '回复tubkbk', userId: 'admin',reply:'tubkbk', like: ['test'], time: 201905101905}
+                ]},
+            {id:'01',text: '回复楼主', userId: 'xwvike', like: ['test', 'vike'], time: 201905101905,reply:[
+                    {text: '回复xwvike', userId: 'tubkbk',reply: 'xwvike', like: [ 'vike'], time: 201905101905},
+                    {text: '回复tubkbk', userId: 'admin',reply:'tubkbk', like: ['test'], time: 201905101905}
+                ]},
         ]
     }
 };
