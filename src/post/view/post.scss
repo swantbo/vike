@@ -97,5 +97,18 @@
       font-size: vw(35);
       //font-weight: 600;
     }
+    .postText{
+      font-size: vw(35);
+      color: black;
+      width: 90vw;
+      margin-top: vw(20);
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      a{
+        font-weight: 600;
+        color: black;
+      }
+    }
   }
 }

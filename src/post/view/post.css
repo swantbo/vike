@@ -91,5 +91,18 @@
   text-indent: 4.6296296296vw;
   font-size: 3.2407407407vw;
 }
+.post .post-operating .postText {
+  font-size: 3.2407407407vw;
+  color: black;
+  width: 90vw;
+  margin-top: 1.8518518519vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.post .post-operating .postText a {
+  font-weight: 600;
+  color: black;
+}
 
 /*# sourceMappingURL=post.css.map */

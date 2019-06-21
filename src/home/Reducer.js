@@ -7,7 +7,8 @@ const home = {
         userAvatar:'26395177.jpeg',
         label: [],
         sendPostTime: 20190510151700,
-        postText: '第一条帖子，编写组件。',
+        postText: '第一条帖子，编写组件。测试一下，长文字的显示情况。以及如何使用，更多这种显示方式。    '+
+            '另起一行。查看情况。',
         postImgNum: 1,
         postImgUrl: ['http://www.xwvike.com/old/sort/waterfll/img/2.jpg'],
         postVideoNum: 0,
@@ -15,9 +16,10 @@ const home = {
         like: ['xwvike', 'tubkbk'],
         Collection: ['xwvike', 'tubkbk'],
         comment: [
-            {id:'01',text: '回复楼主', userId: 'xwvike',reply:'xwvike', like: ['test', 'vike'], time: 201905101905},
-            {id:'01',text: '回复xwvike', userId: 'tubkbk',reply: 'xwvike', like: [ 'vike'], time: 201905101905},
-            {id:'01',text: '回复tubkbk', userId: 'admin',reply:'tubkbk', like: ['test'], time: 201905101905}
+            {id:'01',text: '回复楼主', userId: 'xwvike', like: ['test', 'vike'], time: 201905101905,reply:[
+                    {text: '回复xwvike', userId: 'tubkbk',reply: 'xwvike', like: [ 'vike'], time: 201905101905},
+                    {text: '回复tubkbk', userId: 'admin',reply:'tubkbk', like: ['test'], time: 201905101905}
+                ]},
         ]
     }
 };
