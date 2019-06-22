@@ -1,30 +1,22 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {Link, withRouter, Route} from "react-router-dom";
 import {timeDifferent} from "../../tool/tool";
 import './post.css';
 
 
 const li = (data) => {
+    // const{count,setCount} = useState(1);
     return <li className='post-comment-li'>
-        <span className='like-reply'></span>
         <div>
-          <span className='userAvatar'>
-              <img src='http://www.xwvike.com/static/media/26395177.cd83fabd.jpeg'/>
-          </span>
+            {/*<span className='userAvatar'>*/}
+            {/*    <img src='http://www.xwvike.com/static/media/26395177.cd83fabd.jpeg'/>*/}
+            {/*</span>*/}
             <div>
                 <Link to={`/user/${data.userId}`} className='userid'>{data.userId} </Link>
                 <span className='comment-text'>{data.text}</span>
+                <span className='like-reply'></span>
             </div>
-            <span className='timeDifferent'>{timeDifferent(new Date().getTime(), data.time)}</span><span
-            className='likeLength'>{data.like.length}次赞</span><span className='reply'>回复</span>
-            <div className='reply'>
-                {data.reply.map((item) => {
-                    return <li>
-                        <span></span>
-                        <p></p>
-                    </li>
-                })}
-            </div>
+            {/*<span className='likeLength'>{data.like.length}次赞</span><span className='reply'>回复</span>*/}
         </div>
     </li>
 };
@@ -44,7 +36,7 @@ const Post = (data) => {
         <div className='post-operating'>
             <div className='button'>
                 <span className='like'></span>
-                <span className='comment'></span>
+                <Link to={`/comment/${data.postId}`}><span className='comment'></span></Link>
                 <span className='share'></span>
                 <span className='collection'></span>
             </div>
@@ -53,7 +45,8 @@ const Post = (data) => {
                 <Link to={`/user/${data.userId}`}>{data.userId + ' '}</Link><span>{data.postText}</span>
             </div>
             <div className='post-comment'>
-                <span className='comment-num'>{data.comment.length > 2 ? `全部 ${data.comment.length} 条评论` : ''}</span>
+                <Link to={`/comment/${data.postId}`}><span
+                    className='comment-num'>{`全部 ${data.comment.length} 条评论`}</span></Link>
                 <div className='comment'>
                     <ul>
                         {data.comment.map((item) => {
@@ -61,6 +54,7 @@ const Post = (data) => {
                         })}
                     </ul>
                 </div>
+                <span className='timeDifferent'>{timeDifferent(new Date().getTime(), data.sendPostTime)}</span>
             </div>
         </div>
     </div>

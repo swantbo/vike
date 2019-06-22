@@ -108,9 +108,10 @@
 .post .post-operating .post-comment {
   position: relative;
 }
-.post .post-operating .post-comment .comment-num {
+.post .post-operating .post-comment a .comment-num {
   font-weight: bold;
   color: #999;
+  margin-top: 2.7777777778vw;
   display: inline-block;
   font-size: 3.2407407407vw;
   text-indent: 4.6296296296vw;
@@ -124,70 +125,39 @@
   list-style: none;
   position: relative;
   width: 100vw;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+  margin-top: 1.8518518519vw;
 }
-.post .post-operating .post-comment .comment ul .post-comment-li .like-reply {
+.post .post-operating .post-comment .comment ul .post-comment-li > div {
+  position: relative;
+  left: 4.6296296296vw;
+  width: 85vw;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li > div div {
+  width: 85vw;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li > div div .userid {
+  color: black;
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li > div div .comment-text {
+  font-size: 3.2407407407vw;
+}
+.post .post-operating .post-comment .comment ul .post-comment-li > div div .like-reply {
   width: 3.2407407407vw;
   height: 3.2407407407vw;
   position: absolute;
-  top: 3.7037037037vw;
-  right: 4.6296296296vw;
+  right: 0;
   background: url("../../image/923d425c0489.png");
   background-size: 33.7037037037vw;
   background-position-x: -3.2407407407vw;
   background-position-y: -17.6944444444vw;
 }
-.post .post-operating .post-comment .comment ul .post-comment-li div {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90vw;
-}
-.post .post-operating .post-comment .comment ul .post-comment-li div .userAvatar {
-  display: inline-block;
-  width: 8.3333333333vw;
-  height: 8.3333333333vw;
-  border-radius: 50%;
-  position: absolute;
-  overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.16);
-}
-.post .post-operating .post-comment .comment ul .post-comment-li div .userAvatar img {
-  width: 8.3333333333vw;
-}
-.post .post-operating .post-comment .comment ul .post-comment-li div div {
-  width: 70vw;
-}
-.post .post-operating .post-comment .comment ul .post-comment-li div div .userid {
-  color: black;
-  font-size: 3.2407407407vw;
-  font-weight: bold;
-}
-.post .post-operating .post-comment .comment ul .post-comment-li div div .comment-text {
-  font-size: 3.2407407407vw;
-}
-.post .post-operating .post-comment .comment ul .post-comment-li div .timeDifferent {
+.post .post-operating .post-comment .timeDifferent {
   font-size: 3.2407407407vw;
   color: #999;
+  left: 4.6296296296vw;
   position: relative;
-  left: 9.2592592593vw;
-  margin-top: 1.8518518519vw;
-  display: inline-block;
-}
-.post .post-operating .post-comment .comment ul .post-comment-li div .likeLength {
-  font-size: 3.2407407407vw;
-  color: #999;
-  position: relative;
-  left: 13.8888888889vw;
-  margin-top: 1.8518518519vw;
-  display: inline-block;
-}
-.post .post-operating .post-comment .comment ul .post-comment-li div .reply {
-  font-size: 3.2407407407vw;
-  color: #999;
-  font-weight: bold;
-  position: relative;
-  left: 18.5185185185vw;
   margin-top: 1.8518518519vw;
   display: inline-block;
 }
