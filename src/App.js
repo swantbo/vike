@@ -24,6 +24,7 @@ class App extends Component {
                 <Header/>
                 <switch className='switch'>
                     <Route exact path='/' component={Home}/>
+                    <Route path='/comment/:paramName' component={SearchTest}/>
                     <Route path='/search' component={SearchTest}/>
                     <Route path='/result' component={ResultTest}/>
                     <Route path='/dynamic' component={temp}/>

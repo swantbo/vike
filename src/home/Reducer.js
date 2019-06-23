@@ -43,15 +43,15 @@ export default function (state = home, action) {
             const {postId, userId} = action.payload;
             return {
                 ...state,
-                postId: {...state[postId], like: [...state[postId].like, userId]}
+                [postId]: {...state[postId], like: [...state[postId].like, userId]}
             }
         }
         case ActionTypes.POST_LIKE_FAILURE: {
+            console.log(action.payload);
             const {postId, userId} = action.payload;
             return {
-
                 ...state,
-                postId: {
+                [postId]: {
                     ...state[postId], like: state[postId].like.filter((item) => {
                         return item !== userId
                     })
@@ -62,14 +62,14 @@ export default function (state = home, action) {
             const {postId, userId} = action.payload;
             return {
                 ...state,
-                postId: {...state[postId], Collection: [...state[postId].Collection, userId]}
+                [postId]: {...state[postId], Collection: [...state[postId].Collection, userId]}
             }
         }
         case ActionTypes.POST_COLLECTION_FAILURE: {
             const {postId, userId} = action.payload;
             return {
                 ...state,
-                postId: {
+                [postId]: {
                     ...state[postId], Collection: state[postId].Collection.filter((item) => {
                         return item !== userId
                     })

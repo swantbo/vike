@@ -36,8 +36,9 @@ const likeThisPost = (postId, userId) => ({
 const likeThisPostSuccess = () => ({
     type: ActionTypes.POST_LIKE_SUCCESS,
 });
-const likeThisPostFailure = () => ({
+const likeThisPostFailure = (postId, userId) => ({
     type: ActionTypes.POST_LIKE_FAILURE,
+    payload: {postId: postId, userId: userId}
 });
 
 export const likePost = (postId, userId) => {
@@ -48,7 +49,7 @@ export const likePost = (postId, userId) => {
             body: JSON.stringify({postId: postId, userId: userId}),
             header: myHeader
         }).then(data => data === 'ok' ? dispatch(likeThisPostSuccess()) : dispatch(likeThisPostFailure())).catch(
-            error => dispatch(likeThisPostFailure())
+            error => dispatch(likeThisPostFailure(postId, userId))
         )
     }
 };
@@ -60,8 +61,9 @@ const collectionThisPost = (postId, userId) => ({
 const collectionThisPostSuccess = () => ({
     type: ActionTypes.POST_COLLECTION_SUCCESS,
 });
-const collectionThisPostFailure = () => ({
-    type: ActionTypes.POST_COLLECTION_FAILURE
+const collectionThisPostFailure = (postId, userId) => ({
+    type: ActionTypes.POST_COLLECTION_FAILURE,
+    payload: {postId: postId, userId: userId}
 });
 
 export const collectionPost = (postId, userId) => {
@@ -72,7 +74,7 @@ export const collectionPost = (postId, userId) => {
             body: JSON.stringify({postId: postId, userId: userId}),
             header: myHeader
         }).then(data => data === 'ok' ? dispatch(collectionThisPostSuccess()) : dispatch(collectionThisPostFailure())).catch(
-            error => dispatch(collectionThisPostFailure())
+            error => dispatch(collectionThisPostFailure(postId, userId))
         )
     }
 };

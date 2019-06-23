@@ -8,15 +8,11 @@ import './home.css';
 class Home extends Component {
     constructor() {
         super(...arguments);
-        this.state ={
-            postList:this.props.postId,
-            data:this.props.data
-        }
     }
 
     render() {
-        let li  = this.state.postList.map((item)=>{
-            return Post(this.state.data[item])
+        let li  = this.props.postId.map((item)=>{
+            return Post(this.props.data[item],this.props.loginUser,this.props.likePost,this.props.collectionPost)
         });
         return (
             <div className='Home'>
@@ -27,15 +23,20 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(Object.keys(state.homeReducer));
     return {
         postId:Object.keys(state.homeReducer),
-        data:state.homeReducer
+        data:state.homeReducer,
+        loginUser:state.aboutMeReducer
     }
 };
 const mapDispatchToProps = (dispatch)=>{
     return{
-
+        likePost:(postId,userId)=>{
+            dispatch(likePost(postId,userId))
+        },
+        collectionPost:(postId,userId)=>{
+            dispatch(collectionPost(postId,userId))
+        }
     }
 };
 

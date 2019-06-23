@@ -60,6 +60,13 @@
   left: 4.6296296296vw;
   background: url("../../image/923d425c0489.png");
   background-size: 81.8518518519vw;
+  background-position-x: 0vw;
+  background-position-y: -42.9722222222vw;
+}
+.post .post-operating .button .unlike {
+  left: 4.6296296296vw;
+  background: url("../../image/923d425c0489.png");
+  background-size: 81.8518518519vw;
   background-position-x: -7.8703703704vw;
   background-position-y: -42.9722222222vw;
 }
@@ -78,6 +85,13 @@
   background-position-y: -33.0555555556vw;
 }
 .post .post-operating .button .collection {
+  right: 4.6296296296vw;
+  background: url("../../image/923d425c0489.png");
+  background-size: 81.8518518519vw;
+  background-position-x: -66.7407407407vw;
+  background-position-y: -7.712962963vw;
+}
+.post .post-operating .button .unCollection {
   right: 4.6296296296vw;
   background: url("../../image/923d425c0489.png");
   background-size: 81.8518518519vw;
