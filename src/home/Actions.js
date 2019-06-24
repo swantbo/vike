@@ -30,6 +30,7 @@ export const requestPost = (postId) => {
     }
 };
 const likeThisPost = (postId, userId) => ({
+    //value===1时，为like value===-1时为unlike
     type: ActionTypes.POST_LIKE,
     payload: {postId: postId, userId: userId}
 });
@@ -48,8 +49,10 @@ export const likePost = (postId, userId) => {
             method: 'POST',
             body: JSON.stringify({postId: postId, userId: userId}),
             header: myHeader
-        }).then(data => data === 'ok' ? dispatch(likeThisPostSuccess()) : dispatch(likeThisPostFailure())).catch(
-            error => dispatch(likeThisPostFailure(postId, userId))
+        }).then(data => data === 'ok' ? dispatch(likeThisPostSuccess()) : dispatch(likeThisPostFailure(postId, userId))).catch(
+            error => {
+                dispatch(likeThisPostFailure(postId, userId), console.log(error))
+            }
         )
     }
 };
@@ -73,7 +76,7 @@ export const collectionPost = (postId, userId) => {
             method: 'POST',
             body: JSON.stringify({postId: postId, userId: userId}),
             header: myHeader
-        }).then(data => data === 'ok' ? dispatch(collectionThisPostSuccess()) : dispatch(collectionThisPostFailure())).catch(
+        }).then(data => data === 'ok' ? dispatch(collectionThisPostSuccess()) : dispatch(collectionThisPostFailure(postId, userId))).catch(
             error => dispatch(collectionThisPostFailure(postId, userId))
         )
     }

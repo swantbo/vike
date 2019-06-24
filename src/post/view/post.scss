@@ -199,6 +199,16 @@
                 .comment-text {
                   font-size: vw(35);
                 }
+                .unlike-reply{
+                  width: vw(35);
+                  height: vw(35);
+                  position: absolute;
+                  right: 0;
+                  background: url("../../image/923d425c0489.png");
+                  background-size: vw(520*0.7);
+                  background-position-x: vw(-0*0.7);
+                  background-position-y: vw(-273*0.7);
+                }
                 .like-reply {
                   width: vw(35);
                   height: vw(35);
