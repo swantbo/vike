@@ -108,7 +108,6 @@ const mapStateToProps = (state) => {
     return {
         option: state.headerReducer.isShowOptions,
         name: state.headerReducer.name,
-        setListUrl: state.aboutMeReducer.setListUrl
     }
 };
 

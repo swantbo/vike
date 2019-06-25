@@ -1,129 +1,128 @@
 import * as ActionTypes from './ActionTypes.js';
 
 const aboutMe = {
-    requesting:false,
-    userName:'vike',
-    userId:'xwvike',
-    email:'xwvike@gmail.com',
-    avatar:'26395177.jpeg',
-    Introduction:'coding……💩 😺 😸 😹 😻 😼 😽 🙀 😿 😾',
-    website:'www.xwvike.com',
-    gender:1,
-    addTime:'20190217',
-    myPost:['1','2'],
-    myFens:['admin'],
-    myFriends:['admin'],
-    myCollection:['3','4'],
-    isActive:true,
-    isRecommend:true,
-    isPrivate:false,
-    setListUrl: [{url:'edit',text:'编辑主页'},{url:'changePassword',text:'更改密码'},{url:'privacy_and_security',text:'隐私和安全'},{url:'help',text:'帮助中心'},{url:'us',text:'关于我们'},{url:'',text:'退出'}],
-    avatarFloat:false,
-    aboutMeFloat:false,
-    avatarFloatTitle:'更改头像',
-    avatarFloatText:['上传头像','移除当前头像','取消'],
-    aboutMeFloatTitle:'',
-    aboutMeFloatText:['举报','拉黑','取消']
+    requesting: false,
+    userName: 'vike',
+    userId: 'xwvike',
+    email: 'xwvike@gmail.com',
+    avatar: '26395177.jpeg',
+    Introduction: 'coding……💩 😺 😸 😹 😻 😼 😽 🙀 😿 😾',
+    website: 'www.xwvike.com',
+    gender: 1,
+    addTime: '20190217',
+    myPost: ['1', '2'],
+    myFens: ['admin'],
+    myFriends: ['admin'],
+    myCollection: ['3', '4'],
+    isActive: true,
+    isRecommend: true,
+    isPrivate: false,
+    avatarFloat: false,
+    aboutMeFloat: false,
+    avatarFloatTitle: '更改头像',
+    avatarFloatText: ['上传头像', '移除当前头像', '取消'],
+    aboutMeFloatTitle: '',
+    aboutMeFloatText: ['举报', '拉黑', '取消']
 
 };
 
 export default function (state = aboutMe, action) {
     switch (action.type) {
-        default:{
+        default: {
             return state
         }
-        case ActionTypes.FETCH_GET_REQUEST:{
+        case ActionTypes.FETCH_GET_REQUEST: {
             return {
                 ...state,
-                requesting:true
+                requesting: true
             }
         }
-        case ActionTypes.FETCH_GET_FAILURE:{
+        case ActionTypes.FETCH_GET_FAILURE: {
             return {
                 ...state,
-                userName:'信息请求失败'
+                userName: '信息请求失败'
             }
         }
-        case ActionTypes.FETCH_GET_SUCCESS:{
-            const{name} = action.payload;
-            return {
-                ...state,
-                userName:name
-            }
-        }
-        case ActionTypes.ABOUTME_CHANGE_USER_NAME:{
+        case ActionTypes.FETCH_GET_SUCCESS: {
             const {name} = action.payload;
-            return{
+            return {
                 ...state,
                 userName: name
             }
         }
-        case ActionTypes.ABOUTME_CHANGE_USER_ID:{
+        case ActionTypes.ABOUTME_CHANGE_USER_NAME: {
+            const {name} = action.payload;
+            return {
+                ...state,
+                userName: name
+            }
+        }
+        case ActionTypes.ABOUTME_CHANGE_USER_ID: {
             const {id} = action.payload;
-            return{
+            return {
                 ...state,
                 userId: id
             }
         }
-        case ActionTypes.ABOUTME_CHANGE_USER_EMAIL:{
+        case ActionTypes.ABOUTME_CHANGE_USER_EMAIL: {
             const {email} = action.payload;
-            return{
+            return {
                 ...state,
-                email:email
+                email: email
             }
         }
-        case ActionTypes.ABOUTME_CHANGE_USER_INTRODUCTION:{
+        case ActionTypes.ABOUTME_CHANGE_USER_INTRODUCTION: {
             const {text} = action.payload;
-            return{
+            return {
                 ...state,
                 Introduction: text
             }
         }
-        case ActionTypes.ABOUTME_CHANGE_USER_WEBSITE:{
+        case ActionTypes.ABOUTME_CHANGE_USER_WEBSITE: {
             const {website} = action.payload;
-            return{
+            return {
                 ...state,
-                website:website
+                website: website
             }
         }
-        case ActionTypes.ABOUTME_CHANGE_USER_GENDER:{
+        case ActionTypes.ABOUTME_CHANGE_USER_GENDER: {
             const {num} = action.payload;
-            return{
+            return {
                 ...state,
-                gender:num
+                gender: num
             }
         }
-        case ActionTypes.ABOUTME_CHANGE_USER_ACTION:{
+        case ActionTypes.ABOUTME_CHANGE_USER_ACTION: {
             const {boolean} = action.payload;
-            return{
+            return {
                 ...state,
                 isActive: boolean
             }
         }
-        case ActionTypes.ABOUTME_CHANGE_USER_RECOMMEND:{
+        case ActionTypes.ABOUTME_CHANGE_USER_RECOMMEND: {
             const {boolean} = action.payload;
-            return{
+            return {
                 ...state,
                 isRecommend: boolean
             }
         }
-        case ActionTypes.ABOUTME_CHANGE_USER_PRIVATE:{
+        case ActionTypes.ABOUTME_CHANGE_USER_PRIVATE: {
             const {boolean} = action.payload;
-            return{
+            return {
                 ...state,
                 isPrivate: boolean
             }
         }
-        case ActionTypes.ABOUTME_CHANGE_FLOATINTERFACE_SHOW:{
+        case ActionTypes.ABOUTME_CHANGE_FLOATINTERFACE_SHOW: {
             return {
                 ...state,
-                avatarFloat:true
+                avatarFloat: true
             }
         }
-        case ActionTypes.ABOUTME_CHANGE_FLOATINTERFACE_CLOSE:{
+        case ActionTypes.ABOUTME_CHANGE_FLOATINTERFACE_CLOSE: {
             return {
                 ...state,
-                avatarFloat:false
+                avatarFloat: false
             }
         }
     }

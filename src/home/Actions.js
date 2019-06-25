@@ -51,7 +51,7 @@ export const likePost = (postId, userId) => {
             header: myHeader
         }).then(data => data === 'ok' ? dispatch(likeThisPostSuccess()) : dispatch(likeThisPostFailure(postId, userId))).catch(
             error => {
-                dispatch(likeThisPostFailure(postId, userId), console.log(error))
+                dispatch(likeThisPostFailure(postId, userId))
             }
         )
     }
