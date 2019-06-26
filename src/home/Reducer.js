@@ -23,8 +23,8 @@ const home = {
                 like: ['test', 'xwvike'],
                 time: 1559994444434,
                 reply: [
-                    {text: '回复xwvike', userId: 'tubkbk', reply: 'xwvike', like: ['vike'], time: 1559994444434},
-                    {text: '回复tubkbk', userId: 'admin', reply: 'tubkbk', like: ['test'], time: 1561114626703}
+                    {text: '回复xwvike', userId: 'tubkbk', reply: 'xwvike', time: 1559994444434},
+                    {text: '回复tubkbk', userId: 'admin', reply: 'tubkbk', time: 1561114626703}
                 ]
             },
             {
