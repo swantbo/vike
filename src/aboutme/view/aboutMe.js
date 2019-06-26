@@ -36,6 +36,7 @@ class AboutMe extends Component {
         this.state = {
             categoryName: ['帖子', '粉丝', '正在关注'],
             icon: ['grid', 'detailed', 'Collection'],
+            setListUrl: [{url:'edit',text:'编辑主页'},{url:'changePassword',text:'更改密码'},{url:'privacy_and_security',text:'隐私和安全'},{url:'help',text:'帮助中心'},{url:'us',text:'关于我们'},{url:'',text:'退出'}]
         };
         this.onTest = this.onTest.bind(this);
     }
@@ -47,7 +48,7 @@ class AboutMe extends Component {
         this.props.requestTest('vike')
     }
     render() {
-        const {avatar, userId, website, Introduction, userName, myPost, myFens, myFriends, option, setListUrl} = this.props;
+        const {avatar, userId, website, Introduction, userName, myPost, myFens, myFriends, option} = this.props;
         let webUrl = 'http://' + website;
         let categoryListArr = this.state.categoryName.map((item) => {
             return categoryList(item === '帖子' ? myPost.length : item === '粉丝' ? myFens.length : myFriends.length, item)
@@ -55,7 +56,7 @@ class AboutMe extends Component {
         let listIconArr = this.state.icon.map((item) => {
             return listIcon(item)
         });
-        let setPage = setListUrl.map((item) => {
+        let setPage = this.state.setListUrl.map((item) => {
             return setList(item.url, item.text)
         });
         let aboutMe = option ? <div className='aboutMe_box'>
@@ -117,7 +118,6 @@ const mapStateToProps = (state) => {
         isRecommend: state.aboutMeReducer.isRecommend,
         isPrivate: state.aboutMeReducer.isPrivate,
         option: state.headerReducer.isShowOptions,
-        setListUrl: state.aboutMeReducer.setListUrl
     }
 };
 

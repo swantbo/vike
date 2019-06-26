@@ -117,12 +117,26 @@
     transform: translateX(-50%) translateY(-50%);
   }
   .header-comment{
-    font-size: vw(43);
-    font-weight: bold;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    width: 100vw;
+    height: vw(125);
+    text-align: center;
+    line-height: vw(125);
+    font-weight: bold;
+    font-size: vw(43);
+    span{
+      position: absolute;
+      left: vw(40);
+      top: 50%;
+      transform: translateY(-50%);
+      width: vw(50);
+      height: vw(50);
+      display: inline-block;
+      background: url("../../image/923d425c0489.png");
+      background-size: vw(520*1.2);
+      background-position-x: vw(-55*1.2);
+      background-position-y: vw(-325*1.2);
+    }
   }
   .header-five{
     .header-option{

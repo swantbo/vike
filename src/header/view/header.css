@@ -113,12 +113,26 @@
   transform: translateX(-50%) translateY(-50%);
 }
 .header .header-comment {
-  font-size: 3.9814814815vw;
-  font-weight: bold;
   position: absolute;
-  left: 50%;
+  width: 100vw;
+  height: 11.5740740741vw;
+  text-align: center;
+  line-height: 11.5740740741vw;
+  font-weight: bold;
+  font-size: 3.9814814815vw;
+}
+.header .header-comment span {
+  position: absolute;
+  left: 3.7037037037vw;
   top: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateY(-50%);
+  width: 4.6296296296vw;
+  height: 4.6296296296vw;
+  display: inline-block;
+  background: url("../../image/923d425c0489.png");
+  background-size: 57.7777777778vw;
+  background-position-x: -6.1111111111vw;
+  background-position-y: -36.1111111111vw;
 }
 .header .header-five .header-option {
   position: absolute;

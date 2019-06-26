@@ -45,13 +45,13 @@ class Header extends Component {
     }
 
     render() {
-        let {name, UserNameNull, SendUserName, option, ChangeOptions, setListUrl} = this.props;
+        let {name, UserNameNull, SendUserName, option, ChangeOptions} = this.props;
         let path = window.location.pathname;
         console.log(path);
         let logo = <div className='header-home'>
             <div className='header-post'></div>
             <div className='header-logo' onClick={this.backUp}></div>
-            <div classNpame='header-addfriend'></div>
+            <div className='header-addfriend'></div>
         </div>;
         let search = <div className='search-box'>
             <Link to='/result'>
@@ -78,7 +78,7 @@ class Header extends Component {
         let changeAvatar = <div className='header-changeAvatar'><span onClick={this.historyBack}></span>头像<p>保存</p>
         </div>;
         let dynamic = <div className='header-dynamic'>动态</div>;
-        let comment = <div onClick={this.historyBack} className='header-comment'>评论</div>;
+        let comment = <div className='header-comment'><span onClick={this.historyBack}> </span>评论</div>;
         let aboutme = <div className='header-five'>
             <div onClick={() => ChangeOptions()}
                  className={option ? 'header-option' : 'heacder-option-close'}></div>
