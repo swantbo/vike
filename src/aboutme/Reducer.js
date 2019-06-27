@@ -44,10 +44,10 @@ export default function (state = aboutMe, action) {
             }
         }
         case ActionTypes.FETCH_GET_SUCCESS: {
-            const {name} = action.payload;
+            const {_id} = action.payload;
             return {
                 ...state,
-                userName: name
+                userName: _id
             }
         }
         case ActionTypes.ABOUTME_CHANGE_USER_NAME: {

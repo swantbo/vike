@@ -39,6 +39,7 @@ export default function (state = home, action) {
         default: {
             return state
         }
+        //请求帖子数据
         case ActionTypes.POST_REQUEST_ALL_DATA_SUCCESS: {
             const {postId, data} = action.payload;
             return {
@@ -46,6 +47,7 @@ export default function (state = home, action) {
                 [postId]: {...data}
             }
         }
+        //点赞帖子
         case ActionTypes.POST_LIKE: {
             const {postId, userId} = action.payload;
             if (state[postId].like.find((item)=>item===userId)===userId) {
@@ -83,6 +85,7 @@ export default function (state = home, action) {
             }
 
         }
+        //收藏帖子
         case ActionTypes.POST_COLLECTION: {
             const {postId, userId} = action.payload;
             if (state[postId].Collection.find((item)=>item===userId)===userId){
@@ -118,6 +121,9 @@ export default function (state = home, action) {
                     [postId]: {...state[postId], Collection: [...state[postId].Collection, userId]}
                 }
             }
+        }
+
+        case ActionTypes.POST_INPUT_COMMENT_SUCCESS:{
 
         }
     }

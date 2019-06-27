@@ -30,7 +30,6 @@ export const requestPost = (postId) => {
     }
 };
 const likeThisPost = (postId, userId) => ({
-    //value===1时，为like value===-1时为unlike
     type: ActionTypes.POST_LIKE,
     payload: {postId: postId, userId: userId}
 });
@@ -85,14 +84,14 @@ export const ReFresh = () => ({
     type: ActionTypes.HOME_REFRESH
 });
 
-
-const inputCommentStart = (postId, text, userId) => ({
+//输入评论
+const inputCommentStart = () => ({
     type: ActionTypes.POST_INPUT_COMMENT,
-    payload: {postId: postId, text: text, userId: userId}
 });
 
-const inputCommentSuccess = () => ({
-    type: ActionTypes.POST_INPUT_COMMENT_SUCCESS
+const inputCommentSuccess = (data) => ({
+    type: ActionTypes.POST_INPUT_COMMENT_SUCCESS,
+    payload:{data:data}
 });
 
 const inputCommentFailure = () => ({
@@ -106,7 +105,7 @@ export const inputComment = (postId, text, userId) => {
             method: 'POST',
             body: JSON.stringify({postId: postId, text: text, userId: userId}),
             header: myHeader
-        }).then(data => data === 'ok' ? dispatch(inputCommentSuccess()) : dispatch(inputCommentFailure())).catch(
+        }).then(data => dispatch(inputCommentSuccess(data))).catch(
             error => {
                 dispatch(inputCommentFailure())
             }
@@ -141,6 +140,7 @@ export const likeComment = (postId, commentId, userId) => {
     }
 };
 
+
 const replyCommentStart = (postId,commentId,userId,replyId,text) => ({
     type: ActionTypes.POST_COMMENT_REPLY,
     payload: {postId:postId,commentId:commentId,userId:userId,replyId:replyId,text:text}
@@ -159,7 +159,7 @@ export const replyComment = (postId,commentId,userId,replyId,text)=>{
             method:'POST',
             body:JSON.stringify({postId:postId,commentId:commentId,userId:userId,replyId:replyId,text:text}),
             header:myHeader
-        }).then(data=>data==='ok'?dispatch(replyCommentSuccess()):dispatch(replyCommentFailure())).catch(
+        }).then(data=>dispatch(replyCommentSuccess(data))).catch(
             error=>dispatch(replyCommentFailure())
         )
     }

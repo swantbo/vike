@@ -23,7 +23,7 @@ const li = (data,loginUser) => {
 };
 
 const Post = (data,loginUser,likePost,collectionPost) => {
-    // console.log(data);
+    console.log(data);
     let value = data.like.find((item)=>item===loginUser.userId)===loginUser.userId?1:-1;
     return <div className='post'>
         <div className='post-userInfo'>
