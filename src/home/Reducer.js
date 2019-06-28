@@ -50,7 +50,7 @@ export default function (state = home, action) {
         //点赞帖子
         case ActionTypes.POST_LIKE: {
             const {postId, userId} = action.payload;
-            if (state[postId].like.find((item)=>item===userId)===userId) {
+            if (state[postId].like.find((item) => item === userId) === userId) {
                 return {
                     ...state,
                     [postId]: {
@@ -59,7 +59,7 @@ export default function (state = home, action) {
                         })
                     }
                 }
-            }else{
+            } else {
                 return {
                     ...state,
                     [postId]: {...state[postId], like: [...state[postId].like, userId]}
@@ -68,7 +68,7 @@ export default function (state = home, action) {
         }
         case ActionTypes.POST_LIKE_FAILURE: {
             const {postId, userId} = action.payload;
-            if (state[postId].like.find((item)=>item===userId)===userId) {
+            if (state[postId].like.find((item) => item === userId) === userId) {
                 return {
                     ...state,
                     [postId]: {
@@ -77,7 +77,7 @@ export default function (state = home, action) {
                         })
                     }
                 }
-            }else {
+            } else {
                 return {
                     ...state,
                     [postId]: {...state[postId], like: [...state[postId].like, userId]}
@@ -88,25 +88,7 @@ export default function (state = home, action) {
         //收藏帖子
         case ActionTypes.POST_COLLECTION: {
             const {postId, userId} = action.payload;
-            if (state[postId].Collection.find((item)=>item===userId)===userId){
-                return {
-                    ...state,
-                    [postId]: {
-                        ...state[postId], Collection: state[postId].Collection.filter((item) => {
-                            return item !== userId
-                        })
-                    }
-                }
-            }else {
-                return {
-                    ...state,
-                    [postId]: {...state[postId], Collection: [...state[postId].Collection, userId]}
-                }
-            }
-        }
-        case ActionTypes.POST_COLLECTION_FAILURE: {
-            const {postId, userId} = action.payload;
-            if (state[postId].Collection.find((item)=>item===userId)===userId){
+            if (state[postId].Collection.find((item) => item === userId) === userId) {
                 return {
                     ...state,
                     [postId]: {
@@ -122,9 +104,65 @@ export default function (state = home, action) {
                 }
             }
         }
+        case ActionTypes.POST_COLLECTION_FAILURE: {
+            const {postId, userId} = action.payload;
+            if (state[postId].Collection.find((item) => item === userId) === userId) {
+                return {
+                    ...state,
+                    [postId]: {
+                        ...state[postId], Collection: state[postId].Collection.filter((item) => {
+                            return item !== userId
+                        })
+                    }
+                }
+            } else {
+                return {
+                    ...state,
+                    [postId]: {...state[postId], Collection: [...state[postId].Collection, userId]}
+                }
+            }
+        }
+        case ActionTypes.POST_INPUT_COMMENT_SUCCESS: {
+            const {postId, data} = action.payload;
+            return {
+                ...state,
+                [postId]: {...data}
+            }
+        }
+        case ActionTypes.POST_INPUT_COMMENT_FAILURE: {
+            return state
+        }
 
-        case ActionTypes.POST_INPUT_COMMENT_SUCCESS:{
-
+        case ActionTypes.POST_LIKE_COMMENT: {
+            const {postId, commentId, userId} = action.payload;
+            let comment = state[postId].comment;
+            if ((comment.find((item) => item.id === commentId)).like.find((item) => item === userId) === userId) {
+                return {
+                    ...state,
+                    [postId]: {
+                        ...state[postId], comment: state[postId].comment.find(function (item, i) {
+                            if (item.id === commentId) {
+                                state[postId].comment[i].like = state[postId].comment[i].like.filter((item) => {
+                                    return item !== userId
+                                })
+                            }
+                            return true
+                        })
+                    }
+                }
+            } else {
+                return {
+                    ...state,
+                    [postId]: {
+                        ...state[postId], comment: state[postId].comment.find(function (item, i) {
+                            if (item.id === commentId) {
+                                state[postId].comment[i].like = [...state[postId].comment[i].like, userId]
+                            }
+                            return true
+                        })
+                    }
+                }
+            }
         }
     }
 }

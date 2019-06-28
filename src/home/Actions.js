@@ -86,12 +86,12 @@ export const ReFresh = () => ({
 
 //输入评论
 const inputCommentStart = () => ({
-    type: ActionTypes.POST_INPUT_COMMENT,
+    type: ActionTypes.POST_INPUT_COMMENT
 });
 
-const inputCommentSuccess = (data) => ({
+const inputCommentSuccess = (postId,data) => ({
     type: ActionTypes.POST_INPUT_COMMENT_SUCCESS,
-    payload:{data:data}
+    payload:{postId:postId,data:data}
 });
 
 const inputCommentFailure = () => ({
@@ -105,7 +105,7 @@ export const inputComment = (postId, text, userId) => {
             method: 'POST',
             body: JSON.stringify({postId: postId, text: text, userId: userId}),
             header: myHeader
-        }).then(data => dispatch(inputCommentSuccess(data))).catch(
+        }).then(data => dispatch(inputCommentSuccess(postId,data))).catch(
             error => {
                 dispatch(inputCommentFailure())
             }
