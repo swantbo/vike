@@ -164,5 +164,36 @@ export default function (state = home, action) {
                 }
             }
         }
+        case ActionTypes.POST_LIKE_COMMENT_FAILURE:{
+            const {postId, commentId, userId} = action.payload;
+            let comment = state[postId].comment;
+            if ((comment.find((item) => item.id === commentId)).like.find((item) => item === userId) === userId) {
+                return {
+                    ...state,
+                    [postId]: {
+                        ...state[postId], comment: state[postId].comment.find(function (item, i) {
+                            if (item.id === commentId) {
+                                state[postId].comment[i].like = state[postId].comment[i].like.filter((item) => {
+                                    return item !== userId
+                                })
+                            }
+                            return true
+                        })
+                    }
+                }
+            } else {
+                return {
+                    ...state,
+                    [postId]: {
+                        ...state[postId], comment: state[postId].comment.find(function (item, i) {
+                            if (item.id === commentId) {
+                                state[postId].comment[i].like = [...state[postId].comment[i].like, userId]
+                            }
+                            return true
+                        })
+                    }
+                }
+            }
+        }
     }
 }
