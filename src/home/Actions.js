@@ -145,8 +145,9 @@ const replyCommentStart = (postId,commentId,userId,replyId,text) => ({
     type: ActionTypes.POST_COMMENT_REPLY,
     payload: {postId:postId,commentId:commentId,userId:userId,replyId:replyId,text:text}
 });
-const replyCommentSuccess = ()=>({
-    type:ActionTypes.POST_COMMENT_REPLY_SUCCESS
+const replyCommentSuccess = (postId,data)=>({
+    type:ActionTypes.POST_COMMENT_REPLY_SUCCESS,
+    payload:{postId,data}
 });
 const replyCommentFailure =()=>({
     type:ActionTypes.POST_COMMENT_REPLY_FAILURE
@@ -159,7 +160,7 @@ export const replyComment = (postId,commentId,userId,replyId,text)=>{
             method:'POST',
             body:JSON.stringify({postId:postId,commentId:commentId,userId:userId,replyId:replyId,text:text}),
             header:myHeader
-        }).then(data=>dispatch(replyCommentSuccess(data))).catch(
+        }).then(data=>dispatch(replyCommentSuccess(postId,data))).catch(
             error=>dispatch(replyCommentFailure())
         )
     }

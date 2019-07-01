@@ -195,5 +195,14 @@ export default function (state = home, action) {
                 }
             }
         }
+        case ActionTypes.POST_COMMENT_REPLY_SUCCESS:{
+            const {postId,data}  = action.payload;
+            return {
+                [postId]:{...data}
+            }
+        }
+        case ActionTypes.POST_COMMENT_REPLY_FAILURE:{
+            return state
+        }
     }
 }
