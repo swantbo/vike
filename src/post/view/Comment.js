@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import config from '../../config.js';
 import {Link, Route, withRouter} from "react-router-dom";
 import fetch from 'cross-fetch'
+import {timeDifferent} from "../../tool/tool";
 import {likeComment, replyComment, inputComment} from "../../home/Actions";
 import './comment.css'
 
@@ -26,14 +27,18 @@ class Comment extends Component {
     }
 
     render() {
-
         const commentData = this.props.commentData[this.state.postId];
 
         return (<div className='Comment'>
             <div className='Comment-postText'>
                 <div className='Comment-postText-avatar'><img
                     src={require('../../image/userAvatar/' + this.state.postUserAvatar)} alt={'434'}/></div>
+                <div className='Comment-postText-text'><Link to={`/user/${commentData.userId}`}>{commentData.userId + ' '}</Link><span>{commentData.postText}</span></div>
+                <span className='Comment-postText-time'>{timeDifferent(new Date().getTime(), commentData.sendPostTime)}</span>
             </div>
+            <ul>
+
+            </ul>
         </div>)
     }
 }

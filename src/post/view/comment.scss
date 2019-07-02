@@ -8,7 +8,8 @@
   .Comment-postText{
     position: relative;
     width: 100vw;
-    height: 30vw;
+    border-bottom: 1px solid rgba(153, 153, 153, 0.25);
+    //height: 30vw;
     //background: #4dceff;
     .Comment-postText-avatar{
       position: absolute;
@@ -22,6 +23,27 @@
         width: vw(100);
       }
     }
-
+    .Comment-postText-text{
+      font-size: vw(35);
+      color: black;
+      width: 75vw;
+      position: relative;
+      padding-top: vw(60);
+      left: vw(200);
+      padding-bottom: vw(80);
+      a{
+        font-size: vw(35);
+        font-weight: bold;
+        color: black;
+      }
+    }
+    .Comment-postText-time{
+      font-size: vw(35);
+      color: #999;
+      left: vw(200);
+      position: absolute;
+      bottom: vw(0);
+      display: inline-block;
+    }
   }
 }
