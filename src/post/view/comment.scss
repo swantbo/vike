@@ -1,0 +1,27 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+.Comment{
+  width: 100vw;
+  margin-top: vw(125);
+  position: relative;
+  .Comment-postText{
+    position: relative;
+    width: 100vw;
+    height: 30vw;
+    //background: #4dceff;
+    .Comment-postText-avatar{
+      position: absolute;
+      top: vw(60);
+      left: vw(50);
+      width: vw(100);
+      height: vw(100);
+      border-radius: 50%;
+      overflow: hidden;
+      img{
+        width: vw(100);
+      }
+    }
+
+  }
+}

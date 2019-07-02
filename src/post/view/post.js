@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import './post.css';
 
 
-const li = (data,loginUser) => {
+const li = (data,loginUser,likeComment,postId) => {
     // const{count,setCount} = useState(1);
     return <li className='post-comment-li'>
         <div>
@@ -15,14 +15,14 @@ const li = (data,loginUser) => {
             <div>
                 <Link to={`/user/${data.userId}`} className='userid'>{data.userId} </Link>
                 <span className='comment-text'>{data.text}</span>
-                <span className={data.like.find((item)=>item===loginUser.userId)===loginUser.userId?'unlike-reply':'like-reply'}> </span>
+                <span  className={data.like.find((item)=>item===loginUser.userId)===loginUser.userId?'unlike-reply':'like-reply'}> </span>
             </div>
             {/*<span className='likeLength'>{data.like.length}次赞</span><span className='reply'>回复</span>*/}
         </div>
     </li>
 };
 
-const Post = (data,loginUser,likePost,collectionPost) => {
+const Post = (data,loginUser,likePost,collectionPost,likeComment) => {
     console.log(data);
     let value = data.like.find((item)=>item===loginUser.userId)===loginUser.userId?1:-1;
     return <div className='post'>
@@ -51,8 +51,8 @@ const Post = (data,loginUser,likePost,collectionPost) => {
                     className='comment-num'>{`全部 ${data.comment.length} 条评论`}</span></Link>
                 <div className='comment'>
                     <ul>
-                        {li(data.comment[data.comment.length-1],loginUser)}
-                        {li(data.comment[data.comment.length-2],loginUser)}
+                        {li(data.comment[data.comment.length-1],loginUser,likeComment,data.postId)}
+                        {li(data.comment[data.comment.length-2],loginUser,likeComment,data.postId)}
                         {/*{data.comment.map((item) => {*/}
                         {/*    return li(item)*/}
                         {/*})}*/}

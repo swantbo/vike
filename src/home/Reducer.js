@@ -136,30 +136,21 @@ export default function (state = home, action) {
         case ActionTypes.POST_LIKE_COMMENT: {
             const {postId, commentId, userId} = action.payload;
             let comment = state[postId].comment;
+            let index = state[postId].comment.findIndex(function (value) {
+                return value.id===commentId
+            });
             if ((comment.find((item) => item.id === commentId)).like.find((item) => item === userId) === userId) {
                 return {
                     ...state,
                     [postId]: {
-                        ...state[postId], comment: state[postId].comment.find(function (item, i) {
-                            if (item.id === commentId) {
-                                state[postId].comment[i].like = state[postId].comment[i].like.filter((item) => {
-                                    return item !== userId
-                                })
-                            }
-                            return true
-                        })
+                        ...state[postId], comment:[...state[postId].comment,comment[index].like.splice(state[postId].comment[index].like.length-1,1)]
                     }
                 }
             } else {
                 return {
                     ...state,
                     [postId]: {
-                        ...state[postId], comment: state[postId].comment.find(function (item, i) {
-                            if (item.id === commentId) {
-                                state[postId].comment[i].like = [...state[postId].comment[i].like, userId]
-                            }
-                            return true
-                        })
+                        ...state[postId], comment: [...state[postId].comment,comment[index].like.push(userId)]
                     }
                 }
             }
@@ -167,41 +158,32 @@ export default function (state = home, action) {
         case ActionTypes.POST_LIKE_COMMENT_FAILURE:{
             const {postId, commentId, userId} = action.payload;
             let comment = state[postId].comment;
+            let index = state[postId].comment.findIndex(function (value) {
+                return value.id===commentId
+            });
             if ((comment.find((item) => item.id === commentId)).like.find((item) => item === userId) === userId) {
                 return {
                     ...state,
                     [postId]: {
-                        ...state[postId], comment: state[postId].comment.find(function (item, i) {
-                            if (item.id === commentId) {
-                                state[postId].comment[i].like = state[postId].comment[i].like.filter((item) => {
-                                    return item !== userId
-                                })
-                            }
-                            return true
-                        })
+                        ...state[postId], comment: [...state[postId].comment,comment[index].like.splice(state[postId].comment[index].like.length-1,1)]
                     }
                 }
             } else {
                 return {
                     ...state,
                     [postId]: {
-                        ...state[postId], comment: state[postId].comment.find(function (item, i) {
-                            if (item.id === commentId) {
-                                state[postId].comment[i].like = [...state[postId].comment[i].like, userId]
-                            }
-                            return true
-                        })
+                        ...state[postId], comment: [...state[postId].comment,comment[index].like.push(userId)]
                     }
                 }
             }
         }
-        case ActionTypes.POST_COMMENT_REPLY_SUCCESS:{
-            const {postId,data}  = action.payload;
+        case ActionTypes.POST_COMMENT_REPLY_SUCCESS: {
+            const {postId, data} = action.payload;
             return {
-                [postId]:{...data}
+                [postId]: {...data}
             }
         }
-        case ActionTypes.POST_COMMENT_REPLY_FAILURE:{
+        case ActionTypes.POST_COMMENT_REPLY_FAILURE: {
             return state
         }
     }

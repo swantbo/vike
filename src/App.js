@@ -5,6 +5,7 @@ import {view as Footer} from './footer'
 import {view as Header} from './header'
 import {view as AboutMe} from './aboutme';
 import {edit} from './aboutme';
+import {Comment} from './post'
 import {view as Home} from './home'
 import SearchTest from './test/testsearch.js';
 import ResultTest from './test/result.js';
@@ -24,7 +25,7 @@ class App extends Component {
                 <Header/>
                 <switch className='switch'>
                     <Route exact path='/' component={Home}/>
-                    <Route path='/comment/:paramName' component={SearchTest}/>
+                    <Route path='/comment/:paramName' component={Comment}/>
                     <Route path='/search' component={SearchTest}/>
                     <Route path='/result' component={ResultTest}/>
                     <Route path='/dynamic' component={temp}/>

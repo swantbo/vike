@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link, withRouter} from "react-router-dom";
-import {ReFresh,likePost,collectionPost} from "../Actions";
+import {ReFresh,likePost,collectionPost,likeComment} from "../Actions";
 import {view as Post} from '../../post';
 import './home.css';
 
@@ -12,7 +12,7 @@ class Home extends Component {
 
     render() {
         let li  = this.props.postId.map((item)=>{
-            return Post(this.props.data[item],this.props.loginUser,this.props.likePost,this.props.collectionPost)
+            return Post(this.props.data[item],this.props.loginUser,this.props.likePost,this.props.collectionPost,this.props.likeComment)
         });
         return (
             <div className='Home'>
@@ -23,6 +23,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
         postId:Object.keys(state.homeReducer),
         data:state.homeReducer,
@@ -36,6 +37,9 @@ const mapDispatchToProps = (dispatch)=>{
         },
         collectionPost:(postId,userId)=>{
             dispatch(collectionPost(postId,userId))
+        },
+        likeComment:(postId,commentId,userId)=>{
+            dispatch(likeComment(postId,commentId,userId))
         }
     }
 };

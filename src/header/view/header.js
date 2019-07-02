@@ -47,7 +47,6 @@ class Header extends Component {
     render() {
         let {name, UserNameNull, SendUserName, option, ChangeOptions} = this.props;
         let path = window.location.pathname;
-        console.log(path);
         let logo = <div className='header-home'>
             <div className='header-post'></div>
             <div className='header-logo' onClick={this.backUp}></div>
