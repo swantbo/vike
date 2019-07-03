@@ -46,4 +46,61 @@
       display: inline-block;
     }
   }
+  ul{
+    .SingleComment{
+      list-style: none;
+      width: 100vw;
+      //height: 100vw;
+      //background: #4dceff;
+      position: relative;
+      .SingleComment-userAvatar{
+        position: absolute;
+        top: vw(60);
+        left: vw(50);
+        width: vw(100);
+        height: vw(100);
+        border-radius: 50%;
+        overflow: hidden;
+        img{
+          width: vw(100);
+        }
+      }
+      .SingleComment-text{
+        font-size: vw(35);
+        color: black;
+        width: 70vw;
+        position: relative;
+        padding-top: vw(60);
+        left: vw(200);
+        padding-bottom: vw(80);
+        a{
+          font-size: vw(35);
+          font-weight: bold;
+          color: black;
+        }
+      }
+      .SingleComment-like{
+        width: vw(35);
+        height: vw(35);
+        position: absolute;
+        top: vw(70);
+        right: vw(50);
+        background: url("../../image/923d425c0489.png");
+        background-size: vw(520*0.7);
+        background-position-x: vw(-0*0.7);
+        background-position-y: vw(-273*0.7);
+      }
+      .SingleComment-unlike{
+        width: vw(35);
+        height: vw(35);
+        position: absolute;
+        top: vw(70);
+        right: vw(50);
+        background: url("../../image/923d425c0489.png");
+        background-size: vw(520*0.7);
+        background-position-x: vw(-50*0.7);
+        background-position-y: vw(-273*0.7);
+      }
+    }
+  }
 }

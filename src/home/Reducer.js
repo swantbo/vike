@@ -18,9 +18,9 @@ const home = {
         comment: [
             {
                 id: '01',
-                text: '👴😄🌶回复楼主,你这个图片真',
+                text: '👴😄🌶回复楼主,你这个图片真de垃圾啊。哈哈ahhaha.wock小黄人',
                 userId: 'xwvike',
-                like: ['test', 'xwvike'],
+                like: ['test', 'vike'],
                 time: 1559994444434,
                 reply: [
                     {text: '回复xwvike', userId: 'tubkbk', reply: 'xwvike', time: 1559994444434},

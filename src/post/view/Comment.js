@@ -7,6 +7,38 @@ import {timeDifferent} from "../../tool/tool";
 import {likeComment, replyComment, inputComment} from "../../home/Actions";
 import './comment.css'
 
+
+class SingleComment extends Component {
+    constructor() {
+        super(...arguments);
+        this.state = {
+            commentUserId:this.props.commnetUserId,
+            commentUserAvatar:'defaultAvatar.png',
+            singleComment:this.props.singleComment,
+            loginUser:this.props.loginUser,
+        }
+    }
+
+    componentDidMount() {
+        fetch(config.avatar+`userId=${this.state.commentUserId}`,{method: 'GET'}).then(response=>response.json()).then(
+            json=>{this.setState({commentUserAvatar:json.avatar})}
+        ).catch(this.setState({commentUserAvatar:'defaultAvatar.png'}))
+    }
+
+    render() {
+        return (
+            <li className='SingleComment'>
+                <div className='SingleComment-userAvatar'>
+                    <img src={require('../../image/userAvatar/'+this.state.commentUserAvatar)}/>
+                </div>
+                <div className='SingleComment-text'><Link to={`/user/${this.state.commentUserId}`}>{this.state.singleComment.userId+' '}</Link><span>{this.state.singleComment.text}</span></div>
+                <span className={this.state.singleComment.like.find((item)=>item===this.state.loginUser.userId)===this.state.loginUser.userId?'SingleComment-like':'SingleComment-unlike'}> </span>
+            </li>
+        )
+    }
+}
+
+
 class Comment extends Component {
     constructor() {
         super(...arguments);
@@ -33,11 +65,14 @@ class Comment extends Component {
             <div className='Comment-postText'>
                 <div className='Comment-postText-avatar'><img
                     src={require('../../image/userAvatar/' + this.state.postUserAvatar)} alt={'434'}/></div>
-                <div className='Comment-postText-text'><Link to={`/user/${commentData.userId}`}>{commentData.userId + ' '}</Link><span>{commentData.postText}</span></div>
-                <span className='Comment-postText-time'>{timeDifferent(new Date().getTime(), commentData.sendPostTime)}</span>
+                <div className='Comment-postText-text'><Link
+                    to={`/user/${commentData.userId}`}>{commentData.userId + ' '}</Link><span>{commentData.postText}</span>
+                </div>
+                <span
+                    className='Comment-postText-time'>{timeDifferent(new Date().getTime(), commentData.sendPostTime)}</span>
             </div>
             <ul>
-
+                <SingleComment singleComment={commentData.comment[0]} loginUser={this.props.loginUser}/>
             </ul>
         </div>)
     }
