@@ -12,27 +12,39 @@ class SingleComment extends Component {
     constructor() {
         super(...arguments);
         this.state = {
-            commentUserId:this.props.commnetUserId,
-            commentUserAvatar:'defaultAvatar.png',
-            singleComment:this.props.singleComment,
-            loginUser:this.props.loginUser,
+            commentUserId: this.props.commnetUserId,
+            commentUserAvatar: 'defaultAvatar.png',
+            singleComment: this.props.singleComment,
+            loginUser: this.props.loginUser,
         }
     }
 
     componentDidMount() {
-        fetch(config.avatar+`userId=${this.state.commentUserId}`,{method: 'GET'}).then(response=>response.json()).then(
-            json=>{this.setState({commentUserAvatar:json.avatar})}
-        ).catch(this.setState({commentUserAvatar:'defaultAvatar.png'}))
+        fetch(config.avatar + `userId=${this.state.commentUserId}`, {method: 'GET'}).then(response => response.json()).then(
+            json => {
+                this.setState({commentUserAvatar: json.avatar})
+            }
+        ).catch(this.setState({commentUserAvatar: 'defaultAvatar.png'}))
     }
 
     render() {
         return (
             <li className='SingleComment'>
                 <div className='SingleComment-userAvatar'>
-                    <img src={require('../../image/userAvatar/'+this.state.commentUserAvatar)}/>
+                    <img src={require('../../image/userAvatar/' + this.state.commentUserAvatar)}/>
                 </div>
-                <div className='SingleComment-text'><Link to={`/user/${this.state.commentUserId}`}>{this.state.singleComment.userId+' '}</Link><span>{this.state.singleComment.text}</span></div>
-                <span className={this.state.singleComment.like.find((item)=>item===this.state.loginUser.userId)===this.state.loginUser.userId?'SingleComment-like':'SingleComment-unlike'}> </span>
+                <div className='SingleComment-text'><Link
+                    to={`/user/${this.state.commentUserId}`}>{this.state.singleComment.userId + ' '}</Link><span>{this.state.singleComment.text}</span>
+                    <span
+                        className='SingleComment-time'>{timeDifferent(new Date().getTime(), this.state.singleComment.time)}</span>
+                    <span className='SingleComment-likeNum'>{this.state.singleComment.like.length}次赞</span>
+                    <span className='SingleComment-reply'>回复</span>
+                </div>
+                <span
+                    className={this.state.singleComment.like.find((item) => item === this.state.loginUser.userId) === this.state.loginUser.userId ? 'SingleComment-like' : 'SingleComment-unlike'}> </span>
+                <div className={this.state.singleComment.reply.length >= 1 ? 'showReplyNum' : 'unshowReplyNum'}>
+                    <span></span>查看回复
+                </div>
             </li>
         )
     }
@@ -61,20 +73,31 @@ class Comment extends Component {
     render() {
         const commentData = this.props.commentData[this.state.postId];
 
-        return (<div className='Comment'>
-            <div className='Comment-postText'>
-                <div className='Comment-postText-avatar'><img
-                    src={require('../../image/userAvatar/' + this.state.postUserAvatar)} alt={'434'}/></div>
-                <div className='Comment-postText-text'><Link
-                    to={`/user/${commentData.userId}`}>{commentData.userId + ' '}</Link><span>{commentData.postText}</span>
+        return (
+            <div className='Comment-Box'>
+                <div className='Comment-input'>
+                    <div className='Comment-input-ava'><img
+                        src={'http://www.xwvike.com/static/media/26395177.cd83fabd.jpeg'}/></div>
+                    <from className='Comment-inputtext'>
+                        <textarea placeholder='添加评论' maxLength='256'></textarea>
+                        <button type='submit'>发布</button>
+                    </from>
                 </div>
-                <span
-                    className='Comment-postText-time'>{timeDifferent(new Date().getTime(), commentData.sendPostTime)}</span>
-            </div>
-            <ul>
-                <SingleComment singleComment={commentData.comment[0]} loginUser={this.props.loginUser}/>
-            </ul>
-        </div>)
+                <div className='Comment'>
+                    <div className='Comment-postText'>
+                        <div className='Comment-postText-avatar'><img
+                            src={require('../../image/userAvatar/' + this.state.postUserAvatar)} alt={'434'}/></div>
+                        <div className='Comment-postText-text'><Link
+                            to={`/user/${commentData.userId}`}>{commentData.userId + ' '}</Link><span>{commentData.postText}</span>
+                        </div>
+                        <span
+                            className='Comment-postText-time'>{timeDifferent(new Date().getTime(), commentData.sendPostTime)}</span>
+                    </div>
+                    <ul>
+                        <SingleComment singleComment={commentData.comment[0]} loginUser={this.props.loginUser}/>
+                    </ul>
+                </div>
+            </div>)
     }
 }
 

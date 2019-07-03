@@ -1,59 +1,81 @@
 @function vw($px) {
   @return (($px/2)/540)*100vw
 }
-.Comment{
+
+.Comment-Box {
   width: 100vw;
-  margin-top: vw(125);
-  position: relative;
-  .Comment-postText{
-    position: relative;
+
+  .Comment-input {
     width: 100vw;
-    border-bottom: 1px solid rgba(153, 153, 153, 0.25);
-    //height: 30vw;
-    //background: #4dceff;
-    .Comment-postText-avatar{
+    top: vw(125);
+    min-height: vw(170);
+    max-height: vw(300);
+    background: #efefef;
+    position: relative;
+    z-index: 99;
+
+    .Comment-input-ava {
       position: absolute;
-      top: vw(60);
+      top: 50%;
       left: vw(50);
+      transform: translateY(-50%);
       width: vw(100);
       height: vw(100);
       border-radius: 50%;
       overflow: hidden;
-      img{
+      border: 1px solid rgba(0, 0, 0, 0.16);
+
+      img {
         width: vw(100);
       }
     }
-    .Comment-postText-text{
-      font-size: vw(35);
-      color: black;
-      width: 75vw;
+
+    .Comment-inputtext {
+      padding: vw(30);
+      background: #fff;
+      border-radius: vw(70);
       position: relative;
-      padding-top: vw(60);
+      top: 2vw;
       left: vw(200);
-      padding-bottom: vw(80);
-      a{
+
+      textarea {
+        border: none;
+        outline: none;
+        position: relative;
+        top: 2vw;
+        line-height: vw(70);
+        width: vw(650);
         font-size: vw(35);
+        height: vw(70);
+      }
+
+      button {
+        outline: none;
         font-weight: bold;
-        color: black;
+        font-size: vw(40);
+        color: #9c85ff;
+        background: rgba(153, 153, 153, 0);
+        border: none;
+      }
+
+      button:active {
+        background: #bde9ff;
       }
     }
-    .Comment-postText-time{
-      font-size: vw(35);
-      color: #999;
-      left: vw(200);
-      position: absolute;
-      bottom: vw(0);
-      display: inline-block;
-    }
   }
-  ul{
-    .SingleComment{
-      list-style: none;
-      width: 100vw;
-      //height: 100vw;
-      //background: #4dceff;
+
+  .Comment {
+    width: 100vw;
+    margin-top: vw(125);
+    position: relative;
+
+    .Comment-postText {
       position: relative;
-      .SingleComment-userAvatar{
+      width: 100vw;
+      border-bottom: 1px solid rgba(153, 153, 153, 0.25);
+      //height: 30vw;
+      //background: #4dceff;
+      .Comment-postText-avatar {
         position: absolute;
         top: vw(60);
         left: vw(50);
@@ -61,45 +83,149 @@
         height: vw(100);
         border-radius: 50%;
         overflow: hidden;
-        img{
+
+        img {
           width: vw(100);
         }
       }
-      .SingleComment-text{
+
+      .Comment-postText-text {
         font-size: vw(35);
         color: black;
-        width: 70vw;
+        width: 75vw;
         position: relative;
         padding-top: vw(60);
         left: vw(200);
         padding-bottom: vw(80);
-        a{
+
+        a {
           font-size: vw(35);
           font-weight: bold;
           color: black;
         }
       }
-      .SingleComment-like{
-        width: vw(35);
-        height: vw(35);
+
+      .Comment-postText-time {
+        font-size: vw(35);
+        color: #999;
+        left: vw(200);
         position: absolute;
-        top: vw(70);
-        right: vw(50);
-        background: url("../../image/923d425c0489.png");
-        background-size: vw(520*0.7);
-        background-position-x: vw(-0*0.7);
-        background-position-y: vw(-273*0.7);
+        bottom: vw(0);
+        display: inline-block;
       }
-      .SingleComment-unlike{
-        width: vw(35);
-        height: vw(35);
-        position: absolute;
-        top: vw(70);
-        right: vw(50);
-        background: url("../../image/923d425c0489.png");
-        background-size: vw(520*0.7);
-        background-position-x: vw(-50*0.7);
-        background-position-y: vw(-273*0.7);
+    }
+
+    ul {
+      .SingleComment {
+        list-style: none;
+        width: 100vw;
+        //height: 100vw;
+        //background: #4dceff;
+        position: relative;
+
+        .SingleComment-userAvatar {
+          position: absolute;
+          top: vw(60);
+          left: vw(50);
+          width: vw(100);
+          height: vw(100);
+          border-radius: 50%;
+          overflow: hidden;
+
+          img {
+            width: vw(100);
+          }
+        }
+
+        .SingleComment-text {
+          font-size: vw(35);
+          color: black;
+          width: 70vw;
+          position: relative;
+          padding-top: vw(60);
+          left: vw(200);
+          padding-bottom: vw(80);
+
+          a {
+            font-size: vw(35);
+            font-weight: bold;
+            color: black;
+          }
+
+          .SingleComment-time {
+            font-size: vw(35);
+            color: #999;
+            left: 0;
+            bottom: 0;
+            position: absolute;
+            display: inline-block;
+          }
+
+          .SingleComment-likeNum {
+            font-size: vw(35);
+            color: #999;
+            font-weight: 600;
+            left: vw(130);
+            bottom: 0;
+            position: absolute;
+            display: inline-block;
+          }
+
+          .SingleComment-reply {
+            font-size: vw(35);
+            color: #999;
+            font-weight: 600;
+            left: vw(260);
+            bottom: 0;
+            position: absolute;
+            display: inline-block;
+          }
+        }
+
+        .SingleComment-like {
+          width: vw(35);
+          height: vw(35);
+          position: absolute;
+          top: vw(70);
+          right: vw(50);
+          background: url("../../image/923d425c0489.png");
+          background-size: vw(520*0.7);
+          background-position-x: vw(-0*0.7);
+          background-position-y: vw(-273*0.7);
+        }
+
+        .SingleComment-unlike {
+          width: vw(35);
+          height: vw(35);
+          position: absolute;
+          top: vw(70);
+          right: vw(50);
+          background: url("../../image/923d425c0489.png");
+          background-size: vw(520*0.7);
+          background-position-x: vw(-50*0.7);
+          background-position-y: vw(-273*0.7);
+        }
+
+        .showReplyNum {
+          position: relative;
+          left: vw(200);
+          margin-top: vw(30);
+          font-size: vw(35);
+          color: #999;
+
+          span {
+            display: inline-block;
+            margin-bottom: vw(10);
+            margin-right: vw(30);
+            width: vw(100);
+            height: 1px;
+            background: #999;
+          }
+        }
+
+        .unshowReplyNum {
+          display: none;
+        }
       }
     }
   }
