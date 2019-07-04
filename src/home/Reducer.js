@@ -23,12 +23,17 @@ const home = {
                 like: ['test', 'vike'],
                 time: 1559994444434,
                 reply: [
-                    {text: '回复xwvike', userId: 'tubkbk', reply: 'xwvike', time: 1559994444434},
-                    {text: '回复tubkbk', userId: 'admin', reply: 'tubkbk', time: 1561114626703}
+                    {text: '垃圾垃圾垃圾看疯狂赛反动戳发就wjfijiijewofjsdaljflksadj', userId: 'tubkbk', reply: 'xwvike', time: 1559994444434},
+                    {text: '揭开芬迪owkjfdsjiajfioe劳动纠纷戳ewjkldsjofiwe', userId: 'admin', reply: 'tubkbk', time: 1561114626703}
                 ]
             },
             {
-                id: '233', text: 'hello world', userId: 'TUBKBK', like: ['2', '54']
+                id: '233',
+                text: 'hello world',
+                userId: 'TUBKBK',
+                like: ['2', '54'],
+                time: 1551984444434,
+                reply:[]
             }
         ]
     }

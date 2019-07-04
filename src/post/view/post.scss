@@ -203,7 +203,8 @@
                   width: vw(35);
                   height: vw(35);
                   position: absolute;
-                  right: 0;
+                  top: vw(10);
+                  right: vw(-50);
                   background: url("../../image/923d425c0489.png");
                   background-size: vw(520*0.7);
                   background-position-x: vw(-0*0.7);
@@ -211,9 +212,10 @@
                 }
                 .like-reply {
                   width: vw(35);
+                  top: vw(10);
                   height: vw(35);
                   position: absolute;
-                  right: 0;
+                  right: vw(-50);
                   background: url("../../image/923d425c0489.png");
                   background-size: vw(520*0.7);
                   background-position-x: vw(-50*0.7);

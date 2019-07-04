@@ -161,7 +161,8 @@
   width: 3.2407407407vw;
   height: 3.2407407407vw;
   position: absolute;
-  right: 0;
+  top: 0.9259259259vw;
+  right: -4.6296296296vw;
   background: url("../../image/923d425c0489.png");
   background-size: 33.7037037037vw;
   background-position-x: 0vw;
@@ -169,9 +170,10 @@
 }
 .post .post-operating .post-comment .comment ul .post-comment-li > div div .like-reply {
   width: 3.2407407407vw;
+  top: 0.9259259259vw;
   height: 3.2407407407vw;
   position: absolute;
-  right: 0;
+  right: -4.6296296296vw;
   background: url("../../image/923d425c0489.png");
   background-size: 33.7037037037vw;
   background-position-x: -3.2407407407vw;

@@ -165,7 +165,7 @@
             font-size: vw(35);
             color: #999;
             font-weight: 600;
-            left: vw(130);
+            left: vw(180);
             bottom: 0;
             position: absolute;
             display: inline-block;
@@ -175,7 +175,7 @@
             font-size: vw(35);
             color: #999;
             font-weight: 600;
-            left: vw(260);
+            left: vw(320);
             bottom: 0;
             position: absolute;
             display: inline-block;
@@ -225,6 +225,48 @@
 
         .unshowReplyNum {
           display: none;
+        }
+        ul{
+          position: relative;
+          width: 100vw;
+          .SingleReply{
+            position: relative;
+            width: 100vw;
+            //background: rgba(220,220,220,0.99);
+            list-style: none;
+            padding-bottom: vw(20);
+          }
+          .replyAvatar{
+            position: absolute;
+            top: vw(50);
+            left: vw(200);
+            width: vw(100);
+            height: vw(100);
+            border-radius: 50%;
+            overflow: hidden;
+            img{
+              width: vw(100);
+            }
+          }
+          .replyuser{
+            //background: #4dceff;
+            display: inline-block;
+            width: vw(600);
+            font-size: vw(35);
+            color: black;
+            margin-top: vw(50);
+            margin-bottom: vw(60);
+            position: relative;
+            left: vw(330);
+            a{
+              color: black;
+              font-weight: 600;
+            }
+            .replytext{
+              font-size: vw(35);
+            }
+          }
+
         }
       }
     }

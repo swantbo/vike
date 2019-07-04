@@ -7,6 +7,36 @@ import {timeDifferent} from "../../tool/tool";
 import {likeComment, replyComment, inputComment} from "../../home/Actions";
 import './comment.css'
 
+class SingleReply extends Component {
+    constructor() {
+        super(...arguments);
+        this.state = {
+            replyUserAvatar:'defaultAvatar.png',
+        }
+    }
+    componentDidMount() {
+        fetch(config.avatar + `userId=${this.props.singleReply.userId}`, {method: 'GET'}).then(response => response.json()).then(
+            json => {
+                this.setState({replyUserAvatar: json.avatar})
+            }
+        ).catch(this.setState({replyUserAvatar: 'defaultAvatar.png'}))
+    }
+
+    render() {
+        console.log(this.props.singleReply);
+        return (
+            <li className='SingleReply'>
+                <div className='replyAvatar'>
+                    <img src={require('../../image/userAvatar/' + this.state.replyUserAvatar)}/>
+                </div>
+                <div className='replyuser'>
+                    <Link to={`/user/${this.props.singleReply.userId}`}>{this.props.singleReply.userId}</Link> 回复 <Link to={`/user/${this.props.singleReply.reply}`}>{this.props.singleReply.reply}</Link><span className='replytext'>{this.props.singleReply.text}</span>
+                 </div>
+
+            </li>
+        )
+    }
+}
 
 class SingleComment extends Component {
     constructor() {
@@ -28,6 +58,10 @@ class SingleComment extends Component {
     }
 
     render() {
+        let that = this;
+        let singleReply = this.state.singleComment.reply.length>=1?this.state.singleComment.reply.map((item,index)=>{
+            return <SingleReply singleReply={that.state.singleComment.reply[index]}/>
+        }):'';
         return (
             <li className='SingleComment'>
                 <div className='SingleComment-userAvatar'>
@@ -45,6 +79,9 @@ class SingleComment extends Component {
                 <div className={this.state.singleComment.reply.length >= 1 ? 'showReplyNum' : 'unshowReplyNum'}>
                     <span></span>查看回复
                 </div>
+                <ul>
+                    {singleReply}
+                </ul>
             </li>
         )
     }
@@ -72,7 +109,10 @@ class Comment extends Component {
 
     render() {
         const commentData = this.props.commentData[this.state.postId];
-
+        let that = this;
+        let single = commentData.comment.map((item, index) => {
+            return <SingleComment singleComment={commentData.comment[index]} loginUser={that.props.loginUser}/>
+        });
         return (
             <div className='Comment-Box'>
                 <div className='Comment-input'>
@@ -94,7 +134,8 @@ class Comment extends Component {
                             className='Comment-postText-time'>{timeDifferent(new Date().getTime(), commentData.sendPostTime)}</span>
                     </div>
                     <ul>
-                        <SingleComment singleComment={commentData.comment[0]} loginUser={this.props.loginUser}/>
+                        {single}
+                        {/*<SingleComment singleComment={commentData.comment[0]} loginUser={this.props.loginUser}/>*/}
                     </ul>
                 </div>
             </div>)
