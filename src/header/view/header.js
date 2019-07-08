@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {UserNameNull, SendUserName, ChangeOptions} from "../Actions";
+import {UserNameNull, SendUserName, ChangeOptions, requestId} from "../Actions";
 import {Link, withRouter} from "react-router-dom";
 import './header.css';
+import {collectionPost, likeComment, likePost} from "../../home/Actions";
 
 class Header extends Component {
     constructor(props) {
@@ -37,7 +38,8 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        this.setState({a: false})
+        this.setState({a: false});
+        this.props.requestId()
     }
 
     historyBack() {
@@ -109,5 +111,14 @@ const mapStateToProps = (state) => {
         name: state.headerReducer.name,
     }
 };
-
-export default withRouter(connect(mapStateToProps, {UserNameNull, SendUserName, ChangeOptions})(Header))
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        requestId:()=>{
+            dispatch(requestId())
+        },
+        UserNameNull,
+        SendUserName,
+        ChangeOptions
+    }
+};
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))

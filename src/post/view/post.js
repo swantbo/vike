@@ -1,6 +1,7 @@
 import React, {Component, useState} from 'react';
 import {Link, withRouter, Route} from "react-router-dom";
 import {timeDifferent} from "../../tool/tool";
+import config from '../../config.js';
 import {connect} from 'react-redux'
 import './post.css';
 
@@ -28,12 +29,12 @@ const Post = (data,loginUser,likePost,collectionPost,likeComment) => {
     return <div className='post'>
         <div className='post-userInfo'>
             <div className='avatar'>
-                <img src={require('../../image/userAvatar/' + data.userAvatar)}/>
+                <img src={'http://www.xwvike.com/static/media/26395177.cd83fabd.jpeg'}/>
             </div>
             <span className='userid'>{data.userId}</span>
         </div>
         <div className='post-image'>
-            <img src={data.postImgUrl}/>
+            <img src={config.url+'image/'+data.postImgUrl[0]}/>
         </div>
         <div className='post-operating'>
             <div className='button'>

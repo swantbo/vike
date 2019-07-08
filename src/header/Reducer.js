@@ -3,6 +3,7 @@ import * as ActionTypes from './ActionTypes.js';
 const header = {
     name: '',
     isShowOptions:true,
+    list:[]
 };
 
 export default function (state = header, action) {
@@ -32,6 +33,19 @@ export default function (state = header, action) {
                 ...state,
                 name:''
             }
+        }
+        case ActionTypes.POST_REQUEST_ID:{
+            return state
+        }
+        case ActionTypes.POST_REQUEST_ID_SUCCESS:{
+            const {list} = action.payload;
+            return {
+                ...state,
+                list:state.list.concat(list)
+            }
+        }
+        case ActionTypes.POST_REQUEST_ID_FAILURE:{
+            return state
         }
         default:{
             return state;

@@ -20,7 +20,7 @@ const requestAllDataFailure = (postId) => ({
 export const requestPost = (postId) => {
     return (dispatch) => {
         dispatch(requestAllData(postId));
-        return fetch(`${config.url}postId=${postId}`, {method: 'GET'}).then(response => {
+        return fetch(`${config.url}getPost?postId=${postId}`, {method: 'GET'}).then(response => {
             response.json()
         }).then(
             json => {
@@ -44,11 +44,11 @@ const likeThisPostFailure = (postId, userId) => ({
 export const likePost = (postId, userId) => {
     return (dispatch) => {
         dispatch(likeThisPost(postId, userId));
-        return fetch(`${config.url}`, {
+        return fetch(`${config.url}likePost`, {
             method: 'POST',
             body: JSON.stringify({postId: postId, userId: userId}),
-            header: myHeader
-        }).then(data => data === 'ok' ? dispatch(likeThisPostSuccess()) : dispatch(likeThisPostFailure(postId, userId))).catch(
+            // header: myHeader
+        }).then(data => data.json()).then(json => json.status === 'ok' ? dispatch(likeThisPostSuccess()) : dispatch(likeThisPostFailure(postId, userId))).catch(
             error => {
                 dispatch(likeThisPostFailure(postId, userId))
             }
@@ -71,11 +71,11 @@ const collectionThisPostFailure = (postId, userId) => ({
 export const collectionPost = (postId, userId) => {
     return (dispatch) => {
         dispatch(collectionThisPost(postId, userId));
-        return fetch(`${config.url}`, {
+        return fetch(`${config.url}collectionPost`, {
             method: 'POST',
             body: JSON.stringify({postId: postId, userId: userId}),
-            header: myHeader
-        }).then(data => data === 'ok' ? dispatch(collectionThisPostSuccess()) : dispatch(collectionThisPostFailure(postId, userId))).catch(
+            // header: myHeader
+        }).then(data => data.json()).then(json => json.status === 'ok' ? dispatch(collectionThisPostSuccess()) : dispatch(collectionThisPostFailure(postId, userId))).catch(
             error => dispatch(collectionThisPostFailure(postId, userId))
         )
     }
@@ -89,9 +89,9 @@ const inputCommentStart = () => ({
     type: ActionTypes.POST_INPUT_COMMENT
 });
 
-const inputCommentSuccess = (postId,data) => ({
+const inputCommentSuccess = (postId, data) => ({
     type: ActionTypes.POST_INPUT_COMMENT_SUCCESS,
-    payload:{postId:postId,data:data}
+    payload: {postId: postId, data: data}
 });
 
 const inputCommentFailure = () => ({
@@ -101,11 +101,11 @@ const inputCommentFailure = () => ({
 export const inputComment = (postId, text, userId) => {
     return (dispatch) => {
         dispatch(inputCommentStart(postId, text, userId));
-        return fetch(`${config.url}`, {
+        return fetch(`${config.url}addComment`, {
             method: 'POST',
             body: JSON.stringify({postId: postId, text: text, userId: userId}),
-            header: myHeader
-        }).then(data => dispatch(inputCommentSuccess(postId,data))).catch(
+            // header: myHeader
+        }).then(data => data.json()).then(json => dispatch(inputCommentSuccess(postId, json))).catch(
             error => {
                 dispatch(inputCommentFailure())
             }
@@ -131,7 +131,7 @@ export const likeComment = (postId, commentId, userId) => {
         return fetch(`${config.url}`, {
             method: 'POST',
             body: JSON.stringify({postId: postId, commentId: commentId, userId: userId}),
-            header: myHeader
+            // header: myHeader
         }).then(data => data === 'ok' ? dispatch(likeCommentSuccess()) : dispatch(likeCommentFailure(postId, commentId, userId))).catch(
             error => {
                 dispatch(likeCommentFailure(postId, commentId, userId))
@@ -141,27 +141,27 @@ export const likeComment = (postId, commentId, userId) => {
 };
 
 
-const replyCommentStart = (postId,commentId,userId,replyId,text) => ({
+const replyCommentStart = (postId, commentId, userId, replyId, text) => ({
     type: ActionTypes.POST_COMMENT_REPLY,
-    payload: {postId:postId,commentId:commentId,userId:userId,replyId:replyId,text:text}
+    payload: {postId: postId, commentId: commentId, userId: userId, replyId: replyId, text: text}
 });
-const replyCommentSuccess = (postId,data)=>({
-    type:ActionTypes.POST_COMMENT_REPLY_SUCCESS,
-    payload:{postId,data}
+const replyCommentSuccess = (postId, data) => ({
+    type: ActionTypes.POST_COMMENT_REPLY_SUCCESS,
+    payload: {postId, data}
 });
-const replyCommentFailure =()=>({
-    type:ActionTypes.POST_COMMENT_REPLY_FAILURE
+const replyCommentFailure = () => ({
+    type: ActionTypes.POST_COMMENT_REPLY_FAILURE
 });
 
-export const replyComment = (postId,commentId,userId,replyId,text)=>{
-    return (dispatch)=>{
-        dispatch(replyCommentStart(postId,commentId,userId,replyId,text));
-        return fetch(`${config.url}`,{
-            method:'POST',
-            body:JSON.stringify({postId:postId,commentId:commentId,userId:userId,replyId:replyId,text:text}),
-            header:myHeader
-        }).then(data=>dispatch(replyCommentSuccess(postId,data))).catch(
-            error=>dispatch(replyCommentFailure())
+export const replyComment = (postId, commentId, userId, replyId, text) => {
+    return (dispatch) => {
+        dispatch(replyCommentStart(postId, commentId, userId, replyId, text));
+        return fetch(`${config.url}addReply`, {
+            method: 'POST',
+            body: JSON.stringify({postId: postId, commentId: commentId, userId: userId, replyId: replyId, text: text}),
+            // header: myHeader
+        }).then(data => data.json()).then(json => dispatch(replyCommentSuccess(postId, json))).catch(
+            error => dispatch(replyCommentFailure())
         )
     }
 };

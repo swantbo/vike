@@ -1,43 +1,6 @@
 import * as ActionTypes from './ActionTypes.js';
 
-const home = {
-    '000001': {
-        postId: '000001',
-        userId: 'xwvike',
-        userAvatar: '26395177.jpeg',
-        label: [],
-        sendPostTime: 1559994444434,
-        postText: '第一条帖子，编写组件。测试一下，长文字的显示情况。以及如何使用，更多这种显示方式。    ' +
-            '另起一行。查看情况。',
-        postImgNum: 1,
-        postImgUrl: ['http://www.xwvike.com/old/sort/waterfll/img/2.jpg'],
-        postVideoNum: 0,
-        postVideoUrl: [],
-        like: ['xwvike', 'tubkbk'],
-        Collection: ['xwvike', 'tubkbk'],
-        comment: [
-            {
-                id: '01',
-                text: '👴😄🌶回复楼主,你这个图片真de垃圾啊。哈哈ahhaha.wock小黄人fdsafeu0fjiojajifduijojwiqfjidsnalfjnhiqwhn',
-                userId: 'xwvike',
-                like: ['test', 'vike'],
-                time: 1559994444434,
-                reply: [
-                    {text: '垃圾垃圾垃圾看疯狂赛反动戳发就wjfijiijewofjsdaljflksadj', userId: 'tubkbk', reply: 'xwvike', time: 1559994444434},
-                    {text: '揭开芬迪owkjfdsjiajfioe劳动纠纷戳ewjkldsjofiwe', userId: 'admin', reply: 'tubkbk', time: 1561114626703}
-                ]
-            },
-            {
-                id: '233',
-                text: 'hello world',
-                userId: 'TUBKBK',
-                like: ['2', '54'],
-                time: 1551984444434,
-                reply:[]
-            }
-        ]
-    }
-};
+const home = {};
 
 export default function (state = home, action) {
     switch (action.type) {
@@ -131,7 +94,7 @@ export default function (state = home, action) {
             const {postId, data} = action.payload;
             return {
                 ...state,
-                [postId]: {...data}
+                [postId]: {...state[postId],comment:[...data]}
             }
         }
         case ActionTypes.POST_INPUT_COMMENT_FAILURE: {
@@ -185,7 +148,7 @@ export default function (state = home, action) {
         case ActionTypes.POST_COMMENT_REPLY_SUCCESS: {
             const {postId, data} = action.payload;
             return {
-                [postId]: {...data}
+                [postId]: {...state[postId],comment:[...data]}
             }
         }
         case ActionTypes.POST_COMMENT_REPLY_FAILURE: {

@@ -16,7 +16,7 @@ class SingleReply extends Component {
     }
 
     componentDidMount() {
-        fetch(config.avatar + `userId=${this.props.singleReply.userId}`, {method: 'GET'}).then(response => response.json()).then(
+        fetch(config.url+'/getUserInfo?'`userId=${this.props.singleReply.userId}`, {method: 'GET'}).then(response => response.json()).then(
             json => {
                 this.setState({replyUserAvatar: json.avatar})
             }
@@ -27,7 +27,7 @@ class SingleReply extends Component {
         return (
             <li className='SingleReply'>
                 <div className='replyAvatar'>
-                    <img src={require('../../image/userAvatar/' + this.state.replyUserAvatar)}/>
+                    <img src={config.url+'/image/'+this.state.replyUserAvatar}/>
                 </div>
                 <div className='replyuser'>
                     <Link to={`/user/${this.props.singleReply.userId}`}>{this.props.singleReply.userId}</Link> 回复 <Link
@@ -58,7 +58,7 @@ class SingleComment extends Component {
     }
 
     componentDidMount() {
-        fetch(config.avatar + `userId=${this.state.commentUserId}`, {method: 'GET'}).then(response => response.json()).then(
+        fetch(config.url+'/getUserInfo?'`userId=${this.state.commentUserId}`, {method: 'GET'}).then(response => response.json()).then(
             json => {
                 this.setState({commentUserAvatar: json.avatar})
             }
@@ -78,7 +78,7 @@ class SingleComment extends Component {
         return (
             <li className='SingleComment'>
                 <div className='SingleComment-userAvatar'>
-                    <img src={require('../../image/userAvatar/' + this.state.commentUserAvatar)}/>
+                    <img src={config.url+'image/' + this.state.commentUserAvatar}/>
                 </div>
                 <div className='SingleComment-text'><Link
                     to={`/user/${this.state.commentUserId}`}>{this.state.singleComment.userId + ' '}</Link><span>{this.state.singleComment.text}</span>
@@ -120,7 +120,7 @@ class Comment extends Component {
     };
 
     componentDidMount() {
-        fetch(config.avatar + `userId=${this.props.commentData[this.state.postId].userId}`, {method: 'GET'}).then(response => response.json()).then(
+        fetch(config.url+'/getUserInfo'`userId=${this.props.commentData[this.state.postId].userId}`, {method: 'GET'}).then(response => response.json()).then(
             json => {
                 this.setState({postUserAvatar: json.avatar})
             }
@@ -170,7 +170,7 @@ class Comment extends Component {
                 <div className='Comment'>
                     <div className='Comment-postText'>
                         <div className='Comment-postText-avatar'><img
-                            src={require('../../image/userAvatar/' + this.state.postUserAvatar)} alt={'434'}/></div>
+                            src={config.url+'/image/' + this.state.postUserAvatar} alt={'434'}/></div>
                         <div className='Comment-postText-text'><Link
                             to={`/user/${commentData.userId}`}>{commentData.userId + ' '}</Link><span>{commentData.postText}</span>
                         </div>
