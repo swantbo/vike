@@ -9,7 +9,8 @@ export default function (state = home, action) {
         }
         //请求帖子数据
         case ActionTypes.POST_REQUEST_ALL_DATA_SUCCESS: {
-            const {postId, data} = action.payload;
+           let  {postId, data} = action.payload;
+            data = data[0];
             return {
                 ...state,
                 [postId]: {...data}
@@ -18,11 +19,11 @@ export default function (state = home, action) {
         //点赞帖子
         case ActionTypes.POST_LIKE: {
             const {postId, userId} = action.payload;
-            if (state[postId].like.find((item) => item === userId) === userId) {
+            if (state[postId].likeUser.find((item) => item === userId) === userId) {
                 return {
                     ...state,
                     [postId]: {
-                        ...state[postId], like: state[postId].like.filter((item) => {
+                        ...state[postId], likeUser: state[postId].likeUser.filter((item) => {
                             return item !== userId
                         })
                     }
@@ -30,17 +31,17 @@ export default function (state = home, action) {
             } else {
                 return {
                     ...state,
-                    [postId]: {...state[postId], like: [...state[postId].like, userId]}
+                    [postId]: {...state[postId], likeUser: [...state[postId].likeUser, userId]}
                 }
             }
         }
         case ActionTypes.POST_LIKE_FAILURE: {
             const {postId, userId} = action.payload;
-            if (state[postId].like.find((item) => item === userId) === userId) {
+            if (state[postId].likeUser.find((item) => item === userId) === userId) {
                 return {
                     ...state,
                     [postId]: {
-                        ...state[postId], like: state[postId].like.filter((item) => {
+                        ...state[postId], likeUser: state[postId].likeUser.filter((item) => {
                             return item !== userId
                         })
                     }
@@ -48,7 +49,7 @@ export default function (state = home, action) {
             } else {
                 return {
                     ...state,
-                    [postId]: {...state[postId], like: [...state[postId].like, userId]}
+                    [postId]: {...state[postId], likeUser: [...state[postId].likeUser, userId]}
                 }
             }
 
@@ -56,11 +57,11 @@ export default function (state = home, action) {
         //收藏帖子
         case ActionTypes.POST_COLLECTION: {
             const {postId, userId} = action.payload;
-            if (state[postId].Collection.find((item) => item === userId) === userId) {
+            if (state[postId].CollectionUser.find((item) => item === userId) === userId) {
                 return {
                     ...state,
                     [postId]: {
-                        ...state[postId], Collection: state[postId].Collection.filter((item) => {
+                        ...state[postId], CollectionUser: state[postId].CollectionUser.filter((item) => {
                             return item !== userId
                         })
                     }
@@ -68,17 +69,17 @@ export default function (state = home, action) {
             } else {
                 return {
                     ...state,
-                    [postId]: {...state[postId], Collection: [...state[postId].Collection, userId]}
+                    [postId]: {...state[postId], CollectionUser: [...state[postId].CollectionUser, userId]}
                 }
             }
         }
         case ActionTypes.POST_COLLECTION_FAILURE: {
             const {postId, userId} = action.payload;
-            if (state[postId].Collection.find((item) => item === userId) === userId) {
+            if (state[postId].CollectionUser.find((item) => item === userId) === userId) {
                 return {
                     ...state,
                     [postId]: {
-                        ...state[postId], Collection: state[postId].Collection.filter((item) => {
+                        ...state[postId], CollectionUser: state[postId].CollectionUser.filter((item) => {
                             return item !== userId
                         })
                     }
@@ -86,7 +87,7 @@ export default function (state = home, action) {
             } else {
                 return {
                     ...state,
-                    [postId]: {...state[postId], Collection: [...state[postId].Collection, userId]}
+                    [postId]: {...state[postId], CollectionUser: [...state[postId].CollectionUser, userId]}
                 }
             }
         }
@@ -148,6 +149,7 @@ export default function (state = home, action) {
         case ActionTypes.POST_COMMENT_REPLY_SUCCESS: {
             const {postId, data} = action.payload;
             return {
+                ...state,
                 [postId]: {...state[postId],comment:[...data]}
             }
         }

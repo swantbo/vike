@@ -16,7 +16,7 @@ class SingleReply extends Component {
     }
 
     componentDidMount() {
-        fetch(config.url+'/getUserInfo?'`userId=${this.props.singleReply.userId}`, {method: 'GET'}).then(response => response.json()).then(
+        fetch(`${config.url}getUserInfo?userId=${this.props.singleReply.userId}`, {method: 'GET'}).then(response => response.json()).then(
             json => {
                 this.setState({replyUserAvatar: json.avatar})
             }
@@ -35,7 +35,7 @@ class SingleReply extends Component {
                     className='replytext'>{this.props.singleReply.text}</span>
                     <span
                         className='replyTime'>{timeDifferent(new Date().getTime(), this.props.singleReply.time)}</span>
-                    <span onClick={() => this.props.changereply(this.props.singleReply.userId)}
+                    <span onClick={() => this.props.changereply(this.props.singleReply.userId,this.props.commentId)}
                           className='reply'>回复</span>
                 </div>
             </li>
@@ -47,9 +47,8 @@ class SingleComment extends Component {
     constructor() {
         super(...arguments);
         this.state = {
-            commentUserId: this.props.commnetUserId,
+            commentUserId: this.props.singleComment.userId,
             commentUserAvatar: 'defaultAvatar.png',
-            singleComment: this.props.singleComment,
             loginUser: this.props.loginUser,
             showReply: -1,
             replying: this.props.replying,
@@ -58,7 +57,7 @@ class SingleComment extends Component {
     }
 
     componentDidMount() {
-        fetch(config.url+'/getUserInfo?'`userId=${this.state.commentUserId}`, {method: 'GET'}).then(response => response.json()).then(
+        fetch(`${config.url}getUserInfo?userId=${this.state.commentUserId}`, {method: 'GET'}).then(response => response.json()).then(
             json => {
                 this.setState({commentUserAvatar: json.avatar})
             }
@@ -71,9 +70,11 @@ class SingleComment extends Component {
 
     render() {
         let that = this;
-        let singleReply = this.state.singleComment.reply.length >= 1 ? this.state.singleComment.reply.map((item, index) => {
+        let singleReply = this.props.singleComment.reply.length >= 1 ? this.props.singleComment.reply.map((item, index) => {
             return <SingleReply changereply={this.props.changereply}
-                                singleReply={that.state.singleComment.reply[index]}/>
+                                singleReply={that.props.singleComment.reply[index]}
+                                commentId={that.props.singleComment._id}
+            />
         }) : '';
         return (
             <li className='SingleComment'>
@@ -81,17 +82,17 @@ class SingleComment extends Component {
                     <img src={config.url+'image/' + this.state.commentUserAvatar}/>
                 </div>
                 <div className='SingleComment-text'><Link
-                    to={`/user/${this.state.commentUserId}`}>{this.state.singleComment.userId + ' '}</Link><span>{this.state.singleComment.text}</span>
+                    to={`/user/${this.state.commentUserId}`}>{this.props.singleComment.userId + ' '}</Link><span>{this.props.singleComment.text}</span>
                     <span
-                        className='SingleComment-time'>{timeDifferent(new Date().getTime(), this.state.singleComment.time)}</span>
-                    <span className='SingleComment-likeNum'>{this.state.singleComment.like.length}次赞</span>
-                    <span onClick={() => this.props.changereply(this.state.singleComment.userId)}
+                        className='SingleComment-time'>{timeDifferent(new Date().getTime(), this.props.singleComment.time)}</span>
+                    <span className='SingleComment-likeNum'>{this.props.singleComment.like.length}次赞</span>
+                    <span onClick={() => this.props.changereply(this.props.singleComment.userId,this.props.singleComment._id)}
                           className='SingleComment-reply'>回复</span>
                 </div>
                 <span
-                    className={this.state.singleComment.like.find((item) => item === this.state.loginUser.userId) === this.state.loginUser.userId ? 'SingleComment-like' : 'SingleComment-unlike'}> </span>
+                    className={this.props.singleComment.like.find((item) => item === this.state.loginUser.userId) === this.state.loginUser.userId ? 'SingleComment-like' : 'SingleComment-unlike'}> </span>
                 <div onClick={this.showReply}
-                     className={this.state.singleComment.reply.length >= 1 ? 'showReplyNum' : 'unshowReplyNum'}>
+                     className={this.props.singleComment.reply.length >= 1 ? 'showReplyNum' : 'unshowReplyNum'}>
                     <span></span>{this.state.showReply !== 1 ? '查看回复' : '隐藏回复'}
                 </div>
                 <ul style={this.state.showReply === 1 ? {display: 'block'} : {display: 'none'}}>
@@ -110,6 +111,7 @@ class Comment extends Component {
             postUserAvatar: 'defaultAvatar.png',
             myAvatar: this.props.loginUser.avatar || 'defaultAvatar.png',
             postId: this.props.match.params.paramName,
+            commentId:'',
             replying: null,
             text: '',
         };
@@ -120,19 +122,21 @@ class Comment extends Component {
     };
 
     componentDidMount() {
-        fetch(config.url+'/getUserInfo'`userId=${this.props.commentData[this.state.postId].userId}`, {method: 'GET'}).then(response => response.json()).then(
+        fetch(`${config.url}getUserInfo?userId=${this.props.commentData[this.state.postId].userId}`, {method: 'GET'}).then(response => response.json()).then(
             json => {
                 this.setState({postUserAvatar: json.avatar})
             }
         ).catch(this.setState({postUserAvatar: 'defaultAvatar.png'}))
     }
 
-    changeReply(string) {
-        this.setState({replying: string});
+    changeReply(string1,string2) {
+        this.setState({replying: string1});
+        this.setState({commentId:string2});
         this.setState({text:''})
     }
 
     changeReplyNull() {
+        this.setState({commentId:''});
         this.setState({replying: null});
         this.setState({text:''})
     }
@@ -162,7 +166,7 @@ class Comment extends Component {
                         <button
                             onClick={this.state.replying === null ?
                                 () => {this.props.inputComment(this.state.postId, this.state.text, this.props.loginUser.userId);this.cleatText()} :
-                                () => {this.props.replyComment(this.state.postId,commentData.comment.id,this.props.loginUser.userId,this.state.replying,this.state.text);this.cleatText()}}
+                                () => {this.props.replyComment(this.state.postId,this.state.commentId,this.props.loginUser.userId,this.state.replying,this.state.text);this.cleatText()}}
                             type='submit'>发布
                         </button>
                     </from>
@@ -170,12 +174,12 @@ class Comment extends Component {
                 <div className='Comment'>
                     <div className='Comment-postText'>
                         <div className='Comment-postText-avatar'><img
-                            src={config.url+'/image/' + this.state.postUserAvatar} alt={'434'}/></div>
+                            src={`${config.url}image/${this.state.postUserAvatar}`} alt={'434'}/></div>
                         <div className='Comment-postText-text'><Link
-                            to={`/user/${commentData.userId}`}>{commentData.userId + ' '}</Link><span>{commentData.postText}</span>
+                            to={`/user/${commentData.userId}`}>{commentData.userId + ' '}</Link><span>{commentData.text}</span>
                         </div>
                         <span
-                            className='Comment-postText-time'>{timeDifferent(new Date().getTime(), commentData.sendPostTime)}</span>
+                            className='Comment-postText-time'>{timeDifferent(new Date().getTime(), commentData.createTime)}</span>
                         <span onClick={this.changeReplyNull} className='Comment-Comment'>评论</span>
                     </div>
                     <ul>

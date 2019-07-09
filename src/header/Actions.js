@@ -1,9 +1,10 @@
 import * as ActionTypes from './ActionTypes.js';
 import fetch from 'cross-fetch';
 import config from '../config.js';
+import {requestPost} from "../home/Actions";
 
 const requestIdState = () => ({
-    type: ActionTypes.POST_REQUEST_ID
+    type: ActionTypes.POST_REQUEST_ID,
 });
 const requestIdSuccess = (list) => ({
     type: ActionTypes.POST_REQUEST_ID_SUCCESS,
@@ -17,7 +18,10 @@ export const requestId = () => {
         dispatch(requestIdState());
         return fetch(`${config.url}getPostId`,{method:'GET'}).then(res=>res.json()).then(
             json=>{
-                dispatch(requestIdSuccess(json))
+                dispatch(requestIdSuccess(json));
+                for(let item of json){
+                    dispatch(requestPost(item))
+                }
             }
         ).catch(dispatch(requestIdFailure()))
     }

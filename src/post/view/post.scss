@@ -4,11 +4,11 @@
 
 .post {
   width: 100vw;
-  border-bottom: 1px solid red;
+  //border-bottom: 1px solid red;
   //font-size: 10vw;
   //height: 50vh;
   position: relative;
-
+  padding-bottom: vw(50);
   .post-userInfo {
     width: 100vw;
     height: vw(110);

@@ -4,6 +4,8 @@ import config from '../config.js';
 
 let myHeader = new Headers();
 myHeader.append('Content-Type', 'application/json');
+
+
 const requestAllData = (postId) => ({
     type: ActionTypes.POST_REQUEST_ALL_DATA,
     payload: {postId: postId}
@@ -20,10 +22,11 @@ const requestAllDataFailure = (postId) => ({
 export const requestPost = (postId) => {
     return (dispatch) => {
         dispatch(requestAllData(postId));
-        return fetch(`${config.url}getPost?postId=${postId}`, {method: 'GET'}).then(response => {
-            response.json()
-        }).then(
+        return fetch(`${config.url}getPost?postId=${postId}`, {method: 'GET'}).then(res =>
+            res.json()
+        ).then(
             json => {
+                // console.log(json);
                 dispatch(requestAllDataSuccess(postId, json))
             }
         ).catch(dispatch(requestAllDataFailure(postId)))

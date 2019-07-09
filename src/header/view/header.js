@@ -37,7 +37,7 @@ class Header extends Component {
         document.documentElement.scrollTop = 0;
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.setState({a: false});
         this.props.requestId()
     }
@@ -47,6 +47,7 @@ class Header extends Component {
     }
 
     render() {
+        console.log('1')
         let {name, UserNameNull, SendUserName, option, ChangeOptions} = this.props;
         let path = window.location.pathname;
         let logo = <div className='header-home'>
