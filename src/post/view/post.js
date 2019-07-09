@@ -54,7 +54,8 @@ const Post = (data,loginUser,likePost,collectionPost,likeComment) => {
                     className='comment-num'>{`全部 ${data.comment.length} 条评论`}</span></Link>
                 <div className='comment'>
                     <ul>
-                        {list}
+                        {list[list.length-1]}
+                        {list[list.length-2]}
                         {/*{li(data.comment[data.comment.length-1],loginUser,likeComment,data.postId)}*/}
                         {/*{li(data.comment[data.comment.length-2],loginUser,likeComment,data.postId)}*/}
                         {/*{data.comment.map((item) => {*/}
