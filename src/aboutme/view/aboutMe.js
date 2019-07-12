@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Cookies from 'js-cookie';
 import {
     changeEmail,
     changeGender,

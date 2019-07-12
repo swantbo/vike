@@ -5,6 +5,7 @@ import {view as Footer} from './footer'
 import {view as Header} from './header'
 import {view as AboutMe} from './aboutme';
 import {edit} from './aboutme';
+import {view as Login} from './login';
 import {Comment} from './post'
 import {view as Home} from './home'
 import SearchTest from './test/testsearch.js';
@@ -36,6 +37,7 @@ class App extends Component {
                     <Route path='/privacy_and_security' component={temp}/>
                     <Route path='/help' component={temp}/>
                     <Route path='/changeAvatar' component={changeAvatar}/>
+                    <Route path='/login' component={Login}/>
                 </switch>
                 <Footer/>
                 {avatarFloat||aboutMeFloat?<FloatInterface/>:''}

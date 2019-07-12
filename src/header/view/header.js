@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {UserNameNull, SendUserName, ChangeOptions, requestId} from "../Actions";
 import {Link, withRouter} from "react-router-dom";
 import './header.css';
+import Cookies from 'js-cookie';
 import {collectionPost, likeComment, likePost} from "../../home/Actions";
 
 class Header extends Component {
@@ -15,6 +16,7 @@ class Header extends Component {
                 '/privacy_and_security': '隐私和安全',
                 '/help': '帮助中心',
                 '/us': '关于我们',
+                '/login':'注册或登录',
                 '': '退出',
             }
         };
@@ -39,7 +41,7 @@ class Header extends Component {
 
     componentWillMount() {
         this.setState({a: false});
-        this.props.requestId()
+        this.props.requestId();
     }
 
     historyBack() {
@@ -47,7 +49,6 @@ class Header extends Component {
     }
 
     render() {
-        console.log('1')
         let {name, UserNameNull, SendUserName, option, ChangeOptions} = this.props;
         let path = window.location.pathname;
         let logo = <div className='header-home'>
@@ -89,15 +90,15 @@ class Header extends Component {
         </div>;
         const tips = (text) => <div className='header-tips'><span onClick={this.historyBack}> </span>{text}</div>;
         let header = <div className='header'>
-            {path.match(/\/comment/)!==null?
-                comment:path === '/changeAvatar' ?
-                changeAvatar : path === '/' ?
-                    logo : path === '/search' ?
-                        search : path === '/result' ?
-                            search : path === '/dynamic' ?
-                                dynamic : path === '/aboutme' ?
-                                    aboutme : tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
-         </div>;
+            {path.match(/\/comment/) !== null ?
+                comment : path === '/changeAvatar' ?
+                    changeAvatar : path === '/' ?
+                        logo : path === '/search' ?
+                            search : path === '/result' ?
+                                search : path === '/dynamic' ?
+                                    dynamic : path === '/aboutme' ?
+                                        aboutme : tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
+        </div>;
         return (
             <div>
                 {header}
@@ -112,14 +113,20 @@ const mapStateToProps = (state) => {
         name: state.headerReducer.name,
     }
 };
-const mapDispatchToProps = (dispatch)=>{
-    return{
-        requestId:()=>{
+const mapDispatchToProps = (dispatch) => {
+    return {
+        requestId: () => {
             dispatch(requestId())
         },
-        UserNameNull,
-        SendUserName,
-        ChangeOptions
+        UserNameNull: () => {
+            dispatch(UserNameNull())
+        },
+        SendUserName: () => {
+            dispatch(SendUserName())
+        },
+        ChangeOptions: () => {
+            dispatch(ChangeOptions())
+        }
     }
 };
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))
+export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))
