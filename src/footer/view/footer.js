@@ -2,21 +2,28 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Home, Search, SendPost, Dynamic, AboutMe} from '../Actions.js';
 import {Link, withRouter} from "react-router-dom";
+import Cookies from 'js-cookie';
 import './footer.css';
 
 class Footer extends Component {
     constructor() {
         super(...arguments);
-        this.arr = ['home', 'search', 'sendPost', 'dynamic', 'aboutMe'];
+        this.arr = ['home', 'search', 'sendPost', 'dynamic', 'aboutMe', 'login'];
     }
 
     render() {
+        let path = window.location.pathname;
         let that = this, url = '/';
         let {Home, SendPost, Search, Dynamic, AboutMe} = this.props;
         let click = {0: Home, 1: Search, 2: SendPost, 3: Dynamic, 4: AboutMe};
         const temp = this.arr.map((item) => {
                 let index = that.arr.indexOf(item);
-                index === 0 ? url = '/' : index === 1 ? url = '/search' : index === 2 ? url = '/' : index === 3 ? url = '/dynamic' : url = '/aboutme';
+                index === 0 ?
+                    url = '/' : index === 1 ?
+                    url = '/search' : index === 2&&Cookies.get('u_id')!==undefined ?
+                        url = '/' : index === 3&&Cookies.get('u_id')!==undefined ?
+                            url = '/dynamic' :index===4&&Cookies.get('u_id')!==undefined?
+                                url = '/aboutme':url='/login';
                 if (index === that.props.id) {
                     item += 'Action';
                 }
@@ -29,7 +36,7 @@ class Footer extends Component {
             }
         );
         return (
-            <div className='footer'>
+            <div style={path === '/login' ? {display: 'none'} : {display: 'block'}} className='footer'>
                 {temp}
             </div>
         )

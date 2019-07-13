@@ -1,6 +1,7 @@
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunkMiddleware from 'redux-thunk';
 import {aboutMeReducer} from './aboutme';
+import {loginReducer} from './login'
 import {dynamicReducer} from './dynamic';
 import {headerReducer} from './header';
 import {homeReducer} from './home';
@@ -14,6 +15,7 @@ const store = createStore(combineReducers({
     dynamicReducer,
     headerReducer,
     homeReducer,
+    loginReducer,
     sendPostReducer,
     footerReducer
 }),applyMiddleware(thunkMiddleware));

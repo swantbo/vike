@@ -1,7 +1,7 @@
 import * as ActionTypes from './ActionTypes.js';
 import fetch from 'cross-fetch';
 import config from '../config.js';
-import {md5} from "md5";
+import md5 from 'md5';
 
 const loginStart = () => ({
     type: ActionTypes.LOGIN_START
@@ -19,11 +19,11 @@ export const login = (userId, password) => {
         dispatch(loginStart());
         fetch(`${config.url}login`, {
             method: 'POST',
-            body: JSON.stringify({userId: userId, password: md5(password)}),
+            body: JSON.stringify({userId: userId, password: password}),
         }).then(
             res => res.json()).then(
-                json => loginSuccess(json)).catch(
-                    error => loginFailure())
+                json =>{ dispatch(loginSuccess(json))}).catch(
+                    error => dispatch(loginFailure()))
 
     }
 };
@@ -43,6 +43,6 @@ export const signUp = (userId,password)=>{
         fetch(`${config.url}signUp`,{
             method:'POST',
             body:JSON.stringify({userId:userId,password:md5(password)})
-        }).then(res=>res.json()).then(json=>singUpSuccess(json)).catch(singUpFailure())
+        }).then(res=>res.json()).then(json=>dispatch(singUpSuccess(json))).catch(dispatch(singUpFailure()))
     }
 };

@@ -2,117 +2,168 @@
   @return (($px/2)/540)*100vw
 }
 
-.login {
-  z-index: 999;
-  width: 100vw;
-  margin-top: vw(125);
-  margin-bottom: vw(125);
+.login-signUp {
   position: relative;
-
-  .login-logo {
+  width: 100vw;
+  .login {
+    width: 100vw;
+    margin-top: vw(125);
+    margin-bottom: vw(125);
     position: relative;
-    padding-top: vw(200);
-    left: 50%;
-    transform: translateX(-50%);
-    width: vw(250);
 
-    img {
+    .login-logo {
+      position: relative;
+      padding-top: vw(150);
+      left: 50%;
+      transform: translateX(-50%);
       width: vw(250);
+
+      img {
+        width: vw(250);
+      }
+    }
+
+    .login-input {
+      width: vw(800);
+      position: relative;
+      left: 50%;
+      margin-top: vw(200);
+      transform: translateX(-50%);
+
+      label {
+        span {
+          text-indent: vw(20);
+          position: absolute;
+          font-size: vw(35);
+          font-weight: lighter;
+          color: #8d8d8d;
+          top: vw(5);
+        }
+      }
+
+      .input-name {
+        display: block;
+        width: vw(800);
+        height: vw(110);
+        border-radius: vw(5);
+        background: #fafafa;
+        border: 1px solid #efefef;
+        position: relative;
+
+        input {
+          text-indent: vw(20);
+          position: absolute;
+          bottom: vw(5);
+          border: none;
+          list-style: none;
+          background: rgba(225, 225, 225, 0);
+          outline: none;
+        }
+      }
+
+      .input-name:focus-within {
+        border: 1px solid #b2b2b2;
+      }
+
+      .input-password:focus-within {
+        border: 1px solid #b2b2b2;
+      }
+
+      .input-password {
+        display: block;
+        position: relative;
+
+        input {
+          text-indent: vw(20);
+          position: absolute;
+          bottom: vw(5);
+          border: none;
+          list-style: none;
+          outline: none;
+          background: rgba(225, 225, 225, 0);
+        }
+
+        border-radius: vw(5);
+        margin-top: vw(20);
+        width: vw(800);
+        background: #fafafa;
+        border: 1px solid #efefef;
+        height: vw(110);
+
+        div {
+          position: absolute;
+          right: 0;
+          line-height: vw(110);
+          text-align: center;
+          font-size: vw(35);
+          font-weight: bold;
+          width: vw(130);
+          height: vw(110);
+          background: #ffffff;
+        }
+      }
+      .input-password-again{
+        display: block;
+        position: relative;
+
+        input {
+          text-indent: vw(20);
+          position: absolute;
+          bottom: vw(5);
+          border: none;
+          list-style: none;
+          outline: none;
+          background: rgba(225, 225, 225, 0);
+        }
+
+        border-radius: vw(5);
+        margin-top: vw(20);
+        width: vw(800);
+        background: #fafafa;
+        border: 1px solid #efefef;
+        height: vw(110);
+
+        div {
+          position: absolute;
+          right: 0;
+          line-height: vw(110);
+          text-align: center;
+          font-size: vw(35);
+          font-weight: bold;
+          width: vw(130);
+          height: vw(110);
+          background: #ffffff;
+        }
+      }
+      .login-button {
+        position: relative;
+        width: vw(800);
+        height: vw(80);
+        background: #7492ff;
+        border-radius: vw(10);
+        line-height: vw(80);
+        text-align: center;
+        color: #fff;
+        font-size: vw(35);
+        margin-top: vw(70);
+        font-weight: bold;
+      }
     }
   }
-
-  .login-input {
-    width: vw(800);
-    position: relative;
-    left: 50%;
-    margin-top: vw(300);
-    transform: translateX(-50%);
-
-    label {
-      span {
-        text-indent: vw(20);
-        position: absolute;
-        font-size: vw(10);
-        font-weight: lighter;
-        color: #8d8d8d;
-        top: vw(5);
-      }
-    }
-
-    .input-name {
-      display: block;
-      width: vw(800);
-      height: vw(110);
-      border-radius: vw(5);
-      background: #fafafa;
-      border: 1px solid #efefef;
-      position: relative;
-
-      input {
-        text-indent: vw(20);
-        position: absolute;
-        bottom: vw(5);
-        border: none;
-        list-style: none;
-        background: rgba(225, 225, 225, 0);
-        outline: none;
-      }
-    }
-
-    .input-name:focus-within {
-      border: 1px solid #b2b2b2;
-    }
-
-    .input-password:focus-within {
-      border: 1px solid #b2b2b2;
-    }
-
-    .input-password {
-      display: block;
-      position: relative;
-
-      input {
-        text-indent: vw(20);
-        position: absolute;
-        bottom: vw(5);
-        border: none;
-        list-style: none;
-        outline: none;
-        background: rgba(225, 225, 225, 0);
-      }
-
-      border-radius: vw(5);
-      margin-top: vw(20);
-      width: vw(800);
-      background: #fafafa;
-      border: 1px solid #efefef;
-      height: vw(110);
-
-      div {
-        position: absolute;
-        right: 0;
-        line-height: vw(110);
-        text-align: center;
-        font-size: vw(35);
-        font-weight: bold;
-        width: vw(130);
-        height: vw(110);
-        background: #ffffff;
-      }
-    }
-
-    .login-button {
-      position: relative;
-      width: vw(800);
-      height: vw(80);
-      background: #7492ff;
-      border-radius: vw(10);
-      line-height: vw(80);
-      text-align: center;
-      color: #fff;
-      font-size: vw(35);
-      margin-top: vw(70);
-      font-weight: bold;
+  .switchLogin{
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: vw(120);
+    background: #f9f9f9;
+    text-align: center;
+    line-height: vw(120);
+    font-size: vw(35);
+    font-weight: bold;
+    color: #b1b1b1;
+    border-top: 1px solid #eaeaea;
+    span{
+      color: #1e3890;
     }
   }
 }
