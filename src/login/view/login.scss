@@ -22,7 +22,15 @@
         width: vw(250);
       }
     }
-
+    .login-point{
+      position: absolute;
+      left: 50%;
+      font-size: vw(35);
+      margin-top: vw(50);
+      font-weight: bold;
+      color: red;
+      transform: translateX(-50%);
+    }
     .login-input {
       width: vw(800);
       position: relative;
@@ -136,10 +144,29 @@
         }
       }
       .login-button {
+        outline: none;
+        list-style: none;
+        border: none;
         position: relative;
         width: vw(800);
         height: vw(80);
         background: #7492ff;
+        border-radius: vw(10);
+        line-height: vw(80);
+        text-align: center;
+        color: #fff;
+        font-size: vw(35);
+        margin-top: vw(70);
+        font-weight: bold;
+      }
+      .login-button-close{
+        outline: none;
+        list-style: none;
+        border: none;
+        position: relative;
+        width: vw(800);
+        height: vw(80);
+        background: #d6d6d6;
         border-radius: vw(10);
         line-height: vw(80);
         text-align: center;

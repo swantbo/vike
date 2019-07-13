@@ -14,16 +14,19 @@ class Login extends Component {
         this.state = {
             temp: 1,
             type: 1,
+            openButton: -1,
             userName: '',
             password: '',
             passwordTwo: '',
-            message: ''
+            messageText: this.props.data.message,
         };
         this.changeType = this.changeType.bind(this);
         this.changePassword = this.changePassword.bind(this);
         this.changePasswordTwo = this.changePasswordTwo.bind(this);
         this.changeName = this.changeName.bind(this);
         this.changeTemp = this.changeTemp.bind(this);
+        this.clickLogin = this.clickLogin.bind(this);
+        this.testPassword = this.testPassword.bind(this);
     }
 
     changeType() {
@@ -31,19 +34,45 @@ class Login extends Component {
     }
 
     changeName(e) {
-        this.setState({userName: e})
+        this.setState({userName: e.replace(/\s+/g, "")});
+        if (e.replace(/\s+/g, "") === '') {
+            this.setState({openButton: -1})
+        }
     }
 
     changePassword(e) {
-        this.setState({password: e})
+        this.setState({password: e.replace(/\s+/g, "")});
+        if (e.replace(/\s+/g, "") === '') {
+            this.setState({openButton: -1})
+        } else if (e.replace(/\s+/g, "") !== '' && this.state.temp === 1) {
+            this.setState({openButton: 1})
+        }
     }
 
     changePasswordTwo(e) {
-        this.setState({passwordTwo: e})
+        this.setState({passwordTwo: e.replace(/\s+/g, "")});
+        this.testPassword(e)
+    }
+
+    testPassword(e) {
+        if (this.state.password !== e.replace(/\s+/g, "")) {
+            this.setState({messageText: '密码不相同'});
+            this.setState({openButton: -1})
+        } else if (this.state.password === e.replace(/\s+/g, "")) {
+            this.setState({messageText: ''});
+            this.setState({openButton: 1})
+        }
     }
 
     changeTemp() {
         this.setState({temp: this.state.temp * -1})
+    }
+
+    clickLogin() {
+        this.setState({userName: ''});
+        this.setState({password: ''});
+        this.setState({passwordTwo: ''});
+        this.setState({openButton: -1})
     }
 
     render() {
@@ -69,27 +98,39 @@ class Login extends Component {
                 <label style={this.state.temp === 1 ? {display: 'none'} : {display: 'block'}}
                        className='input-password-again'>
                     <span>再次输入密码</span>
-                    <input onChange={(e) => this.changePasswordTwo(e.target.value)} value={this.state.passwordTwo}
+                    <input onChange={(e) => {
+                        this.changePasswordTwo(e.target.value)
+                    }} value={this.state.passwordTwo}
                            type={this.state.type === 1 ? 'password' : 'text'}
                            autoComplete='new-password,current-password' required/>
                     {this.state.temp === 1 ?
                         <div style={this.state.password === '' ? {display: 'none'} : {display: 'block'}}
                              onClick={this.changeType}>{this.state.type === 1 ? '显示' : '隐藏'}</div> : ''}
                 </label>
-                <div onClick={() => {
-                    this.props.login(this.state.userName, this.state.password);
-                    Cookies.set('u_id', this.state.userName)
+                <button onClick={() => {
+                    if (this.state.openButton === 1 && this.state.temp === 1) {
+                        this.props.login(this.state.userName, this.state.password);
+                        Cookies.set('u_id', this.state.userName);
+                        this.clickLogin();
+                    } else if (this.state.openButton === 1 && this.state.temp === -1) {
+                        this.props.signUp(this.state.userName, this.state.password);
+                        this.clickLogin();
+                    }
                 }}
-                     className='login-button'>{this.state.temp === 1 ? '登录' : '注册'}
-                </div>
+                        className={this.state.openButton === 1 ? 'login-button' : 'login-button-close'}>{this.state.temp === 1 ? '登录' : '注册'}
+                </button>
             </div>
+            <span className='login-point'>{this.state.messageText}</span>
         </div>;
         return (
             <div className='login-signUp'>
                 {login}
                 <div className='switchLogin'>
                     {this.state.temp === 1 ? '还没有账号？' : '已经有账号了!'}
-                    <span onClick={this.changeTemp}>{this.state.temp === 1 ? '注册' : '登录'}</span>
+                    <span onClick={() => {
+                        this.changeTemp();
+                        this.clickLogin()
+                    }}>{this.state.temp === 1 ? '注册' : '登录'}</span>
                 </div>
             </div>
         )
@@ -97,7 +138,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
+    console.log(state.loginReducer);
     return {
         data: state.loginReducer,
     }
