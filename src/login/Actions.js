@@ -19,7 +19,7 @@ export const login = (userId, password) => {
         dispatch(loginStart());
         fetch(`${config.url}login`, {
             method: 'POST',
-            body: JSON.stringify({userId: userId, password: password}),
+            body: JSON.stringify({userId: userId, password: md5(password)}),
         }).then(
             res => res.json()).then(
                 json =>{ dispatch(loginSuccess(json))}).catch(

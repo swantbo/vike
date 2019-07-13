@@ -22,10 +22,9 @@ export default function (state = login, action) {
             }
         }
         case ActionTypes.LOGIN_FAILURE: {
-            const {message} = action.payload.data;
             return {
                 ...state,
-                message: message,
+                message:'服务器错误',
                 landing: false
             }
         }
@@ -44,11 +43,10 @@ export default function (state = login, action) {
             }
         }
         case ActionTypes.SING_UP_FAILURE: {
-            const {message} = action.payload.data;
-            return {
+            return{
                 ...state,
-                message: message,
-                landing: false
+                landing:false,
+                message:'服务器错误'
             }
         }
     }

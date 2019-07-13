@@ -18,7 +18,7 @@ class Login extends Component {
             userName: '',
             password: '',
             passwordTwo: '',
-            messageText: this.props.data.message,
+            messageText: '',
         };
         this.changeType = this.changeType.bind(this);
         this.changePassword = this.changePassword.bind(this);
@@ -76,6 +76,9 @@ class Login extends Component {
     }
 
     render() {
+        if (this.props.data.message==='登陆成功 准备跳转'){
+            console.log(window.history)
+        }
         let login = <div className='login'>
             <div className='login-logo'>
                 <img alt='logo' src={require('../../image/vike@0,1x.png')}/>
@@ -113,14 +116,14 @@ class Login extends Component {
                         Cookies.set('u_id', this.state.userName);
                         this.clickLogin();
                     } else if (this.state.openButton === 1 && this.state.temp === -1) {
-                        this.props.signUp(this.state.userName, this.state.password);
+                        this.props.signUp(this.state.userName, this.state.passwordTwo);
                         this.clickLogin();
                     }
                 }}
                         className={this.state.openButton === 1 ? 'login-button' : 'login-button-close'}>{this.state.temp === 1 ? '登录' : '注册'}
                 </button>
             </div>
-            <span className='login-point'>{this.state.messageText}</span>
+            <span className='login-point'>{this.state.messageText===''?this.props.data.message:this.state.messageText}</span>
         </div>;
         return (
             <div className='login-signUp'>
