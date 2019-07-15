@@ -1,74 +1,38 @@
 import * as ActionTypes from './ActionTypes.js';
 import fetch from 'cross-fetch';
+import config from '../config.js';
 
 function requestGet(name) {
     return {
-        type: ActionTypes.FETCH_GET_REQUEST,
-        name
+        type: ActionTypes.LOGIN_GET_REQUEST,
+        payload: {userId: name}
     }
 }
 
-function requestSuccess(name, json) {
+function requestSuccess(json) {
     return {
-        type: ActionTypes.FETCH_GET_SUCCESS,
-        payload:json
+        type: ActionTypes.LOGIN_GET_SUCCESS,
+        payload: {data: json}
     }
 }
 
-function requestFailure(name) {
+function requestFailure() {
     return {
-        type: ActionTypes.FETCH_GET_FAILURE,
-        name
+        type: ActionTypes.LOGIN_GET_FAILURE,
     }
 }
 
-export const requestTest = (name) => {
-    console.log('0');
+export const requestLoginUserInfo = (name) => {
     return (dispatch) => {
         dispatch(requestGet(name));
-        return fetch(`http://localhost:3030/api?name=${name}`, {method: 'GET'}).then(response => response.json(), error => {
+        return fetch(`${config.url}getUserInfo?userId=${name}`, {method: 'GET'}).then(response => response.json()).then(json => dispatch(requestSuccess(json))).catch(error => {
             console.log(error);
-        }).then(json =>{ dispatch(requestSuccess(name, json));console.log(json)}).catch(error=>{console.log(error);dispatch(requestFailure(name))});
+            dispatch(requestFailure())
+        });
 
     };
 };
 
-export const changeUserName = (name) => ({
-    type: ActionTypes.ABOUTME_CHANGE_USER_NAME,
-    payload: {userName: name}
-});
-export const changeUserId = (id) => ({
-    type: ActionTypes.ABOUTME_CHANGE_USER_ID,
-    payload: {userId: id}
-});
-export const changeEmail = (email) => ({
-    type: ActionTypes.ABOUTME_CHANGE_USER_EMAIL,
-    payload: {email: email}
-});
-export const changeIntroduction = (text) => ({
-    type: ActionTypes.ABOUTME_CHANGE_USER_INTRODUCTION,
-    payload: {Introduction: text}
-});
-export const changeWebsite = (website) => ({
-    type: ActionTypes.ABOUTME_CHANGE_USER_WEBSITE,
-    payload: {website: website}
-});
-export const changeGender = (num) => ({
-    type: ActionTypes.ABOUTME_CHANGE_USER_GENDER,
-    payload: {gender: num}
-});
-export const changeIsActive = (boolean) => ({
-    type: ActionTypes.ABOUTME_CHANGE_USER_ACTION,
-    payload: {isActive: boolean}
-});
-export const changeIsRecommend = (boolean) => ({
-    type: ActionTypes.ABOUTME_CHANGE_USER_RECOMMEND,
-    payload: {isRecommend: boolean}
-});
-export const changeIsPrivate = (boolean) => ({
-    type: ActionTypes.ABOUTME_CHANGE_USER_PRIVATE,
-    payload: {isPrivate: boolean}
-});
 export const changeFloatInterFaceShow = () => ({
     type: ActionTypes.ABOUTME_CHANGE_FLOATINTERFACE_SHOW
 });

@@ -1,7 +1,21 @@
 @function vw($px) {
   @return (($px/2)/540)*100vw
 }
-
+.aboutMe-loading{
+  width: 100vw;
+  margin-top: vw(125);
+  position: relative;
+  div{
+    width: vw(500);
+    height: vw(80);
+    //background: #4dceff;
+    font-size: vw(40);
+    font-weight: bold;
+    text-align: center;
+    border-radius: vw(15);
+    margin: vw(200) auto;
+  }
+}
 .aboutMe_box {
   width: 100vw;
   margin-top: vw(125);

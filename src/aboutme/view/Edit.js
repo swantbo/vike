@@ -1,13 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-    changeEmail,
-    changeGender,
-    changeIntroduction,
-    changeIsRecommend,
-    changeUserId,
-    changeUserName,
-    changeWebsite,
     changeFloatInterFaceShow
 } from "../Actions";
 import {Link, withRouter} from "react-router-dom";
@@ -69,22 +62,16 @@ class Edit extends Component {
     onChangeWebsite(e) {
         this.setState({website: e.target.value})
     }
-    onChangeGender(e){
-        this.setState({gender:e.target.value})
+
+    onChangeGender(e) {
+        this.setState({gender: e.target.value})
     }
-    onChangeRecommend(e){
+
+    onChangeRecommend(e) {
         let temp = this.state.isRecommend;
-        this.setState({isRecommend:!temp});
-        console.log(this.state.isRecommend);
+        this.setState({isRecommend: !temp});
     }
-    sub(){
-        changeEmail(this.state.email);
-        changeGender(this.state.gender);
-        changeIntroduction(this.state.Introduction);
-        changeUserId(this.state.userId);
-        changeIsRecommend(this.state.isRecommend);
-        changeUserName(this.state.userName);
-    }
+
     // onTouchStart(e) {
     //     if (e.touches.length >= 2) {
     //         this.setState({isGesture: true});
@@ -127,28 +114,30 @@ class Edit extends Component {
     render() {
         let that = this;
         let {changeFloatInterFaceShow} = this.props;
-        const EditBox = (text, variable, action,className) => {
-            return <div className={'editBox'+" "+className}>
+        const EditBox = (text, variable, action, className) => {
+            return <div className={'editBox' + " " + className}>
                 <span>{text}</span>
                 <textarea type='text' onChange={action} value={variable}/>
             </div>
         };
-        let data = [{text:'姓名',data:that.state.userName,event:that.onChangeUserName},
-                {text:'账号',data:that.state.userId,event:that.onChangeUserId},
-                {text:'网站',data:that.state.website,event:that.onChangeWebsite},
-                {text:'个人简介',data:that.state.Introduction,event:that.onChangeIntroduction},
-                {text:'邮箱',data:that.state.email,event:that.onChangeEmail}];
+        let data = [{text: '姓名', data: that.state.userName, event: that.onChangeUserName},
+            {text: '账号', data: that.state.userId, event: that.onChangeUserId},
+            {text: '网站', data: that.state.website, event: that.onChangeWebsite},
+            {text: '个人简介', data: that.state.Introduction, event: that.onChangeIntroduction},
+            {text: '邮箱', data: that.state.email, event: that.onChangeEmail}];
 
-        let editBoxList = data.map((item)=>{
+        let editBoxList = data.map((item) => {
             let className = " ";
-            if (item.text === '个人简介') className='Introduction';
-            return EditBox(item.text,item.data,item.event,className)
+            if (item.text === '个人简介') className = 'Introduction';
+            return EditBox(item.text, item.data, item.event, className)
         });
-        const genderList = (item,gender)=>{
-             return gender===item?<option value={item} selected='selected'>{item===1?'男':item===2?'女':'不指定'}</option>:<option value={item}>{item===1?'男':item===2?'女':'不指定'}</option>
+        const genderList = (item, gender) => {
+            return gender === item ?
+                <option value={item} selected='selected'>{item === 1 ? '男' : item === 2 ? '女' : '不指定'}</option> :
+                <option value={item}>{item === 1 ? '男' : item === 2 ? '女' : '不指定'}</option>
         };
-        let genderArr = [1,2,3].map((item)=>{
-            return genderList(item,that.state.gender)
+        let genderArr = [1, 2, 3].map((item) => {
+            return genderList(item, that.state.gender)
         });
         return (
             <div className='edit'>
@@ -172,7 +161,8 @@ class Edit extends Component {
                 <div className="Recommend">
                     <div className='title'>账户推荐</div>
                     <div className='exp'>
-                        <input onChange={this.onChangeRecommend} checked = {this.state.isRecommend?true:false} type='checkbox'/>
+                        <input onChange={this.onChangeRecommend} checked={this.state.isRecommend ? true : false}
+                               type='checkbox'/>
                         <div>在推荐可能关注的类似账户中加入你的账户。</div>
                     </div>
                 </div>
@@ -186,23 +176,16 @@ class Edit extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        userName: state.aboutMeReducer.userName,
-        userId: state.aboutMeReducer.userId,
-        email: state.aboutMeReducer.email,
-        avatar: state.aboutMeReducer.avatar,
-        Introduction: state.aboutMeReducer.Introduction,
-        website: state.aboutMeReducer.website,
-        gender: state.aboutMeReducer.gender,
-        isRecommend: state.aboutMeReducer.isRecommend,
+        userName: state.aboutMeReducer.loginUserInfo.userName,
+        userId: state.aboutMeReducer.loginUserInfo.userId,
+        email: state.aboutMeReducer.loginUserInfo.email,
+        avatar: state.aboutMeReducer.loginUserInfo.avatar,
+        Introduction: state.aboutMeReducer.loginUserInfo.Introduction,
+        website: state.aboutMeReducer.loginUserInfo.website,
+        gender: state.aboutMeReducer.loginUserInfo.gender,
+        isRecommend: state.aboutMeReducer.loginUserInfo.isRecommend,
     }
 };
 export default withRouter(connect(mapStateToProps, {
-    changeEmail,
-    changeGender,
-    changeIntroduction,
-    changeIsRecommend,
-    changeUserId,
-    changeUserName,
-    changeWebsite,
     changeFloatInterFaceShow
 })(Edit));

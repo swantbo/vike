@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Cookies from 'js-cookie';
 import {Link, withRouter, Route} from "react-router-dom";
 import fetch from 'cross-fetch';
-import {md5} from 'md5';
+import md5 from 'md5';
 import config from '../../config.js';
 import {login, signUp} from "../Actions";
 import './login.css';
@@ -76,8 +76,9 @@ class Login extends Component {
     }
 
     render() {
-        if (this.props.data.message==='登陆成功 准备跳转'){
-            console.log(window.history)
+        console.log(Cookies.get('u_id'));
+        if (Cookies.get('u_id')!==undefined){
+            window.location.pathname='/';
         }
         let login = <div className='login'>
             <div className='login-logo'>
@@ -113,7 +114,9 @@ class Login extends Component {
                 <button onClick={() => {
                     if (this.state.openButton === 1 && this.state.temp === 1) {
                         this.props.login(this.state.userName, this.state.password);
+                        //测试cookie在项目中的应用
                         Cookies.set('u_id', this.state.userName);
+                        //后端完善后会删除
                         this.clickLogin();
                     } else if (this.state.openButton === 1 && this.state.temp === -1) {
                         this.props.signUp(this.state.userName, this.state.passwordTwo);

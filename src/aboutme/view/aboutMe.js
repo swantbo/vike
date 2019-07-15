@@ -1,18 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Cookies from 'js-cookie';
-import {
-    changeEmail,
-    changeGender,
-    changeIntroduction,
-    changeIsActive,
-    changeIsPrivate,
-    changeIsRecommend,
-    changeUserId,
-    changeUserName,
-    changeWebsite,
-    requestTest
-} from "../Actions";
 import {Link, withRouter} from "react-router-dom";
 import './aboutMe.css';
 
@@ -37,19 +25,21 @@ class AboutMe extends Component {
         this.state = {
             categoryName: ['帖子', '粉丝', '正在关注'],
             icon: ['grid', 'detailed', 'Collection'],
-            setListUrl: [{url:'edit',text:'编辑主页'},{url:'changePassword',text:'更改密码'},{url:'privacy_and_security',text:'隐私和安全'},{url:'help',text:'帮助中心'},{url:'us',text:'关于我们'},{url:'',text:'退出'}]
+            setListUrl: [{url: 'edit', text: '编辑主页'}, {
+                url: 'changePassword',
+                text: '更改密码'
+            }, {url: 'privacy_and_security', text: '隐私和安全'}, {url: 'help', text: '帮助中心'}, {
+                url: 'us',
+                text: '关于我们'
+            }, {url: '', text: '退出'}]
         };
-        this.onTest = this.onTest.bind(this);
     }
 
     // componentDidMount() {
     //     this.props.requestTest('vike')
     // }
-    onTest(){
-        this.props.requestTest('vike')
-    }
     render() {
-        const {avatar, userId, website, Introduction, userName, myPost, myFens, myFriends, option} = this.props;
+        const {dataState, requesting, avatar, userId, website, Introduction, userName, myPost, myFens, myFriends, option} = this.props;
         let webUrl = 'http://' + website;
         let categoryListArr = this.state.categoryName.map((item) => {
             return categoryList(item === '帖子' ? myPost.length : item === '粉丝' ? myFens.length : myFriends.length, item)
@@ -60,6 +50,9 @@ class AboutMe extends Component {
         let setPage = this.state.setListUrl.map((item) => {
             return setList(item.url, item.text)
         });
+        let loading = (text) => <div className='aboutMe-loading'>
+            <div>{text}</div>
+        </div>
         let aboutMe = option ? <div className='aboutMe_box'>
             <div className='userInfo'>
                 <div className='avatar' onClick={this.onTest}>
@@ -96,7 +89,7 @@ class AboutMe extends Component {
             </ul>
         </div>;
         return (
-            aboutMe
+            requesting && dataState === 0 ? loading('数据加载中……') : !requesting && dataState === -1 ? loading('数据请求错误！') : aboutMe
         )
     }
 }
@@ -104,28 +97,30 @@ class AboutMe extends Component {
 const mapStateToProps = (state) => {
     // console.log(state.aboutMeReducer);
     return {
-        userName: state.aboutMeReducer.userName,
-        userId: state.aboutMeReducer.userId,
-        email: state.aboutMeReducer.email,
-        avatar: state.aboutMeReducer.avatar,
-        Introduction: state.aboutMeReducer.Introduction,
-        website: state.aboutMeReducer.website,
-        gender: state.aboutMeReducer.gender,
-        addTime: state.aboutMeReducer.addTime,
-        myPost: state.aboutMeReducer.myPost,
-        myFens: state.aboutMeReducer.myFens,
-        myFriends: state.aboutMeReducer.myFriends,
-        isActive: state.aboutMeReducer.isActive,
-        isRecommend: state.aboutMeReducer.isRecommend,
-        isPrivate: state.aboutMeReducer.isPrivate,
+        requesting: state.aboutMeReducer.requesting,
+        userName: state.aboutMeReducer.loginUserInfo.userName,
+        userId: state.aboutMeReducer.loginUserInfo.userId,
+        email: state.aboutMeReducer.loginUserInfo.email,
+        avatar: state.aboutMeReducer.loginUserInfo.avatar,
+        Introduction: state.aboutMeReducer.loginUserInfo.Introduction,
+        website: state.aboutMeReducer.loginUserInfo.website,
+        gender: state.aboutMeReducer.loginUserInfo.gender,
+        addTime: state.aboutMeReducer.loginUserInfo.addTime,
+        myPost: state.aboutMeReducer.loginUserInfo.myPost,
+        myFens: state.aboutMeReducer.loginUserInfo.myFens,
+        myFriends: state.aboutMeReducer.loginUserInfo.myFriends,
+        isActive: state.aboutMeReducer.loginUserInfo.isActive,
+        isRecommend: state.aboutMeReducer.loginUserInfo.isRecommend,
+        isPrivate: state.aboutMeReducer.loginUserInfo.isPrivate,
+        dataState: state.aboutMeReducer.dataState,
         option: state.headerReducer.isShowOptions,
     }
 };
 
-const mapDispatchToProps = (dispatch) =>{
-    return{
-        requestTest:(name)=>{
-            dispatch(requestTest(name))
+const mapDispatchToProps = (dispatch) => {
+    return {
+        requestTest: (name) => {
+            dispatch()
         }
     }
 };

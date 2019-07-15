@@ -1,3 +1,18 @@
+.aboutMe-loading {
+  width: 100vw;
+  margin-top: 11.5740740741vw;
+  position: relative;
+}
+.aboutMe-loading div {
+  width: 46.2962962963vw;
+  height: 7.4074074074vw;
+  font-size: 3.7037037037vw;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 1.3888888889vw;
+  margin: 18.5185185185vw auto;
+}
+
 .aboutMe_box {
   width: 100vw;
   margin-top: 11.5740740741vw;
