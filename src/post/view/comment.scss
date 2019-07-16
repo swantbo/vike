@@ -4,6 +4,7 @@
 
 .Comment-Box {
   width: 100vw;
+  margin-bottom: vw(150);
 
   .Comment-input {
     width: 100vw;
@@ -12,7 +13,7 @@
     max-height: vw(300);
     background: #efefef;
     position: relative;
-    z-index: 99;
+    z-index: 0;
 
     .Comment-input-ava {
       position: absolute;
@@ -34,7 +35,10 @@
       padding: vw(30);
       background: #fff;
       border-radius: vw(70);
+      height: vw(70);
+      width: vw(800);
       position: relative;
+      display: block;
       top: 2vw;
       left: vw(200);
 
@@ -42,17 +46,21 @@
         border: none;
         outline: none;
         position: relative;
-        top: 2vw;
         line-height: vw(70);
         width: vw(650);
         font-size: vw(35);
         height: vw(70);
+        resize: none;
       }
 
       button {
         outline: none;
         font-weight: bold;
         font-size: vw(40);
+        position: absolute;
+        right: vw(30);
+        top:50%;
+        transform: translateY(-50%);
         color: #9c85ff;
         background: rgba(153, 153, 153, 0);
         border: none;
@@ -159,6 +167,10 @@
             font-size: vw(35);
             font-weight: bold;
             color: black;
+          }
+          .kkkkkkkkkkkkkkk{
+            display: inline-block;
+            max-width: vw(800);
           }
 
           .SingleComment-time {

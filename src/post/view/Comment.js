@@ -7,7 +7,7 @@ import Cookies from 'js-cookie'
 import {timeDifferent} from "../../tool/tool";
 import {likeComment, replyComment, inputComment} from "../../home/Actions";
 import './comment.css'
-
+const jumpRoute=()=>window.location.pathname = '/login';
 class SingleReply extends Component {
     constructor() {
         super(...arguments);
@@ -83,7 +83,7 @@ class SingleComment extends Component {
                     <img src={config.url+'image/' + this.state.commentUserAvatar}/>
                 </div>
                 <div className='SingleComment-text'><Link
-                    to={`/user/${this.state.commentUserId}`}>{this.props.singleComment.userId + ' '}</Link><span>{this.props.singleComment.text}</span>
+                    to={`/user/${this.state.commentUserId}`}>{this.props.singleComment.userId + ' '}</Link><span className='kkkkkkkkkkkkkkk'>{this.props.singleComment.text}</span>
                     <span
                         className='SingleComment-time'>{timeDifferent(new Date().getTime(), this.props.singleComment.time)}</span>
                     <span className='SingleComment-likeNum'>{this.props.singleComment.like.length}次赞</span>
@@ -91,7 +91,7 @@ class SingleComment extends Component {
                           className='SingleComment-reply'>回复</span>
                 </div>
                 <span
-                    className={this.props.singleComment.like.find((item) => item === this.state.loginUser) === this.state.loginUser ? 'SingleComment-like' : 'SingleComment-unlike'}> </span>
+                    className={this.props.singleComment.like.findIndex((item) => item === this.state.loginUser) >=1? 'SingleComment-like' : 'SingleComment-unlike'}> </span>
                 <div onClick={this.showReply}
                      className={this.props.singleComment.reply.length >= 1 ? 'showReplyNum' : 'unshowReplyNum'}>
                     <span></span>{this.state.showReply !== 1 ? '查看回复' : '隐藏回复'}
@@ -165,9 +165,17 @@ class Comment extends Component {
                                   maxLength='256' value={this.state.text}
                                   onChange={(e) => this.changeText(e.target.value)}/>
                         <button
-                            onClick={this.state.replying === null ?
-                                () => {this.props.inputComment(this.state.postId, this.state.text, this.props.loginUser);this.cleatText()} :
-                                () => {this.props.replyComment(this.state.postId,this.state.commentId,this.props.loginUser,this.state.replying,this.state.text);this.cleatText()}}
+                            onClick={()=>{
+                                if (this.props.loginUser === undefined) {
+                                    jumpRoute()
+                                }else if (this.props.loginUser!==undefined&&this.state.replying === null) {
+                                    this.props.inputComment(this.state.postId, this.state.text, this.props.loginUser);
+                                    this.cleatText()
+                                }else {
+                                    this.props.replyComment(this.state.postId,this.state.commentId,this.props.loginUser,this.state.replying,this.state.text);
+                                    this.cleatText()
+                                }
+                            }}
                             type='submit'>发布
                         </button>
                     </from>
