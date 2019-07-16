@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import config from '../../config.js';
 import {Link, Route, withRouter} from "react-router-dom";
 import fetch from 'cross-fetch'
+import Cookies from 'js-cookie'
 import {timeDifferent} from "../../tool/tool";
 import {likeComment, replyComment, inputComment} from "../../home/Actions";
 import './comment.css'
@@ -90,7 +91,7 @@ class SingleComment extends Component {
                           className='SingleComment-reply'>回复</span>
                 </div>
                 <span
-                    className={this.props.singleComment.like.find((item) => item === this.state.loginUser.userId) === this.state.loginUser.userId ? 'SingleComment-like' : 'SingleComment-unlike'}> </span>
+                    className={this.props.singleComment.like.find((item) => item === this.state.loginUser) === this.state.loginUser ? 'SingleComment-like' : 'SingleComment-unlike'}> </span>
                 <div onClick={this.showReply}
                      className={this.props.singleComment.reply.length >= 1 ? 'showReplyNum' : 'unshowReplyNum'}>
                     <span></span>{this.state.showReply !== 1 ? '查看回复' : '隐藏回复'}
@@ -109,7 +110,7 @@ class Comment extends Component {
         super(...arguments);
         this.state = {
             postUserAvatar: 'defaultAvatar.png',
-            myAvatar: this.props.loginUser.avatar || 'defaultAvatar.png',
+            myAvatar: 'defaultAvatar.png',
             postId: this.props.match.params.paramName,
             commentId:'',
             replying: null,
@@ -165,8 +166,8 @@ class Comment extends Component {
                                   onChange={(e) => this.changeText(e.target.value)}/>
                         <button
                             onClick={this.state.replying === null ?
-                                () => {this.props.inputComment(this.state.postId, this.state.text, this.props.loginUser.userId);this.cleatText()} :
-                                () => {this.props.replyComment(this.state.postId,this.state.commentId,this.props.loginUser.userId,this.state.replying,this.state.text);this.cleatText()}}
+                                () => {this.props.inputComment(this.state.postId, this.state.text, this.props.loginUser);this.cleatText()} :
+                                () => {this.props.replyComment(this.state.postId,this.state.commentId,this.props.loginUser,this.state.replying,this.state.text);this.cleatText()}}
                             type='submit'>发布
                         </button>
                     </from>
@@ -194,7 +195,7 @@ class Comment extends Component {
 const mapStateToProps = (state) => {
     return {
         commentData: state.homeReducer,
-        loginUser: state.aboutMeReducer
+        loginUser:Cookies.get('u_id')
     }
 };
 

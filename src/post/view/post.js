@@ -17,15 +17,15 @@ const li = (data, loginUser, likeComment, postId) => {
                 <Link to={`/user/${data.userId}`} className='userid'>{data.userId} </Link>
                 <span className='comment-text'>{data.text}</span>
                 <span
-                    className={data.like.find((item) => item === loginUser.userId) === loginUser.userId ? 'unlike-reply' : 'like-reply'}> </span>
+                    className={data.like.findIndex((item) => item === loginUser) === loginUser ? 'unlike-reply' : 'like-reply'}> </span>
             </div>
             {/*<span className='likeLength'>{data.like.length}次赞</span><span className='reply'>回复</span>*/}
         </div>
     </li>
 };
-
+const jumpRoute=()=>window.location.pathname = '/login';
 const Post = (data, loginUser, likePost, collectionPost, likeComment) => {
-    let value = data.likeUser.find((item) => item === loginUser.userId) === loginUser.userId ? 1 : -1;
+    let value = data.likeUser.findIndex((item) => item === loginUser);
     let list = data.comment.length <= 0 ? '' : data.comment.map((item) => {
         return li(item, loginUser, likeComment, data.postId)
     });
@@ -41,13 +41,13 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment) => {
         </div>
         <div className='post-operating'>
             <div className='button'>
-                <span className={value === 1 ? 'like' : 'unlike'}
-                      onClick={() => likePost(data._id, loginUser.userId)}> </span>
+                <span className={value >=1 ? 'like' : 'unlike'}
+                      onClick={() =>{loginUser===undefined?jumpRoute():likePost(data._id, loginUser)}}> </span>
                 <Link to={`/comment/${data._id}`}><span className='comment'> </span></Link>
                 <span className='share'> </span>
                 <span
-                    className={data.CollectionUser.find((item) => item === loginUser.userId) === loginUser.userId ? 'collection' : 'unCollection'}
-                    onClick={() => collectionPost(data._id, loginUser.userId)}> </span>
+                    className={data.CollectionUser.findIndex((item) => item === loginUser)>=1? 'collection' : 'unCollection'}
+                    onClick={() => {loginUser===undefined?jumpRoute():collectionPost(data._id, loginUser)}}> </span>
             </div>
             <span className='likeNum'>{data.likeUser.length} 次赞</span>
             <div className='postText'>

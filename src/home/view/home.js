@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link, withRouter} from "react-router-dom";
 import {ReFresh,likePost,collectionPost,likeComment,requestPost} from "../Actions";
 import {view as Post} from '../../post';
+import Cookies from 'js-cookie';
 import './home.css';
 
 class Home extends Component {
@@ -27,7 +28,7 @@ const mapStateToProps = (state) => {
         list:state.headerReducer,
         postId:Object.keys(state.homeReducer),
         data:state.homeReducer,
-        loginUser:state.aboutMeReducer
+        loginUser:Cookies.get('u_id')
     }
 };
 const mapDispatchToProps = (dispatch)=>{

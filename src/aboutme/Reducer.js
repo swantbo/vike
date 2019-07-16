@@ -2,25 +2,9 @@ import * as ActionTypes from './ActionTypes.js';
 
 const aboutMe = {
     requesting: false,
-    dataState:1,
+    dataState:0,
     loginUserInfo:{
-        userName: 'vike',
-        userId: 'xwvike',
-        email: 'xwvike@gmail.com',
-        avatar: '26395177.jpeg',
-        Introduction: 'coding……💩 😺 😸 😹 😻 😼 😽 🙀 😿 😾',
-        website: 'www.xwvike.com',
-        gender: 1,
-        addTime: '20190217',
-        myPost: ['1', '2'],
-        myFens: ['admin'],
-        myFriends: ['admin'],
-        myCollection: ['3', '4'],
-        isActive: true,
-        isRecommend: true,
-        isPrivate: false,
-        avatarFloat: false,
-        aboutMeFloat: false,
+
     },
     avatarFloatTitle: '更改头像',
     avatarFloatText: ['上传头像', '移除当前头像', '取消'],

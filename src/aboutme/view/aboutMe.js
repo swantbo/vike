@@ -41,55 +41,57 @@ class AboutMe extends Component {
     render() {
         const {dataState, requesting, avatar, userId, website, Introduction, userName, myPost, myFens, myFriends, option} = this.props;
         let webUrl = 'http://' + website;
-        let categoryListArr = this.state.categoryName.map((item) => {
-            return categoryList(item === '帖子' ? myPost.length : item === '粉丝' ? myFens.length : myFriends.length, item)
-        });
+
+        let loading = (text) => <div className='aboutMe-loading'>
+            <div>{text}</div>
+        </div>
         let listIconArr = this.state.icon.map((item) => {
             return listIcon(item)
         });
         let setPage = this.state.setListUrl.map((item) => {
             return setList(item.url, item.text)
         });
-        let loading = (text) => <div className='aboutMe-loading'>
-            <div>{text}</div>
-        </div>
-        let aboutMe = option ? <div className='aboutMe_box'>
-            <div className='userInfo'>
-                <div className='avatar' onClick={this.onTest}>
-                    <img src={require('../../image/userAvatar/' + avatar)}/>
-                </div>
-                <div className='userId'>
-                    <h2>{userId}jyR</h2>
-                    <span></span>
-                </div>
-                <Link to='/edit'>
-                    <div className='button'>
-                        编辑主页
+        // let categoryListArr = ;
+        let aboutMe = dataState === 0 ? loading('数据加载中……') : dataState === -1 ? loading('数据请求错误！') : option ?
+            <div className='aboutMe_box'>
+                <div className='userInfo'>
+                    <div className='avatar' onClick={this.onTest}>
+                        <img src={require('../../image/userAvatar/' + avatar)}/>
                     </div>
-                </Link>
-                <div className='introduction'>
-                    <p className='username'>{userName}</p>
-                    <p>{Introduction}</p>
-                    <a target='_blank' href={webUrl}>{website}</a>
+                    <div className='userId'>
+                        <h2>{userId}jyR</h2>
+                        <span></span>
+                    </div>
+                    <Link to='/edit'>
+                        <div className='button'>
+                            编辑主页
+                        </div>
+                    </Link>
+                    <div className='introduction'>
+                        <p className='username'>{userName}</p>
+                        <p>{Introduction}</p>
+                        <a target='_blank' href={webUrl}>{website}</a>
+                    </div>
                 </div>
-            </div>
-            <div className='userPostAndFriends'>
-                {categoryListArr}
-            </div>
-            <div className='userPost'>
-                <div className='userPost_List'>
-                    {listIconArr}
+                <div className='userPostAndFriends'>
+                    {this.state.categoryName.map((item) => {
+                        return categoryList(item === '帖子' ? myPost.length : item === '粉丝' ? myFens.length : myFriends.length, item)
+                    })}
                 </div>
-                <div></div>
-            </div>
-        </div> : <div className='setPage'>
-            <div>账户</div>
-            <ul>
-                {setPage}
-            </ul>
-        </div>;
+                <div className='userPost'>
+                    <div className='userPost_List'>
+                        {listIconArr}
+                    </div>
+                    <div></div>
+                </div>
+            </div> : <div className='setPage'>
+                <div>账户</div>
+                <ul>
+                    {setPage}
+                </ul>
+            </div>;
         return (
-            requesting && dataState === 0 ? loading('数据加载中……') : !requesting && dataState === -1 ? loading('数据请求错误！') : aboutMe
+            aboutMe
         )
     }
 }
