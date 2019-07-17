@@ -5,6 +5,8 @@ import {
 } from "../Actions";
 import {Link, withRouter} from "react-router-dom";
 import './Edit.css'
+import config from '../../config.js';
+import {updateUserInfo} from '../Actions.js';
 
 class Edit extends Component {
     constructor() {
@@ -71,7 +73,10 @@ class Edit extends Component {
         let temp = this.state.isRecommend;
         this.setState({isRecommend: !temp});
     }
+    sub(){
+       this.props.updateUserInfo(this.state.userId, this.state.userName, this.state.email, this.state.Introduction, this.state.gender, this.state.isRecommend, this.state.website)
 
+    }
     // onTouchStart(e) {
     //     if (e.touches.length >= 2) {
     //         this.setState({isGesture: true});
@@ -121,7 +126,7 @@ class Edit extends Component {
             </div>
         };
         let data = [{text: '姓名', data: that.state.userName, event: that.onChangeUserName},
-            {text: '账号', data: that.state.userId, event: that.onChangeUserId},
+            // {text: '账号', data: that.state.userId, event: that.onChangeUserId},
             {text: '网站', data: that.state.website, event: that.onChangeWebsite},
             {text: '个人简介', data: that.state.Introduction, event: that.onChangeIntroduction},
             {text: '邮箱', data: that.state.email, event: that.onChangeEmail}];
@@ -143,7 +148,7 @@ class Edit extends Component {
             <div className='edit'>
                 <div className='changeAvatar'>
                     <div className='avatarBox'>
-                        <img src={require('../../image/userAvatar/' + that.state.avatar)} alt='avatar'/>
+                        <img src={`${config.url}image/${that.state.avatar}`} alt='avatar'/>
                     </div>
                     <div className='avatarChangeButton'>
                         <p>{that.state.userId}</p>
@@ -167,7 +172,9 @@ class Edit extends Component {
                     </div>
                 </div>
                 <div className='sub'>
-                    <div onClick={this.sub}>提交</div>
+                    <div
+                        onClick={this.sub}>提交
+                    </div>
                 </div>
             </div>
         )
@@ -186,6 +193,14 @@ const mapStateToProps = (state) => {
         isRecommend: state.aboutMeReducer.loginUserInfo.isRecommend,
     }
 };
-export default withRouter(connect(mapStateToProps, {
-    changeFloatInterFaceShow
-})(Edit));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateUserInfo: (userId, userName, email, introduction, gender, recommend, website) => {
+            dispatch(updateUserInfo(userId, userName, email, introduction, gender, recommend, website))
+        },
+        changeFloatInterFaceShow: () => {
+            dispatch(changeFloatInterFaceShow())
+        }
+    }
+};
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Edit));

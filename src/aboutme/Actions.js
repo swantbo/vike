@@ -33,6 +33,35 @@ export const requestLoginUserInfo = (name) => {
     };
 };
 
+function updateUserInfoStart() {
+    return{
+        type:ActionTypes.UPDATE_USER_INFO
+    }
+}
+function updateUserInfoSuccess(data) {
+    return{
+        type:ActionTypes.UPDATE_USER_INFO_SUCCESS,
+        payload:{data:data}
+    }
+}
+function updateUserInfoFailure() {
+    return{
+        type:ActionTypes.UPDATE_USER_INFO_FAILURE
+    }
+}
+
+export const updateUserInfo = (userId,userName,email,introduction,gender,recommend,website)=>{
+    return dispatch =>{
+        dispatch(updateUserInfoStart());
+        return fetch(`${config.url}updateUserInfo`,{
+            method: 'POST',
+            body:JSON.stringify({userId,userName,email,introduction,gender,recommend,website})
+        }).then(res=>res.json()).then(json=>{dispatch(updateUserInfoSuccess(json))}).catch(
+            error=>dispatch(updateUserInfoFailure())
+        )
+    }
+}
+
 export const changeFloatInterFaceShow = () => ({
     type: ActionTypes.ABOUTME_CHANGE_FLOATINTERFACE_SHOW
 });

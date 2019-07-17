@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Cookies from 'js-cookie';
 import {Link, withRouter} from "react-router-dom";
+import config from '../../config.js';
+import {requestLoginUserInfo} from '../Actions.js';
 import './aboutMe.css';
 
 const categoryList = (num, text) => {
@@ -36,10 +38,10 @@ class AboutMe extends Component {
     }
 
     // componentDidMount() {
-    //     this.props.requestTest('vike')
+    //     this.props.requestLoginUserInfo(Cookies.get('u_id'))
     // }
     render() {
-        const {dataState, requesting, avatar, userId, website, Introduction, userName, myPost, myFens, myFriends, option} = this.props;
+        const {dataState, requesting, avatar, userId, website, Introduction, userName, posts, myFens, myFriends, option} = this.props;
         let webUrl = 'http://' + website;
 
         let loading = (text) => <div className='aboutMe-loading'>
@@ -56,10 +58,10 @@ class AboutMe extends Component {
             <div className='aboutMe_box'>
                 <div className='userInfo'>
                     <div className='avatar' onClick={this.onTest}>
-                        <img src={require('../../image/userAvatar/' + avatar)}/>
+                        <img src={`${config.url}image/${avatar}`}/>
                     </div>
                     <div className='userId'>
-                        <h2>{userId}jyR</h2>
+                        <h2>{userName}</h2>
                         <span></span>
                     </div>
                     <Link to='/edit'>
@@ -68,14 +70,14 @@ class AboutMe extends Component {
                         </div>
                     </Link>
                     <div className='introduction'>
-                        <p className='username'>{userName}</p>
+                        <p className='username'>{userId}</p>
                         <p>{Introduction}</p>
                         <a target='_blank' href={webUrl}>{website}</a>
                     </div>
                 </div>
                 <div className='userPostAndFriends'>
                     {this.state.categoryName.map((item) => {
-                        return categoryList(item === '帖子' ? myPost.length : item === '粉丝' ? myFens.length : myFriends.length, item)
+                        return categoryList(item === '帖子' ? posts.length : item === '粉丝' ? myFens.length : myFriends.length, item)
                     })}
                 </div>
                 <div className='userPost'>
@@ -97,7 +99,6 @@ class AboutMe extends Component {
 }
 
 const mapStateToProps = (state) => {
-    // console.log(state.aboutMeReducer);
     return {
         requesting: state.aboutMeReducer.requesting,
         userName: state.aboutMeReducer.loginUserInfo.userName,
@@ -108,7 +109,7 @@ const mapStateToProps = (state) => {
         website: state.aboutMeReducer.loginUserInfo.website,
         gender: state.aboutMeReducer.loginUserInfo.gender,
         addTime: state.aboutMeReducer.loginUserInfo.addTime,
-        myPost: state.aboutMeReducer.loginUserInfo.myPost,
+        posts: state.aboutMeReducer.loginUserInfo.posts,
         myFens: state.aboutMeReducer.loginUserInfo.myFens,
         myFriends: state.aboutMeReducer.loginUserInfo.myFriends,
         isActive: state.aboutMeReducer.loginUserInfo.isActive,
@@ -121,8 +122,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        requestTest: (name) => {
-            dispatch()
+        requestLoginUserInfo: (name) => {
+            dispatch(requestLoginUserInfo(name))
         }
     }
 };

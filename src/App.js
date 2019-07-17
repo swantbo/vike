@@ -12,6 +12,8 @@ import SearchTest from './test/testsearch.js';
 import ResultTest from './test/result.js';
 import {view as FloatInterface} from './floatInterface';
 import {changeAvatar} from './aboutme';
+import {requestLoginUserInfo} from './aboutme/Actions.js';
+import Cookies from 'js-cookie';
 import './App.css';
 
 class App extends Component {
@@ -19,6 +21,9 @@ class App extends Component {
         super(...arguments)
     }
     render() {
+        if (window.location.pathname === '/aboutme') {
+            this.props.requestLoginUserInfo(Cookies.get('u_id'))
+        }
         let {avatarFloat,aboutMeFloat} = this.props;
         const temp = () => <h2>temp</h2>;
         return (
@@ -47,10 +52,16 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-
     return{
         avatarFloat:state.aboutMeReducer.avatarFloat,
         aboutMeFloat:state.aboutMeReducer.aboutMeFloat,
     }
 };
-export default withRouter(connect(mapStateToProps, {})(App))
+const mapDispatchToProps =(dispatch)=>{
+    return{
+        requestLoginUserInfo:(name)=>{
+            dispatch(requestLoginUserInfo(name))
+        }
+    }
+}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

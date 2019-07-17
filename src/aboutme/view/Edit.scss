@@ -59,6 +59,7 @@
     }
 
     textarea {
+      resize: none;
       //font-weight: bold;
       font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
       margin-top: vw(10);
@@ -89,6 +90,7 @@
     select{
       background: #ffffff;
       margin-top: vw(10);
+      font-size: vw(35);
       border: 1px solid rgba(0, 0, 0, 0.17);
       width: vw(300);
       border-radius: vw(10);
@@ -109,6 +111,8 @@
       input{
         position: absolute;
         top: vw(100);
+        width: vw(50);
+        height: vw(50);
         left:vw(30);
       }
       div{
