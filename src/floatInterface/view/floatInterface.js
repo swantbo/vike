@@ -2,12 +2,16 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link, withRouter} from "react-router-dom";
 import {changeFloatInterFaceClose} from "../../aboutme/Actions";
+import {addFiles} from "../../imageCrop";
 import './floatInterface.css'
+import Login from "../../login/view/Login";
 
 class FloatInterface extends Component {
     constructor() {
         super(...arguments);
     }
+
+
 
     render() {
         let {aboutMeFloat, aboutMeFloatTitle, aboutMeFloatText, avatarFloat, avatarFloatTitle, avatarFloatText, changeFloatInterFaceClose} = this.props;

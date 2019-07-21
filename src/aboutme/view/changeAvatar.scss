@@ -1,8 +1,72 @@
 @function vw($px) {
   @return (($px/2)/540)*100vw
 }
-.changeAvatar{
+
+.changeAvatar {
   width: 100vw;
   margin-top: vw(125);
   position: relative;
+
+  .imageCrop {
+    width: 100vw;
+    height: 100vw;
+    overflow: hidden;
+    background: #eaeaea;
+    .imageCrop-line {
+      position: absolute;
+
+      span {
+        display: inline-block;
+        background: #696969;
+        position: absolute;
+      }
+
+      .imageCrop-up {
+        width: 100vw;
+        top: 33vw;
+        height: 1px;
+      }
+
+      .imageCrop-down {
+        width: 100vw;
+        bottom: -67vw;
+        height: 1px;
+      }
+
+      .imageCrop-left {
+        width: 1px;
+        height: 100vw;
+        left: 33vw;
+      }
+
+      .imageCrop-right {
+        width: 1px;
+        height: 100vw;
+        right: -67vw;
+      }
+    }
+    .imageCrop-back{
+      top: 0;
+      width: 100vw;
+      height: 100vw;
+      position: absolute;
+      background: url("../../image/back.png") no-repeat;
+    }
+  }
+  .imageCrop-label{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: vw(300);
+    height: vw(300);
+    background:url("../../image/icon.png") no-repeat;
+    background-size: vw(1000*3);
+    background-position-x: vw(-77*3);
+    background-position-y: vw(-1035*3);
+    input{
+      opacity: 0;
+    }
+  }
 }

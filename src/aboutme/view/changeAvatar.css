@@ -3,5 +3,62 @@
   margin-top: 11.5740740741vw;
   position: relative;
 }
+.changeAvatar .imageCrop {
+  width: 100vw;
+  height: 100vw;
+  overflow: hidden;
+  background: #eaeaea;
+}
+.changeAvatar .imageCrop .imageCrop-line {
+  position: absolute;
+}
+.changeAvatar .imageCrop .imageCrop-line span {
+  display: inline-block;
+  background: #696969;
+  position: absolute;
+}
+.changeAvatar .imageCrop .imageCrop-line .imageCrop-up {
+  width: 100vw;
+  top: 33vw;
+  height: 1px;
+}
+.changeAvatar .imageCrop .imageCrop-line .imageCrop-down {
+  width: 100vw;
+  bottom: -67vw;
+  height: 1px;
+}
+.changeAvatar .imageCrop .imageCrop-line .imageCrop-left {
+  width: 1px;
+  height: 100vw;
+  left: 33vw;
+}
+.changeAvatar .imageCrop .imageCrop-line .imageCrop-right {
+  width: 1px;
+  height: 100vw;
+  right: -67vw;
+}
+.changeAvatar .imageCrop .imageCrop-back {
+  top: 0;
+  width: 100vw;
+  height: 100vw;
+  position: absolute;
+  background: url("../../image/back.png") no-repeat;
+}
+.changeAvatar .imageCrop-label {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 27.7777777778vw;
+  height: 27.7777777778vw;
+  background: url("../../image/icon.png") no-repeat;
+  background-size: 277.7777777778vw;
+  background-position-x: -21.3888888889vw;
+  background-position-y: -287.5vw;
+}
+.changeAvatar .imageCrop-label input {
+  opacity: 0;
+}
 
 /*# sourceMappingURL=changeAvatar.css.map */

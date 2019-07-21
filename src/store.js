@@ -3,6 +3,7 @@ import thunkMiddleware from 'redux-thunk';
 import {aboutMeReducer} from './aboutme';
 import {loginReducer} from './login'
 import {dynamicReducer} from './dynamic';
+// import {imageCropReducer} from './imageCrop'
 import {headerReducer} from './header';
 import {homeReducer} from './home';
 // import {postReducer} from './post';
@@ -17,7 +18,8 @@ const store = createStore(combineReducers({
     homeReducer,
     loginReducer,
     sendPostReducer,
-    footerReducer
+    footerReducer,
+    // imageCropReducer
 }),applyMiddleware(thunkMiddleware));
 
 export default store;

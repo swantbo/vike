@@ -1,0 +1,14 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+
+//.imageCrop{
+//  width: 100vw;
+//  height: 100vw;
+//  background: #4dceff;
+//  position: relative;
+//  .imageCrop-canvas{
+//    width: 100vw;
+//    height: 100vw;
+//  }
+//}
