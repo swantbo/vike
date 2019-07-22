@@ -2,13 +2,13 @@ import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunkMiddleware from 'redux-thunk';
 import {aboutMeReducer} from './aboutme';
 import {loginReducer} from './login'
+import {sendPostReducer} from './sendpost';
 import {dynamicReducer} from './dynamic';
 // import {imageCropReducer} from './imageCrop'
 import {headerReducer} from './header';
 import {homeReducer} from './home';
 // import {postReducer} from './post';
 // import {searchReducer} from './post';
-import {sendPostReducer} from './sendpost';
 import {footerReducer} from './footer';
 
 const store = createStore(combineReducers({

@@ -22,7 +22,7 @@ class Footer extends Component {
                 index === 0 ?
                     url = '/' : index === 1 ?
                     url = '/search' : index === 2 && Cookies.get('u_id') !== undefined ?
-                        url = '/' : index === 3 && Cookies.get('u_id') !== undefined ?
+                        url = '/sendPost' : index === 3 && Cookies.get('u_id') !== undefined ?
                             url = '/dynamic' : index === 4 && Cookies.get('u_id') !== undefined ?
                                 url = '/aboutme' : url = '/login';
                 if (index === that.props.id) {

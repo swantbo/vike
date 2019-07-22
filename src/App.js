@@ -9,6 +9,7 @@ import {view as Login} from './login';
 import {Comment} from './post'
 import {view as Home} from './home'
 import SearchTest from './test/testsearch.js';
+import {view as SendPost} from './sendpost';
 import ResultTest from './test/result.js';
 import {view as FloatInterface} from './floatInterface';
 import {changeAvatar} from './aboutme';
@@ -38,6 +39,7 @@ class App extends Component {
                     <Route path='/aboutme' component={AboutMe}/>
                     <Route path='/edit' component={edit}/>
                     <Route path='/us' component={temp}/>
+                    <Route path='/sendPost' component={SendPost}/>
                     <Route path='changePassword' component={temp}/>
                     <Route path='/privacy_and_security' component={temp}/>
                     <Route path='/help' component={temp}/>

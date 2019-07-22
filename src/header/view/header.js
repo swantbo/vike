@@ -5,6 +5,7 @@ import {Link, withRouter} from "react-router-dom";
 import {updateUserAvatar} from "../../aboutme/Actions";
 import './header.css';
 import Cookies from 'js-cookie';
+import {changeStatus, sendPost, updateImage} from "../../sendpost/Actions";
 import {collectionPost, likeComment, likePost} from "../../home/Actions";
 
 class Header extends Component {
@@ -17,7 +18,8 @@ class Header extends Component {
                 '/privacy_and_security': '隐私和安全',
                 '/help': '帮助中心',
                 '/us': '关于我们',
-                '/login':'注册或登录',
+                '/login': '注册或登录',
+                '/sendPost': '发帖',
                 '': '退出',
             }
         };
@@ -80,8 +82,22 @@ class Header extends Component {
                 </div>
             </Link>
         </div>;
-        let changeAvatar = <div className='header-changeAvatar'><span onClick={this.historyBack}></span>上传头像<p onClick={()=>this.props.updateUserAvatar(this.props.tempImage,Cookies.get('u_id'))}>保存</p>
+        let changeAvatar = <div className='header-changeAvatar'><span onClick={this.historyBack}></span>上传头像<p
+            onClick={() => this.props.updateUserAvatar(this.props.tempImage, Cookies.get('u_id'))}>保存</p>
         </div>;
+
+        let sendPost = <div className='header-sendPost'>
+            <span onClick={this.historyBack}></span>
+            {this.props.sendStatus === 0 ? '上传图片' : '发送动态'}
+            <p onClick={()=>{
+                if (this.props.sendStatus === 0) {
+                    this.props.changeStatus()
+                }else if (this.props.sendStatus === 1) {
+
+                }
+            }}>{this.props.sendStatus === 0 ? '下一步' : '发送'}</p>
+        </div>
+
         let dynamic = <div className='header-dynamic'>动态</div>;
         let comment = <div className='header-comment'><span onClick={this.historyBack}> </span>评论</div>;
         let aboutme = <div className='header-five'>
@@ -113,7 +129,8 @@ const mapStateToProps = (state) => {
     return {
         option: state.headerReducer.isShowOptions,
         name: state.headerReducer.name,
-        tempImage:state.aboutMeReducer.tempImage
+        tempImage: state.aboutMeReducer.tempImage,
+        sendStatus: state.sendPostReducer.sendStatus
     }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -130,9 +147,15 @@ const mapDispatchToProps = (dispatch) => {
         ChangeOptions: () => {
             dispatch(ChangeOptions())
         },
-        updateUserAvatar:(file)=>{
-            dispatch(updateUserAvatar(file))
-        }
+        updateUserAvatar: (file, userId) => {
+            dispatch(updateUserAvatar(file, userId))
+        },
+        changeStatus: () => {
+            dispatch(changeStatus())
+        },
+        sendPost: (userId, text, file, label) => {
+            dispatch(sendPost(userId, text, file, label))
+        },
     }
 };
-export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))

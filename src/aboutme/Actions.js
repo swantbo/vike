@@ -20,8 +20,6 @@ function base64ToBlob(urlData) {
         type: mime
     });
 }
-
-
 function requestGet(name) {
     return {
         type: ActionTypes.LOGIN_GET_REQUEST,
@@ -100,7 +98,6 @@ function updateUserAvatarFailure() {
 }
 
 export const updateUserAvatar = (file,userId)=>{
-    console.log(userId);
     let newFile = new File([base64ToBlob(file)],userId+'.jpg',{type:'image/jpeg'});
     return dispatch=>{
         dispatch(updateUserAvatarStart());
