@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
+import {saveImg} from "../Actions";
 import {withRouter, Link} from "react-router-dom";
 // import {addFiles, view as ImageCrop} from '../../imageCrop';
 import './changeAvatar.css';
@@ -9,6 +10,7 @@ class ChangeAvatar extends Component {
         super(...arguments);
         this.input = React.createRef();
         this.box = React.createRef();
+        this.canvas = React.createRef();
         this.state = {
             fileType: '',
             img: '',
@@ -59,8 +61,9 @@ class ChangeAvatar extends Component {
                     0:this.state.sy + (Number(touch.pageY) - this.state.startY)>=this.state.imgHeight*this.state.scale-this.state.devWidth?
                         this.state.imgHeight*this.state.scale-this.state.devWidth:this.state.sy + (Number(touch.pageY) - this.state.startY)
             });
-            console.log(this.state.sx);
-            console.log(this.state.sy);
+            console.log(this.state.sx + (Number(touch.pageX) - this.state.startX));
+
+            // this.setState({moveX:Number(touch.pageX),moveY:Number(touch.pageY)});
             let {img, sx, sy, cropW, cropH, dx, dy, dw, dh, ctx} = this.state;
             ctx.clearRect(0, 0, this.state.devWidth, this.state.devWidth);
             ctx.drawImage(img, sx, sy, cropW, cropH, dx, dy, dw, dh);
@@ -118,7 +121,7 @@ class ChangeAvatar extends Component {
                         sx: ((Width * temp / 2) - (this.state.devWidth / 2)) / temp,
                         cropW: imgHeight,
                         cropH: imgHeight,
-                        scale: temp2
+                        scale: temp
                     });
                     console.log(this.state.moveX);
                     imgWidth = imgHeight;
@@ -126,7 +129,8 @@ class ChangeAvatar extends Component {
 
 
                 ctx.clearRect(0, 0, this.state.devWidth, this.state.devWidth);
-                ctx.drawImage(img, sx, sy, imgWidth, imgHeight, dx, dy, dw, dh)
+                ctx.drawImage(img, sx, sy, imgWidth, imgHeight, dx, dy, dw, dh);
+                this.props.saveImg(this.canvas.current.toDataURL('image'));
             }
         };
         reader.readAsDataURL(file);
@@ -136,8 +140,7 @@ class ChangeAvatar extends Component {
 
         return (
             <div className='changeAvatar'>
-
-                <div {...this.imgMove} ref={this.box} className='imageCrop'>
+                <div  ref={this.box} className='imageCrop'>
                     <div style={this.state.show === 1 ? {display: 'none'} : {display: 'block'}}
                          className='imageCrop-line'>
                         <span className='imageCrop-up'></span>
@@ -151,10 +154,9 @@ class ChangeAvatar extends Component {
 
                 <label style={this.state.show === 1 ? {display: 'block'} : {display: 'none'}}
                        className='imageCrop-label'>
-                    <input onClick={this.changeShow} className='inputImage' onChange={this.inputFile} type='file'/>
+                    <input onClick={this.changeShow} className='inputImage' onChange={this.inputFile} type='file' accept='image/jpeg,image/png'/>
                     <span>选择图片</span>
                 </label>
-                <div>{this.state.moveX}:{this.state.moveY}</div>
             </div>
         )
     }
@@ -164,4 +166,4 @@ const mapStateToProps = (state) => {
     return {}
 };
 
-export default withRouter(connect(mapStateToProps, {})(ChangeAvatar))
+export default withRouter(connect(mapStateToProps, {saveImg})(ChangeAvatar))

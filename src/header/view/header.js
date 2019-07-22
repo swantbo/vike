@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {UserNameNull, SendUserName, ChangeOptions, requestId} from "../Actions";
 import {Link, withRouter} from "react-router-dom";
+import {updateUserAvatar} from "../../aboutme/Actions";
 import './header.css';
 import Cookies from 'js-cookie';
 import {collectionPost, likeComment, likePost} from "../../home/Actions";
@@ -49,6 +50,7 @@ class Header extends Component {
     }
 
     render() {
+        console.log(Cookies.get('u_id'));
         let {name, UserNameNull, SendUserName, option, ChangeOptions} = this.props;
         let path = window.location.pathname;
         let logo = <div className='header-home'>
@@ -78,7 +80,7 @@ class Header extends Component {
                 </div>
             </Link>
         </div>;
-        let changeAvatar = <div className='header-changeAvatar'><span onClick={this.historyBack}></span>上传头像<p>保存</p>
+        let changeAvatar = <div className='header-changeAvatar'><span onClick={this.historyBack}></span>上传头像<p onClick={()=>this.props.updateUserAvatar(this.props.tempImage,Cookies.get('u_id'))}>保存</p>
         </div>;
         let dynamic = <div className='header-dynamic'>动态</div>;
         let comment = <div className='header-comment'><span onClick={this.historyBack}> </span>评论</div>;
@@ -111,6 +113,7 @@ const mapStateToProps = (state) => {
     return {
         option: state.headerReducer.isShowOptions,
         name: state.headerReducer.name,
+        tempImage:state.aboutMeReducer.tempImage
     }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -126,6 +129,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         ChangeOptions: () => {
             dispatch(ChangeOptions())
+        },
+        updateUserAvatar:(file)=>{
+            dispatch(updateUserAvatar(file))
         }
     }
 };

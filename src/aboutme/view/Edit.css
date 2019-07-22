@@ -4,6 +4,7 @@
   position: relative;
 }
 .edit .changeAvatar {
+  position: relative;
   width: 100vw;
   height: 15.7407407407vw;
   overflow: hidden;

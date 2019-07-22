@@ -8,7 +8,8 @@ const aboutMe = {
     avatarFloatTitle: '更改头像',
     avatarFloatText: ['上传头像', '移除当前头像', '取消'],
     aboutMeFloatTitle: '',
-    aboutMeFloatText: ['举报', '拉黑', '取消']
+    aboutMeFloatText: ['举报', '拉黑', '取消'],
+    tempImage:''
 
 };
 
@@ -17,7 +18,14 @@ export default function (state = aboutMe, action) {
         default: {
             return state
         }
+        case ActionTypes.SAVE_IMG:{
+            const {img} = action.payload;
+            return {
+                ...state,
+                tempImage:img
 
+            }
+        }
         //请求用户数据
         case ActionTypes.LOGIN_GET_REQUEST: {
             return {
@@ -40,6 +48,18 @@ export default function (state = aboutMe, action) {
                 loginUserInfo: {...data},
                 requesting: false,
                 dataState: 1
+            }
+        }
+        //上传头像
+        case ActionTypes.UPDATE_USER_AVATAR:{
+            return state
+        }
+        case ActionTypes.UPDATE_USER_AVATAR_SUCCESS:{
+            const {data} = action.payload.data;
+            return {
+                ...state,
+                loginUserInfo:{...data},
+
             }
         }
         //更新用户数据
