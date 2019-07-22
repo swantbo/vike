@@ -4,8 +4,10 @@
 
 .changeAvatar {
   width: 100vw;
+  height: 100%;
+  overflow: hidden;
   margin-top: vw(125);
-  position: relative;
+  position:fixed;
 
   .imageCrop {
     width: 100vw;
@@ -17,7 +19,7 @@
 
       span {
         display: inline-block;
-        background: #696969;
+        background: #cfcfcf;
         position: absolute;
       }
 
@@ -51,22 +53,32 @@
       height: 100vw;
       position: absolute;
       background: url("../../image/back.png") no-repeat;
+      background-size: 100vw;
     }
   }
   .imageCrop-label{
     display: inline-block;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    width: vw(300);
-    height: vw(300);
-    background:url("../../image/icon.png") no-repeat;
-    background-size: vw(1000*3);
-    background-position-x: vw(-77*3);
-    background-position-y: vw(-1035*3);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vw;
+    background:url("../../image/addImage.png") no-repeat;
+    background-position-x:50%;
+    background-position-y:50% ;
     input{
       opacity: 0;
+    }
+    span{
+      position: absolute;
+      left: 50%;
+      top: 60%;
+      transform: translateX(-50%);
+      display: inline-block;
+      font-size: vw(40);
+      font-weight: 600;
+      color: #99a2aa;
+
     }
   }
 }

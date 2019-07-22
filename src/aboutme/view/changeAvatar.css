@@ -1,7 +1,9 @@
 .changeAvatar {
   width: 100vw;
+  height: 100%;
+  overflow: hidden;
   margin-top: 11.5740740741vw;
-  position: relative;
+  position: fixed;
 }
 .changeAvatar .imageCrop {
   width: 100vw;
@@ -14,7 +16,7 @@
 }
 .changeAvatar .imageCrop .imageCrop-line span {
   display: inline-block;
-  background: #696969;
+  background: #cfcfcf;
   position: absolute;
 }
 .changeAvatar .imageCrop .imageCrop-line .imageCrop-up {
@@ -43,22 +45,31 @@
   height: 100vw;
   position: absolute;
   background: url("../../image/back.png") no-repeat;
+  background-size: 100vw;
 }
 .changeAvatar .imageCrop-label {
   display: inline-block;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  width: 27.7777777778vw;
-  height: 27.7777777778vw;
-  background: url("../../image/icon.png") no-repeat;
-  background-size: 277.7777777778vw;
-  background-position-x: -21.3888888889vw;
-  background-position-y: -287.5vw;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vw;
+  background: url("../../image/addImage.png") no-repeat;
+  background-position-x: 50%;
+  background-position-y: 50%;
 }
 .changeAvatar .imageCrop-label input {
   opacity: 0;
+}
+.changeAvatar .imageCrop-label span {
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translateX(-50%);
+  display: inline-block;
+  font-size: 3.7037037037vw;
+  font-weight: 600;
+  color: #99a2aa;
 }
 
 /*# sourceMappingURL=changeAvatar.css.map */

@@ -78,7 +78,7 @@ class Header extends Component {
                 </div>
             </Link>
         </div>;
-        let changeAvatar = <div className='header-changeAvatar'><span onClick={this.historyBack}></span>头像<p>保存</p>
+        let changeAvatar = <div className='header-changeAvatar'><span onClick={this.historyBack}></span>上传头像<p>保存</p>
         </div>;
         let dynamic = <div className='header-dynamic'>动态</div>;
         let comment = <div className='header-comment'><span onClick={this.historyBack}> </span>评论</div>;
