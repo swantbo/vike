@@ -5,7 +5,7 @@ import {Link, withRouter} from "react-router-dom";
 import {updateUserAvatar} from "../../aboutme/Actions";
 import './header.css';
 import Cookies from 'js-cookie';
-import {changeStatus, sendPost, updateImage} from "../../sendpost/Actions";
+import {changeStatus, sendPost,dataClear} from "../../sendpost/Actions";
 import {collectionPost, likeComment, likePost} from "../../home/Actions";
 
 class Header extends Component {
@@ -52,7 +52,6 @@ class Header extends Component {
     }
 
     render() {
-        console.log(Cookies.get('u_id'));
         let {name, UserNameNull, SendUserName, option, ChangeOptions} = this.props;
         let path = window.location.pathname;
         let logo = <div className='header-home'>
@@ -87,13 +86,13 @@ class Header extends Component {
         </div>;
 
         let sendPost = <div className='header-sendPost'>
-            <span onClick={this.historyBack}></span>
+            <span onClick={()=>{this.historyBack();this.props.dataClear()}}></span>
             {this.props.sendStatus === 0 ? '上传图片' : '发送动态'}
             <p onClick={()=>{
                 if (this.props.sendStatus === 0) {
                     this.props.changeStatus()
                 }else if (this.props.sendStatus === 1) {
-
+                    this.props.sendPost(Cookies.get('u_id'), this.props.text, this.props.tempImage, this.props.label)
                 }
             }}>{this.props.sendStatus === 0 ? '下一步' : '发送'}</p>
         </div>
@@ -109,7 +108,8 @@ class Header extends Component {
         const tips = (text) => <div className='header-tips'><span onClick={this.historyBack}> </span>{text}</div>;
         let header = <div className='header'>
             {path.match(/\/comment/) !== null ?
-                comment : path === '/changeAvatar' ?
+                comment : path==='/sendPost'?
+                sendPost:path === '/changeAvatar' ?
                     changeAvatar : path === '/' ?
                         logo : path === '/search' ?
                             search : path === '/result' ?
@@ -130,7 +130,9 @@ const mapStateToProps = (state) => {
         option: state.headerReducer.isShowOptions,
         name: state.headerReducer.name,
         tempImage: state.aboutMeReducer.tempImage,
-        sendStatus: state.sendPostReducer.sendStatus
+        sendStatus: state.sendPostReducer.sendStatus,
+        text:state.sendPostReducer.text,
+        label:state.sendPostReducer.label
     }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -156,6 +158,9 @@ const mapDispatchToProps = (dispatch) => {
         sendPost: (userId, text, file, label) => {
             dispatch(sendPost(userId, text, file, label))
         },
+        dataClear:()=>{
+            dispatch(dataClear())
+        }
     }
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))

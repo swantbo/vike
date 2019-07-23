@@ -5,3 +5,9 @@ export const SEND_POST_FAILURE = 'SEND_POST_FAILURE';
 export const UPDATE_IMG = 'UPDATE_IMG';
 
 export const CHANGE_STATUS = 'CHANGE_STATUS';
+
+export const CHANGE_TEXT = 'CHANGE_TEXT';
+
+export const ADD_LABEL = 'ADD_LABEL';
+
+export const DATA_CLEAR = 'DATA_CLEAR';

@@ -1,0 +1,60 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+.sendPost-page{
+  width: 100vw;
+  height: 100%;
+  //background: black;
+  overflow: hidden;
+  margin-top: vw(125);
+  position:fixed;
+  .sendPost-upIMG{
+    width: 100vw;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    .changeSize{
+      width: vw(100);
+      height: vw(100);
+      display: inline-block;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 105vw;
+      border-radius: 50%;
+      background: url("../../image/ad1ddfdf73c7.png");
+      background-size: vw(178*1.6);
+      background-position-x:vw(-117*1.6) ;
+      background-position-y: 0;
+    }
+    .sendPost-upIMG-box{
+      position: absolute;
+      width: 100vw;
+      height: 100vw;
+      background: #eaeaea;
+    }
+    label{
+      position: absolute;
+      display: inline-block;
+      width: 100vw;
+      height: 100vw;
+      background: #4dceff;
+      background:url("../../image/addImage.png") no-repeat;
+      background-position-x:50%;
+      background-position-y:50% ;
+      input{
+        opacity: 0;
+      }
+      span{
+        position: absolute;
+        left: 50%;
+        top: 60%;
+        transform: translateX(-50%);
+        display: inline-block;
+        font-size: vw(40);
+        font-weight: 600;
+        color: #99a2aa;
+      }
+    }
+  }
+}

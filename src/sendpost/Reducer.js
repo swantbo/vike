@@ -1,7 +1,8 @@
 import * as ActionTypes from './ActionTypes.js';
 
 const sendPost = {
-    post:{},
+    text:'',
+    label:[],
     img:'',
     message:'',
     sendStatus:0,
@@ -22,6 +23,30 @@ export default function (state = sendPost, action) {
             return {
                 ...state,
                 sendStatus:1
+            }
+        }
+        case ActionTypes.CHANGE_TEXT:{
+            const {text} = action.payload.text;
+            return {
+                ...state,
+                text:text
+            }
+        }
+        case ActionTypes.ADD_LABEL:{
+            const {label} = action.payload.label;
+            return {
+                ...state,
+                label:[...label,label]
+            }
+        }
+        case ActionTypes.DATA_CLEAR:{
+            return {
+                ...state,
+                text:'',
+                label:[],
+                img:'',
+                sendStatus:0,
+                message:''
             }
         }
         case ActionTypes.SEND_POST_SUCCESS:{

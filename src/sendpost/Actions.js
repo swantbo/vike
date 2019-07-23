@@ -63,3 +63,20 @@ export const changeStatus = ()=>{
         type:ActionTypes.CHANGE_STATUS
     }
 };
+export const changeText = (text)=>{
+    return{
+        type:ActionTypes.CHANGE_TEXT,
+        payload:{text:text}
+    }
+};
+export const addLabel = (label)=>{
+    return{
+        type:ActionTypes.ADD_LABEL,
+        payload:{label:label}
+    }
+};
+export const dataClear=()=>{
+    return{
+        type:ActionTypes.DATA_CLEAR
+    }
+}

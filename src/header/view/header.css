@@ -44,6 +44,34 @@
   top: 0;
   color: #3c9cff;
 }
+.header .header-sendPost {
+  width: 100vw;
+  height: 11.5740740741vw;
+  position: absolute;
+  text-align: center;
+  line-height: 11.5740740741vw;
+  font-weight: bold;
+  font-size: 3.9814814815vw;
+}
+.header .header-sendPost span {
+  position: absolute;
+  left: 3.7037037037vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4.6296296296vw;
+  height: 4.6296296296vw;
+  display: inline-block;
+  background: url("../../image/923d425c0489.png");
+  background-size: 57.7777777778vw;
+  background-position-x: -52.7777777778vw;
+  background-position-y: -11.4444444444vw;
+}
+.header .header-sendPost p {
+  position: absolute;
+  right: 3.7037037037vw;
+  top: 0;
+  color: #3c9cff;
+}
 .header .header-tips {
   position: absolute;
   width: 100vw;

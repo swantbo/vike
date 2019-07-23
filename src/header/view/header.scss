@@ -47,6 +47,34 @@
       color: #3c9cff;
     }
   }
+  .header-sendPost{
+    width: 100vw;
+    height: vw(125);
+    position: absolute;
+    text-align: center;
+    line-height: vw(125);
+    font-weight: bold;
+    font-size: vw(43);
+    span{
+      position: absolute;
+      left: vw(40);
+      top: 50%;
+      transform: translateY(-50%);
+      width: vw(50);
+      height: vw(50);
+      display: inline-block;
+      background: url("../../image/923d425c0489.png");
+      background-size: vw(520*1.2);
+      background-position-x: vw(-475*1.2);
+      background-position-y: vw(-103*1.2);
+    }
+    p{
+      position: absolute;
+      right: vw(40);
+      top: 0;
+      color: #3c9cff;
+    }
+  }
   .header-tips{
     position: absolute;
     width: 100vw;
