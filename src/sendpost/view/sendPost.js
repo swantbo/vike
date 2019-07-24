@@ -25,7 +25,6 @@ class SendPost extends Component {
             dy: 0,
             dw: 0,
             dh: 0,
-
             startX: 0,
             startY: 0,
             moveX: 0,
@@ -45,38 +44,12 @@ class SendPost extends Component {
 
     changeSize() {
         const {ctx, img, sx, sy, cropW, cropH, devWidth, imgWidth, imgHeight, dx, dy, dw, dh, size} = this.state;
-
+        console.log(size);
         this.setState({size: this.state.size * -1});
         if (size === 1) {
-            console.log(1);
-            let temp, Width, Height, sx2, sy2;
-            if (imgWidth > imgHeight) {
-                temp = devWidth / imgHeight;
-                Width = imgHeight;
-                Height = imgHeight;
-                sx2 = ((imgWidth * temp / 2) - (devWidth / 2)) / temp;
-                // this.setState({
-                //     sx: ((imgWidth * temp / 2) - (this.state.devWidth / 2)) / temp,
-                //     cropW: Width,
-                //     cropH: Height,
-                //     scale: temp
-                // });
-            } else if (imgWidth < imgHeight) {
-                temp = devWidth / imgWidth;
-                Width = imgWidth;
-                Height = imgWidth;
-                sy2 = ((imgHeight * temp / 2) - (devWidth / 2)) / temp;
-                // this.setState({
-                //     sy: ((imgHeight * temp / 2) - (this.state.devWidth / 2)) / temp,
-                //     cropW: Width,
-                //     cropH: Height,
-                //     scale: temp
-                // });
-            }
-            this.draw(ctx, img, sx2, sy2, Width, Height, dx, dy, dw, dh)
+            this.draw(ctx, img, sx, sy, cropW, cropH, dx, dy, dw, dh)
         } else {
-            console.log(-1);
-            let Height, Width, sx2, dx2, dy2, dw2, dh2;
+            let Height=cropH, Width=cropW,sy=0, sx2=sx, dx2=dx, dy2=dy, dw2=dw, dh2=dh;
             if (imgWidth > imgHeight) {
                 let tempH = (devWidth / imgWidth) * imgHeight;
                 if (tempH <= devWidth * 0.66) {
@@ -85,24 +58,11 @@ class SendPost extends Component {
                     Width = Height / 0.66;
                     sx2 = (imgWidth / 2) - (Width / 2);
                     dy2 = (devWidth / 2) - (dh2 / 2);
-                    // this.setState({
-                    //     cropW: Width,
-                    //     cropH: Height,
-                    //     sx: sx2,
-                    //     dh: dh2,
-                    //     dy: dy2
-                    // })
                 } else if (tempH > devWidth * 0.66) {
                     Width = imgWidth;
                     Height = imgHeight;
                     dh2 = tempH;
                     dy2 = (devWidth / 2) - (dh2 / 2);
-                    // this.setState({
-                    //     cropW: Width,
-                    //     cropH: Height,
-                    //     dy: dy2,
-                    //     dh: dh2
-                    // })
                 }
             } else if (imgWidth <= imgHeight) {
                 let tempW = (devWidth / imgHeight) * imgWidth;
@@ -111,23 +71,11 @@ class SendPost extends Component {
                     Height = Width / 0.66;
                     dw2 = devWidth * 0.66;
                     dx2 = (devWidth / 2) - (dw2 / 2);
-                    // this.setState({
-                    //     cropW: Width,
-                    //     cropH: Height,
-                    //     dx: dx2,
-                    //     dw: dw2
-                    // })
                 } else if (tempW > devWidth * 0.66) {
                     Width = imgWidth;
                     Height = imgHeight;
                     dw2 = tempW;
                     dx2 = (devWidth / 2) - (dw2 / 2);
-                    // this.setState({
-                    //     cropW: Width,
-                    //     cropH: Height,
-                    //     dx: dx2,
-                    //     dw: dw2
-                    // })
                 }
             }
             this.draw(ctx, img, sx2, sy, Width, Height, dx2, dy2, dw2, dh2)
@@ -208,6 +156,7 @@ class SendPost extends Component {
     draw(ctx, img, sx, sy, cropW, cropH, dx, dy, dw, dh) {
         ctx.clearRect(0, 0, this.state.devWidth, this.state.devWidth);
         ctx.drawImage(img, sx, sy, cropW, cropH, dx, dy, dw, dh);
+        // console.log([sx, sy, cropW, cropH, dx, dy, dw, dh])
     }
 
     render() {
@@ -220,7 +169,7 @@ class SendPost extends Component {
                        accept='image/jpeg,image/png'/>
                 <span>选择图片</span>
             </label>
-            <span onClick={this.changeSize} className='changeSize'></span>
+            <span style={this.state.imgHeight===this.state.imgWidth?{display:'none'}:{display:'block'}} onClick={this.changeSize} className='changeSize'></span>
         </div>
 
         let send = <div>
