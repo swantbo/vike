@@ -4,7 +4,7 @@
 .sendPost-page{
   width: 100vw;
   height: 100%;
-  //background: black;
+  background: #fafafa;
   overflow: hidden;
   margin-top: vw(125);
   position:fixed;
@@ -54,6 +54,55 @@
         font-size: vw(40);
         font-weight: 600;
         color: #99a2aa;
+      }
+    }
+  }
+  .sendPost-sub{
+    width: 100vw;
+    position: relative;
+    .box{
+      border-bottom:1px solid #efefef;
+      width: 100vw;
+      height: vw(270);
+      background: #fff;
+      position: relative;
+      textarea{
+        font-size: vw(40);
+        padding: vw(20);
+        resize: none;
+        outline-style: none;
+        border: none;
+        position: absolute;
+        height: vw(170);
+        top: 50%;
+        transform: translateY(-50%);
+        left: vw(50);
+      }
+      img{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: vw(50);
+        width: vw(170);
+        background: #ffffff;
+      }
+    }
+    .label{
+      width: 100vw;
+      background: #fff;
+      margin-top: vw(40);
+      border-top: 1px solid #efefef;
+      border-buttom: 1px solid #efefef;
+      span{
+        display: inline-block;
+        height: vw(80);
+        font-size: vw(35);
+        padding-left:vw(20);
+        padding-right:vw(20);
+        text-align: center;
+        line-height: vw(80);
+        background: #4dceff;
+        border-radius: vw(50);
       }
     }
   }

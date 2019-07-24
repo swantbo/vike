@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Link, Route} from "react-router-dom";
-import {sendPost, updateImage} from "../Actions";
+import {sendPost, updateImage,changeText,addLabel} from "../Actions";
 import Cookie from 'js-cookie';
 import './sendPost.css';
 
@@ -36,6 +36,11 @@ class SendPost extends Component {
         this.inputFile = this.inputFile.bind(this);
         this.changeShow = this.changeShow.bind(this);
         this.changeSize = this.changeSize.bind(this);
+        this.changeText = this.changeText.bind(this);
+    }
+
+    changeText(e){
+        this.props.changeText(e.target.value)
     }
 
     changeShow() {
@@ -147,7 +152,6 @@ class SendPost extends Component {
                 // ctx.clearRect(0, 0, this.state.devWidth, this.state.devWidth);
                 // ctx.drawImage(img, sx, sy, imgWidth, imgHeight, dx, dy, dw, dh);
                 this.draw(ctx, img, sx, sy, imgWidth, imgHeight, dx, dy, dw, dh);
-                this.props.updateImage(this.canvas.current.toDataURL('image'));
             }
         };
         reader.readAsDataURL(file);
@@ -156,6 +160,7 @@ class SendPost extends Component {
     draw(ctx, img, sx, sy, cropW, cropH, dx, dy, dw, dh) {
         ctx.clearRect(0, 0, this.state.devWidth, this.state.devWidth);
         ctx.drawImage(img, sx, sy, cropW, cropH, dx, dy, dw, dh);
+        this.props.updateImage(this.canvas.current.toDataURL('image'))
         // console.log([sx, sy, cropW, cropH, dx, dy, dw, dh])
     }
 
@@ -172,9 +177,17 @@ class SendPost extends Component {
             <span style={this.state.imgHeight===this.state.imgWidth?{display:'none'}:{display:'block'}} onClick={this.changeSize} className='changeSize'></span>
         </div>
 
-        let send = <div>
-            2
+        let send = <div className='sendPost-sub'>
+            <div className='box'>
+                <textarea placeholder='添加说明' maxLength='320' required={true} style={{ width: `${(100-((300/2)/540)*100)}vw`}} onChange={this.changeText} autoFocus={true} value={this.props.text}></textarea>
+                <img src={this.props.img}/>
+            </div>
+            <div className='label'>
+                <span>风景</span>
+                <span>fdsjklh</span>
+            </div>
         </div>
+
         return (
             <div className='sendPost-page'>
                 {this.props.sendStatus === 0 ? updateImg : send}
@@ -188,12 +201,16 @@ const mapStateToProps = (state) => {
         text: state.sendPostReducer.text,
         label: state.sendPostReducer.label,
         sendStatus: state.sendPostReducer.sendStatus,
+        img:state.sendPostReducer.img
     }
 };
 const mapDispatchToProps = (dispatch) => {
     return {
         updateImage: (img) => {
             dispatch(updateImage(img))
+        },
+        changeText:(text)=>{
+            dispatch(changeText(text))
         }
     }
 };
