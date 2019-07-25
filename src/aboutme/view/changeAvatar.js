@@ -123,14 +123,23 @@ class ChangeAvatar extends Component {
                         cropH: imgHeight,
                         scale: temp
                     });
-                    console.log(this.state.moveX);
                     imgWidth = imgHeight;
+                }else {
+                    let temp = this.state.devWidth / Width;
+                    sy = ((Height * temp / 2) - (this.state.devWidth / 2)) / temp;
+                    this.setState({
+                        sy: ((Height * temp / 2) - (this.state.devWidth / 2)) / temp,
+                        cropW: imgWidth,
+                        cropH: imgWidth,
+                        scale: temp
+                    });
+                    imgHeight = imgWidth
                 }
 
 
                 ctx.clearRect(0, 0, this.state.devWidth, this.state.devWidth);
                 ctx.drawImage(img, sx, sy, imgWidth, imgHeight, dx, dy, dw, dh);
-                this.props.saveImg(this.canvas.current.toDataURL('image'));
+                this.props.saveImg(this.canvas.current.toDataURL('image/jpeg'));
             }
         };
         reader.readAsDataURL(file);

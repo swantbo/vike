@@ -37,7 +37,8 @@ function sendPostFailure() {
 }
 
 export const sendPost=(userId,text,file,label)=>{
-    let newFile = new File([base64ToBlob(file)],userId+'.jpg',{type:'image/jpeg'});
+    console.log(file);
+    let newFile = file===''?'':new File([base64ToBlob(file)],userId+'.jpg',{type:'image/jpeg'});
     return dispatch =>{
         dispatch(sendPostStart());
         let fd = new FormData();
