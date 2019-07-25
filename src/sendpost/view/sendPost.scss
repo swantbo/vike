@@ -91,19 +91,60 @@
       width: 100vw;
       background: #fff;
       margin-top: vw(40);
+      padding-left: vw(40);
+      padding-right: vw(40);
+      min-height: vw(100);
       border-top: 1px solid #efefef;
-      border-buttom: 1px solid #efefef;
-      span{
+      border-bottom: 1px solid #efefef;
+      padding-bottom: vw(20);
+      &>span{
         display: inline-block;
         height: vw(80);
         font-size: vw(35);
-        padding-left:vw(20);
-        padding-right:vw(20);
+        font-weight: bold;
+        margin-right: vw(20);
+        padding-left:vw(30);
+        padding-right:vw(30);
         text-align: center;
         line-height: vw(80);
         background: #4dceff;
         border-radius: vw(50);
+        margin-top: vw(20);
+      }
+      .input-box{
+        position: relative;
+        margin-top: vw(20);
+        background: #efefef;
+        width: vw(400);
+        font-weight: bold;
+        font-size: vw(35);
+        padding-left: vw(30);
+        padding-right: vw(30);
+        text-align: center;
+        line-height: vw(80);
+        border-radius: vw(40);
+        display: inline-block;
+        height: vw(80);
+        input{
+          width: vw(400);
+          background: none;
+          border: none;
+          list-style: none;
+          outline: none;
+        }
+        div{
+          width: vw(80);
+          height: vw(80);
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: url("../../image/add.png") no-repeat;
+          background-size:vw(80) ;
+        }
       }
     }
+  }
+  .input-box{
+
   }
 }

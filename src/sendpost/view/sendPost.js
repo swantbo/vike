@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Link, Route} from "react-router-dom";
-import {sendPost, updateImage,changeText,addLabel} from "../Actions";
+import {sendPost, updateImage, changeText, addLabel} from "../Actions";
 import Cookie from 'js-cookie';
 import './sendPost.css';
 
@@ -9,6 +9,7 @@ class SendPost extends Component {
     constructor() {
         super(...arguments);
         this.canvas = React.createRef();
+        this.input = React.createRef();
         this.state = {
             fileType: '',
             img: '',
@@ -30,17 +31,39 @@ class SendPost extends Component {
             moveX: 0,
             moveY: 0,
             ctx: '',
-            size: -1
+            size: -1,
+            inputLabel: 1,
+            label: ''
 
         };
         this.inputFile = this.inputFile.bind(this);
         this.changeShow = this.changeShow.bind(this);
         this.changeSize = this.changeSize.bind(this);
         this.changeText = this.changeText.bind(this);
+        this.addLabels = this.addLabels.bind(this);
+        this.changeLabel = this.changeLabel.bind(this);
+        this.clearLabel = this.clearLabel.bind(this);
     }
 
-    changeText(e){
+    changeText(e) {
         this.props.changeText(e.target.value)
+    }
+
+    addLabels(e) {
+        e = e.replace(/\s+/g, "");
+        if (e !== '') {
+            this.props.addLabel(e)
+        } else {
+            return
+        }
+    }
+
+    changeLabel(e) {
+        this.setState({label: e.target.value})
+    }
+
+    clearLabel() {
+        this.setState({label: ''})
     }
 
     changeShow() {
@@ -54,7 +77,7 @@ class SendPost extends Component {
         if (size === 1) {
             this.draw(ctx, img, sx, sy, cropW, cropH, dx, dy, dw, dh)
         } else {
-            let Height=cropH, Width=cropW,sy=0, sx2=sx, dx2=dx, dy2=dy, dw2=dw, dh2=dh;
+            let Height = cropH, Width = cropW, sy = 0, sx2 = sx, dx2 = dx, dy2 = dy, dw2 = dw, dh2 = dh;
             if (imgWidth > imgHeight) {
                 let tempH = (devWidth / imgWidth) * imgHeight;
                 if (tempH <= devWidth * 0.66) {
@@ -164,7 +187,16 @@ class SendPost extends Component {
         // console.log([sx, sy, cropW, cropH, dx, dy, dw, dh])
     }
 
+    createColor() {
+        return '#' + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
     render() {
+        let that = this;
+        let span = this.props.label.map((item) => {
+            let color = this.createColor();
+            return <span style={{background: color}}>{item}</span>
+        });
         let updateImg = <div className='sendPost-upIMG'>
             <div className='sendPost-upIMG-box'>
                 <canvas id='cvs' ref={this.canvas}></canvas>
@@ -174,19 +206,28 @@ class SendPost extends Component {
                        accept='image/jpeg,image/png'/>
                 <span>选择图片</span>
             </label>
-            <span style={this.state.imgHeight===this.state.imgWidth?{display:'none'}:{display:'block'}} onClick={this.changeSize} className='changeSize'></span>
+            <span style={this.state.imgHeight === this.state.imgWidth ? {display: 'none'} : {display: 'block'}}
+                  onClick={this.changeSize} className='changeSize'></span>
         </div>
 
         let send = <div className='sendPost-sub'>
             <div className='box'>
-                <textarea placeholder='添加说明' maxLength='320' required={true} style={{ width: `${(100-((300/2)/540)*100)}vw`}} onChange={this.changeText} autoFocus={true} value={this.props.text}></textarea>
+                <textarea placeholder='添加说明' maxLength='320' required={true}
+                          style={{width: `${(100 - ((300 / 2) / 540) * 100)}vw`}} onChange={this.changeText}
+                          autoFocus={true} value={this.props.text}></textarea>
                 <img src={this.props.img}/>
             </div>
             <div className='label'>
-                <span>风景</span>
-                <span>fdsjklh</span>
+                {span}
+                <div className='input-box'>
+                    <input value={this.state.label} onChange={this.changeLabel} maxLength='5' placeholder='添加标签…'/>
+                    <div onClick={() => {
+                        this.addLabels(this.state.label);
+                        this.clearLabel()
+                    }}></div>
+                </div>
             </div>
-        </div>
+        </div>;
 
         return (
             <div className='sendPost-page'>
@@ -201,7 +242,7 @@ const mapStateToProps = (state) => {
         text: state.sendPostReducer.text,
         label: state.sendPostReducer.label,
         sendStatus: state.sendPostReducer.sendStatus,
-        img:state.sendPostReducer.img
+        img: state.sendPostReducer.img
     }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -209,8 +250,11 @@ const mapDispatchToProps = (dispatch) => {
         updateImage: (img) => {
             dispatch(updateImage(img))
         },
-        changeText:(text)=>{
+        changeText: (text) => {
             dispatch(changeText(text))
+        },
+        addLabel: (label) => {
+            dispatch(addLabel(label))
         }
     }
 };

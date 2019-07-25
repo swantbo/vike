@@ -26,17 +26,17 @@ export default function (state = sendPost, action) {
             }
         }
         case ActionTypes.CHANGE_TEXT:{
-            const {text} = action.payload.text;
+            const {text} = action.payload;
             return {
                 ...state,
                 text:text
             }
         }
         case ActionTypes.ADD_LABEL:{
-            const {label} = action.payload.label;
+            const {label} = action.payload;
             return {
                 ...state,
-                label:[...label,label]
+                label:[...state.label,label]
             }
         }
         case ActionTypes.DATA_CLEAR:{
