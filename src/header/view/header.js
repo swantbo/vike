@@ -5,7 +5,7 @@ import {Link, withRouter} from "react-router-dom";
 import {updateUserAvatar} from "../../aboutme/Actions";
 import './header.css';
 import Cookies from 'js-cookie';
-import {changeStatus, sendPost,dataClear} from "../../sendpost/Actions";
+import {changeStatus, sendPost, dataClear, isClick} from "../../sendpost/Actions";
 import {collectionPost, likeComment, likePost} from "../../home/Actions";
 
 class Header extends Component {
@@ -82,17 +82,26 @@ class Header extends Component {
             </Link>
         </div>;
         let changeAvatar = <div className='header-changeAvatar'><span onClick={this.historyBack}></span>上传头像<p
-            onClick={() => this.props.updateUserAvatar(this.props.tempImage, Cookies.get('u_id'))}>保存</p>
+            onClick={() => this.props.updateUserAvatar(this.props.tempImage, Cookies.get('u_id'))}><Link
+            to='/aboutMe'>保存</Link></p>
         </div>;
 
         let sendPost = <div className='header-sendPost'>
-            <span onClick={()=>{this.historyBack();this.props.dataClear()}}></span>
+            <span onClick={() => {
+                this.historyBack();
+                this.props.dataClear()
+            }}></span>
             {this.props.sendStatus === 0 ? '上传图片' : '发送动态'}
-            <p onClick={()=>{
-                if (this.props.sendStatus === 0) {
-                    this.props.changeStatus()
-                }else if (this.props.sendStatus === 1) {
-                    this.props.sendPost(Cookies.get('u_id'), this.props.text, this.props.tempImage, this.props.label)
+            <p onClick={() => {
+                if (this.props.isClick === 0) {
+                    alert('请先上传图片')
+                } else {
+                    if (this.props.sendStatus === 0) {
+                        this.props.changeStatus()
+                    } else if (this.props.sendStatus === 1) {
+                        console.log(this.props.img)
+                        this.props.sendPost(Cookies.get('u_id'), this.props.text, this.props.img, this.props.label);
+                    }
                 }
             }}>{this.props.sendStatus === 0 ? '下一步' : '发送'}</p>
         </div>
@@ -108,14 +117,14 @@ class Header extends Component {
         const tips = (text) => <div className='header-tips'><span onClick={this.historyBack}> </span>{text}</div>;
         let header = <div className='header'>
             {path.match(/\/comment/) !== null ?
-                comment : path==='/sendPost'?
-                sendPost:path === '/changeAvatar' ?
-                    changeAvatar : path === '/' ?
-                        logo : path === '/search' ?
-                            search : path === '/result' ?
-                                search : path === '/dynamic' ?
-                                    dynamic : path === '/aboutme' ?
-                                        aboutme : tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
+                comment : path === '/sendPost' ?
+                    sendPost : path === '/changeAvatar' ?
+                        changeAvatar : path === '/' ?
+                            logo : path === '/search' ?
+                                search : path === '/result' ?
+                                    search : path === '/dynamic' ?
+                                        dynamic : path === '/aboutme' ?
+                                            aboutme : tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
         </div>;
         return (
             <div>
@@ -130,9 +139,11 @@ const mapStateToProps = (state) => {
         option: state.headerReducer.isShowOptions,
         name: state.headerReducer.name,
         tempImage: state.aboutMeReducer.tempImage,
+        img:state.sendPostReducer.img,
         sendStatus: state.sendPostReducer.sendStatus,
-        text:state.sendPostReducer.text,
-        label:state.sendPostReducer.label
+        text: state.sendPostReducer.text,
+        label: state.sendPostReducer.label,
+        isClick: state.sendPostReducer.isClick,
     }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -158,9 +169,9 @@ const mapDispatchToProps = (dispatch) => {
         sendPost: (userId, text, file, label) => {
             dispatch(sendPost(userId, text, file, label))
         },
-        dataClear:()=>{
+        dataClear: () => {
             dispatch(dataClear())
-        }
+        },
     }
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))

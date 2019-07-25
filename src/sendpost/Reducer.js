@@ -6,6 +6,7 @@ const sendPost = {
     img:'',
     message:'',
     sendStatus:0,
+    isClick:0,
 };
 
 export default function (state = sendPost, action) {
@@ -16,7 +17,8 @@ export default function (state = sendPost, action) {
         case ActionTypes.SEND_POST:{
             return {
                 ...state,
-                sendStatus:0
+                sendStatus:0,
+                isClick:0
             }
         }
         case ActionTypes.CHANGE_STATUS:{
@@ -30,6 +32,12 @@ export default function (state = sendPost, action) {
             return {
                 ...state,
                 text:text
+            }
+        }
+        case ActionTypes.IS_CLICK:{
+            return {
+                ...state,
+                isClick:1
             }
         }
         case ActionTypes.ADD_LABEL:{

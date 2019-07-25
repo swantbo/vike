@@ -19,65 +19,72 @@ function base64ToBlob(urlData) {
         type: mime
     });
 }
+
 function sendPostStart() {
-    return{
-        type:ActionTypes.SEND_POST,
-    }
-}
-function sendPostSuccess(data) {
-    return{
-        type:ActionTypes.SEND_POST_SUCCESS,
-        payload:{data:data}
-    }
-}
-function sendPostFailure() {
-    return{
-        type:ActionTypes.SEND_POST_FAILURE
+    return {
+        type: ActionTypes.SEND_POST,
     }
 }
 
-export const sendPost=(userId,text,file,label)=>{
-    console.log(file);
-    let newFile = file===''?'':new File([base64ToBlob(file)],userId+'.jpg',{type:'image/jpeg'});
-    return dispatch =>{
+function sendPostSuccess(data) {
+    return {
+        type: ActionTypes.SEND_POST_SUCCESS,
+        payload: {data: data}
+    }
+}
+
+function sendPostFailure() {
+    return {
+        type: ActionTypes.SEND_POST_FAILURE
+    }
+}
+
+export const isClick = () => {
+    return {
+        type: ActionTypes.IS_CLICK
+    }
+}
+export const sendPost = (userId, text, file, label) => {
+    let newFile = new File([base64ToBlob(file)], userId + '.jpg', {type: 'image/jpeg'});
+    return dispatch => {
         dispatch(sendPostStart());
         let fd = new FormData();
-        fd.append('file',newFile);
-        fd.append('userId',userId);
-        fd.append('text',text);
-        fd.append('label',label);
-        fetch(`${config.url}sendPost`,{
-            method:'POST',
-            body:fd
-        }).then(res=>res.json()).then(json=>dispatch(sendPostSuccess(json))).catch(dispatch(sendPostFailure()))
+        fd.append('file', newFile);
+        fd.append('userId', userId);
+        fd.append('text', text);
+        fd.append('label', label);
+        fetch(`${config.url}sendPost`, {
+            method: 'POST',
+            body: fd
+        }).then(res => res.json()).then(json => dispatch(sendPostSuccess(json))).catch(dispatch(sendPostFailure()))
     }
 };
 
-export const updateImage = (img)=>{
-    return{
-        type:ActionTypes.UPDATE_IMG,
-        payload: {img:img}
+export const updateImage = (img) => {
+    return {
+        type: ActionTypes.UPDATE_IMG,
+        payload: {img: img}
     }
 };
-export const changeStatus = ()=>{
-    return{
-        type:ActionTypes.CHANGE_STATUS
+export const changeStatus = () => {
+    return {
+        type: ActionTypes.CHANGE_STATUS
     }
 };
-export const changeText = (text)=>{
-    return{
-        type:ActionTypes.CHANGE_TEXT,
-        payload:{text:text}
+export const changeText = (text) => {
+    return {
+        type: ActionTypes.CHANGE_TEXT,
+        payload: {text: text}
     }
 };
-export const addLabel = (label)=>{
-    return{
-        type:ActionTypes.ADD_LABEL,
-        payload:{label:label}
+export const addLabel = (label) => {
+    return {
+        type: ActionTypes.ADD_LABEL,
+        payload: {label: label}
     }
 };
-export const dataClear=()=>{
-    return{
-        type:ActionTypes.DATA_CLEAR
+export const dataClear = () => {
+    return {
+        type: ActionTypes.DATA_CLEAR
     }
 }

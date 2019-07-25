@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Link, Route} from "react-router-dom";
-import {sendPost, updateImage, changeText, addLabel} from "../Actions";
+import {sendPost, updateImage,isClick, changeText, addLabel} from "../Actions";
 import Cookie from 'js-cookie';
 import './sendPost.css';
 
@@ -183,7 +183,8 @@ class SendPost extends Component {
     draw(ctx, img, sx, sy, cropW, cropH, dx, dy, dw, dh) {
         ctx.clearRect(0, 0, this.state.devWidth, this.state.devWidth);
         ctx.drawImage(img, sx, sy, cropW, cropH, dx, dy, dw, dh);
-        this.props.updateImage(this.canvas.current.toDataURL('image'))
+        this.props.updateImage(this.canvas.current.toDataURL('image'));
+        this.props.isClick();
         // console.log([sx, sy, cropW, cropH, dx, dy, dw, dh])
     }
 
@@ -242,7 +243,7 @@ const mapStateToProps = (state) => {
         text: state.sendPostReducer.text,
         label: state.sendPostReducer.label,
         sendStatus: state.sendPostReducer.sendStatus,
-        img: state.sendPostReducer.img
+        img: state.sendPostReducer.img,
     }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -255,6 +256,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         addLabel: (label) => {
             dispatch(addLabel(label))
+        },
+        isClick:()=>{
+            dispatch(isClick())
         }
     }
 };

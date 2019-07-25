@@ -19,7 +19,8 @@
   background-color: #ffffff;
   position: fixed;
   top: 0;
-  .header-changeAvatar{
+
+  .header-changeAvatar {
     width: 100vw;
     height: vw(125);
     position: absolute;
@@ -27,7 +28,8 @@
     line-height: vw(125);
     font-weight: bold;
     font-size: vw(43);
-    span{
+
+    span {
       position: absolute;
       left: vw(40);
       top: 50%;
@@ -40,14 +42,19 @@
       background-position-x: vw(-475*1.2);
       background-position-y: vw(-103*1.2);
     }
-    p{
-      position: absolute;
-      right: vw(40);
-      top: 0;
-      color: #3c9cff;
+
+    p {
+      a {
+        position: absolute;
+        right: vw(40);
+        top: 0;
+        color: #3c9cff;
+      }
     }
+
   }
-  .header-sendPost{
+
+  .header-sendPost {
     width: 100vw;
     height: vw(125);
     position: absolute;
@@ -55,7 +62,8 @@
     line-height: vw(125);
     font-weight: bold;
     font-size: vw(43);
-    span{
+
+    span {
       position: absolute;
       left: vw(40);
       top: 50%;
@@ -68,14 +76,16 @@
       background-position-x: vw(-475*1.2);
       background-position-y: vw(-103*1.2);
     }
-    p{
+
+    p {
       position: absolute;
       right: vw(40);
       top: 0;
       color: #3c9cff;
     }
   }
-  .header-tips{
+
+  .header-tips {
     position: absolute;
     width: 100vw;
     height: vw(125);
@@ -83,7 +93,8 @@
     line-height: vw(125);
     font-weight: bold;
     font-size: vw(43);
-    span{
+
+    span {
       position: absolute;
       left: vw(40);
       top: 50%;
@@ -97,10 +108,12 @@
       background-position-y: vw(-325*1.2);
     }
   }
-  .header-home{
+
+  .header-home {
     width: 100vw;
     height: vw(125);
-    .header-post{
+
+    .header-post {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -109,10 +122,11 @@
       height: vw(70);
       background: url("../../image/923d425c0489.png") no-repeat;
       background-size: vw(520*1.32);
-      background-position-x:vw(-370*1.32);
-      background-position-y:vw(-197*1.32);
+      background-position-x: vw(-370*1.32);
+      background-position-y: vw(-197*1.32);
     }
-    .header-logo{
+
+    .header-logo {
       width: vw(158);
       height: vw(82);
       background: url("../../image/vike@0,1x.png") no-repeat;
@@ -122,7 +136,8 @@
       top: 50%;
       transform: translateX(-50%) translateY(-50%);
     }
-    .header-addfriend{
+
+    .header-addfriend {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -131,12 +146,12 @@
       height: vw(70);
       background: url("../../image/923d425c0489.png") no-repeat;
       background-size: vw(520*1.32);
-      background-position-x:vw(3*1.32);
-      background-position-y:vw(-375*1.32);
+      background-position-x: vw(3*1.32);
+      background-position-y: vw(-375*1.32);
     }
   }
 
-  .header-dynamic{
+  .header-dynamic {
     font-size: vw(43);
     font-weight: bold;
     position: absolute;
@@ -144,7 +159,8 @@
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
   }
-  .header-comment{
+
+  .header-comment {
     position: absolute;
     width: 100vw;
     height: vw(125);
@@ -152,7 +168,8 @@
     line-height: vw(125);
     font-weight: bold;
     font-size: vw(43);
-    span{
+
+    span {
       position: absolute;
       left: vw(40);
       top: 50%;
@@ -166,8 +183,9 @@
       background-position-y: vw(-325*1.2);
     }
   }
-  .header-five{
-    .header-option{
+
+  .header-five {
+    .header-option {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -176,10 +194,11 @@
       height: vw(70);
       background: url("../../image/923d425c0489.png") no-repeat;
       background-size: vw(520*1.32);
-      background-position-x:vw(-47.9*1.32);
-      background-position-y:vw(-375*1.32);
+      background-position-x: vw(-47.9*1.32);
+      background-position-y: vw(-375*1.32);
     }
-    .heacder-option-close{
+
+    .heacder-option-close {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -188,10 +207,11 @@
       height: vw(70);
       background: url("../../image/923d425c0489.png") no-repeat;
       background-size: vw(520*1.32);
-      background-position-x:vw(-472*1.32);
-      background-position-y:vw(-102*1.32);
+      background-position-x: vw(-472*1.32);
+      background-position-y: vw(-102*1.32);
     }
-    .header-aboutme{
+
+    .header-aboutme {
       font-size: vw(43);
       font-weight: bold;
       position: absolute;
@@ -199,7 +219,8 @@
       top: 50%;
       transform: translateX(-50%) translateY(-50%);
     }
-    .header-addfriend{
+
+    .header-addfriend {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -208,13 +229,13 @@
       height: vw(70);
       background: url("../../image/923d425c0489.png") no-repeat;
       background-size: vw(520*1.32);
-      background-position-x:vw(3*1.32);
-      background-position-y:vw(-375*1.32);
+      background-position-x: vw(3*1.32);
+      background-position-y: vw(-375*1.32);
     }
   }
 
-  .search-box{
-    .header-search{
+  .search-box {
+    .header-search {
       width: vw(990);
       height: vw(80);
       border-radius: vw(15);
@@ -224,7 +245,8 @@
       top: 50%;
       transform: translateX(-50%) translateY(-50%);
       background-color: #ffffff;
-      input{
+
+      input {
         font-size: vw(40);
         width: vw(800);
         height: vw(70);
@@ -236,10 +258,11 @@
         transform: translateY(-50%);
         background-color: #ffffff;
       }
-      .header-prompt:before{
+
+      .header-prompt:before {
         background: url("../../image/923d425c0489.png");
         background-size: vw(518*1.5);
-        background-position-x:vw(-494*1.5);
+        background-position-x: vw(-494*1.5);
         background-position-y: vw(-220*1.5);
         position: absolute;
         content: '';
@@ -249,7 +272,8 @@
         height: vw(35);
         width: vw(35);
       }
-      .header-prompt{
+
+      .header-prompt {
         width: vw(80);
         text-align: center;
         font-size: vw(35);
@@ -260,7 +284,8 @@
         transform: translateX(-50%) translateY(-50%);
       }
     }
-    .close{
+
+    .close {
       display: none;
       position: absolute;
       right: 5%;
