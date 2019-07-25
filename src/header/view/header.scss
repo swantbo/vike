@@ -1,7 +1,6 @@
 @function vw($px) {
   @return (($px/2)/540)*100vw
 }
-
 .header:after {
   background: rgba(0, 0, 0, .0975);
   content: '';

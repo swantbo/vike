@@ -1,7 +1,9 @@
 @function vw($px) {
   @return (($px/2)/540)*100vw
 }
-
+@function bb(){
+  @return 2px
+}
 .post {
   width: 100vw;
   //border-bottom: 1px solid red;
