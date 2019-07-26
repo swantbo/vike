@@ -4,6 +4,7 @@ import {timeDifferent} from "../../tool/tool";
 import config from '../../config.js';
 import {connect} from 'react-redux'
 import './post.css';
+import fetch from "cross-fetch";
 
 
 const li = (data, loginUser, likeComment, postId) => {
@@ -24,7 +25,7 @@ const li = (data, loginUser, likeComment, postId) => {
     </li>
 };
 const jumpRoute=()=>window.location.pathname = '/login';
-const Post = (data, loginUser, likePost, collectionPost, likeComment) => {
+const Post = (data, loginUser, likePost, collectionPost, likeComment,avatar) => {
     let value = data.likeUser.findIndex((item) => item === loginUser);
     let list = data.comment.length <= 0 ? '' : data.comment.map((item) => {
         return li(item, loginUser, likeComment, data.postId)
@@ -41,12 +42,12 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment) => {
         </div>
         <div className='post-operating'>
             <div className='button'>
-                <span className={value >=1 ? 'like' : 'unlike'}
+                <span className={value >=0 ? 'like' : 'unlike'}
                       onClick={() =>{loginUser===undefined?jumpRoute():likePost(data._id, loginUser)}}> </span>
                 <Link to={`/comment/${data._id}`}><span className='comment'> </span></Link>
                 <span className='share'> </span>
                 <span
-                    className={data.CollectionUser.findIndex((item) => item === loginUser)>=1? 'collection' : 'unCollection'}
+                    className={data.CollectionUser.findIndex((item) => item === loginUser)>=0? 'collection' : 'unCollection'}
                     onClick={() => {loginUser===undefined?jumpRoute():collectionPost(data._id, loginUser)}}> </span>
             </div>
             <span className='likeNum'>{data.likeUser.length} 次赞</span>

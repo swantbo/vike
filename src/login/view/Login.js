@@ -76,7 +76,6 @@ class Login extends Component {
     }
 
     render() {
-        console.log(Cookies.get('u_id'));
         if (Cookies.get('u_id')!==undefined){
             window.location.pathname='/';
         }
@@ -115,7 +114,7 @@ class Login extends Component {
                     if (this.state.openButton === 1 && this.state.temp === 1) {
                         this.props.login(this.state.userName, this.state.password);
                         //测试cookie在项目中的应用
-                        Cookies.set('u_id', this.state.userName);
+                        // Cookies.set('u_id', this.state.userName);
                         //后端完善后会删除
                         this.clickLogin();
                     } else if (this.state.openButton === 1 && this.state.temp === -1) {
@@ -144,7 +143,6 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.loginReducer);
     return {
         data: state.loginReducer,
     }

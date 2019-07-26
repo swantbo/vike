@@ -1,5 +1,6 @@
 import * as ActionTypes from './ActionTypes.js';
 import fetch from 'cross-fetch';
+import Cookies from 'js-cookie';
 import config from '../config.js';
 import md5 from 'md5';
 
@@ -22,7 +23,13 @@ export const login = (userId, password) => {
             body: JSON.stringify({userId: userId, password: md5(password)}),
         }).then(
             res => res.json()).then(
-                json =>{ dispatch(loginSuccess(json))}).catch(
+                json =>{ dispatch(loginSuccess(json));
+                if (json.status===200){
+                    console.log(1);
+                    Cookies.set('u_id', userId);
+                    window.location.pathname = '/';
+                }
+                }).catch(
                     error => dispatch(loginFailure()))
 
     }
