@@ -11,6 +11,7 @@
   //height: 50vh;
   position: relative;
   padding-bottom: vw(50);
+  background: #fff;
   .post-userInfo {
     width: 100vw;
     height: vw(110);
@@ -135,11 +136,17 @@
       position: relative;
       left: 50%;
       transform: translateX(-50%);
-
       a {
         font-size: vw(35);
         font-weight: bold;
         color: black;
+      }
+      span{
+        .label-text-style{
+          font-size: vw(35);
+          font-weight: bold;
+          color: #3c9cff;
+        }
       }
     }
 

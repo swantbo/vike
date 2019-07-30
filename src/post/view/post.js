@@ -30,6 +30,9 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment,avatar) => 
     let list = data.comment.length <= 0 ? '' : data.comment.map((item) => {
         return li(item, loginUser, likeComment, data.postId)
     });
+    let label = data.label.map((item)=>{
+        return <span className='label-text-style'>{`#${item} `}</span>
+    });
     return <div className='post'>
         <div className='post-userInfo'>
             <div className='avatar'>
@@ -52,7 +55,7 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment,avatar) => 
             </div>
             <span className='likeNum'>{data.likeUser.length} 次赞</span>
             <div className='postText'>
-                <Link to={`/user/${data.userId}`}>{data.userId + ' '}</Link><span>{data.text}</span>
+                <Link to={`/user/${data.userId}`}>{data.userId + ' '}</Link><span>{label} {data.text}</span>
             </div>
             <div className='post-comment'>
                 <Link to={`/comment/${data._id}`}><span

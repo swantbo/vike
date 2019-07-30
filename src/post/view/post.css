@@ -2,6 +2,7 @@
   width: 100vw;
   position: relative;
   padding-bottom: 4.6296296296vw;
+  background: #fff;
 }
 .post .post-userInfo {
   width: 100vw;
@@ -118,6 +119,11 @@
   font-size: 3.2407407407vw;
   font-weight: bold;
   color: black;
+}
+.post .post-operating .postText span .label-text-style {
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+  color: #3c9cff;
 }
 .post .post-operating .post-comment {
   position: relative;

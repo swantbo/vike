@@ -42,6 +42,7 @@ export default function (state = sendPost, action) {
         }
         case ActionTypes.ADD_LABEL:{
             const {label} = action.payload;
+            console.log(state);
             return {
                 ...state,
                 label:[...state.label,label]

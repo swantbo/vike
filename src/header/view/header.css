@@ -206,6 +206,11 @@
   background-position-x: 0.3666666667vw;
   background-position-y: -45.8333333333vw;
 }
+.header .search-box {
+  width: 100vw;
+  height: 11.5740740741vw;
+  position: relative;
+}
 .header .search-box .header-search {
   width: 91.6666666667vw;
   height: 7.4074074074vw;
@@ -220,14 +225,14 @@
 .header .search-box .header-search input {
   font-size: 3.7037037037vw;
   width: 74.0740740741vw;
-  height: 6.4814814815vw;
+  height: 7.4074074074vw;
   border: none;
   outline: none;
   position: absolute;
   left: 2.7777777778vw;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0);
 }
 .header .search-box .header-search .header-prompt:before {
   background: url("../../image/923d425c0489.png");

@@ -139,7 +139,7 @@ const mapStateToProps = (state) => {
         option: state.headerReducer.isShowOptions,
         name: state.headerReducer.name,
         tempImage: state.aboutMeReducer.tempImage,
-        img:state.sendPostReducer.img,
+        img: state.sendPostReducer.img,
         sendStatus: state.sendPostReducer.sendStatus,
         text: state.sendPostReducer.text,
         label: state.sendPostReducer.label,

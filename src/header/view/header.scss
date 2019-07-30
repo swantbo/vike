@@ -234,6 +234,9 @@
   }
 
   .search-box {
+    width: 100vw;
+    height: vw(125);
+    position: relative;
     .header-search {
       width: vw(990);
       height: vw(80);
@@ -248,14 +251,14 @@
       input {
         font-size: vw(40);
         width: vw(800);
-        height: vw(70);
+        height: vw(80);
         border: none;
         outline: none;
         position: absolute;
         left: vw(30);
         top: 50%;
         transform: translateY(-50%);
-        background-color: #ffffff;
+        background-color: rgba(255, 255, 255, 0);
       }
 
       .header-prompt:before {
