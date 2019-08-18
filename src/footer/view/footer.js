@@ -4,6 +4,7 @@ import {Home, Search, SendPost, Dynamic, AboutMe} from '../Actions.js';
 import {Link, withRouter} from "react-router-dom";
 import {requestLoginUserInfo} from '../../aboutme/Actions.js';
 import Cookies from 'js-cookie';
+import {requestLabel} from "../../search/Actions";
 import './footer.css';
 
 class Footer extends Component {
@@ -31,9 +32,9 @@ class Footer extends Component {
                 let className = 'footerSwitch ';
                 return <Link to={url}>
                     <div onClick={() => {
-                        if (index<=3) {
+                        if (index===1){that.props.requestLabel(Cookies.get('temp_id'),0)} else if (index<=3) {
                             click[index]()
-                        } else {
+                        } else if (index===4) {
                             click[4]();
                             // this.props. requestLoginUserInfo(Cookies.get('u_id'))
                         }
@@ -75,6 +76,9 @@ const mapDispatchToProps=(dispatch)=>{
         },
         AboutMe:()=>{
             dispatch(AboutMe())
+        },
+        requestLabel:(tempId,num)=>{
+            dispatch(requestLabel(tempId,num))
         }
     }
 };

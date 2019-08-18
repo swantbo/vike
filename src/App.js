@@ -9,6 +9,7 @@ import {view as Login} from './login';
 import {Comment} from './post'
 import {view as Home} from './home'
 import SearchTest from './test/testsearch.js';
+import {view as Search} from './search';
 import {view as SendPost} from './sendpost';
 import ResultTest from './test/result.js';
 import {view as FloatInterface} from './floatInterface';
@@ -22,6 +23,9 @@ class App extends Component {
         super(...arguments)
     }
     render() {
+        if (Cookies.get('temp_id')===undefined){
+            Cookies.set('temp_id',(Math.random()*100000000).toString(32).substr(0,4)+new Date().getTime())
+        }
         if (window.location.pathname === '/aboutme') {
             this.props.requestLoginUserInfo(Cookies.get('u_id'))
         }
@@ -33,7 +37,7 @@ class App extends Component {
                 <switch className='switch'>
                     <Route exact path='/' component={Home}/>
                     <Route path='/comment/:paramName' component={Comment}/>
-                    <Route path='/search' component={SearchTest}/>
+                    <Route path='/search' component={Search}/>
                     <Route path='/result' component={ResultTest}/>
                     <Route path='/dynamic' component={temp}/>
                     <Route path='/aboutme' component={AboutMe}/>

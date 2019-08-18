@@ -13,10 +13,10 @@ const requestLabelSuccess = (data) => ({
 const requestLabelFailure = () => ({
     type: ActionTypes.SEARCH_REQUEST_LABEL_FAILURE
 });
-export const requestLabel = (num) => {
+export const requestLabel = (tempId,num) => {
     return (dispatch) => {
         dispatch(requestLabelStart());
-        return fetch(`${config.url}getLabel?num=${num}`, {method: 'GET'}).then(res =>
+        return fetch(`${config.url}getLabel?num=${num}&tempId=${tempId}`, {method: 'GET'}).then(res =>
             res.json()).then(json => {
             dispatch(requestLabelSuccess(json))
         }).catch(dispatch(requestLabelFailure()))
