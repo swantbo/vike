@@ -8,7 +8,7 @@ import {dynamicReducer} from './dynamic';
 import {headerReducer} from './header';
 import {homeReducer} from './home';
 // import {postReducer} from './post';
-// import {searchReducer} from './post';
+import {searchReducer} from './search';
 import {footerReducer} from './footer';
 
 const store = createStore(combineReducers({
@@ -19,6 +19,7 @@ const store = createStore(combineReducers({
     loginReducer,
     sendPostReducer,
     footerReducer,
+    searchReducer,
     // imageCropReducer
 }),applyMiddleware(thunkMiddleware));
 
