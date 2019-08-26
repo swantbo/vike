@@ -33,7 +33,7 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment,avatar) => 
     let label = data.label.map((item)=>{
         return <span className='label-text-style'>{`#${item} `}</span>
     });
-    return <div className='post'>
+    return <div key={data._id} className='post'>
         <div className='post-userInfo'>
             <div className='avatar'>
                 <img src={'http://www.xwvike.com/static/media/26395177.cd83fabd.jpeg'}/>

@@ -32,7 +32,7 @@ class Footer extends Component {
                 let className = 'footerSwitch ';
                 return <Link to={url}>
                     <div onClick={() => {
-                        if (index===1){that.props.requestLabel(Cookies.get('temp_id'),0)} else if (index<=3) {
+                        if (index===1){that.props.requestLabel(Cookies.get('temp_id'),that.props.num)} else if (index<=3) {
                             click[index]()
                         } else if (index===4) {
                             click[4]();
@@ -55,7 +55,10 @@ class Footer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {id: state.footerReducer.state}
+    return {
+        id: state.footerReducer.state,
+        num:state.searchReducer.num
+    }
 };
 const mapDispatchToProps=(dispatch)=>{
     return{

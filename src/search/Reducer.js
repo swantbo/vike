@@ -2,7 +2,7 @@ import * as ActionTypes from './ActionTypes.js';
 
 const search = {
     num:0,
-    label:[],
+    label:{},
     status:0,
     searchResults:[]
 };
@@ -22,9 +22,9 @@ export default  function (state = search, action) {
             const {data} = action.payload;
             return {
                 ...state,
-                label: [...state.label,...data],
+                label: data.data,
                 status: 1,
-                num:state.num+1
+                num:1
             }
         }
         case ActionTypes.SEARCH_REQUEST_LABEL_FAILURE:{
