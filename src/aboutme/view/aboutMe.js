@@ -22,6 +22,7 @@ const setList = (url, text) => {
     return <li><Link to={`/${url}`}/>{text}<span></span></li>
 };
 const labelList = (labelName, img) => {
+    console.log('ok');
     return <div key={labelName} className='userPost_List_image'>
         <Link to={`/post/${labelName}`}>
             <img src={config.url + '/image/' + img}/>
@@ -62,9 +63,8 @@ class AboutMe extends Component {
     }
 
     render() {
-        const {myPost, myCollection, dataState, requesting, avatar, userId, website, Introduction, userName, posts, myFens, myFriends, option} = this.props;
+        const {myPostList, myCollection, dataState, requesting, avatar, userId, website, Introduction, userName, posts, myFens, myFriends, option} = this.props;
         let webUrl = 'http://' + website;
-        console.log(posts);
         let loading = (text) => <div className='aboutMe-loading'>
             <div>{text}</div>
         </div>;
@@ -74,10 +74,8 @@ class AboutMe extends Component {
         let setPage = this.state.setListUrl.map((item) => {
             return setList(item.url, item.text)
         });
-        let labelImage = this.state.list ? Object.keys(myPost).length<=0?<div></div>:Object.keys(myPost).map((i) => {
-            labelList(i, myPost[i])
-        }) : Object.keys(myCollection).map((i) => {
-            labelList(i, myCollection[i])
+        let labelImage = Object.keys(myPostList).length<=0?<div></div>:Object.keys(myPostList).map((i)=>{
+            return labelList(i,myPostList[i])
         });
         let aboutMe = dataState === 0 ? loading('数据加载中……') : dataState === -1 ? loading('数据请求错误！') : option ?
             <div className='aboutMe_box'>
@@ -143,7 +141,7 @@ const mapStateToProps = (state) => {
         isPrivate: state.aboutMeReducer.loginUserInfo.isPrivate,
         dataState: state.aboutMeReducer.dataState,
         option: state.headerReducer.isShowOptions,
-        myPost: state.aboutMeReducer.myPost,
+        myPostList: state.aboutMeReducer.myPost,
         myCollection: state.aboutMeReducer.myColl
     }
 };

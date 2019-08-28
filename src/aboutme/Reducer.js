@@ -28,6 +28,18 @@ export default function (state = aboutMe, action) {
 
             }
         }
+        //请求个人帖子图片
+        case ActionTypes.ABOUT_ME_MY_POST:{
+            return state
+        }
+        case ActionTypes.ABOUT_ME_MY_POST_SUCCESS:{
+            const {data} = action.payload;
+            console.log(data);
+            return {
+                ...state,
+                myPost:{...data.data}
+            }
+        }
         //请求用户数据
         case ActionTypes.LOGIN_GET_REQUEST: {
             return {
