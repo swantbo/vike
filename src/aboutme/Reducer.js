@@ -9,7 +9,9 @@ const aboutMe = {
     avatarFloatText: ['上传头像', '移除当前头像', '取消'],
     aboutMeFloatTitle: '',
     aboutMeFloatText: ['举报', '拉黑', '取消'],
-    tempImage:''
+    tempImage:'',
+    myPost:{},
+    myColl:{}
 
 };
 

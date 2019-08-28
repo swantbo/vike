@@ -26,7 +26,7 @@ class AboutMe extends Component {
         super(props);
         this.state = {
             categoryName: ['帖子', '粉丝', '正在关注'],
-            icon: ['grid', 'detailed', 'Collection'],
+            icon: ['grid',  'Collection'],
             setListUrl: [{url: 'edit', text: '编辑主页'}, {
                 url: 'changePassword',
                 text: '更改密码'
@@ -43,7 +43,7 @@ class AboutMe extends Component {
     render() {
         const {dataState, requesting, avatar, userId, website, Introduction, userName, posts, myFens, myFriends, option} = this.props;
         let webUrl = 'http://' + website;
-
+        console.log(posts);
         let loading = (text) => <div className='aboutMe-loading'>
             <div>{text}</div>
         </div>

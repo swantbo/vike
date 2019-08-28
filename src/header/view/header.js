@@ -4,6 +4,7 @@ import {UserNameNull, SendUserName, ChangeOptions, requestId} from "../Actions";
 import {Link, withRouter} from "react-router-dom";
 import {updateUserAvatar} from "../../aboutme/Actions";
 import './header.css';
+import {requestLabel} from "../../search/Actions";
 import Cookies from 'js-cookie';
 import {changeStatus, sendPost, dataClear, isClick} from "../../sendpost/Actions";
 import {collectionPost, likeComment, likePost} from "../../home/Actions";
@@ -12,7 +13,7 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            a: null, b: -1, listUrl: {
+            a: false, b: -1, listUrl: {
                 '/edit': '编辑主页',
                 '/changePassword': '更改密码',
                 '/privacy_and_security': '隐私和安全',
@@ -25,15 +26,18 @@ class Header extends Component {
         };
         this.changeA = this.changeA.bind(this);
         this.changeB = this.changeB.bind(this);
+        this.changeC = this.changeC.bind(this);
         this.backUp = this.backUp.bind(this);
         this.historyBack = this.historyBack.bind(this);
 
     }
 
     changeA() {
-        this.setState({a: !this.state.a})
+        this.setState({a: true})
     }
-
+    changeC(){
+        this.setState({a:false})
+    }
     changeB() {
         this.setState({b: this.state.b * -1})
     }
@@ -52,7 +56,7 @@ class Header extends Component {
     }
 
     render() {
-        let {name, UserNameNull, SendUserName, option, ChangeOptions} = this.props;
+        let {name, UserNameNull, SendUserName, option, ChangeOptions,requestLabel} = this.props;
         let path = window.location.pathname;
         let logo = <div className='header-home'>
             <div className='header-post'></div>
@@ -60,7 +64,7 @@ class Header extends Component {
             <div className='header-addfriend'></div>
         </div>;
         let search = <div className='search-box'>
-            <Link to='/result'>
+            <Link className='header-search-a' to='/result'>
                 <div onClick={this.changeA} style={{border: this.state.a ? 'none' : null}}
                      className='header-search'><input onChange={() => {
                     SendUserName();
@@ -72,11 +76,12 @@ class Header extends Component {
 
                 </div>
             </Link>
-            <Link to='/search'>
+            <Link className='close-a' to='/search'>
                 <div onClick={() => {
                     this.changeB();
-                    this.changeA();
-                    UserNameNull()
+                    this.changeC();
+                    UserNameNull();
+                    requestLabel()
                 }} style={{display: !this.state.a ? 'none' : 'block'}} className='close'>取消
                 </div>
             </Link>
@@ -99,12 +104,11 @@ class Header extends Component {
                     if (this.props.sendStatus === 0) {
                         this.props.changeStatus()
                     } else if (this.props.sendStatus === 1) {
-                        console.log(this.props.img)
                         this.props.sendPost(Cookies.get('u_id'), this.props.text, this.props.img, this.props.label);
                     }
                 }
             }}>{this.props.sendStatus === 0 ? '下一步' : '发送'}</p>
-        </div>
+        </div>;
 
         let dynamic = <div className='header-dynamic'>动态</div>;
         let comment = <div className='header-comment'><span onClick={this.historyBack}> </span>评论</div>;
@@ -172,6 +176,9 @@ const mapDispatchToProps = (dispatch) => {
         dataClear: () => {
             dispatch(dataClear())
         },
+        requestLabel:()=>{
+            dispatch(requestLabel())
+        }
     }
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))

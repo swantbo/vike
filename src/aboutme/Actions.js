@@ -5,11 +5,8 @@ import config from '../config.js';
 function base64ToBlob(urlData) {
     var arr = urlData.split(',');
     var mime = arr[0].match(/:(.*?);/)[1] || 'image/png';
-    // 去掉url的头，并转化为byte
     var bytes = window.atob(arr[1]);
-    // 处理异常,将ascii码小于0的转换为大于0
     var ab = new ArrayBuffer(bytes.length);
-    // 生成视图（直接针对内存）：8位无符号整数，长度1个字节
     var ia = new Uint8Array(ab);
 
     for (var i = 0; i < bytes.length; i++) {
@@ -20,6 +17,28 @@ function base64ToBlob(urlData) {
         type: mime
     });
 }
+//请求个人帖子图片
+const myPostStart = (arr)=>({
+    type:ActionTypes.ABOUT_ME_MY_POST,
+    payload:{data:arr}
+});
+const myPostSuccess = (data)=>({
+    type:ActionTypes.ABOUT_ME_MY_POST_SUCCESS,
+    payload:{data:data}
+});
+const myPostFailure=(data)=>({
+    type:ActionTypes.ABOUT_ME_MY_POST_FAILURE,
+    payload:{data:data}
+});
+
+export const myPost = (arr,userId)=>{
+    return (dispatch)=>{
+        dispatch(myPostStart(arr));
+        return fetch(`${config.url}getPostImage?userId=${userId}`,{method:'GET'}).then(res=>res.json()).then(
+            json=>{dispatch(myPostSuccess(json))}
+        ).catch(err=>{dispatch(myPostFailure(err))})
+    }
+};
 function requestGet(name) {
     return {
         type: ActionTypes.LOGIN_GET_REQUEST,
