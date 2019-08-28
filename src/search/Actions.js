@@ -18,7 +18,6 @@ export const requestLabel = (tempId,num) => {
         dispatch(requestLabelStart());
         return fetch(`${config.url}getLabel?num=${num}&tempId=${tempId}`, {method: 'GET'}).then(res =>
             res.json()).then(json => {
-                console.log(json)
             dispatch(requestLabelSuccess(json))
         }).catch(dispatch(requestLabelFailure()))
     }

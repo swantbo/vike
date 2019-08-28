@@ -34,7 +34,9 @@ const myPostFailure=(data)=>({
 export const myPost = (arr,userId)=>{
     return (dispatch)=>{
         dispatch(myPostStart(arr));
-        return fetch(`${config.url}getPostImage?userId=${userId}`,{method:'GET'}).then(res=>res.json()).then(
+        return fetch(`${config.url}getPostImage`,{method:'POST',
+        body:JSON.stringify({arr,userId})
+        }).then(res=>res.json()).then(
             json=>{dispatch(myPostSuccess(json))}
         ).catch(err=>{dispatch(myPostFailure(err))})
     }
