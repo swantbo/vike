@@ -173,23 +173,52 @@
 
   .userPost {
     width: 100vw;
-    min-height: vw(700);
-
-    .userPost_List:after {
-      background: rgba(0, 0, 0, .0975);
-      content: '';
-      height: 1px;
-      left: 0;
-      position: absolute;
-      right: 0;
-      bottom: 0;
-    }
+    //.userPost_List:after {
+    //  background: rgba(0, 0, 0, .0975);
+    //  content: '';
+    //  height: 1px;
+    //  left: 0;
+    //  position: absolute;
+    //  right: 0;
+    //  bottom: 0;
+    //}
 
     .userPost_List {
+      margin-bottom: vw(125);
       position: relative;
       width: 100vw;
-      height: vw(110);
+      overflow: hidden;
+      //height: vw(110);
+      .userPost_List_image{
+        width:33vw;
+        height: 33vw;
+        float: left;
+        position: relative;
+        margin-left: 1px;
+        margin-bottom: 1px;
+        a{
+          display: inline-block;
+          width: 33vw;
+          height: 33vw;
+          img{
+            width: 33vw;
+          }
+          span{
+            width: 33vw;
+            height: 33vw;
+            background: rgba(60,60,60,0.54);
+            color: #ffffff;
+            text-align: center;
+            line-height: 33vw;
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+          }
+        }
 
+      }
       .listIcon {
         display: inline-block;
         width: 50vw;

@@ -22,22 +22,22 @@ const myPostStart = (arr)=>({
     type:ActionTypes.ABOUT_ME_MY_POST,
     payload:{data:arr}
 });
-const myPostSuccess = (data)=>({
+const myPostSuccess = (data,id)=>({
     type:ActionTypes.ABOUT_ME_MY_POST_SUCCESS,
-    payload:{data:data}
+    payload:{data:data,id:id}
 });
 const myPostFailure=(data)=>({
     type:ActionTypes.ABOUT_ME_MY_POST_FAILURE,
     payload:{data:data}
 });
 
-export const myPost = (arr,userId)=>{
+export const myPost = (arr,userId,id)=>{
     return (dispatch)=>{
         dispatch(myPostStart(arr));
         return fetch(`${config.url}getPostImage`,{method:'POST',
         body:JSON.stringify({arr,userId})
         }).then(res=>res.json()).then(
-            json=>{dispatch(myPostSuccess(json))}
+            json=>{dispatch(myPostSuccess(json,id))}
         ).catch(err=>{dispatch(myPostFailure(err))})
     }
 };

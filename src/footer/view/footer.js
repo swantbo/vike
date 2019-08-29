@@ -5,7 +5,26 @@ import {Link, withRouter} from "react-router-dom";
 import {requestLoginUserInfo} from '../../aboutme/Actions.js';
 import Cookies from 'js-cookie';
 import {requestLabel} from "../../search/Actions";
+import {myPost} from "../../aboutme/Actions";
 import './footer.css';
+
+
+
+function reqUserData(that,userId){
+    return new Promise(resolve => {
+        that.props.requestLoginUserInfo(userId);
+        let temp = setInterval(()=>{
+            if (that.props.posts!==undefined){
+                resolve(that.props.posts);
+                clearInterval(temp)
+            }
+        },200)
+    })
+}
+async function requestData(that,userId, arr, id) {
+    let temp = await reqUserData(that,userId);
+    that.props.myPost(temp,null,id)
+}
 
 class Footer extends Component {
     constructor() {
@@ -18,6 +37,8 @@ class Footer extends Component {
         let that = this, url = '/';
         let {Home, SendPost, Search, Dynamic, AboutMe} = this.props;
         let click = {0: Home, 1: Search, 2: SendPost, 3: Dynamic, 4: AboutMe};
+
+
         const temp = this.arr.map((item) => {
                 let index = that.arr.indexOf(item);
                 index === 0 ?
@@ -32,11 +53,13 @@ class Footer extends Component {
                 let className = 'footerSwitch ';
                 return <Link to={url}>
                     <div onClick={() => {
-                        if (index===1){that.props.requestLabel(Cookies.get('temp_id'),that.props.num)} else if (index<=3) {
+                        if (index===1){that.props.requestLabel(Cookies.get('temp_id'),that.props.num);click[1]()} else if (index<=3) {
                             click[index]()
                         } else if (index===4) {
                             click[4]();
-                            // this.props. requestLoginUserInfo(Cookies.get('u_id'))
+                            requestData(that,Cookies.get('u_id'),this.props.posts,true)
+                           // this.props.requestLoginUserInfo(Cookies.get('u_id'));
+                           // this.props.myPost(this.props.posts,null,true);
                         }
                     }
 
@@ -57,7 +80,8 @@ class Footer extends Component {
 const mapStateToProps = (state) => {
     return {
         id: state.footerReducer.state,
-        num:state.searchReducer.num
+        num:state.searchReducer.num,
+        posts: state.aboutMeReducer.loginUserInfo.posts
     }
 };
 const mapDispatchToProps=(dispatch)=>{
@@ -82,6 +106,9 @@ const mapDispatchToProps=(dispatch)=>{
         },
         requestLabel:(tempId,num)=>{
             dispatch(requestLabel(tempId,num))
+        },
+        myPost:(arr,userId,id)=>{
+            dispatch(myPost(arr,userId,id))
         }
     }
 };

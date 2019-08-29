@@ -153,21 +153,41 @@
 }
 .aboutMe_box .userPost {
   width: 100vw;
-  min-height: 64.8148148148vw;
-}
-.aboutMe_box .userPost .userPost_List:after {
-  background: rgba(0, 0, 0, 0.0975);
-  content: "";
-  height: 1px;
-  left: 0;
-  position: absolute;
-  right: 0;
-  bottom: 0;
 }
 .aboutMe_box .userPost .userPost_List {
+  margin-bottom: 11.5740740741vw;
   position: relative;
   width: 100vw;
-  height: 10.1851851852vw;
+  overflow: hidden;
+}
+.aboutMe_box .userPost .userPost_List .userPost_List_image {
+  width: 33vw;
+  height: 33vw;
+  float: left;
+  position: relative;
+  margin-left: 1px;
+  margin-bottom: 1px;
+}
+.aboutMe_box .userPost .userPost_List .userPost_List_image a {
+  display: inline-block;
+  width: 33vw;
+  height: 33vw;
+}
+.aboutMe_box .userPost .userPost_List .userPost_List_image a img {
+  width: 33vw;
+}
+.aboutMe_box .userPost .userPost_List .userPost_List_image a span {
+  width: 33vw;
+  height: 33vw;
+  background: rgba(60, 60, 60, 0.54);
+  color: #ffffff;
+  text-align: center;
+  line-height: 33vw;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 .aboutMe_box .userPost .userPost_List .listIcon {
   display: inline-block;

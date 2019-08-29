@@ -22,7 +22,6 @@ const setList = (url, text) => {
     return <li><Link to={`/${url}`}/>{text}<span></span></li>
 };
 const labelList = (labelName, img) => {
-    console.log('ok');
     return <div key={labelName} className='userPost_List_image'>
         <Link to={`/post/${labelName}`}>
             <img src={config.url + '/image/' + img}/>
@@ -53,10 +52,10 @@ class AboutMe extends Component {
     // }
     changListOne(str) {
         if (str === 'grid') {
-            this.props.myPost(this.props.posts);
+            this.props.myPost(this.props.posts,null,true);
             this.setState({list: true})
         } else {
-            this.props.myPost(this.props.myColl);
+            this.props.myPost(this.props.myColl,null,false);
             this.setState({list: false})
         }
 
@@ -74,8 +73,9 @@ class AboutMe extends Component {
         let setPage = this.state.setListUrl.map((item) => {
             return setList(item.url, item.text)
         });
-        let labelImage = Object.keys(myPostList).length<=0?<div></div>:Object.keys(myPostList).map((i)=>{
-            return labelList(i,myPostList[i])
+        let imageList = this.state.list?myPostList:myCollection;
+        let labelImage = Object.keys(imageList).length<=0?<div></div>:Object.keys(imageList).map((i)=>{
+            return labelList(i,imageList[i])
         });
         let aboutMe = dataState === 0 ? loading('数据加载中……') : dataState === -1 ? loading('数据请求错误！') : option ?
             <div className='aboutMe_box'>
@@ -151,8 +151,8 @@ const mapDispatchToProps = (dispatch) => {
         requestLoginUserInfo: (name) => {
             dispatch(requestLoginUserInfo(name))
         },
-        myPost: (arr) => {
-            dispatch(myPost(arr))
+        myPost: (arr,userId,id) => {
+            dispatch(myPost(arr,userId,id))
         }
     }
 };
