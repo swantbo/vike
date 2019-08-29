@@ -13,8 +13,16 @@ const categoryList = (num, text) => {
         <p>{text}</p>
     </div>
 };
-const listIcon = (className, click) => {
-    return <span onClick={() => click(className)} className={className + ' ' + 'listIcon'}>
+const listIcon = (className, click, id) => {
+    let temp;
+    if (id === true && className === 'grid') {
+        temp = className + 'Action';
+    } else if (id === false && className === 'Collection') {
+        temp = className + 'Action';
+    } else {
+        temp = className
+    }
+    return <span onClick={() => click(className)} className={temp + ' ' + 'listIcon'}>
         <span></span>
     </span>
 };
@@ -52,10 +60,10 @@ class AboutMe extends Component {
     // }
     changListOne(str) {
         if (str === 'grid') {
-            this.props.myPost(this.props.posts,null,true);
+            this.props.myPost(this.props.posts, null, true);
             this.setState({list: true})
         } else {
-            this.props.myPost(this.props.myColl,null,false);
+            this.props.myPost(this.props.myColl, null, false);
             this.setState({list: false})
         }
 
@@ -68,14 +76,14 @@ class AboutMe extends Component {
             <div>{text}</div>
         </div>;
         let listIconArr = this.state.icon.map((item) => {
-            return listIcon(item, this.changListOne)
+            return listIcon(item, this.changListOne,this.state.list)
         });
         let setPage = this.state.setListUrl.map((item) => {
             return setList(item.url, item.text)
         });
-        let imageList = this.state.list?myPostList:myCollection;
-        let labelImage = Object.keys(imageList).length<=0?<div></div>:Object.keys(imageList).map((i)=>{
-            return labelList(i,imageList[i])
+        let imageList = this.state.list ? myPostList : myCollection;
+        let labelImage = Object.keys(imageList).length <= 0 ? <div></div> : Object.keys(imageList).map((i) => {
+            return labelList(i, imageList[i])
         });
         let aboutMe = dataState === 0 ? loading('数据加载中……') : dataState === -1 ? loading('数据请求错误！') : option ?
             <div className='aboutMe_box'>
@@ -151,8 +159,8 @@ const mapDispatchToProps = (dispatch) => {
         requestLoginUserInfo: (name) => {
             dispatch(requestLoginUserInfo(name))
         },
-        myPost: (arr,userId,id) => {
-            dispatch(myPost(arr,userId,id))
+        myPost: (arr, userId, id) => {
+            dispatch(myPost(arr, userId, id))
         }
     }
 };

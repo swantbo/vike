@@ -212,6 +212,15 @@
   background-position-x: -39.3518518519vw;
   background-position-y: -51vw;
 }
+.aboutMe_box .userPost .userPost_List .gridAction {
+  border-bottom: 3px solid #a9a9a9;
+}
+.aboutMe_box .userPost .userPost_List .gridAction span {
+  background: url("../../image/923d425c0489.png");
+  background-size: 81.8518518519vw;
+  background-position-x: -39.3518518519vw;
+  background-position-y: -51vw;
+}
 .aboutMe_box .userPost .userPost_List .detailed span {
   background: url("../../image/923d425c0489.png");
   background-size: 81.8518518519vw;
@@ -219,6 +228,15 @@
   background-position-y: -51vw;
 }
 .aboutMe_box .userPost .userPost_List .Collection span {
+  background: url("../../image/923d425c0489.png");
+  background-size: 81.8518518519vw;
+  background-position-x: -66.7407407407vw;
+  background-position-y: -23.2962962963vw;
+}
+.aboutMe_box .userPost .userPost_List .CollectionAction {
+  border-bottom: 3px solid #a9a9a9;
+}
+.aboutMe_box .userPost .userPost_List .CollectionAction span {
   background: url("../../image/923d425c0489.png");
   background-size: 81.8518518519vw;
   background-position-x: -66.7407407407vw;

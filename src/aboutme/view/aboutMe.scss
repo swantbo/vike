@@ -246,6 +246,15 @@
           background-position-y: vw(-324*1.7);
         }
       }
+      .gridAction{
+        border-bottom:3px solid #a9a9a9;
+        span {
+          background: url("../../image/923d425c0489.png");
+          background-size: vw(520*1.7);
+          background-position-x: vw(-250*1.7);
+          background-position-y: vw(-324*1.7);
+        }
+      }
 
       .detailed {
         span {
@@ -257,6 +266,15 @@
       }
 
       .Collection {
+        span {
+          background: url("../../image/923d425c0489.png");
+          background-size: vw(520*1.7);
+          background-position-x: vw(-424*1.7);
+          background-position-y: vw(-148*1.7);
+        }
+      }
+      .CollectionAction{
+        border-bottom: 3px solid #a9a9a9;
         span {
           background: url("../../image/923d425c0489.png");
           background-size: vw(520*1.7);
