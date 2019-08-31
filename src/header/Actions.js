@@ -2,7 +2,9 @@ import * as ActionTypes from './ActionTypes.js';
 import fetch from 'cross-fetch';
 import config from '../config.js';
 import {requestPost} from "../home/Actions";
+import {requestSearch} from '../search/Actions.js'
 
+let t;
 const requestIdState = () => ({
     type: ActionTypes.POST_REQUEST_ID,
 });
@@ -16,10 +18,10 @@ const requestIdFailure = () => ({
 export const requestId = () => {
     return (dispatch) => {
         dispatch(requestIdState());
-        return fetch(`${config.url}getPostId`,{method:'GET'}).then(res=>res.json()).then(
-            json=>{
+        return fetch(`${config.url}getPostId`, {method: 'GET'}).then(res => res.json()).then(
+            json => {
                 dispatch(requestIdSuccess(json));
-                for(let item of json){
+                for (let item of json) {
                     dispatch(requestPost(item))
                 }
             }
@@ -33,10 +35,24 @@ export const ChangeOptions = () => ({
 export const BackTop = () => ({
     type: ActionTypes.HEADER_BACK_TOP
 });
-export const SendUserName = (name) => ({
+const sendInputText = (text) => ({
     type: ActionTypes.HEADER_SEND_USER_NAME,
-    payload: {name: name}
+    payload: {name: text}
 });
+export const SendUserName = (name) => {
+    return (dispatch) => {
+        let nt = new Date().getTime();
+        clearInterval(t);
+        t = setInterval(() => {
+            if (new Date().getTime() - nt >= 1000&&name.length>=1) {
+                clearInterval(t);
+                dispatch(sendInputText(name));
+                dispatch(requestSearch(name))
+            }
+        }, 100);
+
+    };
+};
 export const UserNameNull = () => ({
     type: ActionTypes.HEADER_USER_NAME_NULL,
 });

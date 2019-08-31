@@ -241,7 +241,7 @@
 
     .close-a {
       display: inline-block;
-      width: vw(125);
+      width: vw(180);
       height: vw(125);
       position: absolute;
       right: 0;
@@ -250,7 +250,7 @@
       & > .close {
         text-align: center;
         line-height: vw(125);
-        width: vw(125);
+        width: vw(180);
         height: vw(125);
       }
     }
@@ -273,11 +273,13 @@
         input {
           font-size: vw(40);
           width: vw(800);
-          height: vw(80);
-          border: none;
+          height: vw(75);
+          border: 1px solid #000000;
+          border-radius: vw(15);
           outline: none;
           position: absolute;
           left: vw(30);
+          padding-left: vw(20);
           top: 50%;
           transform: translateY(-50%);
           background-color: rgba(255, 255, 255, 0);

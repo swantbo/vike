@@ -42,4 +42,11 @@ export const requestSearch = (text) => {
         }).catch(dispatch(requestSearchFailure()))
 
     }
-}
+};
+export const  changeSearchText = (text)=>({
+    type:ActionTypes.SEARCH_CHANGE_TEXT,
+    payload:{text:text}
+});
+export const clearSearchText = ()=>({
+    type:ActionTypes.SEARCH_CLEAR_TEXT
+});

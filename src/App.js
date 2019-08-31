@@ -17,6 +17,24 @@ import {changeAvatar} from './aboutme';
 import {requestLoginUserInfo} from './aboutme/Actions.js';
 import Cookies from 'js-cookie';
 import './App.css';
+import {myPost} from "./aboutme/Actions";
+//
+// function reqUserData(that,userId){
+//     return new Promise(resolve => {
+//         that.props.requestLoginUserInfo(userId);
+//         let temp = setInterval(()=>{
+//             if (that.props.posts!==undefined){
+//                 resolve(that.props.posts);
+//                 clearInterval(temp)
+//             }
+//         },200)
+//     })
+// }
+// async function requestData(that,userId, arr, id) {
+//     let temp = await reqUserData(that,userId);
+//     that.props.myPost(temp,null,id)
+// }
+
 
 class App extends Component {
     constructor(){
@@ -28,6 +46,7 @@ class App extends Component {
         }
         if (window.location.pathname === '/aboutme') {
             this.props.requestLoginUserInfo(Cookies.get('u_id'))
+            // requestData(this,Cookies.get('u_id'),this.props.posts,true)
         }
         let {avatarFloat,aboutMeFloat} = this.props;
         const temp = () => <h2>temp</h2>;
@@ -38,7 +57,7 @@ class App extends Component {
                     <Route exact path='/' component={Home}/>
                     <Route path='/comment/:paramName' component={Comment}/>
                     <Route path='/search' component={Search}/>
-                    <Route path='/result' component={ResultTest}/>
+                    <Route path='/result' component={Search}/>
                     <Route path='/dynamic' component={temp}/>
                     <Route path='/aboutme' component={AboutMe}/>
                     <Route path='/edit' component={edit}/>
@@ -61,13 +80,17 @@ const mapStateToProps = (state) => {
     return{
         avatarFloat:state.aboutMeReducer.avatarFloat,
         aboutMeFloat:state.aboutMeReducer.aboutMeFloat,
+        // posts:  state.aboutMeReducer.loginUserInfo.posts
     }
 };
 const mapDispatchToProps =(dispatch)=>{
     return{
         requestLoginUserInfo:(name)=>{
             dispatch(requestLoginUserInfo(name))
-        }
+        },
+        // myPost:(arr,userId,id)=>{
+        //     dispatch(myPost(arr,userId,id))
+        // }
     }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

@@ -12,6 +12,7 @@ import {collectionPost, likeComment, likePost} from "../../home/Actions";
 class Header extends Component {
     constructor(props) {
         super(props);
+        this.input = React.createRef();
         this.state = {
             a: false, b: -1, listUrl: {
                 '/edit': '编辑主页',
@@ -22,22 +23,26 @@ class Header extends Component {
                 '/login': '注册或登录',
                 '/sendPost': '发帖',
                 '': '退出',
-            }
+            },
+            text: ''
         };
         this.changeA = this.changeA.bind(this);
         this.changeB = this.changeB.bind(this);
         this.changeC = this.changeC.bind(this);
         this.backUp = this.backUp.bind(this);
         this.historyBack = this.historyBack.bind(this);
-
+        this.changeText = this.changeText.bind(this);
+        this.clearText = this.clearText.bind(this);
     }
 
     changeA() {
         this.setState({a: true})
     }
-    changeC(){
-        this.setState({a:false})
+
+    changeC() {
+        this.setState({a: false})
     }
+
     changeB() {
         this.setState({b: this.state.b * -1})
     }
@@ -46,6 +51,12 @@ class Header extends Component {
         document.documentElement.scrollTop = 0;
     }
 
+    changeText(e) {
+        this.setState({text:e.target.value})
+    }
+    clearText(){
+        this.setState({text:''})
+    }
     componentWillMount() {
         this.setState({a: false});
         this.props.requestId();
@@ -56,20 +67,25 @@ class Header extends Component {
     }
 
     render() {
-        let {name, UserNameNull, SendUserName, option, ChangeOptions,requestLabel} = this.props;
+        let {name, UserNameNull, SendUserName, option, ChangeOptions, requestLabel} = this.props;
         let path = window.location.pathname;
         let logo = <div className='header-home'>
             <div className='header-post'></div>
             <div className='header-logo' onClick={this.backUp}></div>
             <div className='header-addfriend'></div>
         </div>;
+        let style = {border: '1px solid rgba(0, 0, 0, .0975)'};
+        let style2 = {border: 'none'};
         let search = <div className='search-box'>
             <Link className='header-search-a' to='/result'>
                 <div onClick={this.changeA} style={{border: this.state.a ? 'none' : null}}
-                     className='header-search'><input onChange={() => {
-                    SendUserName();
-                    this.changeB()
-                }} value={name} type='text'/>
+                     className='header-search'><input style={this.state.a ? style : style2}
+                                                      onChange={(e) => {
+                                                          this.changeText(e);
+                                                          // console.log();
+                                                          SendUserName(e.target.value);
+                                                          this.changeB()
+                                                      }} value={this.state.text} type='text'/>
                     <div style={{display: this.state.a ? 'none' : 'block'}}
                          className='header-prompt'>搜索
                     </div>
@@ -81,7 +97,8 @@ class Header extends Component {
                     this.changeB();
                     this.changeC();
                     UserNameNull();
-                    requestLabel()
+                    requestLabel();
+                    this.clearText()
                 }} style={{display: !this.state.a ? 'none' : 'block'}} className='close'>取消
                 </div>
             </Link>
@@ -158,8 +175,8 @@ const mapDispatchToProps = (dispatch) => {
         UserNameNull: () => {
             dispatch(UserNameNull())
         },
-        SendUserName: () => {
-            dispatch(SendUserName())
+        SendUserName: (text) => {
+            dispatch(SendUserName(text))
         },
         ChangeOptions: () => {
             dispatch(ChangeOptions())
@@ -176,7 +193,7 @@ const mapDispatchToProps = (dispatch) => {
         dataClear: () => {
             dispatch(dataClear())
         },
-        requestLabel:()=>{
+        requestLabel: () => {
             dispatch(requestLabel())
         }
     }

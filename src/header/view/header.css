@@ -213,7 +213,7 @@
 }
 .header .search-box .close-a {
   display: inline-block;
-  width: 11.5740740741vw;
+  width: 16.6666666667vw;
   height: 11.5740740741vw;
   position: absolute;
   right: 0;
@@ -222,7 +222,7 @@
 .header .search-box .close-a > .close {
   text-align: center;
   line-height: 11.5740740741vw;
-  width: 11.5740740741vw;
+  width: 16.6666666667vw;
   height: 11.5740740741vw;
 }
 .header .search-box .header-search-a {
@@ -244,11 +244,13 @@
 .header .search-box .header-search-a .header-search input {
   font-size: 3.7037037037vw;
   width: 74.0740740741vw;
-  height: 7.4074074074vw;
-  border: none;
+  height: 6.9444444444vw;
+  border: 1px solid #000000;
+  border-radius: 1.3888888889vw;
   outline: none;
   position: absolute;
   left: 2.7777777778vw;
+  padding-left: 1.8518518519vw;
   top: 50%;
   transform: translateY(-50%);
   background-color: rgba(255, 255, 255, 0);

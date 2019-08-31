@@ -15,10 +15,14 @@ const labelList = (labelName, img) => {
         </Link>
     </div>
 };
+const searchList = (userId,userName,avatar)=>{
+    return <div>
 
+    </div>
+};
 class Search extends Component {
     constructor() {
-        super(...arguments)
+        super(...arguments);
     };
 
     render() {
@@ -26,9 +30,12 @@ class Search extends Component {
         let single = num===0?<div/>:Object.keys(label).map((i) => {
             return labelList(i, label[i])
         });
+        let searchHistory = <div>
+            <span>猜你想找</span>
+        </div>;
         return (
             <div className='Search'>
-                {single}
+                {window.location.pathname==='/search'?single:<div/>}
             </div>
         )
     }

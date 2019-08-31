@@ -4,7 +4,8 @@ const search = {
     num:0,
     label:{},
     status:0,
-    searchResults:[]
+    searchResults:[],
+    text:''
 };
 
 export default  function (state = search, action) {
@@ -16,6 +17,19 @@ export default  function (state = search, action) {
             return {
                 ...state,
                 status: 0
+            }
+        }
+        case ActionTypes.SEARCH_CHANGE_TEXT:{
+            const {text} = action.payload;
+            return {
+                ...state,
+                text:text
+            }
+        }
+        case ActionTypes.SEARCH_CLEAR_TEXT:{
+            return {
+                ...state,
+                text:''
             }
         }
         case ActionTypes.SEARCH_REQUEST_LABEL_SUCCESS:{
