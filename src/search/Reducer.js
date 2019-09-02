@@ -26,10 +26,10 @@ export default  function (state = search, action) {
                 text:text
             }
         }
-        case ActionTypes.SEARCH_CLEAR_TEXT:{
+        case ActionTypes.SEARCH_CLEAR_SEARCH_RESULTS:{
             return {
                 ...state,
-                text:''
+                searchResults:[]
             }
         }
         case ActionTypes.SEARCH_REQUEST_LABEL_SUCCESS:{
@@ -55,7 +55,7 @@ export default  function (state = search, action) {
             const {data} = action.payload;
             return {
                 ...state,
-                searchResults: [...state.searchResults,...data]
+                searchResults: [...data]
             }
         }
         case ActionTypes.SEARCH_REQUEST_TEXT_FAILURE:{

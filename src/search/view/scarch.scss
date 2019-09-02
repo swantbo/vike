@@ -1,29 +1,34 @@
 @function vw($px) {
   @return (($px/2)/540)*100vw
 }
-.Search{
-  width:100vw;
+
+.Search {
+  width: 100vw;
   height: 100%;
   margin-top: vw(125);
   background: #1e3890;
-  .Search-label-list{
-    width:33vw;
+
+  .Search-label-list {
+    width: 33vw;
     height: 33vw;
     float: left;
     position: relative;
     margin-left: 1px;
     margin-bottom: 1px;
-    a{
+
+    a {
       display: inline-block;
       width: 33vw;
       height: 33vw;
-      img{
+
+      img {
         width: 33vw;
       }
-      span{
+
+      span {
         width: 33vw;
         height: 33vw;
-        background: rgba(60,60,60,0.54);
+        background: rgba(60, 60, 60, 0.54);
         color: #ffffff;
         text-align: center;
         line-height: 33vw;
@@ -35,5 +40,65 @@
       }
     }
 
+  }
+
+  .search-box {
+    position: relative;
+    width: 100vw;
+    background: #ffffff;
+
+    .guess {
+      display: inline-block;
+      font-size: vw(40);
+      font-weight: bold;
+      position: relative;
+      left: vw(75);
+      margin-top: vw(20);
+    }
+
+    .Search-single {
+      display: inline-block;
+      width: 100vw;
+      height: vw(130);
+      position: relative;
+
+      .Search-single-box {
+        width: 90vw;
+        height: vw(130);
+        margin: 0 auto;
+        margin-top: vw(20);
+        .img {
+          border-radius: 50%;
+          overflow: hidden;
+          width: vw(130);
+          height: vw(130);
+          border: 1px solid #c7c7c7;
+          img {
+            width: vw(130);
+          }
+        }
+        .text{
+          &>span{
+            display: inline-block;
+          }
+          .text-title{
+            font-size: vw(40);
+            font-weight: bolder;
+            color: #000;
+            position: absolute;
+            top: vw(40);
+            left: vw(220);
+          }
+          .text-text{
+            color: #8e8e8e;
+            font-size: vw(40);
+            font-weight: lighter;
+            position: absolute;
+            top: vw(90);
+            left: vw(220);
+          }
+        }
+      }
+    }
   }
 }

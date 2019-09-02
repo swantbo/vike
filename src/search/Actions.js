@@ -47,6 +47,6 @@ export const  changeSearchText = (text)=>({
     type:ActionTypes.SEARCH_CHANGE_TEXT,
     payload:{text:text}
 });
-export const clearSearchText = ()=>({
-    type:ActionTypes.SEARCH_CLEAR_TEXT
+export const clearSearchResults = ()=>({
+    type:ActionTypes.SEARCH_CLEAR_SEARCH_RESULTS
 });

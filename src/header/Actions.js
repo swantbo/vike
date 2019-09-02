@@ -46,6 +46,7 @@ export const SendUserName = (name) => {
         t = setInterval(() => {
             if (new Date().getTime() - nt >= 1000&&name.length>=1) {
                 clearInterval(t);
+                // dispatch(clearSearchResults());
                 dispatch(sendInputText(name));
                 dispatch(requestSearch(name))
             }
