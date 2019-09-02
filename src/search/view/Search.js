@@ -15,10 +15,22 @@ const labelList = (labelName, img) => {
         </Link>
     </div>
 };
-const searchList = (userId,userName,avatar)=>{
-    return <div>
-
-    </div>
+const searchList = (title,text,url)=>{
+    let link;
+    if (url===undefined){
+        link=`/label/${title}`
+    }else {
+        link=`/user/${title}`
+    }
+    return <Link className='Search-' to={link}>
+        <div>
+            <div><img src={config.url + '/image/' + url}/></div>
+            <div>
+                <span>{title}</span>
+                <span>{text}</span>
+            </div>
+        </div>
+    </Link>
 };
 class Search extends Component {
     constructor() {
@@ -35,7 +47,7 @@ class Search extends Component {
         </div>;
         return (
             <div className='Search'>
-                {window.location.pathname==='/search'?single:<div/>}
+                {window.location.pathname==='/search'?single:searchHistory}
             </div>
         )
     }
