@@ -4,10 +4,10 @@
 
 .Search {
   width: 100vw;
-  height: 100%;
   margin-top: vw(125);
-  background: #1e3890;
-
+  //background: #1e3890;
+  overflow: hidden;
+  margin-bottom: vw(125);
   .Search-label-list {
     width: 33vw;
     height: 33vw;
@@ -28,6 +28,7 @@
       span {
         width: 33vw;
         height: 33vw;
+        font-size: vw(35);
         background: rgba(60, 60, 60, 0.54);
         color: #ffffff;
         text-align: center;

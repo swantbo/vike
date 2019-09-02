@@ -4,7 +4,7 @@ import {Home, Search, SendPost, Dynamic, AboutMe} from '../Actions.js';
 import {Link, withRouter} from "react-router-dom";
 import {requestLoginUserInfo} from '../../aboutme/Actions.js';
 import Cookies from 'js-cookie';
-import {requestLabel} from "../../search/Actions";
+import {requestLabel,requestSearch} from "../../search/Actions";
 import {myPost} from "../../aboutme/Actions";
 import './footer.css';
 
@@ -53,7 +53,7 @@ class Footer extends Component {
                 let className = 'footerSwitch ';
                 return <Link to={url}>
                     <div onClick={() => {
-                        if (index===1){that.props.requestLabel(Cookies.get('temp_id'),that.props.num);click[1]()} else if (index<=3) {
+                        if (index===1){that.props.requestLabel(Cookies.get('temp_id'),that.props.num);this.props.requestSearch();click[1]()} else if (index<=3) {
                             click[index]()
                         } else if (index===4) {
                             click[4]();
@@ -109,6 +109,9 @@ const mapDispatchToProps=(dispatch)=>{
         },
         myPost:(arr,userId,id)=>{
             dispatch(myPost(arr,userId,id))
+        },
+        requestSearch:()=>{
+            dispatch(requestSearch())
         }
     }
 };
