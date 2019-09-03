@@ -52,7 +52,7 @@ class Header extends Component {
     }
 
     changeText(e) {
-        this.setState({text:e.target.value})
+        this.setState({text:e.target.value.replace(/\s+/g,"")})
     }
     clearText(){
         this.setState({text:''})
@@ -83,7 +83,7 @@ class Header extends Component {
                                                       onChange={(e) => {
                                                           this.changeText(e);
                                                           // console.log();
-                                                          SendUserName(e.target.value);
+                                                          SendUserName(e.target.value.replace(/\s+/g,""));
                                                           this.changeB()
                                                       }} value={this.state.text} type='text'/>
                     <div style={{display: this.state.a ? 'none' : 'block'}}

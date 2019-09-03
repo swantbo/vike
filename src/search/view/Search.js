@@ -15,15 +15,19 @@ const labelList = (labelName, img) => {
         </Link>
     </div>
 };
-const searchList = (title,text,url)=>{
+const searchList = (title,text,url,tag)=>{
     let link;
-    if (url===undefined){
+    if (tag==='label'){
         link=`/label/${title}`;
         url='label.png';
         text=text +'帖子';
         title='#'+title
-    }else {
+    }else if (tag==='user') {
         link=`/user/${title}`
+    }else if (tag==='hot'){
+        link=`/hot/${text}`;
+        title='@'+ title;
+        text=text +'次搜索'
     }
     return <Link className='Search-single' to={link}>
         <div className='Search-single-box'>
@@ -45,15 +49,17 @@ class Search extends Component {
         let single = num===0?<div/>:Object.keys(label).map((i) => {
             return labelList(i, label[i])
         });
-        let list = searchResults.map((i)=>{
-            if (Object.keys(i).length===2){
-                return searchList(i.label,i.length)
-            }else {
-                return searchList(i.userId,i.userName,i.avatar)
+        let list = searchResults.reverse().map((i)=>{
+            if (i.tag==='label'){
+                return searchList(i.label,i.length,null,i.tag)
+            }else if(i.tag==='user') {
+                return searchList(i.userId,i.userName,i.avatar,i.tag)
+            }else if (i.tag==='hot') {
+                return searchList(i.text,i.num,i.img,i.tag)
             }
         });
         let searchHistory = <div className='search-box'>
-            <span className='guess'>{searchResults.length<=0?'热门搜索':'搜索结果'}</span>
+            <span className='guess'>{searchResults.length<=0||searchResults[0].tag==='hot'?'热门搜索':'搜索结果'}</span>
             {list}
         </div>;
         return (
