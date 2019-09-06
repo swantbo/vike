@@ -8,33 +8,13 @@ import {edit} from './aboutme';
 import {view as Login} from './login';
 import {Comment} from './post'
 import {view as Home} from './home'
-import SearchTest from './test/testsearch.js';
 import {view as Search} from './search';
 import {view as SendPost} from './sendpost';
-import ResultTest from './test/result.js';
 import {view as FloatInterface} from './floatInterface';
 import {changeAvatar} from './aboutme';
 import {requestLoginUserInfo} from './aboutme/Actions.js';
 import Cookies from 'js-cookie';
 import './App.css';
-import {myPost} from "./aboutme/Actions";
-//
-// function reqUserData(that,userId){
-//     return new Promise(resolve => {
-//         that.props.requestLoginUserInfo(userId);
-//         let temp = setInterval(()=>{
-//             if (that.props.posts!==undefined){
-//                 resolve(that.props.posts);
-//                 clearInterval(temp)
-//             }
-//         },200)
-//     })
-// }
-// async function requestData(that,userId, arr, id) {
-//     let temp = await reqUserData(that,userId);
-//     that.props.myPost(temp,null,id)
-// }
-
 
 class App extends Component {
     constructor(){
@@ -62,6 +42,7 @@ class App extends Component {
                     <Route path='/aboutme' component={AboutMe}/>
                     <Route path='/edit' component={edit}/>
                     <Route path='/us' component={temp}/>
+                    <Route path='/user/:paramName' component={AboutMe}/>
                     <Route path='/sendPost' component={SendPost}/>
                     <Route path='changePassword' component={temp}/>
                     <Route path='/privacy_and_security' component={temp}/>
@@ -80,7 +61,6 @@ const mapStateToProps = (state) => {
     return{
         avatarFloat:state.aboutMeReducer.avatarFloat,
         aboutMeFloat:state.aboutMeReducer.aboutMeFloat,
-        // posts:  state.aboutMeReducer.loginUserInfo.posts
     }
 };
 const mapDispatchToProps =(dispatch)=>{
@@ -88,9 +68,6 @@ const mapDispatchToProps =(dispatch)=>{
         requestLoginUserInfo:(name)=>{
             dispatch(requestLoginUserInfo(name))
         },
-        // myPost:(arr,userId,id)=>{
-        //     dispatch(myPost(arr,userId,id))
-        // }
     }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

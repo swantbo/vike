@@ -17,30 +17,37 @@ function base64ToBlob(urlData) {
         type: mime
     });
 }
+
 //请求个人帖子图片
-const myPostStart = (arr)=>({
-    type:ActionTypes.ABOUT_ME_MY_POST,
-    payload:{data:arr}
+const myPostStart = (arr) => ({
+    type: ActionTypes.ABOUT_ME_MY_POST,
+    payload: {data: arr}
 });
-const myPostSuccess = (data,id)=>({
-    type:ActionTypes.ABOUT_ME_MY_POST_SUCCESS,
-    payload:{data:data,id:id}
+const myPostSuccess = (data, id) => ({
+    type: ActionTypes.ABOUT_ME_MY_POST_SUCCESS,
+    payload: {data: data, id: id}
 });
-const myPostFailure=(data)=>({
-    type:ActionTypes.ABOUT_ME_MY_POST_FAILURE,
-    payload:{data:data}
+const myPostFailure = (data) => ({
+    type: ActionTypes.ABOUT_ME_MY_POST_FAILURE,
+    payload: {data: data}
 });
 
-export const myPost = (arr,userId,id)=>{
-    return (dispatch)=>{
+export const myPost = (arr, userId, id) => {
+    return (dispatch) => {
         dispatch(myPostStart(arr));
-        return fetch(`${config.url}getPostImage`,{method:'POST',
-        body:JSON.stringify({arr,userId})
-        }).then(res=>res.json()).then(
-            json=>{dispatch(myPostSuccess(json,id))}
-        ).catch(err=>{dispatch(myPostFailure(err))})
+        return fetch(`${config.url}getPostImage`, {
+            method: 'POST',
+            body: JSON.stringify({arr, userId})
+        }).then(res => res.json()).then(
+            json => {
+                dispatch(myPostSuccess(json, id))
+            }
+        ).catch(err => {
+            dispatch(myPostFailure(err))
+        })
     }
 };
+
 function requestGet(name) {
     return {
         type: ActionTypes.LOGIN_GET_REQUEST,
@@ -71,70 +78,100 @@ export const requestLoginUserInfo = (name) => {
 
     };
 };
+const requestOtherUserStart = (userId) => ({
+    type: ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO
+});
+const requestOtherUserSuccess = (data) => ({
+    type: ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO_SUCCESS,
+    payload: {data: data}
+});
+const requestOtherUserFailure = (err) => ({
+    type: ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO_FAILURE,
+    payload: {err: err}
+});
+
+export const requestOtherUser = (userId) => {
+    return (dispatch) => {
+        dispatch(requestOtherUserStart());
+        return fetch(`${config.url}getOtherUser?userId=${userId}`, {method: 'GET'}).then(
+            res => res.json()).then(
+            json => {
+                dispatch(requestOtherUserSuccess(json));
+                dispatch(myPost(json.data.posts,null,true))
+            }).catch(
+            err => dispatch(requestOtherUserFailure(err)))
+    }
+};
 
 function updateUserInfoStart() {
-    return{
-        type:ActionTypes.UPDATE_USER_INFO
-    }
-}
-function updateUserInfoSuccess(data) {
-    return{
-        type:ActionTypes.UPDATE_USER_INFO_SUCCESS,
-        payload:{data:data}
-    }
-}
-function updateUserInfoFailure() {
-    return{
-        type:ActionTypes.UPDATE_USER_INFO_FAILURE
+    return {
+        type: ActionTypes.UPDATE_USER_INFO
     }
 }
 
-export const updateUserInfo = (userId,userName,email,introduction,gender,recommend,website)=>{
-    return dispatch =>{
+function updateUserInfoSuccess(data) {
+    return {
+        type: ActionTypes.UPDATE_USER_INFO_SUCCESS,
+        payload: {data: data}
+    }
+}
+
+function updateUserInfoFailure() {
+    return {
+        type: ActionTypes.UPDATE_USER_INFO_FAILURE
+    }
+}
+
+export const updateUserInfo = (userId, userName, email, introduction, gender, recommend, website) => {
+    return dispatch => {
         dispatch(updateUserInfoStart());
-        return fetch(`${config.url}updateUserInfo`,{
+        return fetch(`${config.url}updateUserInfo`, {
             method: 'POST',
-            body:JSON.stringify({userId,userName,email,introduction,gender,recommend,website})
-        }).then(res=>res.json()).then(json=>{dispatch(updateUserInfoSuccess(json))}).catch(
-            error=>dispatch(updateUserInfoFailure())
+            body: JSON.stringify({userId, userName, email, introduction, gender, recommend, website})
+        }).then(res => res.json()).then(json => {
+            dispatch(updateUserInfoSuccess(json))
+        }).catch(
+            error => dispatch(updateUserInfoFailure())
         )
     }
 };
 
 function updateUserAvatarStart() {
-    return{
-        type:ActionTypes.UPDATE_USER_AVATAR
-    }
-}
-function updateUserAvatarSuccess(data) {
-    return{
-        type:ActionTypes.UPDATE_USER_AVATAR_SUCCESS,
-        payload:{data:data}
-    }
-}
-function updateUserAvatarFailure() {
-    return{
-        type:ActionTypes.UPDATE_USER_AVATAR_FAILURE
+    return {
+        type: ActionTypes.UPDATE_USER_AVATAR
     }
 }
 
-export const updateUserAvatar = (file,userId)=>{
-    let newFile = new File([base64ToBlob(file)],userId+'.jpg',{type:'image/jpeg'});
-    return dispatch=>{
+function updateUserAvatarSuccess(data) {
+    return {
+        type: ActionTypes.UPDATE_USER_AVATAR_SUCCESS,
+        payload: {data: data}
+    }
+}
+
+function updateUserAvatarFailure() {
+    return {
+        type: ActionTypes.UPDATE_USER_AVATAR_FAILURE
+    }
+}
+
+export const updateUserAvatar = (file, userId) => {
+    let newFile = new File([base64ToBlob(file)], userId + '.jpg', {type: 'image/jpeg'});
+    return dispatch => {
         dispatch(updateUserAvatarStart());
-        const fd  = new FormData();
-        fd.append('file',newFile);
-        fd.append('userId',userId);
-        fetch(`${config.url}updateAvatar`,{
-            method:'POST',
-            body:fd
-        }).then(res=>res.json()).then(json=>dispatch(updateUserInfoSuccess(json))).catch(dispatch(updateUserInfoFailure()))
+        const fd = new FormData();
+        fd.append('file', newFile);
+        fd.append('userId', userId);
+        fetch(`${config.url}updateAvatar`, {
+            method: 'POST',
+            body: fd
+        }).then(res => res.json()).then(json => dispatch(updateUserInfoSuccess(json))).catch(dispatch(updateUserInfoFailure()))
     }
 };
 
-export const saveImg=(img)=>({
-    type:ActionTypes.SAVE_IMG,
-    payload:{img:img}
+export const saveImg = (img) => ({
+    type: ActionTypes.SAVE_IMG,
+    payload: {img: img}
 })
 export const changeFloatInterFaceShow = () => ({
     type: ActionTypes.ABOUTME_CHANGE_FLOATINTERFACE_SHOW

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Cookies from 'js-cookie';
 import {Link, withRouter} from "react-router-dom";
 import config from '../../config.js';
-import {requestLoginUserInfo} from '../Actions.js';
+import {requestLoginUserInfo, requestOtherUser} from '../Actions.js';
 import {myPost} from "../Actions";
 import './aboutMe.css';
 
@@ -55,37 +55,46 @@ class AboutMe extends Component {
         this.changListOne = this.changListOne.bind(this);
     }
 
-    // componentDidMount() {
-    //     this.props.requestLoginUserInfo(Cookies.get('u_id'))
-    // }
+    componentDidMount() {
+        if (this.props.user === 'other') {
+            this.props.requestOtherUser(window.location.pathname.match('[^/]+(?!.*/)')[0])
+        }
+    }
+
     changListOne(str) {
         if (str === 'grid') {
-            this.props.myPost(this.props.posts, null, true);
+            this.props.requestMyPost(this.props.UserInfo.posts, null, true);
             this.setState({list: true})
         } else {
-            this.props.myPost(this.props.myColl, null, false);
-            this.setState({list: false})
+            this.setState({list: false});
+            if (this.props.user === 'me') {
+                this.props.requestMyPost(this.props.UserInfo.myCollection, null, false);
+            }
+            return true;
+
+
         }
 
     }
 
     render() {
-        const {myPostList, myCollection, dataState, requesting, avatar, userId, website, Introduction, userName, posts, myFens, myFriends, option} = this.props;
+        const {isPrivate, avatar, userId, website, Introduction, userName, posts, myFens, myFriends} = this.props.UserInfo;
         let webUrl = 'http://' + website;
         let loading = (text) => <div className='aboutMe-loading'>
             <div>{text}</div>
         </div>;
-        let listIconArr = this.state.icon.map((item) => {
-            return listIcon(item, this.changListOne,this.state.list)
-        });
+
+        let listIconArr = this.props.user==='me'? this.state.icon.map((item) => {
+            return listIcon(item, this.changListOne, this.state.list)
+        }):'';
         let setPage = this.state.setListUrl.map((item) => {
             return setList(item.url, item.text)
         });
-        let imageList = this.state.list ? myPostList : myCollection;
+        let imageList = this.state.list ? this.props.myPost : this.props.myColl;
         let labelImage = Object.keys(imageList).length <= 0 ? <div></div> : Object.keys(imageList).map((i) => {
             return labelList(i, imageList[i])
         });
-        let aboutMe = dataState === 0 ? loading('数据加载中……') : dataState === -1 ? loading('数据请求错误！') : option ?
+        let aboutMe = this.props.dataState === 0 ? loading('数据加载中……') : this.props.dataState === -1 ? loading('数据请求错误！') : this.props.option ?
             <div className='aboutMe_box'>
                 <div className='userInfo'>
                     <div className='avatar' onClick={this.onTest}>
@@ -108,7 +117,7 @@ class AboutMe extends Component {
                 </div>
                 <div className='userPostAndFriends'>
                     {this.state.categoryName.map((item) => {
-                        return categoryList(item === '帖子' ? posts.length : item === '粉丝' ? myFens.length : myFriends.length, item)
+                        return categoryList(item === '帖子' ? posts.length || 0 : item === '粉丝' ? myFens.length || 0 : myFriends.length || 0, item)
                     })}
                 </div>
                 <div className='userPost'>
@@ -130,27 +139,21 @@ class AboutMe extends Component {
 }
 
 const mapStateToProps = (state) => {
+    let stateUserInfo, user;
+    if (window.location.pathname.match(/\/aboutme/) !== null) {
+        stateUserInfo = state.aboutMeReducer.loginUserInfo;
+        user = 'me'
+    } else if (window.location.pathname.match(/\/user/) !== null) {
+        stateUserInfo = state.aboutMeReducer.otherUserInfo;
+        user = 'other'
+    }
     return {
-        requesting: state.aboutMeReducer.requesting,
-        userName: state.aboutMeReducer.loginUserInfo.userName,
-        userId: state.aboutMeReducer.loginUserInfo.userId,
-        email: state.aboutMeReducer.loginUserInfo.email,
-        avatar: state.aboutMeReducer.loginUserInfo.avatar,
-        Introduction: state.aboutMeReducer.loginUserInfo.Introduction,
-        website: state.aboutMeReducer.loginUserInfo.website,
-        gender: state.aboutMeReducer.loginUserInfo.gender,
-        addTime: state.aboutMeReducer.loginUserInfo.addTime,
-        posts: state.aboutMeReducer.loginUserInfo.posts,
-        myFens: state.aboutMeReducer.loginUserInfo.myFens,
-        myFriends: state.aboutMeReducer.loginUserInfo.myFriends,
-        myColl: state.aboutMeReducer.loginUserInfo.myCollection,
-        isActive: state.aboutMeReducer.loginUserInfo.isActive,
-        isRecommend: state.aboutMeReducer.loginUserInfo.isRecommend,
-        isPrivate: state.aboutMeReducer.loginUserInfo.isPrivate,
+        UserInfo: stateUserInfo,
         dataState: state.aboutMeReducer.dataState,
+        myPost: state.aboutMeReducer.myPost,
+        myColl: state.aboutMeReducer.myColl,
         option: state.headerReducer.isShowOptions,
-        myPostList: state.aboutMeReducer.myPost,
-        myCollection: state.aboutMeReducer.myColl
+        user: user
     }
 };
 
@@ -159,8 +162,11 @@ const mapDispatchToProps = (dispatch) => {
         requestLoginUserInfo: (name) => {
             dispatch(requestLoginUserInfo(name))
         },
-        myPost: (arr, userId, id) => {
+        requestMyPost: (arr, userId, id) => {
             dispatch(myPost(arr, userId, id))
+        },
+        requestOtherUser: (userId) => {
+            dispatch(requestOtherUser(userId))
         }
     }
 };

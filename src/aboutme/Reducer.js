@@ -6,13 +6,15 @@ const aboutMe = {
     dataState: 0,
     updateState: 0,
     loginUserInfo: {},
+    otherUserInfo:{},
     avatarFloatTitle: '更改头像',
     avatarFloatText: ['上传头像', '移除当前头像', '取消'],
     aboutMeFloatTitle: '',
     aboutMeFloatText: ['举报', '拉黑', '取消'],
     tempImage: '',
     myPost: {},
-    myColl: {}
+    myColl: {},
+    err:{}
 
 };
 
@@ -31,14 +33,16 @@ export default function (state = aboutMe, action) {
         }
         //请求个人帖子图片
         case ActionTypes.ABOUT_ME_MY_POST: {
-            return state
+            return {
+                ...state,
+            }
         }
         case ActionTypes.ABOUT_ME_MY_POST_SUCCESS: {
             const {data, id} = action.payload;
             if (id) {
                 return {
                     ...state,
-                    myPost: {...data.data}
+                    myPost: {...data.data},
                 }
             } else {
                 return {
@@ -69,6 +73,32 @@ export default function (state = aboutMe, action) {
                 loginUserInfo: {...data},
                 requesting: false,
                 dataState: 1
+            }
+        }
+        //请求其他用户数据
+        case ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO:{
+            return {
+                ...state,
+                requesting: true,
+                dataState: 0,
+                myPost: {},
+                myColl: {}
+            }
+        }
+        case ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO_SUCCESS:{
+            const {data} = action.payload.data;
+            return {
+                ...state,
+                otherUserInfo: {...data},
+                requesting: false,
+                dataState: 1
+            }
+        }
+        case ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO_FAILURE:{
+            return {
+                ...state,
+                requesting: false,
+                dataState: -1
             }
         }
         //上传头像

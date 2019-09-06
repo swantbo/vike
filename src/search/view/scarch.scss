@@ -61,13 +61,16 @@
       display: inline-block;
       width: 100vw;
       height: vw(130);
+      margin-top: vw(20);
+      padding: 0 5vw;
       position: relative;
 
       .Search-single-box {
         width: 90vw;
         height: vw(130);
-        margin: 0 auto;
-        margin-top: vw(20);
+        //margin: 0 auto;
+        //margin-top: vw(20);
+        //position: absolute;
         .img {
           border-radius: 50%;
           overflow: hidden;

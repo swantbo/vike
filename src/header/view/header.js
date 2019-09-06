@@ -138,7 +138,9 @@ class Header extends Component {
         const tips = (text) => <div className='header-tips'><span onClick={this.historyBack}> </span>{text}</div>;
         let header = <div className='header'>
             {path.match(/\/comment/) !== null ?
-                comment : path === '/sendPost' ?
+                comment : path.match(/\/user/)!==null?
+                tips(path.match('[^/]+(?!.*/)')[0]):path.match(/\/post/)!==null?
+                    tips('照片'):path === '/sendPost' ?
                     sendPost : path === '/changeAvatar' ?
                         changeAvatar : path === '/' ?
                             logo : path === '/search' ?
