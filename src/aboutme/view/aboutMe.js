@@ -78,15 +78,16 @@ class AboutMe extends Component {
     }
 
     render() {
-        const {isPrivate, avatar, userId, website, Introduction, userName, posts, myFens, myFriends} = this.props.UserInfo;
+        const {isPrivate, avatar, userId, website, Introduction, userName, posts, myFens} = this.props.UserInfo;
+        const {myFriends} = this.props;
         let webUrl = 'http://' + website;
         let loading = (text) => <div className='aboutMe-loading'>
             <div>{text}</div>
         </div>;
 
-        let listIconArr = this.props.user==='me'? this.state.icon.map((item) => {
+        let listIconArr = this.props.user === 'me' ? this.state.icon.map((item) => {
             return listIcon(item, this.changListOne, this.state.list)
-        }):'';
+        }) : '';
         let setPage = this.state.setListUrl.map((item) => {
             return setList(item.url, item.text)
         });
@@ -104,11 +105,18 @@ class AboutMe extends Component {
                         <h2>{userName}</h2>
                         <span></span>
                     </div>
-                    <Link to='/edit'>
+                    {this.props.user === 'me' ? <Link className='errrrrrrrr' to='/edit'>
                         <div className='button'>
                             编辑主页
                         </div>
-                    </Link>
+                    </Link> : <div className='errrrrrrrre'>
+                        <div style={myFriends.find((i) => i === Cookies.get('u_id')) === undefined ? {
+                            background: '#1679ff',
+                            color: '#ffffff'
+                        } : {background: '#ffffff', color: '#6b6b6b'}} className='button'>
+                            {myFriends.find((i) => i === Cookies.get('u_id')) === undefined ? '关注' : '取消关注'}
+                        </div>
+                    </div>}
                     <div className='introduction'>
                         <p className='username'>{userId}</p>
                         <p>{Introduction}</p>
@@ -139,6 +147,7 @@ class AboutMe extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.aboutMeReducer)
     let stateUserInfo, user;
     if (window.location.pathname.match(/\/aboutme/) !== null) {
         stateUserInfo = state.aboutMeReducer.loginUserInfo;
@@ -149,6 +158,7 @@ const mapStateToProps = (state) => {
     }
     return {
         UserInfo: stateUserInfo,
+        myFriends:stateUserInfo.myFriends,
         dataState: state.aboutMeReducer.dataState,
         myPost: state.aboutMeReducer.myPost,
         myColl: state.aboutMeReducer.myColl,

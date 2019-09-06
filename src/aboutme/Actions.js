@@ -97,7 +97,7 @@ export const requestOtherUser = (userId) => {
             res => res.json()).then(
             json => {
                 dispatch(requestOtherUserSuccess(json));
-                dispatch(myPost(json.data.posts,null,true))
+                dispatch(myPost(json.data.posts, null, true))
             }).catch(
             err => dispatch(requestOtherUserFailure(err)))
     }
@@ -133,6 +133,32 @@ export const updateUserInfo = (userId, userName, email, introduction, gender, re
         }).catch(
             error => dispatch(updateUserInfoFailure())
         )
+    }
+};
+const followStart = (userId) => ({
+    type: ActionTypes.ABOUT_ME_FOLLOW,
+    payload: {userId}
+});
+const followSuccess = (userId,data) => ({
+    type: ActionTypes.ABOUT_ME_FOLLOW_SUCCESS,
+    payload: {userId,data}
+});
+const followFailure = (err) => ({
+    type: ActionTypes.ABOUT_ME_FOLLOW_FAILURE,
+    payload: {err}
+});
+
+export const follow = (userId) => {
+    return dispatch => {
+        dispatch(followStart(userId));
+        return fetch(`${config.url}follow`, {
+            method: 'POST',
+            body: JSON.stringify({userId: userId})
+        }).then(res => res.json()).then(
+            json => {
+                dispatch(followSuccess(json))
+            }
+        ).catch(err => dispatch(followFailure(err)))
     }
 };
 

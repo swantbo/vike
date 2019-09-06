@@ -20,6 +20,7 @@ class App extends Component {
     constructor(){
         super(...arguments)
     }
+
     render() {
         if (Cookies.get('temp_id')===undefined){
             Cookies.set('temp_id',(Math.random()*100000000).toString(32).substr(0,4)+new Date().getTime())
@@ -69,5 +70,5 @@ const mapDispatchToProps =(dispatch)=>{
             dispatch(requestLoginUserInfo(name))
         },
     }
-}
+};
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
