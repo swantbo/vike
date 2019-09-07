@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import {Link, withRouter} from "react-router-dom";
 import config from '../../config.js';
 import {requestLoginUserInfo, requestOtherUser} from '../Actions.js';
-import {myPost} from "../Actions";
+import {myPost,follow} from "../Actions";
 import './aboutMe.css';
 
 const categoryList = (num, text) => {
@@ -78,8 +78,8 @@ class AboutMe extends Component {
     }
 
     render() {
-        const {isPrivate, avatar, userId, website, Introduction, userName, posts, myFens} = this.props.UserInfo;
-        const {myFriends} = this.props;
+        const {isPrivate, avatar, userId, website, Introduction, userName, posts} = this.props.UserInfo;
+        const {myFriends,myFens} = this.props;
         let webUrl = 'http://' + website;
         let loading = (text) => <div className='aboutMe-loading'>
             <div>{text}</div>
@@ -109,12 +109,12 @@ class AboutMe extends Component {
                         <div className='button'>
                             编辑主页
                         </div>
-                    </Link> : <div className='errrrrrrrre'>
-                        <div style={myFriends.find((i) => i === Cookies.get('u_id')) === undefined ? {
+                    </Link> : <div onClick={()=>this.props.follow(Cookies.get('u_id'),userId)} className='errrrrrrrre'>
+                        <div style={myFens.find((i) => i === Cookies.get('u_id')) === undefined ? {
                             background: '#1679ff',
                             color: '#ffffff'
                         } : {background: '#ffffff', color: '#6b6b6b'}} className='button'>
-                            {myFriends.find((i) => i === Cookies.get('u_id')) === undefined ? '关注' : '取消关注'}
+                            {myFens.find((i) => i === Cookies.get('u_id')) === undefined ? '关注' : '取消关注'}
                         </div>
                     </div>}
                     <div className='introduction'>
@@ -147,7 +147,6 @@ class AboutMe extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.aboutMeReducer)
     let stateUserInfo, user;
     if (window.location.pathname.match(/\/aboutme/) !== null) {
         stateUserInfo = state.aboutMeReducer.loginUserInfo;
@@ -156,9 +155,11 @@ const mapStateToProps = (state) => {
         stateUserInfo = state.aboutMeReducer.otherUserInfo;
         user = 'other'
     }
+    console.log(stateUserInfo);
     return {
         UserInfo: stateUserInfo,
         myFriends:stateUserInfo.myFriends,
+        myFens:stateUserInfo.myFens,
         dataState: state.aboutMeReducer.dataState,
         myPost: state.aboutMeReducer.myPost,
         myColl: state.aboutMeReducer.myColl,
@@ -177,6 +178,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         requestOtherUser: (userId) => {
             dispatch(requestOtherUser(userId))
+        },
+        follow:(userId,followId)=>{
+            dispatch(follow(userId,followId))
         }
     }
 };

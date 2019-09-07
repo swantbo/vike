@@ -6,7 +6,7 @@ const aboutMe = {
     dataState: 0,
     updateState: 0,
     loginUserInfo: {},
-    otherUserInfo:{},
+    otherUserInfo: {},
     avatarFloatTitle: '更改头像',
     avatarFloatText: ['上传头像', '移除当前头像', '取消'],
     aboutMeFloatTitle: '',
@@ -14,7 +14,7 @@ const aboutMe = {
     tempImage: '',
     myPost: {},
     myColl: {},
-    err:{}
+    err: {}
 
 };
 
@@ -75,8 +75,30 @@ export default function (state = aboutMe, action) {
                 dataState: 1
             }
         }
+        //关注用户
+        case ActionTypes.ABOUT_ME_FOLLOW: {
+            return state
+        }
+        case ActionTypes.ABOUT_ME_FOLLOW_SUCCESS: {
+            const {userId, followId, data} = action.payload;
+            if (data.msg === 'add') {
+                return {
+                    ...state,
+                    otherUserInfo: {...state.otherUserInfo, myFens: [...state.otherUserInfo.myFens, userId]}
+                }
+            } else {
+                return {
+                    ...state,
+                    otherUserInfo: {
+                        ...state.otherUserInfo,
+                        myFens: state.otherUserInfo.myFens.filter((i) => i !== userId)
+                    }
+                }
+            }
+
+        }
         //请求其他用户数据
-        case ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO:{
+        case ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO: {
             return {
                 ...state,
                 requesting: true,
@@ -85,7 +107,7 @@ export default function (state = aboutMe, action) {
                 myColl: {}
             }
         }
-        case ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO_SUCCESS:{
+        case ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO_SUCCESS: {
             const {data} = action.payload.data;
             return {
                 ...state,
@@ -94,7 +116,7 @@ export default function (state = aboutMe, action) {
                 dataState: 1
             }
         }
-        case ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO_FAILURE:{
+        case ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO_FAILURE: {
             return {
                 ...state,
                 requesting: false,

@@ -135,28 +135,28 @@ export const updateUserInfo = (userId, userName, email, introduction, gender, re
         )
     }
 };
-const followStart = (userId) => ({
+const followStart = (userId,followId) => ({
     type: ActionTypes.ABOUT_ME_FOLLOW,
-    payload: {userId}
+    payload: {userId,followId}
 });
-const followSuccess = (userId,data) => ({
+const followSuccess = (userId,followId,data) => ({
     type: ActionTypes.ABOUT_ME_FOLLOW_SUCCESS,
-    payload: {userId,data}
+    payload: {userId,followId,data}
 });
 const followFailure = (err) => ({
     type: ActionTypes.ABOUT_ME_FOLLOW_FAILURE,
     payload: {err}
 });
 
-export const follow = (userId) => {
+export const follow = (userId,followId) => {
     return dispatch => {
-        dispatch(followStart(userId));
+        dispatch(followStart(userId,followId));
         return fetch(`${config.url}follow`, {
             method: 'POST',
-            body: JSON.stringify({userId: userId})
+            body: JSON.stringify({userId: userId,followId:followId})
         }).then(res => res.json()).then(
             json => {
-                dispatch(followSuccess(json))
+                dispatch(followSuccess(userId,followId,json))
             }
         ).catch(err => dispatch(followFailure(err)))
     }
