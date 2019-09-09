@@ -155,7 +155,6 @@ const mapStateToProps = (state) => {
         stateUserInfo = state.aboutMeReducer.otherUserInfo;
         user = 'other'
     }
-    console.log(stateUserInfo);
     return {
         UserInfo: stateUserInfo,
         myFriends:stateUserInfo.myFriends,
