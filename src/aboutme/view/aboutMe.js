@@ -27,7 +27,7 @@ const listIcon = (className, click, id) => {
     </span>
 };
 const setList = (url, text) => {
-    return <li><Link to={`/${url}`}/>{text}<span></span></li>
+    return <li onClick={text==='退出'?()=>Cookies.remove('u_id'):''}><Link to={`/${url}`}/>{text}<span></span></li>
 };
 const labelList = (labelName, img) => {
     return <div key={labelName} className='userPost_List_image'>

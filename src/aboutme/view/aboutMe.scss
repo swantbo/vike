@@ -263,7 +263,7 @@
         }
       }
       .gridAction{
-        background-color: #343434;
+        background-color: #e7e7e7;
         span {
           background: url("../../image/923d425c0489.png");
           background-size: vw(520*1.7);
@@ -290,7 +290,7 @@
         }
       }
       .CollectionAction{
-        background-color: #343434;
+        background-color: #e7e7e7;
         span {
           background: url("../../image/923d425c0489.png");
           background-size: vw(520*1.7);
@@ -317,6 +317,7 @@
   }
   ul{
     li{
+      list-style: none;
       font-size: vw(40);
       width: 100vw;
       height: vw(120);

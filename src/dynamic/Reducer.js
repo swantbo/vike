@@ -1,6 +1,6 @@
 import * as ActionTypes from './ActionTypes.js';
 
-const dynamic = {};
+const dynamic = {status:0,changing:0};
 
 export default function (state = dynamic, action) {
     switch (action.type) {
@@ -18,7 +18,7 @@ export default function (state = dynamic, action) {
             return {
                 ...state,
                 status: 1,
-                ...data
+                data:{...data.data}
             }
         }
         case ActionTypes.DYNAMIC_REQUEST_DYNAMIC_FAILURE:{
@@ -40,7 +40,7 @@ export default function (state = dynamic, action) {
             return {
                 ...state,
                 changing:1,
-                [dynamicId]:{...state[dynamicId],status:true}
+                data:{...state.data,[dynamicId]:{...state.data[dynamicId],status:true}}
             }
         }
         case ActionTypes.DYNAMIC_CHANGE_STATUS_FAILURE:{

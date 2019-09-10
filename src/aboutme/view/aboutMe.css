@@ -230,7 +230,7 @@
   background-position-y: -51vw;
 }
 .aboutMe_box .userPost .userPost_List .gridAction {
-  background-color: #343434;
+  background-color: #e7e7e7;
 }
 .aboutMe_box .userPost .userPost_List .gridAction span {
   background: url("../../image/923d425c0489.png");
@@ -251,7 +251,7 @@
   background-position-y: -23.2962962963vw;
 }
 .aboutMe_box .userPost .userPost_List .CollectionAction {
-  background-color: #343434;
+  background-color: #e7e7e7;
 }
 .aboutMe_box .userPost .userPost_List .CollectionAction span {
   background: url("../../image/923d425c0489.png");
@@ -276,6 +276,7 @@
   color: #666666;
 }
 .setPage ul li {
+  list-style: none;
   font-size: 3.7037037037vw;
   width: 100vw;
   height: 11.1111111111vw;

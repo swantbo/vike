@@ -12,6 +12,7 @@ import {view as Search} from './search';
 import {view as SendPost} from './sendpost';
 import {view as FloatInterface} from './floatInterface';
 import {changeAvatar} from './aboutme';
+import {view as Dynamic} from './dynamic'
 import {requestLoginUserInfo} from './aboutme/Actions.js';
 import Cookies from 'js-cookie';
 import './App.css';
@@ -39,7 +40,7 @@ class App extends Component {
                     <Route path='/comment/:paramName' component={Comment}/>
                     <Route path='/search' component={Search}/>
                     <Route path='/result' component={Search}/>
-                    <Route path='/dynamic' component={temp}/>
+                    <Route path='/dynamic' component={Dynamic}/>
                     <Route path='/aboutme' component={AboutMe}/>
                     <Route path='/edit' component={edit}/>
                     <Route path='/us' component={temp}/>
