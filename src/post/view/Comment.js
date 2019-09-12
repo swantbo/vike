@@ -124,6 +124,7 @@ class Comment extends Component {
     };
 
     componentDidMount() {
+        document.documentElement.scrollTop = 0;
         fetch(`${config.url}getUserInfo?userId=${this.props.commentData[this.state.postId].userId}`, {method: 'GET'}).then(response => response.json()).then(
             json => {
                 this.setState({postUserAvatar: json.avatar})

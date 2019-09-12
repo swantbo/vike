@@ -4,6 +4,32 @@
 @function bb(){
   @return 2px
 }
+.Placeholder{
+  width: 100vw;
+  position: relative;
+  padding-bottom: vw(50);
+  background-color: #fff;
+  div{
+    border-radius: vw(50);
+    background-color: #e4e4e4;
+  }
+  .Placeholder-one{
+    width: 100vw;
+    height: vw(125);
+  }
+  .Placeholder-two{
+    width: 100vw;
+    height: 100vw;
+  }
+  .Placeholder-three{
+    width: 100vw;
+    height: vw(300);
+  }
+  .Placeholder-four{
+    width: 100vw;
+    height: vw(100);
+  }
+}
 .post {
   width: 100vw;
   //border-bottom: 1px solid red;

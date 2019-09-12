@@ -1,3 +1,30 @@
+.Placeholder {
+  width: 100vw;
+  position: relative;
+  padding-bottom: 4.6296296296vw;
+  background-color: #fff;
+}
+.Placeholder div {
+  border-radius: 4.6296296296vw;
+  background-color: #e4e4e4;
+}
+.Placeholder .Placeholder-one {
+  width: 100vw;
+  height: 11.5740740741vw;
+}
+.Placeholder .Placeholder-two {
+  width: 100vw;
+  height: 100vw;
+}
+.Placeholder .Placeholder-three {
+  width: 100vw;
+  height: 27.7777777778vw;
+}
+.Placeholder .Placeholder-four {
+  width: 100vw;
+  height: 9.2592592593vw;
+}
+
 .post {
   width: 100vw;
   position: relative;
