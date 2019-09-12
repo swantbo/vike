@@ -98,7 +98,7 @@
   width: 100vw;
   height: 11.5740740741vw;
 }
-.header .header-home .header-post {
+.header .header-home a .header-post {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -120,7 +120,7 @@
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-.header .header-home .header-addfriend {
+.header .header-home a .header-addfriend {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

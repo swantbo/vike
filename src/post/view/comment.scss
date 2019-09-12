@@ -9,11 +9,10 @@
   .Comment-input {
     width: 100vw;
     top: vw(125);
-    min-height: vw(170);
-    max-height: vw(300);
+    height: vw(170);
     background: #efefef;
-    position: relative;
-    z-index: 0;
+    position: fixed;
+    z-index: 99;
 
     .Comment-input-ava {
       position: absolute;
@@ -74,15 +73,13 @@
 
   .Comment {
     width: 100vw;
-    margin-top: vw(125);
+    margin-top: vw(300);
     position: relative;
 
     .Comment-postText {
       position: relative;
       width: 100vw;
       border-bottom: 1px solid rgba(153, 153, 153, 0.25);
-      //height: 30vw;
-      //background: #4dceff;
       .Comment-postText-avatar {
         position: absolute;
         top: vw(60);
@@ -118,16 +115,16 @@
         color: #999;
         left: vw(200);
         position: absolute;
-        bottom: vw(0);
+        bottom: vw(20);
         display: inline-block;
       }
       .Comment-Comment{
         font-size: vw(35);
         color: #999;
-        left: vw(400);
+        left: vw(600);
         position: absolute;
         font-weight: bold;
-        bottom: vw(0);
+        bottom: vw(20);
         display: inline-block;
       }
     }
@@ -186,7 +183,7 @@
             font-size: vw(35);
             color: #999;
             font-weight: 600;
-            left: vw(180);
+            left: vw(400);
             bottom: 0;
             position: absolute;
             display: inline-block;
@@ -196,7 +193,7 @@
             font-size: vw(35);
             color: #999;
             font-weight: 600;
-            left: vw(320);
+            left: vw(550);
             bottom: 0;
             position: absolute;
             display: inline-block;
@@ -298,7 +295,7 @@
               font-size: vw(35);
               color: #999;
               font-weight: 600;
-              left: vw(220);
+              left: vw(420);
               bottom: vw(-50);
               position: absolute;
               display: inline-block;

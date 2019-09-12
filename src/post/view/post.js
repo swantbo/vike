@@ -3,24 +3,22 @@ import {Link, withRouter, Route} from "react-router-dom";
 import {timeDifferent} from "../../tool/tool";
 import config from '../../config.js';
 import {connect} from 'react-redux'
+import Cookies from 'js-cookie';
 import './post.css';
 import fetch from "cross-fetch";
+import {collectionPost, likePost, requestPost} from "../../home/Actions";
 
 
 const li = (data, loginUser, likeComment, postId) => {
-    // const{count,setCount} = useState(1);
     return <li className='post-comment-li'>
         <div>
-            {/*<span className='userAvatar'>*/}
-            {/*    <img src='http://www.xwvike.com/static/media/26395177.cd83fabd.jpeg'/>*/}
-            {/*</span>*/}
+
             <div>
                 <Link to={`/user/${data.userId}`} className='userid'>{data.userId} </Link>
                 <span className='comment-text'>{data.text}</span>
                 <span
                     className={data.like.findIndex((item) => item === loginUser) === loginUser ? 'unlike-reply' : 'like-reply'}> </span>
             </div>
-            {/*<span className='likeLength'>{data.like.length}次赞</span><span className='reply'>回复</span>*/}
         </div>
     </li>
 };
@@ -62,16 +60,11 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment,avatar) => 
                     className='comment-num'>{`全部 ${data.comment.length} 条评论`}</span></Link>
                 <div className='comment'>
                     <ul>
-                        {list[list.length - 1]}
-                        {list[list.length - 2]}
-                        {/*{li(data.comment[data.comment.length-1],loginUser,likeComment,data.postId)}*/}
-                        {/*{li(data.comment[data.comment.length-2],loginUser,likeComment,data.postId)}*/}
-                        {/*{data.comment.map((item) => {*/}
-                        {/*    return li(item,loginUser,likeComment,data.postId)*/}
-                        {/*})}*/}
+                        {list[0]}
+                        {list[1]}
                     </ul>
                 </div>
-                <span className='timeDifferent'>{timeDifferent(new Date().getTime(), data.createTime)}</span>
+                <span className='timeDifferent'>{data.createTime}</span>
             </div>
         </div>
     </div>
@@ -79,3 +72,49 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment,avatar) => 
 };
 
 export default Post;
+
+
+class PostSingle extends  Component{
+    constructor(){
+        super(...arguments);
+        this.state={
+
+        }
+    }
+    componentDidMount() {
+        this.props.requestPost(this.props.postId);
+    }
+
+    render() {
+        const {data}= this.props;
+        let Placeholder = <div>
+
+        </div>;
+        return(
+            <div>
+                {data[this.props.postId]===undefined?Placeholder:Post()}
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = (state)=>{
+    return{
+        data:state.homeReducer,
+        loginUser:Cookies.get('u_id')
+    }
+};
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        requestPost:(postId)=>{
+            dispatch(requestPost(postId))
+        },
+        likePost:(postId,userId)=>{
+            dispatch(likePost(postId,userId))
+        },
+        collectionPost:(postId,userId)=>{
+            dispatch(collectionPost(postId,userId))
+        },
+    }
+};
+// export default withRouter(connect(mapStateToProps,mapDispatchToProps)(PostSingle))

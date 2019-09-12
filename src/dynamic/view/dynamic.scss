@@ -5,27 +5,33 @@
   width: 100vw;
   margin-top: vw(125);
   position: relative;
-  .dynamicSingle{
-    position: relative;
-    width: 100vw;
-    padding:0;
-    padding-left: vw(70);
-    padding-top: vw(10);
-    margin-bottom: vw(40);
-    font-size:vw(40);
-    color: #000;
-    .dynamicSingle-msg{
-      width: 90vw;
-      a{
-        font-weight: bold;
-        color: #000;
+  margin-bottom: vw(125);
+  a{
+    .dynamicSingle{
+      position: relative;
+      width: 100vw;
+      padding:0;
+      padding-left: vw(70);
+      padding-top: vw(10);
+      padding-bottom: vw(20);
+      margin-bottom: vw(20);
+      font-size:vw(40);
+      color: #000;
+      border-bottom: 1px solid #f0f0f0;
+      .dynamicSingle-msg{
+        width: 90vw;
+        a{
+          font-weight: bold;
+          color: #000;
+        }
+      }
+      .dynamicSingle-time{
+        font-size: vw(35);
+        color: #828282;
       }
     }
-    .dynamicSingle-time{
-      font-size: vw(35);
-      color: #828282;
-    }
   }
+
   .dynamicSingle:before{
     content: "";
     display: inline-block;

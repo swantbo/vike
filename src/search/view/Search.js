@@ -49,7 +49,7 @@ class Search extends Component {
         let single = num===0?<div/>:Object.keys(label).map((i) => {
             return labelList(i, label[i])
         });
-        let list = searchResults.reverse().map((i)=>{
+        let list = searchResults.map((i)=>{
             if (i.tag==='label'){
                 return searchList(i.label,i.length,null,i.tag)
             }else if(i.tag==='user') {

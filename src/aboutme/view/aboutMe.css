@@ -229,14 +229,13 @@
   background-position-x: -39.3518518519vw;
   background-position-y: -51vw;
 }
-.aboutMe_box .userPost .userPost_List .gridAction {
-  background-color: #e7e7e7;
-}
 .aboutMe_box .userPost .userPost_List .gridAction span {
+  width: 8.3333333333vw;
+  height: 8.3333333333vw;
   background: url("../../image/923d425c0489.png");
-  background-size: 81.8518518519vw;
-  background-position-x: -39.3518518519vw;
-  background-position-y: -51vw;
+  background-size: 91.4814814815vw;
+  background-position-x: -35.0092592593vw;
+  background-position-y: -57vw;
 }
 .aboutMe_box .userPost .userPost_List .detailed span {
   background: url("../../image/923d425c0489.png");
@@ -250,14 +249,13 @@
   background-position-x: -66.7407407407vw;
   background-position-y: -23.2962962963vw;
 }
-.aboutMe_box .userPost .userPost_List .CollectionAction {
-  background-color: #e7e7e7;
-}
 .aboutMe_box .userPost .userPost_List .CollectionAction span {
+  width: 8.3333333333vw;
+  height: 8.3333333333vw;
   background: url("../../image/923d425c0489.png");
-  background-size: 81.8518518519vw;
-  background-position-x: -66.7407407407vw;
-  background-position-y: -23.2962962963vw;
+  background-size: 91.4814814815vw;
+  background-position-x: -74.2407407407vw;
+  background-position-y: -17.5925925926vw;
 }
 
 .setPage {

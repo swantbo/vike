@@ -4,10 +4,11 @@ import config from '../../config.js';
 import {Link, Route, withRouter} from "react-router-dom";
 import fetch from 'cross-fetch'
 import Cookies from 'js-cookie'
-import {timeDifferent} from "../../tool/tool";
+// import {timeDifferent,transformTime} from "../../tool/tool";
 import {likeComment, replyComment, inputComment} from "../../home/Actions";
 import './comment.css'
 const jumpRoute=()=>window.location.pathname = '/login';
+
 class SingleReply extends Component {
     constructor() {
         super(...arguments);
@@ -35,7 +36,7 @@ class SingleReply extends Component {
                     to={`/user/${this.props.singleReply.reply}`}>{this.props.singleReply.reply + ' '}</Link><span
                     className='replytext'>{this.props.singleReply.text}</span>
                     <span
-                        className='replyTime'>{timeDifferent(new Date().getTime(), this.props.singleReply.time)}</span>
+                        className='replyTime'>{this.props.singleReply.time}</span>
                     <span onClick={() => this.props.changereply(this.props.singleReply.userId,this.props.commentId)}
                           className='reply'>回复</span>
                 </div>
@@ -85,7 +86,7 @@ class SingleComment extends Component {
                 <div className='SingleComment-text'><Link
                     to={`/user/${this.state.commentUserId}`}>{this.props.singleComment.userId + ' '}</Link><span className='kkkkkkkkkkkkkkk'>{this.props.singleComment.text}</span>
                     <span
-                        className='SingleComment-time'>{timeDifferent(new Date().getTime(), this.props.singleComment.time)}</span>
+                        className='SingleComment-time'>{this.props.singleComment.time}</span>
                     <span className='SingleComment-likeNum'>{this.props.singleComment.like.length}次赞</span>
                     <span onClick={() => this.props.changereply(this.props.singleComment.userId,this.props.singleComment._id)}
                           className='SingleComment-reply'>回复</span>
@@ -188,7 +189,7 @@ class Comment extends Component {
                             to={`/user/${commentData.userId}`}>{commentData.userId + ' '}</Link><span>{commentData.text}</span>
                         </div>
                         <span
-                            className='Comment-postText-time'>{timeDifferent(new Date().getTime(), commentData.createTime)}</span>
+                            className='Comment-postText-time'>{commentData.createTime}</span>
                         <span onClick={this.changeReplyNull} className='Comment-Comment'>评论</span>
                     </div>
                     <ul>

@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import {connect} from 'react-redux';
 import {withRouter,Link} from "react-router-dom";
-import {timeDifferent} from '../../tool/tool.js';
+import {timeDifferent,transformTime} from '../../tool/tool.js';
 import config from "../../config";
 import {requestDynamic,changeDynamic} from "../Actions";
 import {follow} from "../../aboutme/Actions";
@@ -9,15 +9,18 @@ import Cookies from 'js-cookie';
 import './dynamic.css';
 
 const dynamicSingle = (dynamicId,userId,reply,operating,text,time)=>{
-    return <div className='dynamicSingle'>
-        <div className='dynamicSingle-msg'>
-            <Link className='dynamicSingle-msg-userId' to={`/user/${userId}`}>@{userId}</Link>
-            <span className='dynamicSingle-msg-operating' > {operating}了你{operating==='评论'?'的帖子':operating==='回复'?'的评论':''}: </span>
-            <span className='dynamicSingle-msg-text' >{text}</span>
+    let link = operating==='关注'?`/user/${userId}`:operating==='评论'||operating==='回复'?`/comment/`:'/dynamic';
+    return <Link to={link}>
+        <div className='dynamicSingle'>
+            <div className='dynamicSingle-msg'>
+                <Link className='dynamicSingle-msg-userId' to={`/user/${userId}`}>@{userId}</Link>
+                <span className='dynamicSingle-msg-operating' > {operating}了你{operating==='评论'?'的帖子':operating==='回复'?'的评论':''}: </span>
+                <span className='dynamicSingle-msg-text' >{text}</span>
+            </div>
+            <div className='dynamicSingle-time'>{time}</div>
+            {/*{operating==='关注'?<div className='dynamicSingle-follow' onClick={onclick}>{status===0?'关注':'已关注'}</div>:''}*/}
         </div>
-        <div className='dynamicSingle-time'>{timeDifferent(new Date().getTime(),time)}</div>
-        {/*{operating==='关注'?<div className='dynamicSingle-follow' onClick={onclick}>{status===0?'关注':'已关注'}</div>:''}*/}
-    </div>
+    </Link>
 };
 
 class Dynamic extends Component{
@@ -37,8 +40,7 @@ class Dynamic extends Component{
     }
     render() {
         const {status,data} = this.props;
-        console.log(data);
-        const dynamicList = status===0?<div>数据加载中……</div>:Object.keys(data).map((i)=>{
+        const dynamicList = status===0?<div>数据加载中……</div>:Object.keys(data).reverse().map((i)=>{
             let j = data[i];
            return dynamicSingle(j.id,j.userId,j.reply,j.operating,j.text,j.time)
         });

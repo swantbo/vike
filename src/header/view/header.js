@@ -70,9 +70,15 @@ class Header extends Component {
         let {name, UserNameNull, SendUserName, option, ChangeOptions, requestLabel} = this.props;
         let path = window.location.pathname;
         let logo = <div className='header-home'>
-            <div className='header-post'></div>
+            <Link to='/sendPost'>
+                <div className='header-post'></div>
+            </Link>
+
             <div className='header-logo' onClick={this.backUp}></div>
-            <div className='header-addfriend'></div>
+            <Link to='search'>
+                <div className='header-addfriend'></div>
+            </Link>
+
         </div>;
         let style = {border: '1px solid rgba(0, 0, 0, .0975)'};
         let style2 = {border: 'none'};

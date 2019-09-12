@@ -263,12 +263,13 @@
         }
       }
       .gridAction{
-        background-color: #e7e7e7;
         span {
+          width: vw(90);
+          height: vw(90);
           background: url("../../image/923d425c0489.png");
-          background-size: vw(520*1.7);
-          background-position-x: vw(-250*1.7);
-          background-position-y: vw(-324*1.7);
+          background-size: vw(520*1.9);
+          background-position-x: vw(-199*1.9);
+          background-position-y: vw(-324*1.9);
         }
       }
 
@@ -290,12 +291,13 @@
         }
       }
       .CollectionAction{
-        background-color: #e7e7e7;
         span {
+          width: vw(90);
+          height: vw(90);
           background: url("../../image/923d425c0489.png");
-          background-size: vw(520*1.7);
-          background-position-x: vw(-424*1.7);
-          background-position-y: vw(-148*1.7);
+          background-size: vw(520*1.9);
+          background-position-x: vw(-422*1.9);
+          background-position-y: vw(-100*1.9);
         }
       }
     }
