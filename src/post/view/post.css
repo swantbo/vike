@@ -31,12 +31,17 @@
   padding-bottom: 4.6296296296vw;
   background: #fff;
 }
-.post .post-userInfo {
+.post > a {
+  color: #000;
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+}
+.post > a .post-userInfo {
   width: 100vw;
   height: 10.1851851852vw;
   position: relative;
 }
-.post .post-userInfo .avatar {
+.post > a .post-userInfo .avatar {
   position: absolute;
   top: 50%;
   left: 4.6296296296vw;
@@ -47,12 +52,10 @@
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.16);
 }
-.post .post-userInfo .avatar img {
+.post > a .post-userInfo .avatar img {
   width: 8.3333333333vw;
 }
-.post .post-userInfo .userid {
-  font-size: 3.2407407407vw;
-  font-weight: normal;
+.post > a .post-userInfo .userid {
   position: absolute;
   top: 50%;
   left: 16.6666666667vw;

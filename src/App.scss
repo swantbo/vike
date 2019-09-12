@@ -5,5 +5,9 @@
 .App{
   overflow: hidden;
   overflow-y: auto;
-
+  .switch{
+    &>div{
+      margin-top: vw(125);
+    }
+  }
 }

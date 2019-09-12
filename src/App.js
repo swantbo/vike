@@ -6,7 +6,8 @@ import {view as Header} from './header'
 import {view as AboutMe} from './aboutme';
 import {edit} from './aboutme';
 import {view as Login} from './login';
-import {Comment} from './post'
+import {Comment } from './post'
+import {view as PostSingle} from './post'
 import {view as Home} from './home'
 import {view as Search} from './search';
 import {view as SendPost} from './sendpost';
@@ -39,6 +40,7 @@ class App extends Component {
                     <Route exact path='/' component={Home}/>
                     <Route path='/comment/:paramName' component={Comment}/>
                     <Route path='/search' component={Search}/>
+                    <Route path='/post/:paramName' component={PostSingle}/>
                     <Route path='/result' component={Search}/>
                     <Route path='/dynamic' component={Dynamic}/>
                     <Route path='/aboutme' component={AboutMe}/>

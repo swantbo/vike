@@ -38,37 +38,40 @@
   position: relative;
   padding-bottom: vw(50);
   background: #fff;
-  .post-userInfo {
-    width: 100vw;
-    height: vw(110);
-    //background: #1ea1ff;
-    position: relative;
+  &>a{
+    color: #000;
+    font-size: vw(35);
+    font-weight:bold;
+    .post-userInfo {
+      width: 100vw;
+      height: vw(110);
+      //background: #1ea1ff;
+      position: relative;
 
-    .avatar {
-      position: absolute;
-      top: 50%;
-      left: vw(50);
-      transform: translateY(-50%);
-      width: vw(90);
-      height: vw(90);
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.16);
-
-      img {
+      .avatar {
+        position: absolute;
+        top: 50%;
+        left: vw(50);
+        transform: translateY(-50%);
         width: vw(90);
+        height: vw(90);
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.16);
+
+        img {
+          width: vw(90);
+        }
+      }
+
+      .userid {
+        position: absolute;
+        top: 50%;
+        left: vw(180);
+        transform: translateY(-50%);
       }
     }
-
-    .userid {
-      font-size: vw(35);
-      font-weight: normal;
-      position: absolute;
-      top: 50%;
-      left: vw(180);
-      transform: translateY(-50%);
-    }
-  }
+}
 
   .post-image {
     width: 100vw;

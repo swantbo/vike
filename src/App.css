@@ -2,5 +2,8 @@
   overflow: hidden;
   overflow-y: auto;
 }
+.App .switch > div {
+  margin-top: 11.5740740741vw;
+}
 
 /*# sourceMappingURL=App.css.map */

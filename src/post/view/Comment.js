@@ -161,7 +161,7 @@ class Comment extends Component {
             <div className='Comment-Box'>
                 <div className='Comment-input'>
                     <div className='Comment-input-ava'><img
-                        src={'http://www.xwvike.com/static/media/26395177.cd83fabd.jpeg'}/></div>
+                        src={config.url + 'image/' + commentData.pictureUrl[commentData.pictureUrl.length-1]}/></div>
                     <from className='Comment-inputtext'>
                         <textarea placeholder={this.state.replying === null ? '添加评论' : `回复${' ' + this.state.replying}`}
                                   maxLength='256' value={this.state.text}

@@ -4,7 +4,6 @@ import config from '../../config.js';
 import {connect} from 'react-redux'
 import Cookies from 'js-cookie';
 import './post.css';
-import fetch from "cross-fetch";
 import {collectionPost, likePost, requestPost} from "../../home/Actions";
 
 
@@ -31,12 +30,14 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment, avatar) =>
         return <span className='label-text-style'>{`#${item} `}</span>
     });
     return <div key={data._id} className='post'>
-        <div className='post-userInfo'>
-            <div className='avatar'>
-                <img src={config.url + 'image/' + avatar}/>
+        <Link to={'/user/'+data.userId}>
+            <div className='post-userInfo'>
+                <div className='avatar'>
+                    <img src={config.url + 'image/' + avatar}/>
+                </div>
+                <span className='userid'>{data.userId}</span>
             </div>
-            <span className='userid'>{data.userId}</span>
-        </div>
+        </Link>
         <div className='post-image'>
             <img src={config.url + 'image/' + data.pictureUrl[0]}/>
         </div>
@@ -80,10 +81,13 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment, avatar) =>
 class PostSingle extends Component {
     constructor() {
         super(...arguments);
+        this.state={
+            postId:window.location.pathname.match(/\/post/) !== null?window.location.pathname.match('[^/]+(?!.*/)')[0]:this.props.postId
+        }
     }
 
     componentDidMount() {
-        this.props.requestPost(this.props.postId);
+        this.props.requestPost(this.state.postId);
     }
 
     render() {
@@ -97,9 +101,9 @@ class PostSingle extends Component {
         </div>;
         return (
             <div>
-                {data[this.props.postId] === undefined ?
+                {data[this.state.postId] === undefined ?
                     Placeholder :
-                    Post(data[this.props.postId], loginUser, this.props.likePost, this.props.collectionPost, null, data[this.props.postId].pictureUrl[data[this.props.postId].pictureUrl.length-1])}
+                    Post(data[this.state.postId], loginUser, this.props.likePost, this.props.collectionPost, null, data[this.state.postId].pictureUrl[data[this.state.postId].pictureUrl.length-1])}
             </div>
         )
     }
