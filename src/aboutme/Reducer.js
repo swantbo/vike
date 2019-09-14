@@ -14,7 +14,8 @@ const aboutMe = {
     tempImage: '',
     myPost: {},
     myColl: {},
-    err: {}
+    err: {},
+    changePasswordStatus: {}
 
 };
 
@@ -29,6 +30,26 @@ export default function (state = aboutMe, action) {
                 ...state,
                 tempImage: img
 
+            }
+        }
+        //更改密码
+        case ActionTypes.CHANGE_PASSWORD: {
+            return {
+                ...state,
+                changePasswordStatus: {status: 0}
+            }
+        }
+        case ActionTypes.CHANGE_PASSWORD_SUCCESS: {
+            return {
+                ...state,
+                changePasswordStatus: {status: 200}
+            }
+        }
+        case ActionTypes.CHANGE_PASSWORD_FAILURE:{
+            const {status} = action.payload;
+            return {
+                ...state,
+                changePasswordStatus: {status: status}
             }
         }
         //请求个人帖子图片

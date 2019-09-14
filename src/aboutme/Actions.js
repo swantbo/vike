@@ -1,6 +1,7 @@
 import * as ActionTypes from './ActionTypes.js';
 import fetch from 'cross-fetch';
 import config from '../config.js';
+import md5 from 'md5';
 
 function base64ToBlob(urlData) {
     var arr = urlData.split(',');
@@ -17,6 +18,30 @@ function base64ToBlob(urlData) {
         type: mime
     });
 }
+//更改密码
+const changePasswordState = ()=>({
+    type:ActionTypes.CHANGE_PASSWORD
+});
+const changePasswordSuccess=()=>({
+    type:ActionTypes.CHANGE_PASSWORD_SUCCESS,
+    payload:{status:200}
+});
+const changePasswordFailure = (data)=>({
+    type:ActionTypes.CHANGE_PASSWORD_FAILURE,
+    payload:{data}
+});
+export const changePassword = (userId,oldPassword,newPassword)=>{
+    return dispatch=>{
+        dispatch(changePasswordState());
+        return fetch(`${config.url}changePassword`,{
+            method:'POST',
+            body:JSON.stringify({userId:userId,oldPassword:md5(oldPassword),newPassword:md5(newPassword)})
+        }).then(res=>res.json()).then(json=>json.status===200?dispatch(changePasswordSuccess(json)):dispatch(changePasswordFailure(json))).catch(
+            err=>dispatch(changePasswordFailure(err))
+        )
+    }
+};
+
 
 //请求个人帖子图片
 const myPostStart = (arr) => ({
