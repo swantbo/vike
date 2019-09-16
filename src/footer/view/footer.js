@@ -58,8 +58,7 @@ class Footer extends Component {
                         } else if (index===4) {
                             click[4]();
                             requestData(that,Cookies.get('u_id'),this.props.posts,true)
-                           // this.props.requestLoginUserInfo(Cookies.get('u_id'));
-                           // this.props.myPost(this.props.posts,null,true);
+
                         }
                     }
 

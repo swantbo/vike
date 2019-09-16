@@ -15,7 +15,7 @@ const aboutMe = {
     myPost: {},
     myColl: {},
     err: {},
-    changePasswordStatus: {}
+    changePasswordStatus: {status:0}
 
 };
 
@@ -36,7 +36,7 @@ export default function (state = aboutMe, action) {
         case ActionTypes.CHANGE_PASSWORD: {
             return {
                 ...state,
-                changePasswordStatus: {status: 0}
+                changePasswordStatus: {status: 1}
             }
         }
         case ActionTypes.CHANGE_PASSWORD_SUCCESS: {

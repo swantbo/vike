@@ -4,6 +4,7 @@ import {Route, Link, withRouter} from "react-router-dom";
 import {view as Footer} from './footer'
 import {view as Header} from './header'
 import {view as AboutMe} from './aboutme';
+import {changePassword} from "./aboutme";
 import {edit} from './aboutme';
 import {view as Login} from './login';
 import {Comment } from './post'
@@ -45,6 +46,7 @@ class App extends Component {
                     <Route path='/dynamic' component={Dynamic}/>
                     <Route path='/aboutme' component={AboutMe}/>
                     <Route path='/edit' component={edit}/>
+                    <Route path='/changePassword' component={changePassword}/>
                     <Route path='/us' component={temp}/>
                     <Route path='/user/:paramName' component={AboutMe}/>
                     <Route path='/sendPost' component={SendPost}/>
