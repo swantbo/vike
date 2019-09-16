@@ -29,7 +29,8 @@ class ChangePassword extends Component {
     onChangePass(v, id) {
         let that = this;
         this.setState({[id]: v.target.value.replace(/[^\w_]/g, '', '')}, function () {
-            that.actionClick()
+            that.actionClick();
+            that.setState({tip:''})
         })
     }
 
@@ -88,10 +89,11 @@ class ChangePassword extends Component {
                         onCut={(e) => e.preventDefault()}
                         onChange={(e) => this.onChangePass(e, i)}
                         type={'password'}
+                        style={i===0?{}:this.state.tip.length>0?{background:'#ff1400'}:{}}
                         maxLength={16}
                         value={this.state[i]}/>
                         <span
-                            className='tips'>{i === 0 ? '' : this.state[i].length === 0 ? '仅支持英文字母a~Z、_、0~9' : this.state[i].length < 8 ? '密码最少8位' : ''}</span>
+                            className='tips'>{i === 0 ? '' : this.state[i].length === 0 ? '仅支持英文字母a~Z、_、0~9' : this.state[i].length < 8 ? '密码最少8位' : this.state.tip.length>0?this.state.tip:''}</span>
                     </div>
                 })}
                 <div className='changePassword-but'>
