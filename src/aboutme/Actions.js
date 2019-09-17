@@ -223,7 +223,10 @@ export const updateUserAvatar = (file, userId) => {
 export const saveImg = (img) => ({
     type: ActionTypes.SAVE_IMG,
     payload: {img: img}
-})
+});
+export const changeUpdateState=()=>({
+    type:ActionTypes.CHANGE_UPDATE_STATE
+});
 export const changeFloatInterFaceShow = () => ({
     type: ActionTypes.ABOUTME_CHANGE_FLOATINTERFACE_SHOW
 });

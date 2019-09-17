@@ -25,6 +25,12 @@ export default function (state = aboutMe, action) {
         default: {
             return state
         }
+        case ActionTypes.CHANGE_UPDATE_STATE:{
+            return {
+                ...state,
+                updateState: 0
+            }
+        }
         case ActionTypes.SAVE_IMG: {
             const {img} = action.payload;
             return {
@@ -165,11 +171,11 @@ export default function (state = aboutMe, action) {
             }
         }
         case ActionTypes.UPDATE_USER_INFO_SUCCESS: {
-            const {data} = action.payload.data;
+            const {data,status} = action.payload.data;
             return {
                 ...state,
                 loginUserInfo: {...data},
-                updateState: 1
+                updateState: status
             }
         }
         case ActionTypes.UPDATE_USER_INFO_FAILURE: {

@@ -7,7 +7,7 @@ import config from "../../config";
 
 const listText = (num, title, text, link) => {
     return <div className='listText'>
-        <span className='listText-num'>{num}</span>
+        <span className='listText-num'>{num}.</span>
         <span className='listText-title'>{title}</span>
         <span className='listText-text'>{text}</span>
         <Link className='listText-link' to={link}>[?]</Link>

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-    changeFloatInterFaceShow
+    changeFloatInterFaceShow,
+    changeUpdateState
 } from "../Actions";
 import {Link, withRouter} from "react-router-dom";
 import './Edit.css'
@@ -20,20 +21,6 @@ class Edit extends Component {
             website: this.props.website,
             gender: this.props.gender,
             isRecommend: this.props.isRecommend,
-            // isGesture: false,
-            // width: 300,
-            // x1: 0,
-            // y1: 0,
-            // x2: 0,
-            // y2: 0,
-            // nowX1: 0,
-            // nowY1: 0,
-            // nowX2: 0,
-            // nowY2: 0,
-            // startDis: 0,
-            // nowDis: 0,
-            // scale: 1,
-            // Dis: 0
         };
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeIntroduction = this.onChangeIntroduction.bind(this);
@@ -73,51 +60,20 @@ class Edit extends Component {
         let temp = this.state.isRecommend;
         this.setState({isRecommend: !temp});
     }
-    sub(){
-       this.props.updateUserInfo(this.state.userId, this.state.userName, this.state.email, this.state.Introduction, this.state.gender, this.state.isRecommend, this.state.website)
+
+    sub() {
+        this.props.updateUserInfo(this.state.userId, this.state.userName, this.state.email, this.state.Introduction, this.state.gender, this.state.isRecommend, this.state.website)
 
     }
-    // onTouchStart(e) {
-    //     if (e.touches.length >= 2) {
-    //         this.setState({isGesture: true});
-    //         this.setState({x1: e.touches[0].pageX});
-    //         this.setState({y1: e.touches[0].pageY});
-    //         this.setState({x2: e.touches[1].pageX});
-    //         this.setState({y2: e.touches[1].pageY});
-    //     }
-    // }
-    //
-    // onTouchMove(e) {
-    //     if (this.state.isGesture && e.touches.length >= 2) {
-    //         let a = this.state;
-    //         this.setState({nowX1: e.touches[0].pageX});
-    //         this.setState({nowY1: e.touches[0].pageY});
-    //         this.setState({nowX2: e.touches[1].pageX});
-    //         this.setState({nowY2: e.touches[1].pageY});
-    //         this.setState({startDis: Math.sqrt((a.x2 - a.x1) * (a.x2 - a.x1), (a.y2 - a.y1) * (a.y2 - a.y1))});
-    //         this.setState({nowDis: Math.sqrt((a.nowX2 - a.nowX1) * (a.nowX2 - a.nowX1), (a.nowY2 - a.nowY1) * (a.nowY2 - a.nowY1))});
-    //         // this.setState({Dis:((this.state.nowDis-this.state.startDis)<=0?0:(this.state.nowDis-this.state.startDis))});
-    //         this.setState({scale: a.nowDis / a.startDis});
-    //     }
-    // }
-    //
-    // onTouchEnd(e) {
-    //     if (this.state.isGesture) {
-    //         if (e.touches.length < 2) {
-    //             let width = this.state.width;
-    //             this.setState({isGesture: false});
-    //             this.setState({width: width * this.state.scale})
-    //         }
-    //     }
-    // }
-
-    // componentDidMount() {
-    //     let width = this.state.width;
-    //     this.setState({width: width * this.state.scale})
-    // }
 
     render() {
         let that = this;
+        if (this.props.updateState === 200) {
+            setTimeout(function () {
+                that.props.history.push('/aboutme');
+                that.props.changeUpdateState()
+            }, 500)
+        }
         let {changeFloatInterFaceShow} = this.props;
         const EditBox = (text, variable, action, className) => {
             return <div className={'editBox' + " " + className}>
@@ -146,13 +102,16 @@ class Edit extends Component {
         });
         return (
             <div className='edit'>
+                <div style={this.props.updateState === 200 ? {display: 'block'} : {display: 'none'}}
+                     className='floatEdit'>
+                    {this.props.updateState === 200 ? '修改成功准备跳转' : '发生未知错误'}
+                </div>
                 <div className='changeAvatar'>
                     <div className='avatarBox'>
                         <img src={`${config.url}image/${that.state.avatar}`} alt='avatar'/>
                     </div>
                     <div className='avatarChangeButton'>
                         <p>{that.state.userId}</p>
-                        {/*<Link to='/changeAvatar'>更换头像</Link>*/}
                         <div onClick={changeFloatInterFaceShow}>更换头像</div>
                     </div>
                 </div>
@@ -183,6 +142,7 @@ class Edit extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        updateState: state.aboutMeReducer.updateState,
         userName: state.aboutMeReducer.loginUserInfo.userName,
         userId: state.aboutMeReducer.loginUserInfo.userId,
         email: state.aboutMeReducer.loginUserInfo.email,
@@ -200,6 +160,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         changeFloatInterFaceShow: () => {
             dispatch(changeFloatInterFaceShow())
+        },
+        changeUpdateState:()=>{
+            dispatch(changeUpdateState())
         }
     }
 };

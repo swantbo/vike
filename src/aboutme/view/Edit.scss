@@ -6,6 +6,21 @@
   width: 100vw;
   margin-top: vw(125);
   position: relative;
+  .floatEdit{
+    width: 50vw;
+    height: vw(400);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: rgba(0,0,0,0.35);
+    color: #fff;
+    font-size: vw(40);
+    border-radius: vw(30);
+    text-align: center;
+    line-height: vw(400);
+    z-index: 99;
+  }
   .changeAvatar {
     position: relative;
     width: 100vw;
