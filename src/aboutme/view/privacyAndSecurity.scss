@@ -1,0 +1,12 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+.privacyAndSecurity{
+  line-height: vw(400);
+  width: 100vw;
+  text-align: center;
+  font-size: vw(90);
+  text-decoration:line-through;
+  font-weight: bold;
+  color: #000000;
+}

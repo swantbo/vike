@@ -1,0 +1,56 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+.help-page{
+  width: 100vw;
+  position: relative;
+  .Placeholder-chart{
+    width: 100vw;
+    height: vw(250);
+    background: #f2f2f2;
+    border-radius: vw(20);
+    span{
+      width: 80vw;
+      height: vw(40);
+      background: #fafafa;
+      display: inline-block;
+      margin-left: vw(50);
+      margin-top: vw(50);
+      border-radius: vw(10);
+    }
+  }
+  .listText{
+    width: 90vw;
+    position: relative;
+    left: 50%;
+    margin-bottom: vw(30);
+    transform: translateX(-50%);
+    span{
+      display: inline-block;
+      color: #000;
+    }
+    .listText-num{
+      font-weight: bold;
+      font-size: vw(45);
+      position: absolute;
+      top: vw(10);
+      left: vw(5);
+    }
+    .listText-title{
+      font-weight: bold;
+      font-size: vw(40);
+      position: absolute;
+      top: vw(20);
+      left: vw(50);
+    }
+    .listText-text{
+      font-size: vw(35);
+      font-weight: normal;
+      margin-top: vw(70);
+    }
+    .listText-link{
+      font-size: vw(35);
+      font-weight: bold;
+    }
+  }
+}

@@ -7,6 +7,9 @@ import {view as AboutMe} from './aboutme';
 import {changePassword} from "./aboutme";
 import {edit} from './aboutme';
 import {view as Login} from './login';
+import {help} from './aboutme';
+import {us} from './aboutme';
+import {PrivacyAndSecurity} from './aboutme';
 import {Comment } from './post'
 import {view as PostSingle} from './post'
 import {view as Home} from './home'
@@ -47,12 +50,11 @@ class App extends Component {
                     <Route path='/aboutme' component={AboutMe}/>
                     <Route path='/edit' component={edit}/>
                     <Route path='/changePassword' component={changePassword}/>
-                    <Route path='/us' component={temp}/>
+                    <Route path='/us' component={us}/>
+                    <Route path='/help' component={help}/>
                     <Route path='/user/:paramName' component={AboutMe}/>
                     <Route path='/sendPost' component={SendPost}/>
-                    <Route path='changePassword' component={temp}/>
-                    <Route path='/privacy_and_security' component={temp}/>
-                    <Route path='/help' component={temp}/>
+                    <Route path='/privacy_and_security' component={PrivacyAndSecurity}/>
                     <Route path='/changeAvatar' component={changeAvatar}/>
                     <Route path='/login' component={Login}/>
                 </switch>

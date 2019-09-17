@@ -1,0 +1,45 @@
+@function vw($px) {
+  @return (($px/2)/540)*100vw
+}
+.us{
+  width: 100vw;
+  position: relative;
+  .Placeholder-chart{
+    width: 100vw;
+    height: vw(250);
+    background: #f2f2f2;
+    border-radius: vw(20);
+    span{
+      width: 80vw;
+      height: vw(40);
+      background: #fafafa;
+      display: inline-block;
+      margin-left: vw(50);
+      margin-top: vw(50);
+      border-radius: vw(10);
+    }
+  }
+  .us-listText{
+    width: 90vw;
+    position: relative;
+    left: 50%;
+    margin-bottom: vw(30);
+    margin-top: vw(200);
+    transform: translateX(-50%);
+    span{
+      display: inline-block;
+      color: #000;
+    }
+    .us-listText-title{
+      font-weight: bold;
+      font-size: vw(50);
+      position: absolute;
+      left: 0;
+    }
+    .us-listText-text{
+      font-weight: normal;
+      font-size: vw(35);
+      margin-top: vw(70);
+    }
+  }
+}

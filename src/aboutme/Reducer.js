@@ -15,6 +15,7 @@ const aboutMe = {
     myPost: {},
     myColl: {},
     err: {},
+    help:{},
     changePasswordStatus: {status:0}
 
 };
