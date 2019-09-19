@@ -1,11 +1,13 @@
 @function vw($px) {
   @return (($px/2)/540)*100vw
 }
-.aboutMe-loading{
+
+.aboutMe-loading {
   width: 100vw;
   margin-top: vw(125);
   position: relative;
-  div{
+
+  div {
     width: vw(500);
     height: vw(80);
     font-size: vw(40);
@@ -15,6 +17,7 @@
     margin: vw(200) auto;
   }
 }
+
 .aboutMe_box {
   width: 100vw;
   margin-top: vw(125);
@@ -80,8 +83,10 @@
         background-position-y: vw(-70*1.7);
       }
     }
-    .errrrrrrrr{
+
+    .errrrrrrrr {
       color: #000;
+
       .button {
         font-size: vw(35);
         font-weight: bold;
@@ -96,13 +101,16 @@
         border-radius: vw(10);
         border: 1px solid #cecece;
       }
+
       .button:hover {
         background: #4dceff;
         color: #ffffff;
       }
     }
-    .errrrrrrrre{
+
+    .errrrrrrrre {
       color: #ffffff;
+
       .button {
         font-size: vw(35);
         font-weight: bold;
@@ -153,22 +161,29 @@
     width: 100vw;
     height: vw(180);
     background-color: #ffffff;
-
-    .categoryList {
-      background-color: #ffffff;
-      font-size: vw(35);
-      text-align: center;
+    &>.categoryList-a {
+      color: #000000;
+      display: block;
       width: vw(358);
       height: vw(180);
+      float: left;
+      &>.categoryList {
+        background-color: #ffffff;
+        font-size: vw(35);
+        text-align: center;
+        width: vw(358);
+        height: vw(180);
 
-      .num {
-        padding-top: vw(40);
-        font-weight: bold;
+        .num {
+          padding-top: vw(40);
+          font-weight: bold;
+        }
       }
     }
+
   }
 
-  .userPostAndFriends div:nth-child(1) {
+  .userPostAndFriends>div:nth-child(1) {
     position: absolute;
     top: vw(0);
     left: vw(0);
@@ -205,24 +220,27 @@
       width: 100vw;
       overflow: hidden;
       //height: vw(110);
-      .userPost_List_image{
-        width:33vw;
+      .userPost_List_image {
+        width: 33vw;
         height: 33vw;
         float: left;
         position: relative;
         margin-left: 1px;
         margin-bottom: 1px;
-        a{
+
+        a {
           display: inline-block;
           width: 33vw;
           height: 33vw;
-          img{
+
+          img {
             width: 33vw;
           }
-          span{
+
+          span {
             width: 33vw;
             height: 33vw;
-            background: rgba(60,60,60,0.54);
+            background: rgba(60, 60, 60, 0.54);
             color: #ffffff;
             text-align: center;
             line-height: 33vw;
@@ -235,6 +253,7 @@
         }
 
       }
+
       .listIcon {
         display: inline-block;
         width: 50vw;
@@ -262,7 +281,8 @@
           background-position-y: vw(-324*1.7);
         }
       }
-      .gridAction{
+
+      .gridAction {
         span {
           width: vw(90);
           height: vw(90);
@@ -290,7 +310,8 @@
           background-position-y: vw(-148*1.7);
         }
       }
-      .CollectionAction{
+
+      .CollectionAction {
         span {
           width: vw(90);
           height: vw(90);
@@ -303,10 +324,12 @@
     }
   }
 }
-.setPage{
+
+.setPage {
   width: 100vw;
   margin-top: vw(125);
-  div{
+
+  div {
     width: 100vw;
     line-height: vw(125);
     text-indent: vw(50);
@@ -317,23 +340,26 @@
     font-weight: bold;
     color: #666666;
   }
-  ul{
-    li{
+
+  ul {
+    li {
       list-style: none;
       font-size: vw(40);
       width: 100vw;
       height: vw(120);
       line-height: vw(120);
-      border-bottom:solid 1px #e2e2e2;
+      border-bottom: solid 1px #e2e2e2;
       text-indent: vw(50);
-      a{
+
+      a {
         position: absolute;
         width: 90vw;
         height: vw(120);
         display: inline-block;
       }
-      span{
-        margin-top:vw(30) ;
+
+      span {
+        margin-top: vw(30);
         position: absolute;
         right: vw(50);
         display: inline-block;

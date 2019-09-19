@@ -4,14 +4,17 @@ import Cookies from 'js-cookie';
 import {Link, withRouter} from "react-router-dom";
 import config from '../../config.js';
 import {requestLoginUserInfo, requestOtherUser} from '../Actions.js';
-import {myPost,follow} from "../Actions";
+import {myPost,follow,requestMany} from "../Actions";
 import './aboutMe.css';
 
 const categoryList = (num, text) => {
-    return <div className='categoryList'>
-        <p className='num'>{num}</p>
-        <p>{text}</p>
-    </div>
+    return <Link onClick={text==='帖子'?(e)=>e.preventDefault():''} className='categoryList-a' to={text==='粉丝'?'/friendsList?status=1':'/friendsList?status=2'}>
+        <div className='categoryList'>
+            <p className='num'>{num}</p>
+            <p>{text}</p>
+        </div>
+    </Link>
+
 };
 const listIcon = (className, click, id) => {
     let temp;
@@ -180,6 +183,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         follow:(userId,followId)=>{
             dispatch(follow(userId,followId))
+        },
+        requestMany:(userId)=>{
+            dispatch(requestMany(userId))
         }
     }
 };

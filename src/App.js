@@ -8,6 +8,7 @@ import {changePassword} from "./aboutme";
 import {edit} from './aboutme';
 import {view as Login} from './login';
 import {help} from './aboutme';
+import {FriendsList} from './aboutme'
 import {us} from './aboutme';
 import {PrivacyAndSecurity} from './aboutme';
 import {Comment } from './post'
@@ -48,6 +49,7 @@ class App extends Component {
                     <Route path='/result' component={Search}/>
                     <Route path='/dynamic' component={Dynamic}/>
                     <Route path='/aboutme' component={AboutMe}/>
+                    <Route path='/friendsList' component={FriendsList}/>
                     <Route path='/edit' component={edit}/>
                     <Route path='/changePassword' component={changePassword}/>
                     <Route path='/us' component={us}/>

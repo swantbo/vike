@@ -52,11 +52,13 @@ class Header extends Component {
     }
 
     changeText(e) {
-        this.setState({text:e.target.value.replace(/\s+/g,"")})
+        this.setState({text: e.target.value.replace(/\s+/g, "")})
     }
-    clearText(){
-        this.setState({text:''})
+
+    clearText() {
+        this.setState({text: ''})
     }
+
     componentWillMount() {
         this.setState({a: false});
         this.props.requestId();
@@ -89,7 +91,7 @@ class Header extends Component {
                                                       onChange={(e) => {
                                                           this.changeText(e);
                                                           // console.log();
-                                                          SendUserName(e.target.value.replace(/\s+/g,""));
+                                                          SendUserName(e.target.value.replace(/\s+/g, ""));
                                                           this.changeB()
                                                       }} value={this.state.text} type='text'/>
                     <div style={{display: this.state.a ? 'none' : 'block'}}
@@ -144,16 +146,17 @@ class Header extends Component {
         const tips = (text) => <div className='header-tips'><span onClick={this.historyBack}> </span>{text}</div>;
         let header = <div className='header'>
             {path.match(/\/comment/) !== null ?
-                comment : path.match(/\/user/)!==null?
-                tips(path.match('[^/]+(?!.*/)')[0]):path.match(/\/post/)!==null?
-                    tips('照片'):path === '/sendPost' ?
-                    sendPost : path === '/changeAvatar' ?
-                        changeAvatar : path === '/' ?
-                            logo : path === '/search' ?
-                                search : path === '/result' ?
-                                    search : path === '/dynamic' ?
-                                        dynamic : path === '/aboutme' ?
-                                            aboutme : tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
+                comment : path.match(/\/user/) !== null ?
+                    tips(path.match('[^/]+(?!.*/)')[0]) : path.match(/\/post/) !== null ?
+                        tips('照片') : path === '/sendPost' ?
+                            sendPost : path === '/changeAvatar' ?
+                                changeAvatar : path === '/' ?
+                                    logo : path === '/search' ?
+                                        search : path === '/result' ?
+                                            search : path === '/dynamic' ?
+                                                dynamic : path === '/aboutme' ?
+                                                    aboutme : path.match(/\/friendsList/) !== null ?
+                                                        tips('我的好友') : tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
         </div>;
         return (
             <div>

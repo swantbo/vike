@@ -12,6 +12,7 @@ const aboutMe = {
     aboutMeFloatTitle: '',
     aboutMeFloatText: ['举报', '拉黑', '取消'],
     tempImage: '',
+    friends:{},
     myPost: {},
     myColl: {},
     err: {},
@@ -37,6 +38,17 @@ export default function (state = aboutMe, action) {
                 ...state,
                 tempImage: img
 
+            }
+        }
+        //请求多用户信息
+        case ActionTypes.REQUEST_MANY_USER_INFO:{
+            return state
+        }
+        case ActionTypes.REQUEST_MANY_USER_INFO_SUCCESS:{
+            const {data}= action.payload;
+            console.log(data);
+            return {
+                ...state,
             }
         }
         //更改密码

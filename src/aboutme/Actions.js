@@ -18,26 +18,27 @@ function base64ToBlob(urlData) {
         type: mime
     });
 }
+
 //更改密码
-const changePasswordState = ()=>({
-    type:ActionTypes.CHANGE_PASSWORD
+const changePasswordState = () => ({
+    type: ActionTypes.CHANGE_PASSWORD
 });
-const changePasswordSuccess=()=>({
-    type:ActionTypes.CHANGE_PASSWORD_SUCCESS,
-    payload:{status:200}
+const changePasswordSuccess = () => ({
+    type: ActionTypes.CHANGE_PASSWORD_SUCCESS,
+    payload: {status: 200}
 });
-const changePasswordFailure = (data)=>({
-    type:ActionTypes.CHANGE_PASSWORD_FAILURE,
-    payload:{data}
+const changePasswordFailure = (data) => ({
+    type: ActionTypes.CHANGE_PASSWORD_FAILURE,
+    payload: {data}
 });
-export const changePassword = (userId,oldPassword,newPassword)=>{
-    return dispatch=>{
+export const changePassword = (userId, oldPassword, newPassword) => {
+    return dispatch => {
         dispatch(changePasswordState());
-        return fetch(`${config.url}changePassword`,{
-            method:'POST',
-            body:JSON.stringify({userId:userId,oldPassword:md5(oldPassword),newPassword:md5(newPassword)})
-        }).then(res=>res.json()).then(json=>json.status===200?dispatch(changePasswordSuccess(json)):dispatch(changePasswordFailure(json))).catch(
-            err=>dispatch(changePasswordFailure(err))
+        return fetch(`${config.url}changePassword`, {
+            method: 'POST',
+            body: JSON.stringify({userId: userId, oldPassword: md5(oldPassword), newPassword: md5(newPassword)})
+        }).then(res => res.json()).then(json => json.status === 200 ? dispatch(changePasswordSuccess(json)) : dispatch(changePasswordFailure(json))).catch(
+            err => dispatch(changePasswordFailure(err))
         )
     }
 };
@@ -160,32 +161,52 @@ export const updateUserInfo = (userId, userName, email, introduction, gender, re
         )
     }
 };
-const followStart = (userId,followId) => ({
+const followStart = (userId, followId) => ({
     type: ActionTypes.ABOUT_ME_FOLLOW,
-    payload: {userId,followId}
+    payload: {userId, followId}
 });
-const followSuccess = (userId,followId,data) => ({
+const followSuccess = (userId, followId, data) => ({
     type: ActionTypes.ABOUT_ME_FOLLOW_SUCCESS,
-    payload: {userId,followId,data}
+    payload: {userId, followId, data}
 });
 const followFailure = (err) => ({
     type: ActionTypes.ABOUT_ME_FOLLOW_FAILURE,
     payload: {err}
 });
 
-export const follow = (userId,followId) => {
+export const follow = (userId, followId) => {
     return dispatch => {
-        dispatch(followStart(userId,followId));
+        dispatch(followStart(userId, followId));
         return fetch(`${config.url}follow`, {
             method: 'POST',
-            body: JSON.stringify({userId: userId,followId:followId})
+            body: JSON.stringify({userId: userId, followId: followId})
         }).then(res => res.json()).then(
             json => {
-                dispatch(followSuccess(userId,followId,json))
+                dispatch(followSuccess(userId, followId, json))
             }
         ).catch(err => dispatch(followFailure(err)))
     }
 };
+const requestManyState = () => ({
+    type: ActionTypes.REQUEST_MANY_USER_INFO
+});
+const requestManySuccess = (data) => ({
+    type: ActionTypes.REQUEST_MANY_USER_INFO_SUCCESS,
+    payload: {data}
+});
+const requestManyFailure = () => ({
+    type: ActionTypes.REQUEST_MANY_USER_INFO_FAILURE
+});
+
+export const requestMany = (userId) => {
+    return dispatch => {
+        dispatch(requestManyState());
+        return fetch(`${config.url}manyUser?userId=${userId}`, {
+            method: 'GET',
+        }).then(res => res.json()).then(json => dispatch(requestManySuccess(json))).catch(err => dispatch(requestManyFailure()))
+    }
+}
+
 
 function updateUserAvatarStart() {
     return {
@@ -224,8 +245,8 @@ export const saveImg = (img) => ({
     type: ActionTypes.SAVE_IMG,
     payload: {img: img}
 });
-export const changeUpdateState=()=>({
-    type:ActionTypes.CHANGE_UPDATE_STATE
+export const changeUpdateState = () => ({
+    type: ActionTypes.CHANGE_UPDATE_STATE
 });
 export const changeFloatInterFaceShow = () => ({
     type: ActionTypes.ABOUTME_CHANGE_FLOATINTERFACE_SHOW

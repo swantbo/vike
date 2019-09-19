@@ -141,18 +141,25 @@
   height: 16.6666666667vw;
   background-color: #ffffff;
 }
-.aboutMe_box .userPostAndFriends .categoryList {
+.aboutMe_box .userPostAndFriends > .categoryList-a {
+  color: #000000;
+  display: block;
+  width: 33.1481481481vw;
+  height: 16.6666666667vw;
+  float: left;
+}
+.aboutMe_box .userPostAndFriends > .categoryList-a > .categoryList {
   background-color: #ffffff;
   font-size: 3.2407407407vw;
   text-align: center;
   width: 33.1481481481vw;
   height: 16.6666666667vw;
 }
-.aboutMe_box .userPostAndFriends .categoryList .num {
+.aboutMe_box .userPostAndFriends > .categoryList-a > .categoryList .num {
   padding-top: 3.7037037037vw;
   font-weight: bold;
 }
-.aboutMe_box .userPostAndFriends div:nth-child(1) {
+.aboutMe_box .userPostAndFriends > div:nth-child(1) {
   position: absolute;
   top: 0vw;
   left: 0vw;
