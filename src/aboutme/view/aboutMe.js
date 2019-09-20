@@ -7,8 +7,18 @@ import {requestLoginUserInfo, requestOtherUser} from '../Actions.js';
 import {myPost,follow,requestMany} from "../Actions";
 import './aboutMe.css';
 
-const categoryList = (num, text) => {
-    return <Link onClick={text==='帖子'?(e)=>e.preventDefault():''} className='categoryList-a' to={text==='粉丝'?'/friendsList?status=1':'/friendsList?status=2'}>
+const categoryList = (num, text,fuck) => {
+    let link = '';
+    if (text==='粉丝'&&fuck==='me'){
+        link='/friendsList?status=1&a=1'
+    }else if (text==='正在关注'&&fuck==='me'){
+        link='/friendsList?status=2&a=1'
+    }else if (text==='粉丝'&&fuck==='other'){
+        link='/friendsList?status=1&a=2'
+    }else if (text==='正在关注'&&fuck==='other'){
+        link='/friendsList?status=2&a=2'
+    }
+    return <Link onClick={text==='帖子'?(e)=>e.preventDefault():''} className='categoryList-a' to={link}>
         <div className='categoryList'>
             <p className='num'>{num}</p>
             <p>{text}</p>
@@ -128,7 +138,7 @@ class AboutMe extends Component {
                 </div>
                 <div className='userPostAndFriends'>
                     {this.state.categoryName.map((item) => {
-                        return categoryList(item === '帖子' ? posts.length || 0 : item === '粉丝' ? myFens.length || 0 : myFriends.length || 0, item)
+                        return categoryList(item === '帖子' ? posts.length || 0 : item === '粉丝' ? myFens.length || 0 : myFriends.length || 0, item,this.props.user)
                     })}
                 </div>
                 <div className='userPost'>

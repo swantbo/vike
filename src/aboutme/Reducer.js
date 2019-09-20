@@ -45,10 +45,10 @@ export default function (state = aboutMe, action) {
             return state
         }
         case ActionTypes.REQUEST_MANY_USER_INFO_SUCCESS:{
-            const {data}= action.payload;
-            console.log(data);
+            const {data}= action.payload.data;
             return {
                 ...state,
+                friends: {...data}
             }
         }
         //更改密码

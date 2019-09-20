@@ -16,3 +16,77 @@
     border-radius: vw(10);
   }
 }
+.friends{
+  width: 100vw;
+  position: relative;
+  background-color: #f8f8f8;
+  height: 100vh;
+  margin-bottom: vw(125);
+  .friendsHeader{
+    width: 100vw;
+    height: vw(125);
+    span{
+      display: inline-block;
+      width: 50vw;
+      height: vw(125);
+      text-align: center;
+      line-height: vw(125);
+      font-size: vw(40);
+      color: #000000;
+      background-color: #fff;
+    }
+    .Action{
+      font-weight:bold;
+      background-color: #f8f8f8;
+    }
+  }
+  .friendsList{
+
+    .friendSingle{
+      //border-bottom: 1px solid #ffffff;
+      display: inline-block;
+      width: 100vw;
+      height: vw(130);
+      margin-top: vw(20);
+      padding: 0 5vw;
+      position: relative;
+      .link-avatar{
+        border-radius: 50%;
+        overflow: hidden;
+        width: vw(130);
+        height: vw(130);
+        border: 1px solid #c7c7c7;
+        img{
+          width: vw(130);
+        }
+      }
+      .link-text{
+        a{
+          .id{
+            display: inline-block;
+            font-size: vw(40);
+            font-weight: bold;
+            color: #000;
+            position: absolute;
+            top: vw(10);
+            left: vw(220);
+          }
+        }
+        .name{
+          color: #8e8e8e;
+          font-size: vw(40);
+          font-weight: lighter;
+          position: absolute;
+          top: vw(70);
+          left: vw(220);
+        }
+      }
+      .but{
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        right: vw(70);
+      }
+    }
+  }
+}

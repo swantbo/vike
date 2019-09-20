@@ -9,6 +9,13 @@ import Cookies from 'js-cookie';
 import {changeStatus, sendPost, dataClear, isClick} from "../../sendpost/Actions";
 import {collectionPost, likeComment, likePost} from "../../home/Actions";
 
+function getQueryString(name) {
+    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    let r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+}
+
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -155,8 +162,9 @@ class Header extends Component {
                                         search : path === '/result' ?
                                             search : path === '/dynamic' ?
                                                 dynamic : path === '/aboutme' ?
-                                                    aboutme : path.match(/\/friendsList/) !== null ?
-                                                        tips('我的好友') : tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
+                                                    aboutme : path.match(/\/friendsList/) !== null&&getQueryString('a')==='1' ?
+                                                        tips('我的好友') :path.match(/\/friendsList/)!==null&&getQueryString('a')==='2'?
+                                                        tips('ta的好友'): tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
         </div>;
         return (
             <div>
