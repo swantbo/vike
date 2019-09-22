@@ -8,8 +8,9 @@ import {follow} from "../../aboutme/Actions";
 import Cookies from 'js-cookie';
 import './dynamic.css';
 
-const dynamicSingle = (dynamicId,userId,reply,operating,text,time)=>{
-    let link = operating==='关注'?`/user/${userId}`:operating==='评论'||operating==='回复'?`/comment/`:'/dynamic';
+
+const dynamicSingle = (dynamicId,userId,reply,operating,text,time,postId)=>{
+    let link = operating==='关注'?`/user/${userId}`:operating==='评论'||operating==='回复'?`/post/${postId}`:'/dynamic';
     return <Link to={link}>
         <div className='dynamicSingle'>
             <div className='dynamicSingle-msg'>
@@ -42,7 +43,7 @@ class Dynamic extends Component{
         const {status,data} = this.props;
         const dynamicList = status===0?<div>数据加载中……</div>:Object.keys(data).reverse().map((i)=>{
             let j = data[i];
-           return dynamicSingle(j.id,j.userId,j.reply,j.operating,j.text,j.time)
+           return dynamicSingle(j.id,j.userId,j.reply,j.operating,j.text,j.time,j.postId)
         });
         return(
             <div className='dynamic-page'>

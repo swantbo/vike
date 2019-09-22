@@ -20,9 +20,9 @@ const userList = (userId, userName, url, onClick, status, a) => {
                 <span className='name'>{userName}</span>
             </div>
             {
-                a === 1 ? <Button onClick={() => onClick(Cookies.get('u_id'), userId)} className='but'
-                                  type={status === -1 ? "primary" : ""}>{status === -1 ? '关注' : '取关'}</Button> :a!==1&&status===-1?
-                    <Button onClick={()=>onClick(Cookies.get('u_id'),userId)} type='primary' className='but'>关注</Button>:''
+                a === 1 ? <Button onClick={() => {onClick(Cookies.get('u_id'), userId)}} className='but'
+                                  type={status === -1 ? "primary" : ""}>{status === -1 ? '关注ta' : '已关注'}</Button> :a!==1&&status===-1?
+                    <Button onClick={()=>{onClick(Cookies.get('u_id'),userId)}} type='primary' className='but'>关注</Button>:''
 
             }
         </div>
@@ -42,9 +42,11 @@ class FriendsList extends Component {
         this.state = {
             status: parseInt(getQueryString('status')),
             friends: this.props.friends,
-            a: parseInt(getQueryString('a'))
+            a: parseInt(getQueryString('a')),
+            temp:1
         };
         this.request = this.request.bind(this);
+        // this.changeFriend = this.changeFriend.bind(this);
     }
 
     changeList() {
@@ -66,7 +68,14 @@ class FriendsList extends Component {
     componentDidMount() {
         this.request();
     }
-
+    changeFriend(a){
+        let that = this;
+        // this.setState({temp:this.state.temp*-1},function () {
+        //     setTimeout(function () {
+        //         that.props.requestMany(Cookies.get('u_id'))
+        //     },500)
+        // });
+    }
     render() {
         const friends = this.state.friends;
         let that = this;
@@ -95,11 +104,9 @@ class FriendsList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.aboutMeReducer.friends);
     return {
         friends: state.aboutMeReducer.friends,
         otherUserInfo: state.aboutMeReducer.otherUserInfo,
-        loginUserInfo: state.aboutMeReducer.loginUserInfo,
     }
 };
 const mapDispatchToProps = (dispatch) => {

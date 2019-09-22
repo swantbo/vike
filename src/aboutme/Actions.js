@@ -167,7 +167,7 @@ const followStart = (userId, followId) => ({
 });
 const followSuccess = (userId, followId, data) => ({
     type: ActionTypes.ABOUT_ME_FOLLOW_SUCCESS,
-    payload: {userId, followId, data}
+    payload: {userId, followId, data},
 });
 const followFailure = (err) => ({
     type: ActionTypes.ABOUT_ME_FOLLOW_FAILURE,

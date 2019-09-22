@@ -68,7 +68,7 @@ class Header extends Component {
 
     componentWillMount() {
         this.setState({a: false});
-        this.props.requestId();
+        this.props.requestId(Cookies.get('temp_id'), 0);
     }
 
     historyBack() {
@@ -162,9 +162,9 @@ class Header extends Component {
                                         search : path === '/result' ?
                                             search : path === '/dynamic' ?
                                                 dynamic : path === '/aboutme' ?
-                                                    aboutme : path.match(/\/friendsList/) !== null&&getQueryString('a')==='1' ?
-                                                        tips('我的好友') :path.match(/\/friendsList/)!==null&&getQueryString('a')==='2'?
-                                                        tips('ta的好友'): tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
+                                                    aboutme : path.match(/\/friendsList/) !== null && getQueryString('a') === '1' ?
+                                                        tips('我的好友') : path.match(/\/friendsList/) !== null && getQueryString('a') === '2' ?
+                                                            tips('ta的好友') : tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
         </div>;
         return (
             <div>
@@ -188,8 +188,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        requestId: () => {
-            dispatch(requestId())
+        requestId: (tempId, s) => {
+            dispatch(requestId(tempId, s))
         },
         UserNameNull: () => {
             dispatch(UserNameNull())

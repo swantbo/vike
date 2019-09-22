@@ -124,7 +124,8 @@ export default function (state = aboutMe, action) {
             if (data.msg === 'add') {
                 return {
                     ...state,
-                    otherUserInfo: {...state.otherUserInfo, myFens: [...state.otherUserInfo.myFens, userId]}
+                    otherUserInfo: {...state.otherUserInfo, myFens: [...state.otherUserInfo.myFens, userId]},
+                    loginUserInfo: Object.assign({},data.data)
                 }
             } else {
                 return {
@@ -132,10 +133,10 @@ export default function (state = aboutMe, action) {
                     otherUserInfo: {
                         ...state.otherUserInfo,
                         myFens: state.otherUserInfo.myFens.filter((i) => i !== userId)
-                    }
+                    },
+                    loginUserInfo:Object.assign({},data.data)
                 }
             }
-
         }
         //请求其他用户数据
         case ActionTypes.ABOUT_ME_REQUEST_OTHER_USER_INFO: {

@@ -15,10 +15,10 @@ const requestIdSuccess = (list) => ({
 const requestIdFailure = () => ({
     type: ActionTypes.POST_REQUEST_ID_FAILURE
 });
-export const requestId = () => {
+export const requestId = (tempId,s) => {
     return (dispatch) => {
         dispatch(requestIdState());
-        return fetch(`${config.url}getPostId`, {method: 'GET'}).then(res => res.json()).then(
+        return fetch(`${config.url}getPostId?tempId=${tempId}&s=${s}`, {method: 'GET'}).then(res => res.json()).then(
             json => {
                 dispatch(requestIdSuccess(json));
                 for (let item of json) {

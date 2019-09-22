@@ -2,28 +2,57 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link, withRouter} from "react-router-dom";
 import {view as PostSingle} from '../../post';
+import {requestId} from "../../header";
+import Cookies from 'js-cookie';
 import './home.css';
+
+function throttle(func, wait, mustRun) {
+    let timeout, startTime = new Date();
+    return function () {
+        clearTimeout(timeout);
+        timeout = () => {
+            if (new Date() - startTime >= mustRun) {
+                clearTimeout(timeout);
+                // func.call(context, arg);unc();
+
+            }
+
+
+        }
+    }
+}
 
 class Home extends Component {
     constructor() {
         super(...arguments);
         this.state = {
-            data: ["5d7a0442a3d0b809748c2f6e"
-                , "5d78ca2463e1240b3400235c"
-                , "5d78c97bbe71282830a11254"
-                , "5d78bf10be71282830a11244"
-                , "5d79af7fa3d0b809748c2f6c"
-                , "5d79aee7a3d0b809748c2f6b"]
-        }
-
+            bool :false,
+            start:0,
+        };
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll() {
+        let height = document.documentElement.scrollHeight;
+        let scrollY = window.scrollY;
+        const that = this;
+        if (height-scrollY<=1000&&this.state.bool===false){
+            this.setState({start:height-scrollY},function () {
+                that.props.requestId(Cookies.get('temp_id'),1);
+                that.setState({bool:true})
+            });
+        }
+    }
 
     render() {
-        console.log('render');
-        const{postId} = this.props;
+        console.log('render')
+        const {postId} = this.props;
         let li = postId.map((item) => {
-            return <PostSingle key={item} postId={item}/>
+            return <PostSingle postId={item}/>
         });
         return (
             <div className='Home'>
@@ -38,4 +67,11 @@ const mapStateToProps = (state) => {
         postId: state.headerReducer.list,
     }
 };
-export default withRouter(connect(mapStateToProps, null)(Home))
+const mapDispatchToProps = (dispatch) => {
+    return {
+        requestId: (tempId, s) => {
+            dispatch(requestId(tempId, s))
+        }
+    }
+}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home))

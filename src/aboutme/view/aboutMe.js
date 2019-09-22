@@ -108,7 +108,7 @@ class AboutMe extends Component {
         let labelImage = Object.keys(imageList).length <= 0 ? <div></div> : Object.keys(imageList).map((i) => {
             return labelList(i, imageList[i])
         });
-        let aboutMe = this.props.dataState === 0 ? loading('数据加载中……') : this.props.dataState === -1 ? loading('数据请求错误！') : this.props.option ?
+        let aboutMe = myFriends===undefined||myFens===undefined||Object.keys(this.props.UserInfo).length<0 ? loading('数据加载中……') : this.props.dataState === -1 ? loading('数据请求错误！') : this.props.option ?
             <div className='aboutMe_box'>
                 <div className='userInfo'>
                     <div className='avatar' onClick={this.onTest}>

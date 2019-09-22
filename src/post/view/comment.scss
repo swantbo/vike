@@ -31,10 +31,11 @@
     }
 
     .Comment-inputtext {
+      display: inline-block;
       padding: vw(30);
       background: #fff;
       border-radius: vw(70);
-      height: vw(70);
+      height: vw(125);
       width: vw(800);
       position: relative;
       display: block;
@@ -44,11 +45,13 @@
       textarea {
         border: none;
         outline: none;
-        position: relative;
+        position: absolute;
         line-height: vw(70);
         width: vw(650);
         font-size: vw(35);
-        height: vw(70);
+        top: 50%;
+        transform: translateY(-50%);
+        height: vw(90);
         resize: none;
       }
 
