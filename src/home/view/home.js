@@ -26,8 +26,8 @@ class Home extends Component {
     constructor() {
         super(...arguments);
         this.state = {
-            bool :false,
-            start:0,
+            bool: false,
+            start: 0,
         };
         this.handleScroll = this.handleScroll.bind(this);
     }
@@ -40,16 +40,19 @@ class Home extends Component {
         let height = document.documentElement.scrollHeight;
         let scrollY = window.scrollY;
         const that = this;
-        if (height-scrollY<=1000&&this.state.bool===false){
-            this.setState({start:height-scrollY},function () {
-                that.props.requestId(Cookies.get('temp_id'),1);
-                that.setState({bool:true})
+        if (height - scrollY <= 1366 && this.state.bool === false) {
+            this.setState({start: height - scrollY}, function () {
+                that.props.requestId(Cookies.get('temp_id'), 1);
+                that.setState({bool: true})
             });
+        } else if (this.state.bool && height - scrollY > 1366) {
+            this.setState({bool: false})
         }
+
     }
 
     render() {
-        console.log('render')
+        console.log('render');
         const {postId} = this.props;
         let li = postId.map((item) => {
             return <PostSingle postId={item}/>

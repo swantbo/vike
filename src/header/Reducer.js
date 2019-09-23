@@ -39,9 +39,15 @@ export default function (state = header, action) {
         }
         case ActionTypes.POST_REQUEST_ID_SUCCESS:{
             const {list} = action.payload;
+            let temp = [...list];
+            for (let j of list){
+                if (state.list.findIndex((i)=>i===j)>-1){
+                    temp.splice(temp.findIndex((i)=>i===j),1)
+                }
+            }
             return {
                 ...state,
-                list:state.list.concat(list)
+                list:state.list.concat(temp)
             }
         }
         case ActionTypes.POST_REQUEST_ID_FAILURE:{
