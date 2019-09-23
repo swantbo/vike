@@ -15,7 +15,7 @@ const labelList = (labelName, img) => {
         </Link>
     </div>
 };
-const searchList = (title,text,url,tag)=>{
+const searchList = (title,text,url,tag,click)=>{
     let link;
     if (tag==='label'){
         link=`/label/${title}`;
@@ -25,12 +25,11 @@ const searchList = (title,text,url,tag)=>{
     }else if (tag==='user') {
         link=`/user/${title}`
     }else if (tag==='hot'){
-        link=`/hot/${text}`;
-        title='@'+ title;
+        link=``;
         text=text +'次搜索'
     }
-    return <Link className='Search-single' to={link}>
-        <div className='Search-single-box'>
+    return <Link onClick={tag==='hot'?(e)=>e.preventDefault():''} className='Search-single' to={link}>
+        <div onClick={tag==='hot'?()=>click(title):''} className='Search-single-box'>
             <div className='img'><img src={config.url + '/image/' + url}/></div>
             <div className='text'>
                 <span className='text-title'>{title}</span>
@@ -51,11 +50,11 @@ class Search extends Component {
         });
         let list = searchResults.map((i)=>{
             if (i.tag==='label'){
-                return searchList(i.label,i.length,null,i.tag)
+                return searchList(i.label,i.length,null,i.tag,null)
             }else if(i.tag==='user') {
-                return searchList(i.userId,i.userName,i.avatar,i.tag)
+                return searchList(i.userId,i.userName,i.avatar,i.tag,null)
             }else if (i.tag==='hot') {
-                return searchList(i.text,i.num,i.img,i.tag)
+                return searchList(i.text,i.num,i.img,i.tag,this.props.requestSearch)
             }
         });
         let searchHistory = <div className='search-box'>

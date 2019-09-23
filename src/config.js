@@ -1,5 +1,5 @@
 const config  = {
-    url:'http://192.168.0.114:3030/',
+    url:'http://192.168.1.3:3030/',
     avatar:'http://localhost:3030/avatar?'
 };
 
