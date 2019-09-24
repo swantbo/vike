@@ -4,14 +4,38 @@ const search = {
     num:0,
     label:{},
     status:0,
+    labelPost:{},
     searchResults:[],
-    text:''
+    text:'',
 };
 
 export default  function (state = search, action) {
     switch (action.type) {
         default:{
             return state
+        }
+        case ActionTypes.SEARCH_REQUEST_LABEL_ID:{
+            const{labelName} =action.payload;
+            let temp = {[labelName]:[]};
+            return {
+                ...state,
+                labelPost: {...state.labelPost,...temp}
+            }
+        }
+        case ActionTypes.SEARCH_REQUEST_LABEL_ID_SUCCESS:{
+            const {labelName,data}= action.payload;
+            let temp = {[labelName]:data};
+            return {
+                ...state,
+                labelPost: Object.assign(state.labelPost,temp)
+            }
+        }
+        case ActionTypes.SEARCH_REQUEST_LABEL_ID_FAILURE:{
+            const {data}=action.payload;
+            return {
+                ...state,
+                err:data
+            }
         }
         case ActionTypes.SEARCH_REQUEST_LABEL:{
             return {

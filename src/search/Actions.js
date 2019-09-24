@@ -3,15 +3,14 @@ import fetch from "cross-fetch";
 import Cookies from 'js-cookie';
 import config from "../config";
 
-const requestLabelId = (labelName)=>({
-
+const requestLabelIdStart = (labelName)=>({
         type:ActionTypes.SEARCH_REQUEST_LABEL_ID,
         payload:{labelName}
 
 });
-const requestLabelIdSuccess = (data)=>({
+const requestLabelIdSuccess = (labelName,data)=>({
   type:ActionTypes.SEARCH_REQUEST_LABEL_ID_SUCCESS,
-  payload:{data}
+  payload:{labelName,data}
 });
 const requestLabelIdFailure=(data)=>({
     type:ActionTypes.SEARCH_REQUEST_LABEL_ID_FAILURE,
@@ -20,10 +19,9 @@ const requestLabelIdFailure=(data)=>({
 
 export const requestLabelId=(labelName,num)=>{
     return (dispatch)=>{
-        dispatch(requestLabelId(labelName));
+        dispatch(requestLabelIdStart(labelName));
         return fetch(`${config.url}getLabelId?tempId=${Cookies.get('temp_id')}&label=${labelName}&s=${num}`).then(res=>res.json()).then(
-            json=>dispatch(requestLabelIdSuccess(json)).catch(err=>dispatch(requestLabelIdFailure(err)))
-        )
+            json=>{dispatch(requestLabelIdSuccess(labelName,json))}).catch(err=>{dispatch(requestLabelIdFailure(err))})
     }
 };
 const requestLabelStart = (num) => ({

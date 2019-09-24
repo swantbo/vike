@@ -5,6 +5,7 @@ import {view as Footer} from './footer'
 import {view as Header} from './header'
 import {view as AboutMe} from './aboutme';
 import {changePassword} from "./aboutme";
+import {labelPage} from './search';
 import {edit} from './aboutme';
 import {view as Login} from './login';
 import {help} from './aboutme';
@@ -53,6 +54,7 @@ class App extends Component {
                     <Route path='/edit' component={edit}/>
                     <Route path='/changePassword' component={changePassword}/>
                     <Route path='/us' component={us}/>
+                    <Route path='/label' component={labelPage}/>
                     <Route path='/help' component={help}/>
                     <Route path='/user/:paramName' component={AboutMe}/>
                     <Route path='/sendPost' component={SendPost}/>

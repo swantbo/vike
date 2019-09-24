@@ -2,12 +2,13 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link, Route, withRouter} from "react-router-dom";
 import {requestLabel, requestSearch} from "../Actions";
+import {requestLabelId} from "../Actions";
 import config from "../../config";
 import './scarch.css';
 
 
-const labelList = (labelName, img) => {
-    return <div key={labelName} className='Search-label-list'>
+const labelList = (labelName, img,click) => {
+    return <div onClick={()=>click(labelName,0)} key={labelName} className='Search-label-list'>
         <Link to={`/label/${labelName}`}>
             <img src={config.url + '/image/' + img}/>
 
@@ -29,7 +30,7 @@ const searchList = (title,text,url,tag,click)=>{
         text=text +'次搜索'
     }
     return <Link onClick={tag==='hot'?(e)=>e.preventDefault():''} className='Search-single' to={link}>
-        <div onClick={tag==='hot'?()=>click(title):''} className='Search-single-box'>
+        <div onClick={tag==='hot'?()=>click(title):tag==='label'?()=>click(title,0):''} className='Search-single-box'>
             <div className='img'><img src={config.url + '/image/' + url}/></div>
             <div className='text'>
                 <span className='text-title'>{title}</span>
@@ -46,11 +47,11 @@ class Search extends Component {
     render() {
         const {label,num,searchResults} = this.props;
         let single = num===0?<div/>:Object.keys(label).map((i) => {
-            return labelList(i, label[i])
+            return labelList(i, label[i],this.props.requestLabelId)
         });
         let list = searchResults.map((i)=>{
             if (i.tag==='label'){
-                return searchList(i.label,i.length,null,i.tag,null)
+                return searchList(i.label,i.length,null,i.tag,this.props.requestLabelId)
             }else if(i.tag==='user') {
                 return searchList(i.userId,i.userName,i.avatar,i.tag,null)
             }else if (i.tag==='hot') {
@@ -86,6 +87,9 @@ const mapDispatchToProps = (dispatch) => {
         requestSearch: (text) => {
             dispatch(requestSearch(text))
         },
+        requestLabelId:(labelName,num)=>{
+            dispatch(requestLabelId(labelName,num))
+        }
     }
 };
 
