@@ -164,7 +164,8 @@ class Header extends Component {
                                                 dynamic : path === '/aboutme' ?
                                                     aboutme : path.match(/\/friendsList/) !== null && getQueryString('a') === '1' ?
                                                         tips('我的好友') : path.match(/\/friendsList/) !== null && getQueryString('a') === '2' ?
-                                                            tips('ta的好友') : tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
+                                                            tips('ta的好友') : path.match(/\/label/) !== null ?
+                                                                tips(decodeURI(path.match('[^/]+(?!.*/)')[0])) : tips(this.state.listUrl[Object.keys(this.state.listUrl).find((item) => item === path)])}
         </div>;
         return (
             <div>

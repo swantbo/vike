@@ -4,7 +4,7 @@ const search = {
     num:0,
     label:{},
     status:0,
-    labelPost:{},
+    labelPost:[],
     searchResults:[],
     text:'',
 };
@@ -16,18 +16,21 @@ export default  function (state = search, action) {
         }
         case ActionTypes.SEARCH_REQUEST_LABEL_ID:{
             const{labelName} =action.payload;
-            let temp = {[labelName]:[]};
             return {
                 ...state,
-                labelPost: {...state.labelPost,...temp}
             }
         }
         case ActionTypes.SEARCH_REQUEST_LABEL_ID_SUCCESS:{
             const {labelName,data}= action.payload;
-            let temp = {[labelName]:data};
+            let temp = [...data];
+            for (let i of data){
+                if (state.labelPost.findIndex((j)=>j===i)>-1){
+                    temp.splice(temp.findIndex((h)=>h===i),1)
+                }
+            }
             return {
                 ...state,
-                labelPost: Object.assign(state.labelPost,temp)
+                labelPost:state.labelPost.concat(temp)
             }
         }
         case ActionTypes.SEARCH_REQUEST_LABEL_ID_FAILURE:{

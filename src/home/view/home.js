@@ -6,22 +6,6 @@ import {requestId} from "../../header";
 import Cookies from 'js-cookie';
 import './home.css';
 
-function throttle(func, wait, mustRun) {
-    let timeout, startTime = new Date();
-    return function () {
-        clearTimeout(timeout);
-        timeout = () => {
-            if (new Date() - startTime >= mustRun) {
-                clearTimeout(timeout);
-                // func.call(context, arg);unc();
-
-            }
-
-
-        }
-    }
-}
-
 class Home extends Component {
     constructor() {
         super(...arguments);
@@ -37,22 +21,23 @@ class Home extends Component {
     }
 
     handleScroll() {
-        let height = document.documentElement.scrollHeight;
-        let scrollY = window.scrollY;
-        const that = this;
-        if (height - scrollY <= 1366 && this.state.bool === false) {
-            this.setState({start: height - scrollY}, function () {
-                that.props.requestId(Cookies.get('temp_id'), 1);
-                that.setState({bool: true})
-            });
-        } else if (this.state.bool && height - scrollY > 1366) {
-            this.setState({bool: false})
-        }
+        if (window.location.pathname.match(/\//).input === '/') {
+            let height = document.documentElement.scrollHeight;
+            let scrollY = window.scrollY;
+            const that = this;
+            if (height - scrollY <= 1366 && this.state.bool === false) {
+                this.setState({start: height - scrollY}, function () {
+                    that.props.requestId(Cookies.get('temp_id'), 1);
+                    that.setState({bool: true})
+                });
+            } else if (this.state.bool && height - scrollY > 1366) {
+                this.setState({bool: false})
+            }
 
+        }
     }
 
     render() {
-        console.log('render');
         const {postId} = this.props;
         let li = postId.map((item) => {
             return <PostSingle postId={item}/>
