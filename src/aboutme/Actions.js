@@ -205,39 +205,35 @@ export const requestMany = (userId) => {
             method: 'GET',
         }).then(res => res.json()).then(json => dispatch(requestManySuccess(json))).catch(err => dispatch(requestManyFailure()))
     }
-}
+};
 
 
-function updateUserAvatarStart() {
-    return {
-        type: ActionTypes.UPDATE_USER_AVATAR
-    }
-}
+const updateUserAvatarStart = () => ({
+    type: ActionTypes.UPDATE_USER_AVATAR
+});
 
-function updateUserAvatarSuccess(data) {
-    return {
-        type: ActionTypes.UPDATE_USER_AVATAR_SUCCESS,
-        payload: {data: data}
-    }
-}
+const fuckdd = (data) => ({
+    type: ActionTypes.UPDATE_USER_AVATAR_SUCCESS,
+    payload: {data}
+});
 
-function updateUserAvatarFailure() {
-    return {
-        type: ActionTypes.UPDATE_USER_AVATAR_FAILURE
-    }
-}
+const fuckmm = () => ({
+    type: ActionTypes.UPDATE_USER_AVATAR_FAILURE
+});
 
 export const updateUserAvatar = (file, userId) => {
     let newFile = new File([base64ToBlob(file)], userId + '.jpg', {type: 'image/jpeg'});
     return dispatch => {
-        dispatch(updateUserAvatarStart());
         const fd = new FormData();
         fd.append('file', newFile);
         fd.append('userId', userId);
+        dispatch(updateUserAvatarStart());
         fetch(`${config.url}updateAvatar`, {
             method: 'POST',
             body: fd
-        }).then(res => res.json()).then(json => dispatch(updateUserInfoSuccess(json))).catch(dispatch(updateUserInfoFailure()))
+        }).then(res => res.json()).then(json => {
+            dispatch(fuckdd(json));
+        }).catch(dispatch(fuckmm()))
     }
 };
 

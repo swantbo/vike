@@ -70,7 +70,7 @@ class AboutMe extends Component {
     }
 
     componentDidMount() {
-        this.props.OptionF()
+        this.props.OptionF();
         if (this.props.user === 'other') {
             this.props.requestOtherUser(window.location.pathname.match('[^/]+(?!.*/)')[0])
         }
@@ -86,10 +86,7 @@ class AboutMe extends Component {
                 this.props.requestMyPost(this.props.UserInfo.myCollection, null, false);
             }
             return true;
-
-
         }
-
     }
 
     render() {

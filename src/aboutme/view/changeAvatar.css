@@ -5,6 +5,22 @@
   margin-top: 11.5740740741vw;
   position: fixed;
 }
+.changeAvatar .xwvike {
+  width: 55.5555555556vw;
+  height: 27.7777777778vw;
+  background-color: white;
+  box-shadow: 10px 9px 16px 2px #702379;
+  border-radius: 3.7037037037vw;
+  font-size: 3.7037037037vw;
+  line-height: 27.7777777778vw;
+  text-align: center;
+  font-weight: bold;
+  color: #000000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
 .changeAvatar .imageCrop {
   width: 100vw;
   height: 100vw;

@@ -166,13 +166,18 @@ class ChangeAvatar extends Component {
                     <input onClick={this.changeShow} className='inputImage' onChange={this.inputFile} type='file' accept='image/jpeg,image/png'/>
                     <span>选择图片</span>
                 </label>
+                <div onClick={()=>{this.props.history.push('/aboutme')}} className='xwvike' style={this.props.shit===1?{display:'block'}:{display:'none'}}>
+                    更改成功，点我查看。
+                </div>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        shit:state.aboutMeReducer.shit
+    }
 };
 
 export default withRouter(connect(mapStateToProps, {saveImg})(ChangeAvatar))

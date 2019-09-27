@@ -75,6 +75,9 @@ class Header extends Component {
     }
 
     render() {
+        // if (this.props.shit===1){
+        //     this.props.history.push('/aboutme')
+        // }
         let {name, UserNameNull, SendUserName, option, ChangeOptions, requestLabel} = this.props;
         let path = window.location.pathname;
         let logo = <div className='header-home'>
@@ -118,8 +121,7 @@ class Header extends Component {
             </Link>
         </div>;
         let changeAvatar = <div className='header-changeAvatar'><span onClick={this.historyBack}></span>上传头像<p
-            onClick={() => this.props.updateUserAvatar(this.props.tempImage, Cookies.get('u_id'))}><Link
-            to='/aboutMe'>保存</Link></p>
+            onClick={() => {this.props.updateUserAvatar(this.props.tempImage, Cookies.get('u_id'))}}>保存</p>
         </div>;
 
         let sendPost = <div className='header-sendPost'>
@@ -185,6 +187,7 @@ const mapStateToProps = (state) => {
         label: state.sendPostReducer.label,
         isClick: state.sendPostReducer.isClick,
         status:state.sendPostReducer.status,
+        // shit:state.aboutMeReducer.shit
     }
 };
 const mapDispatchToProps = (dispatch) => {

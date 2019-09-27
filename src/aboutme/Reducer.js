@@ -16,6 +16,7 @@ const aboutMe = {
     A:[],
     B:[],
     myPost: {},
+    shit:0,
     myColl: {},
     err: {},
     help:{},
@@ -101,14 +102,16 @@ export default function (state = aboutMe, action) {
             return {
                 ...state,
                 requesting: true,
-                dataState: 0
+                dataState: 0,
+                shit: 0
             }
         }
         case ActionTypes.LOGIN_GET_FAILURE: {
             return {
                 ...state,
                 requesting: false,
-                dataState: -1
+                dataState: -1,
+                shit: 0
             }
         }
         case ActionTypes.LOGIN_GET_SUCCESS: {
@@ -117,7 +120,8 @@ export default function (state = aboutMe, action) {
                 ...state,
                 loginUserInfo: {...data},
                 requesting: false,
-                dataState: 1
+                dataState: 1,
+                shit: 0
             }
         }
         //关注用户
@@ -171,14 +175,18 @@ export default function (state = aboutMe, action) {
         }
         //上传头像
         case ActionTypes.UPDATE_USER_AVATAR: {
-            return state
+            return {
+                ...state,
+                dataState: 0
+            }
         }
         case ActionTypes.UPDATE_USER_AVATAR_SUCCESS: {
             const {data} = action.payload.data;
             return {
                 ...state,
                 loginUserInfo: {...data},
-
+                shit: 1,
+                dataState: 1
             }
         }
         //更新用户数据
