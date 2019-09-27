@@ -84,8 +84,8 @@ class Login extends Component {
                 <img alt='logo' src={require('../../image/vike@0,1x.png')}/>
             </div>
             <div className='login-input'>
-                <label className='input-name'>
-                    <span>账号或邮箱</span>
+                <label  className='input-name'>
+                    <span>账号</span>
                     <input onChange={(e) => this.changeName(e.target.value)} value={this.state.userName} type='text'
                            size='16'/>
                 </label>

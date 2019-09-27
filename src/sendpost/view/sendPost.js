@@ -215,7 +215,7 @@ class SendPost extends Component {
             this.props.pushOneId(this.props.id);
             setTimeout(function () {
                 that.props.history.push('/')
-            },1000)
+            },100)
         }
 
         let span = this.props.label.map((item) => {

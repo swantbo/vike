@@ -35,6 +35,9 @@ export const ChangeOptions = () => ({
 export const BackTop = () => ({
     type: ActionTypes.HEADER_BACK_TOP
 });
+export const OptionF =()=>({
+    type:ActionTypes.HEADER_OPTIONS_T
+});
 const sendInputText = (text) => ({
     type: ActionTypes.HEADER_SEND_USER_NAME,
     payload: {name: text}

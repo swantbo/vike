@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Cookies from 'js-cookie';
 import {Link, withRouter} from "react-router-dom";
 import config from '../../config.js';
+import {OptionF} from '../../header';
 import {requestLoginUserInfo, requestOtherUser} from '../Actions.js';
 import {myPost,follow,requestMany} from "../Actions";
 import './aboutMe.css';
@@ -69,6 +70,7 @@ class AboutMe extends Component {
     }
 
     componentDidMount() {
+        this.props.OptionF()
         if (this.props.user === 'other') {
             this.props.requestOtherUser(window.location.pathname.match('[^/]+(?!.*/)')[0])
         }
@@ -196,6 +198,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         requestMany:(userId)=>{
             dispatch(requestMany(userId))
+        },
+        OptionF:()=>{
+            dispatch(OptionF())
         }
     }
 };

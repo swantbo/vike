@@ -10,7 +10,6 @@ import {collectionPost, likePost, requestPost} from "../../home/Actions";
 const li = (data, loginUser, likeComment, postId) => {
     return <li className='post-comment-li'>
         <div>
-
             <div>
                 <Link to={`/user/${data.userId}`} className='userid'>{data.userId} </Link>
                 <span className='comment-text'>{data.text}</span>
@@ -27,7 +26,7 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment, avatar) =>
         return li(item, loginUser, likeComment, data.postId)
     });
     let label = data.label.map((item) => {
-        return <span key={item} className='label-text-style'>{`#${item} `}</span>
+        return <span key={(Math.random()*100000000).toString(32)} className='label-text-style'>{`#${item} `}</span>
     });
     return <div key={data._id} className='post'>
         <Link to={'/user/'+data.userId}>

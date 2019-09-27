@@ -60,11 +60,15 @@
         background: #fafafa;
         border: 1px solid #efefef;
         position: relative;
-
+        span{
+          font-size: vw(30);
+        }
         input {
           text-indent: vw(20);
           position: absolute;
-          bottom: vw(5);
+          bottom: 0;
+          font-size: vw(35);
+          left: 0;
           border: none;
           list-style: none;
           background: rgba(225, 225, 225, 0);
@@ -83,24 +87,28 @@
       .input-password {
         display: block;
         position: relative;
-
-        input {
-          text-indent: vw(20);
-          position: absolute;
-          bottom: vw(5);
-          border: none;
-          list-style: none;
-          outline: none;
-          background: rgba(225, 225, 225, 0);
-        }
-
         border-radius: vw(5);
         margin-top: vw(20);
         width: vw(800);
         background: #fafafa;
         border: 1px solid #efefef;
         height: vw(110);
+        span{
+          font-size: vw(30);
+        }
+        div{
 
+        }
+        input {
+          text-indent: vw(20);
+          position: absolute;
+          bottom: 0;
+          font-size: vw(35);
+          border: none;
+          list-style: none;
+          outline: none;
+          background: rgba(225, 225, 225, 0);
+        }
         div {
           position: absolute;
           right: 0;
@@ -109,31 +117,32 @@
           font-size: vw(35);
           font-weight: bold;
           width: vw(130);
-          height: vw(110);
+          height: vw(106);
           background: #ffffff;
         }
       }
       .input-password-again{
         display: block;
         position: relative;
-
-        input {
-          text-indent: vw(20);
-          position: absolute;
-          bottom: vw(5);
-          border: none;
-          list-style: none;
-          outline: none;
-          background: rgba(225, 225, 225, 0);
-        }
-
         border-radius: vw(5);
         margin-top: vw(20);
         width: vw(800);
         background: #fafafa;
         border: 1px solid #efefef;
         height: vw(110);
-
+        span{
+          font-size: vw(30);
+        }
+        input {
+          text-indent: vw(20);
+          position: absolute;
+          bottom: 0;
+          font-size: vw(35);
+          border: none;
+          list-style: none;
+          outline: none;
+          background: rgba(225, 225, 225, 0);
+        }
         div {
           position: absolute;
           right: 0;

@@ -27,12 +27,12 @@ class LabelPage extends Component{
             let height = document.documentElement.scrollHeight;
             let scrollY = window.scrollY;
             const that = this;
-            if (height - scrollY <= window.screen.height && this.state.bool === false) {
+            if (height - scrollY <= 1366 && this.state.bool === false) {
                 this.setState({start: height - scrollY}, function () {
                     that.setState({bool: true});
                     that.props.requestLabelId(labelName, 1);
                 });
-            } else if (this.state.bool && height - scrollY > window.screen.height) {
+            } else if (this.state.bool && height - scrollY > 1366) {
                 this.setState({bool: false})
             }
 

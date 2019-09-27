@@ -15,6 +15,12 @@ export default function (state = header, action) {
                 isShowOptions: !temp
             }
         }
+        case ActionTypes.HEADER_OPTIONS_T:{
+            return {
+                ...state,
+                isShowOptions: true
+            }
+        }
         case ActionTypes.POST_PUSH_LIST_ID:{
             const {id} = action.payload;
             let temp = [...state.list];
