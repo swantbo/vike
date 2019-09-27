@@ -7,6 +7,7 @@ import Cookies from 'js-cookie'
 // import {timeDifferent,transformTime} from "../../tool/tool";
 import {likeComment, replyComment, inputComment} from "../../home/Actions";
 import './comment.css'
+import {Form} from "antd";
 const jumpRoute=()=>window.location.pathname = '/login';
 
 class SingleReply extends Component {
@@ -73,13 +74,13 @@ class SingleComment extends Component {
     render() {
         let that = this;
         let singleReply = this.props.singleComment.reply.length >= 1 ? this.props.singleComment.reply.map((item, index) => {
-            return <SingleReply changereply={this.props.changereply}
+            return <SingleReply key={(Math.random()*10000000).toString(32).substr(0,5)} changereply={this.props.changereply}
                                 singleReply={that.props.singleComment.reply[index]}
                                 commentId={that.props.singleComment._id}
             />
         }) : '';
         return (
-            <li className='SingleComment'>
+            <li  className='SingleComment'>
                 <div className='SingleComment-userAvatar'>
                     <img src={config.url+'image/' + this.state.commentUserAvatar}/>
                 </div>
@@ -154,7 +155,7 @@ class Comment extends Component {
         const commentData = this.props.commentData[this.state.postId];
         let that = this;
         let single = commentData.comment.map((item, index) => {
-            return <SingleComment changereply={this.changeReply} replying={that.state.replying}
+            return <SingleComment key={index} changereply={this.changeReply} replying={that.state.replying}
                                   singleComment={commentData.comment[index]} loginUser={that.props.loginUser}/>
         });
         return (
@@ -162,7 +163,7 @@ class Comment extends Component {
                 <div className='Comment-input'>
                     <div className='Comment-input-ava'><img
                         src={config.url + 'image/' + commentData.pictureUrl[commentData.pictureUrl.length-1]}/></div>
-                    <from className='Comment-inputtext'>
+                    <Form className='Comment-inputtext'>
                         <textarea placeholder={this.state.replying === null ? '添加评论' : `回复${' ' + this.state.replying}`}
                                   maxLength='256' value={this.state.text}
                                   onChange={(e) => this.changeText(e.target.value)}/>
@@ -180,7 +181,7 @@ class Comment extends Component {
                             }}
                             type='submit'>发布
                         </button>
-                    </from>
+                    </Form>
                 </div>
                 <div className='Comment'>
                     <div className='Comment-postText'>

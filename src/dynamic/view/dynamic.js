@@ -11,7 +11,7 @@ import './dynamic.css';
 
 const dynamicSingle = (dynamicId,userId,reply,operating,text,time,postId)=>{
     let link = operating==='关注'?`/user/${userId}`:operating==='评论'||operating==='回复'?`/post/${postId}`:'/dynamic';
-    return <Link to={link}>
+    return <Link key={(Math.random()*10000000).toString(32).substr(0,5)} to={link}>
         <div className='dynamicSingle'>
             <div className='dynamicSingle-msg'>
                 <Link className='dynamicSingle-msg-userId' to={`/user/${userId}`}>@{userId}</Link>

@@ -29,7 +29,7 @@ const searchList = (title,text,url,tag,click)=>{
         link=``;
         text=text +'次搜索'
     }
-    return <Link onClick={tag==='hot'?(e)=>e.preventDefault():''} className='Search-single' to={link}>
+    return <Link key={title} onClick={tag==='hot'?(e)=>e.preventDefault():''} className='Search-single' to={link}>
         <div onClick={tag==='hot'?()=>click(title):tag==='label'?()=>click(title,0):''} className='Search-single-box'>
             <div className='img'><img src={config.url + '/image/' + url}/></div>
             <div className='text'>

@@ -1,3 +1,7 @@
 @function vw($px) {
   @return (($px/2)/540)*100vw
 }
+.labelPage{
+  margin-top: vw(125);
+  margin-bottom: vw(125);
+}

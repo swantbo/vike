@@ -1,74 +1,87 @@
 import * as ActionTypes from './ActionTypes.js';
 
 const sendPost = {
-    text:'',
-    label:[],
-    img:'',
-    message:'',
-    sendStatus:0,
-    isClick:0,
+    text: '',
+    label: [],
+    img: '',
+    message: '',
+    sendStatus: 0,
+    id:'',
+    isClick: 0,
+    status:0
 };
 
 export default function (state = sendPost, action) {
     switch (action.type) {
-        default:{
+        default: {
             return state;
         }
-        case ActionTypes.SEND_POST:{
+        case ActionTypes.SEND_POST: {
             return {
                 ...state,
-                sendStatus:0,
-                isClick:0
+                sendStatus: 0,
+                isClick: 0
             }
         }
-        case ActionTypes.CHANGE_STATUS:{
+        case ActionTypes.CHANGE_STATUS: {
             return {
                 ...state,
-                sendStatus:1
+                sendStatus: 1
             }
         }
-        case ActionTypes.CHANGE_TEXT:{
+        case ActionTypes.CHANGE_STATUS_0: {
+            return {
+                ...state,
+                sendStatus: 0
+            }
+        }
+        case ActionTypes.CHANGE_TEXT: {
             const {text} = action.payload;
             return {
                 ...state,
-                text:text
+                text: text
             }
         }
-        case ActionTypes.IS_CLICK:{
+        case ActionTypes.IS_CLICK: {
             return {
                 ...state,
-                isClick:1
+                isClick: 1
             }
         }
-        case ActionTypes.ADD_LABEL:{
+        case ActionTypes.ADD_LABEL: {
             const {label} = action.payload;
-            console.log(state);
             return {
                 ...state,
-                label:[...state.label,label]
+                label: [...state.label, label]
             }
         }
-        case ActionTypes.DATA_CLEAR:{
+        case ActionTypes.DATA_CLEAR: {
             return {
                 ...state,
-                text:'',
-                label:[],
-                img:'',
-                sendStatus:0,
-                message:''
+                text: '',
+                label: [],
+                img: '',
+                sendStatus: 0,
+                message: ''
             }
         }
-        case ActionTypes.SEND_POST_SUCCESS:{
+        case ActionTypes.SEND_POST_SUCCESS: {
+            const {data} = action.payload;
+            return {
+                ...state,
+                message:data.message,
+                status:data.status,
+                id:data.res.id,
+            }
+        }
+        case ActionTypes.SEND_POST_FAILURE: {
             return state
         }
-        case ActionTypes.SEND_POST_FAILURE:{
-            return state
-        }
-        case ActionTypes.UPDATE_IMG:{
+        case ActionTypes.UPDATE_IMG: {
             const {img} = action.payload;
             return {
                 ...state,
-                img:img
+                img: img
             }
         }
     }

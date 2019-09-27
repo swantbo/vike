@@ -13,6 +13,8 @@ const aboutMe = {
     aboutMeFloatText: ['举报', '拉黑', '取消'],
     tempImage: '',
     friends:{},
+    A:[],
+    B:[],
     myPost: {},
     myColl: {},
     err: {},
@@ -46,8 +48,11 @@ export default function (state = aboutMe, action) {
         }
         case ActionTypes.REQUEST_MANY_USER_INFO_SUCCESS:{
             const {data}= action.payload.data;
+            console.log(data);
             return {
                 ...state,
+                A:[...data.fens],
+                B:[...data.follow],
                 friends: {...data}
             }
         }

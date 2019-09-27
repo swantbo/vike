@@ -13,7 +13,7 @@ class LabelPage extends Component{
         this.state={
             start:0,
             bool:false
-        }
+        };
         this.handleScroll =this.handleScroll.bind(this);
     };
 
@@ -27,12 +27,12 @@ class LabelPage extends Component{
             let height = document.documentElement.scrollHeight;
             let scrollY = window.scrollY;
             const that = this;
-            if (height - scrollY <= 1366 && this.state.bool === false) {
+            if (height - scrollY <= window.screen.height && this.state.bool === false) {
                 this.setState({start: height - scrollY}, function () {
+                    that.setState({bool: true});
                     that.props.requestLabelId(labelName, 1);
-                    that.setState({bool: true})
                 });
-            } else if (this.state.bool && height - scrollY > 1366) {
+            } else if (this.state.bool && height - scrollY > window.screen.height) {
                 this.setState({bool: false})
             }
 
@@ -40,12 +40,12 @@ class LabelPage extends Component{
     }
     render() {
         const {labelPost} = this.props;
-        console.log(labelPost);
+        let li = labelPost.map((i)=>{
+            return <PostSingle key={i} postId={i}/>
+        })
         return(
-            <div>
-                {labelPost.map((i)=>{
-                    return <PostSingle key={i} postId={i}/>
-                })}
+            <div className='labelPage'>
+                {li}
             </div>
         )
     }

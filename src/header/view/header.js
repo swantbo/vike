@@ -65,7 +65,6 @@ class Header extends Component {
     clearText() {
         this.setState({text: ''})
     }
-
     componentWillMount() {
         this.setState({a: false});
         this.props.requestId(Cookies.get('temp_id'), 0);
@@ -185,6 +184,7 @@ const mapStateToProps = (state) => {
         text: state.sendPostReducer.text,
         label: state.sendPostReducer.label,
         isClick: state.sendPostReducer.isClick,
+        status:state.sendPostReducer.status,
     }
 };
 const mapDispatchToProps = (dispatch) => {

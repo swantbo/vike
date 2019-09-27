@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Route, Link, withRouter} from "react-router-dom";
+import {Route, Link, withRouter, Switch} from "react-router-dom";
 import {view as Footer} from './footer'
 import {view as Header} from './header'
 import {view as AboutMe} from './aboutme';
@@ -28,8 +28,8 @@ class App extends Component {
     constructor(){
         super(...arguments)
     }
-
     render() {
+        document.documentElement.scrollTop = 0;
         if (Cookies.get('temp_id')===undefined){
             Cookies.set('temp_id',(Math.random()*100000000).toString(32).substr(0,4)+new Date().getTime())
         }
@@ -42,7 +42,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Header/>
-                <switch className='switch'>
+                <Switch className='switch'>
                     <Route exact path='/' component={Home}/>
                     <Route path='/comment/:paramName' component={Comment}/>
                     <Route path='/search' component={Search}/>
@@ -61,7 +61,7 @@ class App extends Component {
                     <Route path='/privacy_and_security' component={PrivacyAndSecurity}/>
                     <Route path='/changeAvatar' component={changeAvatar}/>
                     <Route path='/login' component={Login}/>
-                </switch>
+                </Switch>
                 <Footer/>
                 {avatarFloat||aboutMeFloat?<FloatInterface/>:''}
             </div>

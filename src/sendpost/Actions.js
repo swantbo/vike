@@ -46,7 +46,6 @@ export const sendPost = (userId, text, file, label) => {
     return dispatch => {
         dispatch(sendPostStart());
         let fd = new FormData();
-        console.log(label)
         fd.append('file', newFile);
         fd.append('userId', userId);
         fd.append('text', text);
@@ -67,6 +66,11 @@ export const updateImage = (img) => {
 export const changeStatus = () => {
     return {
         type: ActionTypes.CHANGE_STATUS
+    }
+};
+export const changeStatusTo0 = () => {
+    return {
+        type: ActionTypes.CHANGE_STATUS_0
     }
 };
 export const changeText = (text) => {

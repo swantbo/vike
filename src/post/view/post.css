@@ -63,7 +63,6 @@
 }
 .post .post-image {
   width: 100vw;
-  max-height: 120vw;
   overflow: hidden;
   position: relative;
 }

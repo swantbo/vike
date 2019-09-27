@@ -27,7 +27,7 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment, avatar) =>
         return li(item, loginUser, likeComment, data.postId)
     });
     let label = data.label.map((item) => {
-        return <span className='label-text-style'>{`#${item} `}</span>
+        return <span key={item} className='label-text-style'>{`#${item} `}</span>
     });
     return <div key={data._id} className='post'>
         <Link to={'/user/'+data.userId}>

@@ -14,7 +14,7 @@ const userList = (userId, userName, url, onClick, status, a) => {
         <div className='friendSingle'>
             <div className='link-avatar'><img src={config.url + '/image/' + url}/></div>
             <div className='link-text'>
-                <Link className='friendSingle-link' to='/userId'>
+                <Link className='friendSingle-link' to={`/user/${userId}`}>
                     <span className='id'>{userId}</span>
                 </Link>
                 <span className='name'>{userName}</span>
@@ -70,28 +70,25 @@ class FriendsList extends Component {
     }
     changeFriend(a){
         let that = this;
-        // this.setState({temp:this.state.temp*-1},function () {
-        //     setTimeout(function () {
-        //         that.props.requestMany(Cookies.get('u_id'))
-        //     },500)
-        // });
     }
     render() {
-        const friends = this.state.friends;
+        // const friends = this.state.friends;
+        const A = this.props.A;
+        const B=this.props.B;
         let that = this;
         return (
-            Object.keys(friends).length > 0 ?
+            A.length > 0||B.length>0 ?
                 <div className='friends'>
                     <div className='friendsHeader'>
                         <span onClick={this.changeList.bind(this)}
-                              className={that.state.status === 1 ? 'Action' : ''}>{friends.fens.length}个粉丝</span>
+                              className={that.state.status === 1 ? 'Action' : ''}>{A.length}个粉丝</span>
                         <span onClick={this.changeList2.bind(this)}
-                              className={that.state.status === 2 ? 'Action' : ''}>已关注{friends.follow.length}</span>
+                              className={that.state.status === 2 ? 'Action' : ''}>已关注{B.length}</span>
                     </div>
                     <div className='friendsList'>
-                        {this.state.status === 1 ? friends.fens.map((i) => {
+                        {this.state.status === 1 ? A.map((i) => {
                             return userList(i.userId, i.userName, i.avatar, this.props.follow, i.status, this.state.a)
-                        }) : friends.follow.map((i) => {
+                        }) : B.map((i) => {
                             return userList(i.userId, i.userName, i.avatar, this.props.follow, i.status, this.state.a)
                         })}
                     </div>
@@ -105,7 +102,9 @@ class FriendsList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        friends: state.aboutMeReducer.friends,
+        A:state.aboutMeReducer.A,
+        B:state.aboutMeReducer.B,
+        // friends: state.aboutMeReducer.friends,
         otherUserInfo: state.aboutMeReducer.otherUserInfo,
     }
 };

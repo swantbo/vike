@@ -17,6 +17,7 @@
       width: vw(100);
       height: vw(100);
       display: inline-block;
+      //z-index: -99;
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
@@ -28,34 +29,48 @@
       background-position-y: 0;
     }
     .sendPost-upIMG-box{
-      position: absolute;
+      position: relative;
       width: 100vw;
       height: 100vw;
       background: #eaeaea;
-    }
-    label{
-      position: absolute;
-      display: inline-block;
-      width: 100vw;
-      height: 100vw;
-      background: #4dceff;
-      background:url("../../image/addImage.png") no-repeat;
-      background-position-x:50%;
-      background-position-y:50% ;
-      input{
-        opacity: 0;
-      }
-      span{
+      label{
         position: absolute;
-        left: 50%;
-        top: 60%;
-        transform: translateX(-50%);
         display: inline-block;
-        font-size: vw(40);
-        font-weight: 600;
-        color: #99a2aa;
+        width: 100vw;
+        height: 100vw;
+        background: #4dceff;
+        background:url("../../image/addImage.png") no-repeat;
+        background-position-x:50%;
+        background-position-y:50% ;
+        z-index: 99;
+        input{
+          opacity: 0;
+        }
+        span{
+          position: absolute;
+          left: 50%;
+          top: 60%;
+          transform: translateX(-50%);
+          display: inline-block;
+          font-size: vw(40);
+          font-weight: 600;
+          color: #99a2aa;
+        }
+        .kdsjk{
+          position: absolute;
+          top: 120%;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+      canvas{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%)translateY(-50%);
       }
     }
+
   }
   .sendPost-sub{
     width: 100vw;

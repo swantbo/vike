@@ -3,6 +3,7 @@ import * as ActionTypes from './ActionTypes.js';
 const search = {
     num:0,
     label:{},
+    labelName:'',
     status:0,
     labelPost:[],
     searchResults:[],
@@ -23,14 +24,23 @@ export default  function (state = search, action) {
         case ActionTypes.SEARCH_REQUEST_LABEL_ID_SUCCESS:{
             const {labelName,data}= action.payload;
             let temp = [...data];
-            for (let i of data){
-                if (state.labelPost.findIndex((j)=>j===i)>-1){
-                    temp.splice(temp.findIndex((h)=>h===i),1)
+            if (labelName===state.labelName){
+                for (let i of data){
+                    if (state.labelPost.findIndex((j)=>j===i)>-1){
+                        temp.splice(temp.findIndex((h)=>h===i),1)
+                    }
                 }
-            }
-            return {
-                ...state,
-                labelPost:state.labelPost.concat(temp)
+                return {
+                    ...state,
+                    labelPost:state.labelPost.concat(temp),
+                    labelName: labelName
+                }
+            }else if (labelName!==state.labelName){
+                return {
+                    ...state,
+                    labelName: labelName,
+                    labelPost: [...temp]
+                }
             }
         }
         case ActionTypes.SEARCH_REQUEST_LABEL_ID_FAILURE:{

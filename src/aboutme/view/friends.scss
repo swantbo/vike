@@ -17,6 +17,7 @@
   }
 }
 .friends{
+  margin-top: vw(125);
   width: 100vw;
   position: relative;
   background-color: #f8f8f8;
@@ -25,6 +26,8 @@
   .friendsHeader{
     width: 100vw;
     height: vw(125);
+    position: fixed;
+    z-index: 99;
     span{
       display: inline-block;
       width: 50vw;
@@ -41,7 +44,7 @@
     }
   }
   .friendsList{
-
+    padding-top: vw(125);
     .friendSingle{
       //border-bottom: 1px solid #ffffff;
       display: inline-block;

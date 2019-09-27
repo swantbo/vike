@@ -18,7 +18,7 @@ const categoryList = (num, text,fuck) => {
     }else if (text==='正在关注'&&fuck==='other'){
         link='/friendsList?status=2&a=2'
     }
-    return <Link onClick={text==='帖子'?(e)=>e.preventDefault():''} className='categoryList-a' to={link}>
+    return <Link key={(Math.random()*10000000).toString(32)} onClick={text==='帖子'?(e)=>e.preventDefault():''} className='categoryList-a' to={link}>
         <div className='categoryList'>
             <p className='num'>{num}</p>
             <p>{text}</p>
@@ -35,7 +35,7 @@ const listIcon = (className, click, id) => {
     } else {
         temp = className
     }
-    return <span onClick={() => click(className)} className={temp + ' ' + 'listIcon'}>
+    return <span key={(Math.random()*10000000).toString(32)} onClick={() => click(className)} className={temp + ' ' + 'listIcon'}>
         <span></span>
     </span>
 };

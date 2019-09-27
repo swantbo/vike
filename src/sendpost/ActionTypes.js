@@ -6,6 +6,8 @@ export const UPDATE_IMG = 'UPDATE_IMG';
 
 export const CHANGE_STATUS = 'CHANGE_STATUS';
 
+export const CHANGE_STATUS_0='CHANGE_STATUS_0';
+
 export const CHANGE_TEXT = 'CHANGE_TEXT';
 
 export const ADD_LABEL = 'ADD_LABEL';

@@ -54,6 +54,10 @@ export const SendUserName = (name) => {
 
     };
 };
+export const pushOneId = (id)=>({
+    type:ActionTypes.POST_PUSH_LIST_ID,
+    payload:{id}
+})
 export const UserNameNull = () => ({
     type: ActionTypes.HEADER_USER_NAME_NULL,
 });

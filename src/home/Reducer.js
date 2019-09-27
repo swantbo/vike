@@ -11,6 +11,7 @@ export default function (state = home, action) {
         case ActionTypes.POST_REQUEST_ALL_DATA_SUCCESS: {
            let  {postId, data} = action.payload;
             data = data[0];
+
             return {
                 ...state,
                 [postId]: {...data}

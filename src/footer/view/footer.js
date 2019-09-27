@@ -4,26 +4,26 @@ import {Home, Search, SendPost, Dynamic, AboutMe} from '../Actions.js';
 import {Link, withRouter} from "react-router-dom";
 import {requestLoginUserInfo} from '../../aboutme/Actions.js';
 import Cookies from 'js-cookie';
-import {requestLabel,requestSearch} from "../../search/Actions";
+import {requestLabel, requestSearch} from "../../search/Actions";
 import {myPost} from "../../aboutme/Actions";
 import './footer.css';
 
 
-
-function reqUserData(that,userId){
+function reqUserData(that, userId) {
     return new Promise(resolve => {
         that.props.requestLoginUserInfo(userId);
-        let temp = setInterval(()=>{
-            if (that.props.posts!==undefined){
+        let temp = setInterval(() => {
+            if (that.props.posts !== undefined) {
                 resolve(that.props.posts);
                 clearInterval(temp)
             }
-        },200)
+        }, 200)
     })
 }
-async function requestData(that,userId, arr, id) {
-    let temp = await reqUserData(that,userId);
-    that.props.myPost(temp,null,id)
+
+async function requestData(that, userId, arr, id) {
+    let temp = await reqUserData(that, userId);
+    that.props.myPost(temp, null, id)
 }
 
 class Footer extends Component {
@@ -51,18 +51,20 @@ class Footer extends Component {
                     item += 'Action';
                 }
                 let className = 'footerSwitch ';
-                return <Link to={url}>
+                return <Link key={item} to={url}>
                     <div onClick={() => {
-                        if (index===1){that.props.requestLabel(Cookies.get('temp_id'),that.props.num);this.props.requestSearch();click[1]()} else if (index<=3) {
+                        if (index === 1) {
+                            that.props.requestLabel(Cookies.get('temp_id'), that.props.num);
+                            this.props.requestSearch();
+                            click[1]()
+                        } else if (index <= 3) {
                             click[index]()
-                        } else if (index===4) {
+                        } else if (index === 4) {
                             click[4]();
-                            requestData(that,Cookies.get('u_id'),this.props.posts,true)
-
+                            requestData(that, Cookies.get('u_id'), this.props.posts, true)
                         }
                     }
-
-                    } key={item} className={className}>
+                    }  className={className}>
                         <div className={item}></div>
                     </div>
                 </Link>
@@ -79,39 +81,39 @@ class Footer extends Component {
 const mapStateToProps = (state) => {
     return {
         id: state.footerReducer.state,
-        num:state.searchReducer.num,
+        num: state.searchReducer.num,
         posts: state.aboutMeReducer.loginUserInfo.posts
     }
 };
-const mapDispatchToProps=(dispatch)=>{
-    return{
-        requestLoginUserInfo:(userId)=>{
+const mapDispatchToProps = (dispatch) => {
+    return {
+        requestLoginUserInfo: (userId) => {
             dispatch(requestLoginUserInfo(userId))
         },
-        Home:()=>{
+        Home: () => {
             dispatch(Home())
         },
-        SendPost:()=>{
+        SendPost: () => {
             dispatch(SendPost())
         },
-        Search:()=>{
+        Search: () => {
             dispatch(Search())
         },
-        Dynamic:()=>{
+        Dynamic: () => {
             dispatch(Dynamic())
         },
-        AboutMe:()=>{
+        AboutMe: () => {
             dispatch(AboutMe())
         },
-        requestLabel:(tempId,num)=>{
-            dispatch(requestLabel(tempId,num))
+        requestLabel: (tempId, num) => {
+            dispatch(requestLabel(tempId, num))
         },
-        myPost:(arr,userId,id)=>{
-            dispatch(myPost(arr,userId,id))
+        myPost: (arr, userId, id) => {
+            dispatch(myPost(arr, userId, id))
         },
-        requestSearch:()=>{
+        requestSearch: () => {
             dispatch(requestSearch())
         }
     }
 };
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Footer))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Footer))
