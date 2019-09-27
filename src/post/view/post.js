@@ -34,7 +34,7 @@ const Post = (data, loginUser, likePost, collectionPost, likeComment, avatar) =>
                 <div className='avatar'>
                     <img src={config.url + 'image/' + avatar}/>
                 </div>
-                <span className='userid'>{data.userId}</span>
+                <span className='userid'>{data.userName}</span>
             </div>
         </Link>
         <div className='post-image'>

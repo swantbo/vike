@@ -188,7 +188,7 @@ class Comment extends Component {
                         <div className='Comment-postText-avatar'><img
                             src={`${config.url}image/${this.state.postUserAvatar}`} alt={'434'}/></div>
                         <div className='Comment-postText-text'><Link
-                            to={`/user/${commentData.userId}`}>{commentData.userId + ' '}</Link><span>{commentData.text}</span>
+                            to={`/user/${commentData.userId}`}>{commentData.userName + ' '}</Link><span>{commentData.text}</span>
                         </div>
                         <span
                             className='Comment-postText-time'>{commentData.createTime}</span>
