@@ -1,0 +1,55 @@
+.help-page {
+  width: 100vw;
+  position: relative;
+}
+.help-page .Placeholder-chart {
+  width: 100vw;
+  height: 23.1481481481vw;
+  background: #f2f2f2;
+  border-radius: 1.8518518519vw;
+}
+.help-page .Placeholder-chart span {
+  width: 80vw;
+  height: 3.7037037037vw;
+  background: #fafafa;
+  display: inline-block;
+  margin-left: 4.6296296296vw;
+  margin-top: 4.6296296296vw;
+  border-radius: 0.9259259259vw;
+}
+.help-page .listText {
+  width: 90vw;
+  position: relative;
+  left: 50%;
+  margin-bottom: 2.7777777778vw;
+  transform: translateX(-50%);
+}
+.help-page .listText span {
+  display: inline-block;
+  color: #000;
+}
+.help-page .listText .listText-num {
+  font-weight: bold;
+  font-size: 4.1666666667vw;
+  position: absolute;
+  top: 0.9259259259vw;
+  left: 0.462962963vw;
+}
+.help-page .listText .listText-title {
+  font-weight: bold;
+  font-size: 3.7037037037vw;
+  position: absolute;
+  top: 1.8518518519vw;
+  left: 6.4814814815vw;
+}
+.help-page .listText .listText-text {
+  font-size: 3.2407407407vw;
+  font-weight: normal;
+  margin-top: 6.4814814815vw;
+}
+.help-page .listText .listText-link {
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=help.css.map */

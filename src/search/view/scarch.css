@@ -1,0 +1,92 @@
+.Search {
+  width: 100vw;
+  margin-top: 11.5740740741vw;
+  overflow: hidden;
+  margin-bottom: 11.5740740741vw;
+}
+.Search .Search-label-list {
+  width: 33vw;
+  height: 33vw;
+  float: left;
+  position: relative;
+  margin-left: 1px;
+  margin-bottom: 1px;
+}
+.Search .Search-label-list a {
+  display: inline-block;
+  width: 33vw;
+  height: 33vw;
+}
+.Search .Search-label-list a img {
+  width: 33vw;
+}
+.Search .Search-label-list a span {
+  width: 33vw;
+  height: 33vw;
+  font-size: 3.2407407407vw;
+  background: rgba(60, 60, 60, 0.54);
+  color: #ffffff;
+  text-align: center;
+  line-height: 33vw;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.Search .search-box {
+  position: relative;
+  width: 100vw;
+  background: #ffffff;
+}
+.Search .search-box .guess {
+  display: inline-block;
+  font-size: 3.7037037037vw;
+  font-weight: bold;
+  position: relative;
+  left: 6.9444444444vw;
+  margin-top: 1.8518518519vw;
+}
+.Search .search-box .Search-single {
+  display: inline-block;
+  width: 100vw;
+  height: 12.037037037vw;
+  margin-top: 1.8518518519vw;
+  padding: 0 5vw;
+  position: relative;
+}
+.Search .search-box .Search-single .Search-single-box {
+  width: 90vw;
+  height: 12.037037037vw;
+}
+.Search .search-box .Search-single .Search-single-box .img {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 12.037037037vw;
+  height: 12.037037037vw;
+  border: 1px solid #c7c7c7;
+}
+.Search .search-box .Search-single .Search-single-box .img img {
+  width: 12.037037037vw;
+}
+.Search .search-box .Search-single .Search-single-box .text > span {
+  display: inline-block;
+}
+.Search .search-box .Search-single .Search-single-box .text .text-title {
+  font-size: 3.7037037037vw;
+  font-weight: bolder;
+  color: #000;
+  position: absolute;
+  top: 3.7037037037vw;
+  left: 20.3703703704vw;
+}
+.Search .search-box .Search-single .Search-single-box .text .text-text {
+  color: #8e8e8e;
+  font-size: 3.7037037037vw;
+  font-weight: lighter;
+  position: absolute;
+  top: 8.3333333333vw;
+  left: 20.3703703704vw;
+}
+
+/*# sourceMappingURL=scarch.css.map */

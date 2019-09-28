@@ -1,0 +1,277 @@
+.Comment-Box {
+  width: 100vw;
+  margin-bottom: 13.8888888889vw;
+}
+.Comment-Box .Comment-input {
+  width: 100vw;
+  top: 11.5740740741vw;
+  height: 15.7407407407vw;
+  background: #efefef;
+  position: fixed;
+  z-index: 99;
+}
+.Comment-Box .Comment-input .Comment-input-ava {
+  position: absolute;
+  top: 50%;
+  left: 4.6296296296vw;
+  transform: translateY(-50%);
+  width: 9.2592592593vw;
+  height: 9.2592592593vw;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+}
+.Comment-Box .Comment-input .Comment-input-ava img {
+  width: 9.2592592593vw;
+}
+.Comment-Box .Comment-input .Comment-inputtext {
+  display: inline-block;
+  padding: 2.7777777778vw;
+  background: #fff;
+  border-radius: 6.4814814815vw;
+  height: 11.5740740741vw;
+  width: 74.0740740741vw;
+  position: relative;
+  display: block;
+  top: 2vw;
+  left: 18.5185185185vw;
+}
+.Comment-Box .Comment-input .Comment-inputtext textarea {
+  border: none;
+  outline: none;
+  position: absolute;
+  line-height: 6.4814814815vw;
+  width: 60.1851851852vw;
+  font-size: 3.2407407407vw;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 8.3333333333vw;
+  resize: none;
+}
+.Comment-Box .Comment-input .Comment-inputtext button {
+  outline: none;
+  font-weight: bold;
+  font-size: 3.7037037037vw;
+  position: absolute;
+  right: 2.7777777778vw;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9c85ff;
+  background: rgba(153, 153, 153, 0);
+  border: none;
+}
+.Comment-Box .Comment-input .Comment-inputtext button:active {
+  background: #bde9ff;
+}
+.Comment-Box .Comment {
+  width: 100vw;
+  margin-top: 27.7777777778vw;
+  position: relative;
+}
+.Comment-Box .Comment .Comment-postText {
+  position: relative;
+  width: 100vw;
+  border-bottom: 1px solid rgba(153, 153, 153, 0.25);
+}
+.Comment-Box .Comment .Comment-postText .Comment-postText-avatar {
+  position: absolute;
+  top: 5.5555555556vw;
+  left: 4.6296296296vw;
+  width: 9.2592592593vw;
+  height: 9.2592592593vw;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.Comment-Box .Comment .Comment-postText .Comment-postText-avatar img {
+  width: 9.2592592593vw;
+}
+.Comment-Box .Comment .Comment-postText .Comment-postText-text {
+  font-size: 3.2407407407vw;
+  color: black;
+  width: 75vw;
+  position: relative;
+  padding-top: 5.5555555556vw;
+  left: 18.5185185185vw;
+  padding-bottom: 7.4074074074vw;
+}
+.Comment-Box .Comment .Comment-postText .Comment-postText-text a {
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+  color: black;
+}
+.Comment-Box .Comment .Comment-postText .Comment-postText-time {
+  font-size: 3.3333333333vw;
+  color: #999;
+  left: 18.5185185185vw;
+  position: absolute;
+  bottom: 1.8518518519vw;
+  display: inline-block;
+}
+.Comment-Box .Comment .Comment-postText .Comment-Comment {
+  font-size: 3.2407407407vw;
+  color: #999;
+  left: 55.5555555556vw;
+  position: absolute;
+  font-weight: bold;
+  bottom: 1.8518518519vw;
+  display: inline-block;
+}
+.Comment-Box .Comment ul .SingleComment {
+  list-style: none;
+  width: 100vw;
+  position: relative;
+}
+.Comment-Box .Comment ul .SingleComment .SingleComment-userAvatar {
+  position: absolute;
+  top: 5.5555555556vw;
+  left: 4.6296296296vw;
+  width: 9.2592592593vw;
+  height: 9.2592592593vw;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.Comment-Box .Comment ul .SingleComment .SingleComment-userAvatar img {
+  width: 9.2592592593vw;
+}
+.Comment-Box .Comment ul .SingleComment .SingleComment-text {
+  font-size: 3.2407407407vw;
+  color: black;
+  width: 70vw;
+  position: relative;
+  padding-top: 5.5555555556vw;
+  left: 18.5185185185vw;
+  padding-bottom: 7.4074074074vw;
+}
+.Comment-Box .Comment ul .SingleComment .SingleComment-text a {
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+  color: black;
+}
+.Comment-Box .Comment ul .SingleComment .SingleComment-text .kkkkkkkkkkkkkkk {
+  display: inline-block;
+  max-width: 74.0740740741vw;
+}
+.Comment-Box .Comment ul .SingleComment .SingleComment-text .SingleComment-time {
+  font-size: 3.2407407407vw;
+  color: #999;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  display: inline-block;
+}
+.Comment-Box .Comment ul .SingleComment .SingleComment-text .SingleComment-likeNum {
+  font-size: 3.2407407407vw;
+  color: #999;
+  font-weight: 600;
+  left: 37.037037037vw;
+  bottom: 0;
+  position: absolute;
+  display: inline-block;
+}
+.Comment-Box .Comment ul .SingleComment .SingleComment-text .SingleComment-reply {
+  font-size: 3.2407407407vw;
+  color: #999;
+  font-weight: 600;
+  left: 50.9259259259vw;
+  bottom: 0;
+  position: absolute;
+  display: inline-block;
+}
+.Comment-Box .Comment ul .SingleComment .SingleComment-like {
+  width: 3.2407407407vw;
+  height: 3.2407407407vw;
+  position: absolute;
+  top: 6.4814814815vw;
+  right: 4.6296296296vw;
+  background: url("../../image/923d425c0489.png");
+  background-size: 33.7037037037vw;
+  background-position-x: 0vw;
+  background-position-y: -17.6944444444vw;
+}
+.Comment-Box .Comment ul .SingleComment .SingleComment-unlike {
+  width: 3.2407407407vw;
+  height: 3.2407407407vw;
+  position: absolute;
+  top: 6.4814814815vw;
+  right: 4.6296296296vw;
+  background: url("../../image/923d425c0489.png");
+  background-size: 33.7037037037vw;
+  background-position-x: -3.2407407407vw;
+  background-position-y: -17.6944444444vw;
+}
+.Comment-Box .Comment ul .SingleComment .showReplyNum {
+  position: relative;
+  left: 18.5185185185vw;
+  margin-top: 2.7777777778vw;
+  font-size: 3.2407407407vw;
+  color: #999;
+}
+.Comment-Box .Comment ul .SingleComment .showReplyNum span {
+  display: inline-block;
+  margin-bottom: 0.9259259259vw;
+  margin-right: 2.7777777778vw;
+  width: 9.2592592593vw;
+  height: 1px;
+  background: #999;
+}
+.Comment-Box .Comment ul .SingleComment .unshowReplyNum {
+  display: none;
+}
+.Comment-Box .Comment ul .SingleComment ul {
+  position: relative;
+  width: 100vw;
+}
+.Comment-Box .Comment ul .SingleComment ul .SingleReply {
+  position: relative;
+  width: 100vw;
+  list-style: none;
+  padding-bottom: 1.8518518519vw;
+}
+.Comment-Box .Comment ul .SingleComment ul .replyAvatar {
+  position: absolute;
+  top: 4.6296296296vw;
+  left: 18.5185185185vw;
+  width: 9.2592592593vw;
+  height: 9.2592592593vw;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.Comment-Box .Comment ul .SingleComment ul .replyAvatar img {
+  width: 9.2592592593vw;
+}
+.Comment-Box .Comment ul .SingleComment ul .replyuser {
+  display: inline-block;
+  width: 55.5555555556vw;
+  font-size: 3.2407407407vw;
+  color: black;
+  margin-top: 4.6296296296vw;
+  margin-bottom: 5.5555555556vw;
+  position: relative;
+  left: 30.5555555556vw;
+}
+.Comment-Box .Comment ul .SingleComment ul .replyuser a {
+  color: black;
+  font-weight: bold;
+}
+.Comment-Box .Comment ul .SingleComment ul .replyuser .replytext {
+  font-size: 3.2407407407vw;
+}
+.Comment-Box .Comment ul .SingleComment ul .replyuser .replyTime {
+  font-size: 3.2407407407vw;
+  color: #999;
+  left: 0;
+  bottom: -4.6296296296vw;
+  position: absolute;
+  display: inline-block;
+}
+.Comment-Box .Comment ul .SingleComment ul .replyuser .reply {
+  font-size: 3.2407407407vw;
+  color: #999;
+  font-weight: 600;
+  left: 38.8888888889vw;
+  bottom: -4.6296296296vw;
+  position: absolute;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=comment.css.map */

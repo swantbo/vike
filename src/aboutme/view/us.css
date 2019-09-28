@@ -1,0 +1,44 @@
+.us {
+  width: 100vw;
+  position: relative;
+}
+.us .Placeholder-chart {
+  width: 100vw;
+  height: 23.1481481481vw;
+  background: #f2f2f2;
+  border-radius: 1.8518518519vw;
+}
+.us .Placeholder-chart span {
+  width: 80vw;
+  height: 3.7037037037vw;
+  background: #fafafa;
+  display: inline-block;
+  margin-left: 4.6296296296vw;
+  margin-top: 4.6296296296vw;
+  border-radius: 0.9259259259vw;
+}
+.us .us-listText {
+  width: 90vw;
+  position: relative;
+  left: 50%;
+  margin-bottom: 2.7777777778vw;
+  margin-top: 18.5185185185vw;
+  transform: translateX(-50%);
+}
+.us .us-listText span {
+  display: inline-block;
+  color: #000;
+}
+.us .us-listText .us-listText-title {
+  font-weight: bold;
+  font-size: 4.6296296296vw;
+  position: absolute;
+  left: 0;
+}
+.us .us-listText .us-listText-text {
+  font-weight: normal;
+  font-size: 3.2407407407vw;
+  margin-top: 6.4814814815vw;
+}
+
+/*# sourceMappingURL=us.css.map */

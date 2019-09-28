@@ -1,0 +1,43 @@
+.dynamic-page {
+  width: 100vw;
+  margin-top: 11.5740740741vw;
+  position: relative;
+  margin-bottom: 11.5740740741vw;
+}
+.dynamic-page a .dynamicSingle {
+  position: relative;
+  width: 100vw;
+  padding: 0;
+  padding-left: 6.4814814815vw;
+  padding-top: 0.9259259259vw;
+  padding-bottom: 1.8518518519vw;
+  margin-bottom: 1.8518518519vw;
+  font-size: 3.7037037037vw;
+  color: #000;
+  border-bottom: 1px solid #f0f0f0;
+}
+.dynamic-page a .dynamicSingle .dynamicSingle-msg {
+  width: 90vw;
+}
+.dynamic-page a .dynamicSingle .dynamicSingle-msg a {
+  font-weight: bold;
+  color: #000;
+}
+.dynamic-page a .dynamicSingle .dynamicSingle-time {
+  font-size: 3.2407407407vw;
+  color: #828282;
+}
+.dynamic-page .dynamicSingle:before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1.8518518519vw;
+  background-color: #1e3890;
+  border-radius: 50%;
+  width: 1.8518518519vw;
+  height: 1.8518518519vw;
+}
+
+/*# sourceMappingURL=dynamic.css.map */

@@ -1,0 +1,90 @@
+.Placeholder-chart {
+  width: 100vw;
+  height: 23.1481481481vw;
+  background: #f2f2f2;
+  border-radius: 1.8518518519vw;
+}
+.Placeholder-chart span {
+  width: 80vw;
+  height: 3.7037037037vw;
+  background: #fafafa;
+  display: inline-block;
+  margin-left: 4.6296296296vw;
+  margin-top: 4.6296296296vw;
+  border-radius: 0.9259259259vw;
+}
+
+.friends {
+  margin-top: 11.5740740741vw;
+  width: 100vw;
+  position: relative;
+  background-color: #f8f8f8;
+  height: 100vh;
+  margin-bottom: 11.5740740741vw;
+}
+.friends .friendsHeader {
+  width: 100vw;
+  height: 11.5740740741vw;
+  position: fixed;
+  z-index: 99;
+}
+.friends .friendsHeader span {
+  display: inline-block;
+  width: 50vw;
+  height: 11.5740740741vw;
+  text-align: center;
+  line-height: 11.5740740741vw;
+  font-size: 3.7037037037vw;
+  color: #000000;
+  background-color: #fff;
+}
+.friends .friendsHeader .Action {
+  font-weight: bold;
+  background-color: #f8f8f8;
+}
+.friends .friendsList {
+  padding-top: 11.5740740741vw;
+}
+.friends .friendsList .friendSingle {
+  display: inline-block;
+  width: 100vw;
+  height: 12.037037037vw;
+  margin-top: 1.8518518519vw;
+  padding: 0 5vw;
+  position: relative;
+}
+.friends .friendsList .friendSingle .link-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 12.037037037vw;
+  height: 12.037037037vw;
+  border: 1px solid #c7c7c7;
+}
+.friends .friendsList .friendSingle .link-avatar img {
+  width: 12.037037037vw;
+}
+.friends .friendsList .friendSingle .link-text a .id {
+  display: inline-block;
+  font-size: 3.7037037037vw;
+  font-weight: bold;
+  color: #000;
+  position: absolute;
+  top: 0.9259259259vw;
+  left: 20.3703703704vw;
+}
+.friends .friendsList .friendSingle .link-text .name {
+  color: #8e8e8e;
+  font-size: 3.7037037037vw;
+  font-weight: lighter;
+  position: absolute;
+  top: 6.4814814815vw;
+  left: 20.3703703704vw;
+}
+.friends .friendsList .friendSingle .but {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 6.4814814815vw;
+}
+
+/*# sourceMappingURL=friends.css.map */

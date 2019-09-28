@@ -1,0 +1,194 @@
+.login-signUp {
+  position: relative;
+  width: 100vw;
+}
+.login-signUp .login {
+  width: 100vw;
+  margin-top: 11.5740740741vw;
+  margin-bottom: 11.5740740741vw;
+  position: relative;
+}
+.login-signUp .login .login-logo {
+  position: relative;
+  padding-top: 13.8888888889vw;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 23.1481481481vw;
+}
+.login-signUp .login .login-logo img {
+  width: 23.1481481481vw;
+}
+.login-signUp .login .login-point {
+  position: absolute;
+  left: 50%;
+  font-size: 3.2407407407vw;
+  margin-top: 4.6296296296vw;
+  font-weight: bold;
+  color: red;
+  transform: translateX(-50%);
+}
+.login-signUp .login .login-input {
+  width: 74.0740740741vw;
+  position: relative;
+  left: 50%;
+  margin-top: 18.5185185185vw;
+  transform: translateX(-50%);
+}
+.login-signUp .login .login-input label span {
+  text-indent: 1.8518518519vw;
+  position: absolute;
+  font-size: 3.2407407407vw;
+  font-weight: lighter;
+  color: #8d8d8d;
+  top: 0.462962963vw;
+}
+.login-signUp .login .login-input label input {
+  font-size: 3.2407407407vw;
+}
+.login-signUp .login .login-input .input-name {
+  display: block;
+  width: 74.0740740741vw;
+  height: 10.1851851852vw;
+  border-radius: 0.462962963vw;
+  background: #fafafa;
+  border: 1px solid #efefef;
+  position: relative;
+}
+.login-signUp .login .login-input .input-name span {
+  font-size: 2.7777777778vw;
+}
+.login-signUp .login .login-input .input-name input {
+  text-indent: 1.8518518519vw;
+  position: absolute;
+  bottom: 0;
+  font-size: 3.2407407407vw;
+  left: 0;
+  border: none;
+  list-style: none;
+  background: rgba(225, 225, 225, 0);
+  outline: none;
+}
+.login-signUp .login .login-input .input-name:focus-within {
+  border: 1px solid #b2b2b2;
+}
+.login-signUp .login .login-input .input-password:focus-within {
+  border: 1px solid #b2b2b2;
+}
+.login-signUp .login .login-input .input-password {
+  display: block;
+  position: relative;
+  border-radius: 0.462962963vw;
+  margin-top: 1.8518518519vw;
+  width: 74.0740740741vw;
+  background: #fafafa;
+  border: 1px solid #efefef;
+  height: 10.1851851852vw;
+}
+.login-signUp .login .login-input .input-password span {
+  font-size: 2.7777777778vw;
+}
+.login-signUp .login .login-input .input-password input {
+  text-indent: 1.8518518519vw;
+  position: absolute;
+  bottom: 0;
+  font-size: 3.2407407407vw;
+  border: none;
+  list-style: none;
+  outline: none;
+  background: rgba(225, 225, 225, 0);
+}
+.login-signUp .login .login-input .input-password div {
+  position: absolute;
+  right: 0;
+  line-height: 10.1851851852vw;
+  text-align: center;
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+  width: 12.037037037vw;
+  height: 9.8148148148vw;
+  background: #ffffff;
+}
+.login-signUp .login .login-input .input-password-again {
+  display: block;
+  position: relative;
+  border-radius: 0.462962963vw;
+  margin-top: 1.8518518519vw;
+  width: 74.0740740741vw;
+  background: #fafafa;
+  border: 1px solid #efefef;
+  height: 10.1851851852vw;
+}
+.login-signUp .login .login-input .input-password-again span {
+  font-size: 2.7777777778vw;
+}
+.login-signUp .login .login-input .input-password-again input {
+  text-indent: 1.8518518519vw;
+  position: absolute;
+  bottom: 0;
+  font-size: 3.2407407407vw;
+  border: none;
+  list-style: none;
+  outline: none;
+  background: rgba(225, 225, 225, 0);
+}
+.login-signUp .login .login-input .input-password-again div {
+  position: absolute;
+  right: 0;
+  line-height: 10.1851851852vw;
+  text-align: center;
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+  width: 12.037037037vw;
+  height: 10.1851851852vw;
+  background: #ffffff;
+}
+.login-signUp .login .login-input .login-button {
+  outline: none;
+  list-style: none;
+  border: none;
+  position: relative;
+  width: 74.0740740741vw;
+  height: 7.4074074074vw;
+  background: #7492ff;
+  border-radius: 0.9259259259vw;
+  line-height: 7.4074074074vw;
+  text-align: center;
+  color: #fff;
+  font-size: 3.2407407407vw;
+  margin-top: 6.4814814815vw;
+  font-weight: bold;
+}
+.login-signUp .login .login-input .login-button-close {
+  outline: none;
+  list-style: none;
+  border: none;
+  position: relative;
+  width: 74.0740740741vw;
+  height: 7.4074074074vw;
+  background: #d6d6d6;
+  border-radius: 0.9259259259vw;
+  line-height: 7.4074074074vw;
+  text-align: center;
+  color: #fff;
+  font-size: 3.2407407407vw;
+  margin-top: 6.4814814815vw;
+  font-weight: bold;
+}
+.login-signUp .switchLogin {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 11.1111111111vw;
+  background: #f9f9f9;
+  text-align: center;
+  line-height: 11.1111111111vw;
+  font-size: 3.2407407407vw;
+  font-weight: bold;
+  color: #b1b1b1;
+  border-top: 1px solid #eaeaea;
+}
+.login-signUp .switchLogin span {
+  color: #1e3890;
+}
+
+/*# sourceMappingURL=login.css.map */
