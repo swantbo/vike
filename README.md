@@ -4,7 +4,7 @@
 |:---:|:---:|
 |email|xwvike@gmail.com|
 
-####所用技术栈:  
+所用技术栈:  
 *[React](https://www.reactjscn.com/)  
 *[Redux](https://www.redux.org.cn/)  
 *[react-route](https://reacttraining.com/react-router/web/guides/quick-start)  
