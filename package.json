@@ -25,6 +25,7 @@
     "koa-socket-2": "^1.2.0",
     "koa-static": "^5.0.0",
     "mongoose": "^5.9.10",
+    "ng-zorro-antd": "^9.1.0",
     "ngx-socket-io": "^3.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
