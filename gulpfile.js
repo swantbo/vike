@@ -1,13 +1,11 @@
-const {src, dest} = require('gulp')
-const ts = require('gulp-typescript')
+var {src, dest} = require('gulp')
+var ts = require('gulp-typescript')
+var tsProject = ts.createProject('./server/tsconfig.json');
 const uglify = require('gulp-uglify');
 
 function defaultTask() {
   return src('./server/**/*.ts')
-    .pipe(ts({
-      noImplicitAny: true,
-      outFile: 'output.js'
-    }))
+    .pipe(tsProject())
     .pipe(uglify())
     .pipe(dest('output/'))
 }
