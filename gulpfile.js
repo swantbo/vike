@@ -1,4 +1,4 @@
-var {src, dest} = require('gulp')
+var {src, dest, watch} = require('gulp')
 var ts = require('gulp-typescript')
 var tsProject = ts.createProject('./server/tsconfig.json');
 const uglify = require('gulp-uglify');
@@ -9,4 +9,6 @@ function defaultTask() {
     .pipe(uglify())
     .pipe(dest('output/'))
 }
+// watch('server/**/*.ts', {delay: 500}, defaultTask)
+
 exports.default = defaultTask;

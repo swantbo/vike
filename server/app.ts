@@ -3,6 +3,6 @@ const koa = require('koa');
 const app = new koa();
 
 app.use(async ctx => {
-  ctx.body = 'hello koa';
+  ctx.body = 'hello';
 });
 export default app;
